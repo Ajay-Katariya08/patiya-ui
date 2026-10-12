@@ -119,6 +119,8 @@ export const docsNav = [
       { title: 'Social Login Button', href: '/docs/components/socialLoginButton' },
       { title: 'User Button', href: '/docs/components/userButton' },
       { title: 'Security Badge', href: '/docs/components/securityBadge' },
+      { title: 'Passkey Auth', href: '/docs/components/passkeyAuth' },
+      { title: 'Active Sessions', href: '/docs/components/activeSessions' },
     ]
   },
   {

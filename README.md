@@ -162,7 +162,7 @@ export function ThemeToggle() {
 | **Text Effects**            | `GradientText`, `TypingText`, `FlipText`, `BlurText`, `TypewriterText`                                                                                                         |
 | **FX & Backgrounds**        | `MeteorShower`, `AuroraBackground`, `BorderBeam`, `Sparkles`, `Spotlight`                                                                                                      |
 | **AI Interfaces**           | `ChatBubble`, `PromptInput`, `TypingIndicator`, `ThinkingProcess`, `PromptSuggestion`                                                                                          |
-| **Auth & Security**         | `SocialLoginButton`, `UserButton`, `SecurityBadge`                                                                                                                             |
+| **Auth & Security**         | `OTPInput`, `PasswordStrength`, `SocialLoginButton`, `UserButton`, `SecurityBadge`, `PasskeyAuth`, `ActiveSessions`                                                            |
 | **Data & Charts**           | `Table`, `Chart`, `RichTextEditor`, `LineChart`, `BarChart`, `AreaChart`, `PieChart`                                                                                           |
 
 ---
@@ -176,7 +176,7 @@ Contributions are always welcome.
 1. Fork the repository.
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/<YOUR_USERNAME>/patiya-ui.git
+   git clone https://github.com/Ajay-Katariya08/patiya-ui.git
    cd patiya
    ```
 3. Install dependencies:

@@ -72,7 +72,8 @@
   }
 
   /* Dark theme override */
-  [data-theme="dark"] {
+  [data-theme="dark"],
+  .dark {
     --patiya-color-background: oklch(0.15 0.02 260);
     --patiya-color-foreground: oklch(0.93 0.01 260);
     --patiya-color-card: oklch(0.2 0.02 260);

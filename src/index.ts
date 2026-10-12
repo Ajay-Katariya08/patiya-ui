@@ -89,6 +89,8 @@ export * from './components/PasswordStrength/PasswordStrength';
 export * from './components/SocialLoginButton/SocialLoginButton';
 export * from './components/UserButton/UserButton';
 export * from './components/SecurityBadge/SecurityBadge';
+export * from './components/PasskeyAuth/PasskeyAuth';
+export * from './components/ActiveSessions/ActiveSessions';
 
 export * from './components/Badge/Badge';
 export * from './components/Button/Button';
