@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--patiya-color-primary);
+  --color-primary-hover: var(--patiya-color-primary-hover);
+  --color-primary-active: var(--patiya-color-primary-active);
+  --color-primary-foreground: var(--patiya-color-primary-foreground);
+  
+  --color-secondary: var(--patiya-color-secondary);
+  --color-accent: var(--patiya-color-accent);
+  --color-destructive: var(--patiya-color-destructive);
+  --color-success: var(--patiya-color-success);
+  --color-warning: var(--patiya-color-warning);
+  --color-info: var(--patiya-color-info);
+  
+  --color-background: var(--patiya-color-background);
+  --color-foreground: var(--patiya-color-foreground);
+  --color-muted: var(--patiya-color-muted);
+  --color-muted-foreground: var(--patiya-color-muted-foreground);
+  --color-card: var(--patiya-color-card);
+  --color-card-foreground: var(--patiya-color-card-foreground);
+  --color-border: var(--patiya-color-border);
+  --color-ring: var(--patiya-color-ring);
+  
+  --radius-sm: var(--patiya-radius-sm);
+  --radius-md: var(--patiya-radius-md);
+  --radius-lg: var(--patiya-radius-lg);
+  --radius-xl: var(--patiya-radius-xl);
+  
+  --font-sans: var(--patiya-font-sans);
+  --font-mono: var(--patiya-font-mono);
+}
+
+@layer base {
+  :root {
+    /* Colors — Semantic */
+    --patiya-color-primary: oklch(0.55 0.2 260);
+    --patiya-color-primary-hover: oklch(0.48 0.22 260);
+    --patiya-color-primary-active: oklch(0.42 0.24 260);
+    --patiya-color-primary-foreground: oklch(0.98 0 0);
+
+    --patiya-color-secondary: oklch(0.65 0.05 270);
+    --patiya-color-accent: oklch(0.7 0.18 160);
+    --patiya-color-destructive: oklch(0.55 0.22 25);
+    --patiya-color-success: oklch(0.6 0.19 145);
+    --patiya-color-warning: oklch(0.75 0.15 75);
+    --patiya-color-info: oklch(0.6 0.15 240);
+    --patiya-color-muted: oklch(0.9 0.01 260);
+    --patiya-color-muted-foreground: oklch(0.55 0.02 260);
+
+    /* Surfaces */
+    --patiya-color-background: oklch(0.99 0 0);
+    --patiya-color-foreground: oklch(0.15 0.02 260);
+    --patiya-color-card: oklch(0.99 0 0);
+    --patiya-color-card-foreground: oklch(0.15 0.02 260);
+    --patiya-color-border: oklch(0.88 0.01 260);
+    --patiya-color-ring: oklch(0.55 0.2 260);
+
+    /* Radii */
+    --patiya-radius-sm: 0.25rem;
+    --patiya-radius-md: 0.375rem;
+    --patiya-radius-lg: 0.5rem;
+    --patiya-radius-xl: 0.75rem;
+    --patiya-radius-full: 9999px;
+
+    /* Typography */
+    --patiya-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --patiya-font-mono: 'JetBrains Mono', monospace;
+    
+    /* Spotlight */
+    --patiya-spotlight-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Dark theme override */
+  [data-theme="dark"] {
+    --patiya-color-background: oklch(0.15 0.02 260);
+    --patiya-color-foreground: oklch(0.93 0.01 260);
+    --patiya-color-card: oklch(0.2 0.02 260);
+    --patiya-color-card-foreground: oklch(0.93 0.01 260);
+    --patiya-color-border: oklch(0.3 0.02 260);
+    --patiya-color-muted: oklch(0.26 0.02 260);
+    --patiya-color-muted-foreground: oklch(0.75 0.02 260);
+    --patiya-spotlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: var(--patiya-color-border);
+  }
+
+  body {
+    background-color: var(--patiya-color-background);
+    color: var(--patiya-color-foreground);
+    font-family: var(--patiya-font-sans);
+  }
+}
