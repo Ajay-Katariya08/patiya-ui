@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   Box,
@@ -117,6 +118,9 @@ import {
   FlipCard,
   DirectionAwareHover,
   ShimmerButton,
+  Confetti,
+  ConfettiButton,
+  PointerFollower,
   Carousel,
   VideoModal,
   ImageZoom,
@@ -147,6 +151,7 @@ import {
   SecurityBadge,
   PasskeyAuth,
   ActiveSessions,
+  cn,
 } from "patiya";
 
 export const ToastPreview = () => {
@@ -1078,16 +1083,762 @@ export const BottomSheetPreview = () => {
 };
 
 export const SwitchPreview = () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   return (
     <Box className="flex items-center gap-4">
       <Switch
         checked={checked}
         onChange={(e) => setChecked(e.target.checked)}
       />
-      <span className="text-(--patiya-color-muted-foreground) font-medium">
+      <span className="text-sm font-medium text-[var(--patiya-color-foreground)]">
         Interactive ({checked ? "On" : "Off"})
       </span>
+    </Box>
+  );
+};
+
+export const SwitchSizesPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Switch size="xs" defaultChecked />
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          xs
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch size="sm" defaultChecked />
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          sm
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch size="md" defaultChecked />
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          md
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch size="lg" defaultChecked />
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          lg
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch size="xl" defaultChecked />
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          xl
+        </span>
+      </Box>
+    </Box>
+  );
+};
+
+export const SwitchVariantsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-8">
+      <Box className="flex items-center gap-3">
+        <Switch variant="solid" color="primary" defaultChecked />
+        <span className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+          Solid
+        </span>
+      </Box>
+      <Box className="flex items-center gap-3">
+        <Switch variant="soft" color="primary" defaultChecked />
+        <span className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+          Soft
+        </span>
+      </Box>
+      <Box className="flex items-center gap-3">
+        <Switch variant="outline" color="primary" defaultChecked />
+        <span className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+          Outline
+        </span>
+      </Box>
+    </Box>
+  );
+};
+
+export const SwitchColorsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Switch color="primary" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          primary
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="secondary" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          secondary
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="success" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          success
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="warning" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          warning
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="destructive" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          destructive
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="info" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          info
+        </span>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Switch color="accent" defaultChecked />
+        <span className="text-xs capitalize text-[var(--patiya-color-muted-foreground)]">
+          accent
+        </span>
+      </Box>
+    </Box>
+  );
+};
+
+export const SwitchCardPreview = () => {
+  const [wifi, setWifi] = useState(true);
+  const [bluetooth, setBluetooth] = useState(false);
+  const [notifications, setNotifications] = useState(true);
+
+  return (
+    <Box className="w-full max-w-md rounded-xl border border-[var(--patiya-color-border)] p-4 space-y-4 bg-[var(--patiya-color-card)]">
+      <Box className="flex items-center justify-between">
+        <Box>
+          <p className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+            Wi-Fi Connection
+          </p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Connect to known wireless networks
+          </p>
+        </Box>
+        <Switch
+          checked={wifi}
+          onChange={(e) => setWifi(e.target.checked)}
+          color="primary"
+        />
+      </Box>
+      <Box className="border-t border-[var(--patiya-color-border)] pt-3 flex items-center justify-between">
+        <Box>
+          <p className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+            Bluetooth
+          </p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Pair accessories and nearby devices
+          </p>
+        </Box>
+        <Switch
+          checked={bluetooth}
+          onChange={(e) => setBluetooth(e.target.checked)}
+          color="info"
+        />
+      </Box>
+      <Box className="border-t border-[var(--patiya-color-border)] pt-3 flex items-center justify-between">
+        <Box>
+          <p className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+            Security Alerts
+          </p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Receive real-time push notifications
+          </p>
+        </Box>
+        <Switch
+          checked={notifications}
+          onChange={(e) => setNotifications(e.target.checked)}
+          color="success"
+        />
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxSizesPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-xs" size="xs" defaultChecked />
+        <label
+          htmlFor="cb-xs"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          xs
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-sm" size="sm" defaultChecked />
+        <label
+          htmlFor="cb-sm"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          sm
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-md" size="md" defaultChecked />
+        <label
+          htmlFor="cb-md"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          md
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-lg" size="lg" defaultChecked />
+        <label
+          htmlFor="cb-lg"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          lg
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-xl" size="xl" defaultChecked />
+        <label
+          htmlFor="cb-xl"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          xl
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxVariantsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-8">
+      <Box className="flex items-center gap-2.5">
+        <Checkbox
+          id="cb-var-solid"
+          variant="solid"
+          color="primary"
+          defaultChecked
+        />
+        <label
+          htmlFor="cb-var-solid"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Solid
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2.5">
+        <Checkbox
+          id="cb-var-soft"
+          variant="soft"
+          color="primary"
+          defaultChecked
+        />
+        <label
+          htmlFor="cb-var-soft"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Soft
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2.5">
+        <Checkbox
+          id="cb-var-outline"
+          variant="outline"
+          color="primary"
+          defaultChecked
+        />
+        <label
+          htmlFor="cb-var-outline"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Outline
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxColorsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-primary" color="primary" defaultChecked />
+        <label
+          htmlFor="cb-col-primary"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          primary
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-secondary" color="secondary" defaultChecked />
+        <label
+          htmlFor="cb-col-secondary"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          secondary
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-success" color="success" defaultChecked />
+        <label
+          htmlFor="cb-col-success"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          success
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-warning" color="warning" defaultChecked />
+        <label
+          htmlFor="cb-col-warning"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          warning
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-destructive" color="destructive" defaultChecked />
+        <label
+          htmlFor="cb-col-destructive"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          destructive
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-info" color="info" defaultChecked />
+        <label
+          htmlFor="cb-col-info"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          info
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-col-accent" color="accent" defaultChecked />
+        <label
+          htmlFor="cb-col-accent"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          accent
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxRadiusPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-rad-none" radius="none" defaultChecked />
+        <label
+          htmlFor="cb-rad-none"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          Square (none)
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-rad-sm" radius="sm" defaultChecked />
+        <label
+          htmlFor="cb-rad-sm"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          Small (sm)
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-rad-md" radius="md" defaultChecked />
+        <label
+          htmlFor="cb-rad-md"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          Rounded (md)
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-rad-lg" radius="lg" defaultChecked />
+        <label
+          htmlFor="cb-rad-lg"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          Large (lg)
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Checkbox id="cb-rad-full" radius="full" defaultChecked />
+        <label
+          htmlFor="cb-rad-full"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          Circular (full)
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxIndeterminatePreview = () => {
+  const [items, setItems] = useState([true, false, false]);
+  const allChecked = items.every(Boolean);
+  const isIndeterminate = items.some(Boolean) && !allChecked;
+
+  return (
+    <Box className="space-y-3 p-4 rounded-xl border border-[var(--patiya-color-border)] max-w-sm bg-[var(--patiya-color-card)]">
+      <Box className="flex items-center gap-3 pb-3 border-b border-[var(--patiya-color-border)]">
+        <Checkbox
+          id="cb-parent"
+          checked={allChecked}
+          indeterminate={isIndeterminate}
+          onChange={(e) =>
+            setItems([e.target.checked, e.target.checked, e.target.checked])
+          }
+        />
+        <label
+          htmlFor="cb-parent"
+          className="text-sm font-semibold text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Select All Tasks
+        </label>
+      </Box>
+      <Box className="space-y-2 pl-6">
+        {[
+          "Review pull request",
+          "Deploy to staging",
+          "Run integration tests",
+        ].map((task, i) => (
+          <Box key={task} className="flex items-center gap-2.5">
+            <Checkbox
+              id={`task-${i}`}
+              checked={items[i]}
+              onChange={(e) => {
+                const next = [...items];
+                next[i] = e.target.checked;
+                setItems(next);
+              }}
+            />
+            <label
+              htmlFor={`task-${i}`}
+              className="text-xs text-[var(--patiya-color-foreground)] cursor-pointer"
+            >
+              {task}
+            </label>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};
+
+export const CheckboxCardPreview = () => {
+  const [selected, setSelected] = useState<string[]>(["email"]);
+
+  const toggle = (id: string) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+    );
+  };
+
+  return (
+    <Box className="w-full max-w-md space-y-3">
+      {[
+        {
+          id: "email",
+          title: "Email Notifications",
+          desc: "Receive daily summary and system alerts.",
+        },
+        {
+          id: "slack",
+          title: "Slack Integration",
+          desc: "Post deployment status updates directly to channels.",
+        },
+        {
+          id: "sms",
+          title: "SMS Two-Factor",
+          desc: "Fallback authentication codes via mobile network.",
+        },
+      ].map((item) => {
+        const isChecked = selected.includes(item.id);
+        return (
+          <label
+            key={item.id}
+            htmlFor={`opt-${item.id}`}
+            className={cn(
+              "flex items-start gap-3 p-3.5 rounded-xl border transition-all cursor-pointer",
+              isChecked
+                ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5"
+                : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] hover:border-[var(--patiya-color-muted-foreground)]/30",
+            )}
+          >
+            <Checkbox
+              id={`opt-${item.id}`}
+              checked={isChecked}
+              onChange={() => toggle(item.id)}
+              className="mt-0.5"
+            />
+            <Box className="space-y-0.5">
+              <p className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+                {item.title}
+              </p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                {item.desc}
+              </p>
+            </Box>
+          </label>
+        );
+      })}
+    </Box>
+  );
+};
+
+export const RadioSizesPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Radio id="r-size-xs" name="r-size" size="xs" />
+        <label
+          htmlFor="r-size-xs"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          xs
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-size-sm" name="r-size" size="sm" />
+        <label
+          htmlFor="r-size-sm"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          sm
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-size-md" name="r-size" size="md" defaultChecked />
+        <label
+          htmlFor="r-size-md"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          md
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-size-lg" name="r-size" size="lg" />
+        <label
+          htmlFor="r-size-lg"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          lg
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-size-xl" name="r-size" size="xl" />
+        <label
+          htmlFor="r-size-xl"
+          className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          xl
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const RadioVariantsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-8">
+      <Box className="flex items-center gap-2.5">
+        <Radio
+          id="r-var-solid"
+          name="r-var"
+          variant="solid"
+          color="primary"
+          defaultChecked
+        />
+        <label
+          htmlFor="r-var-solid"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Solid
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2.5">
+        <Radio id="r-var-soft" name="r-var" variant="soft" color="primary" />
+        <label
+          htmlFor="r-var-soft"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Soft
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2.5">
+        <Radio
+          id="r-var-outline"
+          name="r-var"
+          variant="outline"
+          color="primary"
+        />
+        <label
+          htmlFor="r-var-outline"
+          className="text-sm font-medium text-[var(--patiya-color-foreground)] cursor-pointer"
+        >
+          Outline
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const RadioColorsPreview = () => {
+  return (
+    <Box className="flex flex-wrap items-center gap-6">
+      <Box className="flex items-center gap-2">
+        <Radio id="r-col-primary" name="r-col-1" color="primary" defaultChecked />
+        <label
+          htmlFor="r-col-primary"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          primary
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio
+          id="r-col-secondary"
+          name="r-col-2"
+          color="secondary"
+          defaultChecked
+        />
+        <label
+          htmlFor="r-col-secondary"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          secondary
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-col-success" name="r-col-3" color="success" defaultChecked />
+        <label
+          htmlFor="r-col-success"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          success
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-col-warning" name="r-col-4" color="warning" defaultChecked />
+        <label
+          htmlFor="r-col-warning"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          warning
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio
+          id="r-col-destructive"
+          name="r-col-5"
+          color="destructive"
+          defaultChecked
+        />
+        <label
+          htmlFor="r-col-destructive"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          destructive
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-col-info" name="r-col-6" color="info" defaultChecked />
+        <label
+          htmlFor="r-col-info"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          info
+        </label>
+      </Box>
+      <Box className="flex items-center gap-2">
+        <Radio id="r-col-accent" name="r-col-7" color="accent" defaultChecked />
+        <label
+          htmlFor="r-col-accent"
+          className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+        >
+          accent
+        </label>
+      </Box>
+    </Box>
+  );
+};
+
+export const RadioCardPreview = () => {
+  const [selectedPlan, setSelectedPlan] = useState("starter");
+
+  const plans = [
+    {
+      id: "starter",
+      title: "Starter Plan",
+      desc: "For small teams and side projects.",
+      price: "$9/mo",
+    },
+    {
+      id: "pro",
+      title: "Pro Plan",
+      desc: "Advanced features and dedicated support.",
+      price: "$29/mo",
+    },
+    {
+      id: "enterprise",
+      title: "Enterprise",
+      desc: "Custom SLA and unlimited deployments.",
+      price: "$99/mo",
+    },
+  ];
+
+  return (
+    <Box className="w-full max-w-md space-y-3">
+      {plans.map((plan) => {
+        const isSelected = selectedPlan === plan.id;
+        return (
+          <label
+            key={plan.id}
+            htmlFor={`plan-${plan.id}`}
+            className={cn(
+              "flex items-center justify-between p-3.5 rounded-xl border transition-all cursor-pointer",
+              isSelected
+                ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5"
+                : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] hover:border-[var(--patiya-color-muted-foreground)]/30",
+            )}
+          >
+            <Box className="flex items-start gap-3">
+              <Radio
+                id={`plan-${plan.id}`}
+                name="subscription-plan"
+                checked={isSelected}
+                onChange={() => setSelectedPlan(plan.id)}
+                className="mt-0.5"
+              />
+              <Box className="space-y-0.5">
+                <p className="text-sm font-medium text-[var(--patiya-color-foreground)]">
+                  {plan.title}
+                </p>
+                <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                  {plan.desc}
+                </p>
+              </Box>
+            </Box>
+            <span className="text-sm font-semibold text-[var(--patiya-color-foreground)]">
+              {plan.price}
+            </span>
+          </label>
+        );
+      })}
     </Box>
   );
 };
@@ -2317,54 +3068,167 @@ export default function App() {
   switch: {
     title: "Switch",
     description:
-      "A control that allows the user to toggle between checked and not checked.",
+      "A control that allows the user to toggle between checked and not checked with multiple sizes, variants, and colors.",
+    installation: `import { Switch } from 'patiya';`,
     props: [
       {
-        name: "inputSize",
-        type: "PatiyaSize",
-        default: "-",
-        description: "The size of the input element.",
+        name: "size",
+        type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+        default: "'md'",
+        description: "The sizing of the switch component.",
+      },
+      {
+        name: "variant",
+        type: "'solid' | 'outline' | 'soft'",
+        default: "'solid'",
+        description: "The visual style variant of the switch.",
+      },
+      {
+        name: "color",
+        type: "PatiyaColor",
+        default: "'primary'",
+        description: "The color theme when checked.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether the switch is disabled and non-interactive.",
+      },
+      {
+        name: "checked",
+        type: "boolean",
+        default: "false",
+        description: "Controlled checked state.",
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Default state when uncontrolled.",
       },
     ],
     examples: [
       {
         title: "Default",
+        description: "Standard interactive switch with status label.",
         preview: <SwitchPreview />,
         code: `<Switch defaultChecked />`,
       },
       {
-        title: "Disabled",
+        title: "Sizes",
+        description: "Switches are available in xs, sm, md, lg, and xl sizes.",
+        preview: <SwitchSizesPreview />,
+        code: `<Switch size="xs" defaultChecked />\n<Switch size="sm" defaultChecked />\n<Switch size="md" defaultChecked />\n<Switch size="lg" defaultChecked />\n<Switch size="xl" defaultChecked />`,
+      },
+      {
+        title: "Variants",
+        description: "Support for solid, soft, and outline styling variants.",
+        preview: <SwitchVariantsPreview />,
+        code: `<Switch variant="solid" color="primary" defaultChecked />\n<Switch variant="soft" color="primary" defaultChecked />\n<Switch variant="outline" color="primary" defaultChecked />`,
+      },
+      {
+        title: "Color Themes",
+        description: "Switches adapt to all system theme colors when active.",
+        preview: <SwitchColorsPreview />,
+        code: `<Switch color="primary" defaultChecked />\n<Switch color="secondary" defaultChecked />\n<Switch color="success" defaultChecked />\n<Switch color="warning" defaultChecked />\n<Switch color="destructive" defaultChecked />\n<Switch color="info" defaultChecked />\n<Switch color="accent" defaultChecked />`,
+      },
+      {
+        title: "Settings Pattern",
+        description:
+          "Toggle list with titles and descriptions for settings dashboards.",
+        preview: <SwitchCardPreview />,
+        code: `<Box className="flex items-center justify-between p-4 border rounded-xl">\n  <Box>\n    <p className="text-sm font-medium">Wi-Fi Connection</p>\n    <p className="text-xs text-muted-foreground">Connect to known wireless networks</p>\n  </Box>\n  <Switch defaultChecked color="primary" />\n</Box>`,
+      },
+      {
+        title: "Disabled States",
+        description: "Disabled switches in both unchecked and checked states.",
         preview: (
-          <Box className="flex items-center gap-4">
-            <Switch disabled />
-            <Switch disabled defaultChecked />
+          <Box className="flex items-center gap-6">
+            <Box className="flex items-center gap-2">
+              <Switch disabled />
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Disabled Off
+              </span>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Switch disabled defaultChecked />
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Disabled On
+              </span>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Switch disabled defaultChecked variant="soft" color="success" />
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Disabled Soft
+              </span>
+            </Box>
           </Box>
         ),
-        code: `<Switch disabled />\n<Switch disabled defaultChecked />`,
+        code: `<Switch disabled />\n<Switch disabled defaultChecked />\n<Switch disabled defaultChecked variant="soft" color="success" />`,
       },
     ],
   },
   checkbox: {
     title: "Checkbox",
     description:
-      "A control that allows the user to toggle between checked and not checked.",
+      "A control that allows the user to toggle between checked and not checked with multiple sizes, variants, colors, and shapes.",
+    installation: `import { Checkbox } from 'patiya';`,
     props: [
       {
-        name: "inputSize",
-        type: "PatiyaSize",
-        default: "-",
-        description: "The size of the input element.",
+        name: "size",
+        type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+        default: "'md'",
+        description: "The size of the checkbox element.",
+      },
+      {
+        name: "variant",
+        type: "'solid' | 'outline' | 'soft'",
+        default: "'solid'",
+        description: "The visual style variant of the checkbox.",
+      },
+      {
+        name: "color",
+        type: "PatiyaColor",
+        default: "'primary'",
+        description: "The color theme when checked or indeterminate.",
+      },
+      {
+        name: "radius",
+        type: "'none' | 'sm' | 'md' | 'lg' | 'full'",
+        default: "'md'",
+        description: "The border radius shape of the checkbox.",
+      },
+      {
+        name: "indeterminate",
+        type: "boolean",
+        default: "false",
+        description:
+          "Whether the checkbox is in an indeterminate (partially checked) state.",
       },
       {
         name: "invalid",
         type: "boolean",
-        default: "-",
-        description: "Whether the input is in an invalid or error state.",
+        default: "false",
+        description: "Whether the checkbox indicates an error state.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether the checkbox is non-interactive.",
+      },
+      {
+        name: "checked",
+        type: "boolean",
+        default: "false",
+        description: "Controlled checked state.",
       },
     ],
     examples: [
       {
         title: "Default",
+        description: "Standard checkbox with label.",
         preview: (
           <Box className="flex items-center gap-3">
             <Checkbox id="terms" defaultChecked />
@@ -2376,22 +3240,83 @@ export default function App() {
             </label>
           </Box>
         ),
-        code: `<Checkbox id="terms" defaultChecked />`,
+        code: `<Checkbox id="terms" defaultChecked />\n<label htmlFor="terms">Accept terms and conditions</label>`,
       },
       {
-        title: "Disabled",
+        title: "Sizes",
+        description:
+          "Checkboxes are available in xs, sm, md, lg, and xl sizes.",
+        preview: <CheckboxSizesPreview />,
+        code: `<Checkbox size="xs" defaultChecked />\n<Checkbox size="sm" defaultChecked />\n<Checkbox size="md" defaultChecked />\n<Checkbox size="lg" defaultChecked />\n<Checkbox size="xl" defaultChecked />`,
+      },
+      {
+        title: "Variants",
+        description: "Support for solid, soft, and outline styling variants.",
+        preview: <CheckboxVariantsPreview />,
+        code: `<Checkbox variant="solid" color="primary" defaultChecked />\n<Checkbox variant="soft" color="primary" defaultChecked />\n<Checkbox variant="outline" color="primary" defaultChecked />`,
+      },
+      {
+        title: "Color Themes",
+        description: "Checkboxes adapt to all system theme colors when active.",
+        preview: <CheckboxColorsPreview />,
+        code: `<Checkbox color="primary" defaultChecked />\n<Checkbox color="secondary" defaultChecked />\n<Checkbox color="success" defaultChecked />\n<Checkbox color="warning" defaultChecked />\n<Checkbox color="destructive" defaultChecked />\n<Checkbox color="info" defaultChecked />\n<Checkbox color="accent" defaultChecked />`,
+      },
+      {
+        title: "Border Radius",
+        description:
+          "Custom border radius shapes including square and circular checkboxes.",
+        preview: <CheckboxRadiusPreview />,
+        code: `<Checkbox radius="none" defaultChecked />\n<Checkbox radius="sm" defaultChecked />\n<Checkbox radius="md" defaultChecked />\n<Checkbox radius="lg" defaultChecked />\n<Checkbox radius="full" defaultChecked />`,
+      },
+      {
+        title: "Indeterminate",
+        description:
+          "Partially selected state commonly used for nested item selections.",
+        preview: <CheckboxIndeterminatePreview />,
+        code: `<Checkbox indeterminate checked={false} onChange={handleParentToggle} />`,
+      },
+      {
+        title: "Card Pattern",
+        description:
+          "Checkboxes inside interactive setting cards with descriptions.",
+        preview: <CheckboxCardPreview />,
+        code: `<label className="flex items-start gap-3 p-3.5 border rounded-xl">\n  <Checkbox defaultChecked />\n  <div>\n    <p className="font-medium text-sm">Email Notifications</p>\n    <p className="text-xs text-muted-foreground">Receive daily summary alerts</p>\n  </div>\n</label>`,
+      },
+      {
+        title: "States",
+        description: "Error and disabled states for form validations.",
         preview: (
-          <Box className="flex items-center gap-3">
-            <Checkbox id="terms2" disabled defaultChecked />
-            <label
-              htmlFor="terms2"
-              className="text-sm font-medium leading-none opacity-50"
-            >
-              Disabled checked
-            </label>
+          <Box className="flex flex-wrap items-center gap-6">
+            <Box className="flex items-center gap-2">
+              <Checkbox id="cb-inv" invalid />
+              <label
+                htmlFor="cb-inv"
+                className="text-xs text-[var(--patiya-color-destructive)] cursor-pointer"
+              >
+                Invalid Error
+              </label>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Checkbox id="cb-dis" disabled />
+              <label
+                htmlFor="cb-dis"
+                className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+              >
+                Disabled
+              </label>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Checkbox id="cb-dis-chk" disabled defaultChecked />
+              <label
+                htmlFor="cb-dis-chk"
+                className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+              >
+                Disabled Checked
+              </label>
+            </Box>
           </Box>
         ),
-        code: `<Checkbox disabled defaultChecked />`,
+        code: `<Checkbox invalid />\n<Checkbox disabled />\n<Checkbox disabled defaultChecked />`,
       },
     ],
   },
@@ -2400,32 +3325,57 @@ export default function App() {
     description: "A set of checkable buttons, known as radio buttons.",
     props: [
       {
-        name: "inputSize",
+        name: "size",
         type: "PatiyaSize",
-        default: "-",
-        description: "The size of the input element.",
+        default: "'md'",
+        description: "The size of the radio button (xs, sm, md, lg, xl).",
+      },
+      {
+        name: "variant",
+        type: "'solid' | 'outline' | 'soft'",
+        default: "'solid'",
+        description: "Visual appearance style variant.",
+      },
+      {
+        name: "color",
+        type: "PatiyaColor",
+        default: "'primary'",
+        description: "Theme accent color applied when selected.",
       },
       {
         name: "invalid",
         type: "boolean",
-        default: "-",
-        description: "Whether the input is in an invalid or error state.",
+        default: "false",
+        description: "Whether the radio is in an invalid or error state.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether the radio button is disabled.",
       },
     ],
     examples: [
       {
         title: "Default",
+        description: "Standard radio group selection.",
         preview: (
           <Box className="flex gap-8">
             <Box className="flex items-center gap-3">
               <Radio name="plan" id="free" defaultChecked />
-              <label htmlFor="free" className="text-sm font-medium">
+              <label
+                htmlFor="free"
+                className="text-sm font-medium cursor-pointer"
+              >
                 Free Plan
               </label>
             </Box>
             <Box className="flex items-center gap-3">
               <Radio name="plan" id="pro" />
-              <label htmlFor="pro" className="text-sm font-medium">
+              <label
+                htmlFor="pro"
+                className="text-sm font-medium cursor-pointer"
+              >
                 Pro Plan
               </label>
             </Box>
@@ -2434,16 +3384,67 @@ export default function App() {
         code: `<Radio name="plan" id="free" defaultChecked />\n<Radio name="plan" id="pro" />`,
       },
       {
-        title: "Disabled",
+        title: "Sizes",
+        description:
+          "Radio buttons are available in xs, sm, md, lg, and xl sizes.",
+        preview: <RadioSizesPreview />,
+        code: `<Radio size="xs" name="size" />\n<Radio size="sm" name="size" />\n<Radio size="md" name="size" defaultChecked />\n<Radio size="lg" name="size" />\n<Radio size="xl" name="size" />`,
+      },
+      {
+        title: "Variants",
+        description: "Support for solid, soft, and outline styling variants.",
+        preview: <RadioVariantsPreview />,
+        code: `<Radio variant="solid" color="primary" defaultChecked />\n<Radio variant="soft" color="primary" />\n<Radio variant="outline" color="primary" />`,
+      },
+      {
+        title: "Color Themes",
+        description:
+          "Radio buttons adapt to all system theme colors when selected.",
+        preview: <RadioColorsPreview />,
+        code: `<Radio color="primary" defaultChecked />\n<Radio color="secondary" defaultChecked />\n<Radio color="success" defaultChecked />\n<Radio color="warning" defaultChecked />\n<Radio color="destructive" defaultChecked />\n<Radio color="info" defaultChecked />\n<Radio color="accent" defaultChecked />`,
+      },
+      {
+        title: "Card Pattern",
+        description:
+          "Radio options embedded inside interactive selection cards.",
+        preview: <RadioCardPreview />,
+        code: `<label className="flex items-center justify-between p-3.5 border rounded-xl cursor-pointer">\n  <div className="flex items-start gap-3">\n    <Radio name="plan" defaultChecked />\n    <div>\n      <p className="text-sm font-medium">Starter Plan</p>\n      <p className="text-xs text-muted-foreground">For small teams</p>\n    </div>\n  </div>\n  <span className="text-sm font-semibold">$9/mo</span>\n</label>`,
+      },
+      {
+        title: "States",
+        description: "Error and disabled states for radio inputs.",
         preview: (
-          <Box className="flex items-center gap-3">
-            <Radio name="dplan" id="dplan1" disabled defaultChecked />
-            <label htmlFor="dplan1" className="text-sm font-medium opacity-50">
-              Disabled
-            </label>
+          <Box className="flex flex-wrap items-center gap-6">
+            <Box className="flex items-center gap-2">
+              <Radio id="r-inv" invalid />
+              <label
+                htmlFor="r-inv"
+                className="text-xs text-[var(--patiya-color-destructive)] cursor-pointer"
+              >
+                Invalid Error
+              </label>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Radio id="r-dis" disabled />
+              <label
+                htmlFor="r-dis"
+                className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+              >
+                Disabled
+              </label>
+            </Box>
+            <Box className="flex items-center gap-2">
+              <Radio id="r-dis-chk" disabled defaultChecked />
+              <label
+                htmlFor="r-dis-chk"
+                className="text-xs text-[var(--patiya-color-muted-foreground)] cursor-pointer"
+              >
+                Disabled Checked
+              </label>
+            </Box>
           </Box>
         ),
-        code: `<Radio disabled defaultChecked />`,
+        code: `<Radio invalid />\n<Radio disabled />\n<Radio disabled defaultChecked />`,
       },
     ],
   },
@@ -3743,6 +4744,276 @@ export default function App() {
           </Box>
         ),
         code: `<ShimmerButton background="#0f172a" shimmerColor="#38bdf8">\n  Start Building\n</ShimmerButton>\n\n<ShimmerButton background="#fff" shimmerColor="#f43f5e">\n  <span className="text-slate-900">Subscribe Now</span>\n</ShimmerButton>`,
+      },
+    ],
+  },
+  confetti: {
+    title: "Confetti",
+    description:
+      "A high-performance physics-based particle confetti system with customizable bursts, shapes, velocities, and celebratory buttons.",
+    installation: `import { Confetti, ConfettiButton } from 'patiya';`,
+    props: [
+      {
+        name: "particleCount",
+        type: "number",
+        default: "70",
+        description: "Number of confetti particles spawned in the burst.",
+      },
+      {
+        name: "spread",
+        type: "number",
+        default: "75",
+        description: "Angular spread of the burst in degrees.",
+      },
+      {
+        name: "startVelocity",
+        type: "number",
+        default: "42",
+        description: "Initial velocity of ejected particles.",
+      },
+      {
+        name: "shapes",
+        type: "('square' | 'circle' | 'star' | 'ribbon')[]",
+        default: "['square', 'circle', 'ribbon']",
+        description: "Particle shapes rendered during explosion.",
+      },
+      {
+        name: "variant",
+        type: "'solid' | 'outline' | 'soft' | 'ghost'",
+        default: "'solid'",
+        description: "Button appearance style variant.",
+      },
+      {
+        name: "color",
+        type: "'primary' | 'secondary' | 'accent' | 'destructive' | 'success' | 'warning' | 'info' | 'muted'",
+        default: "'primary'",
+        description: "Theme color for the confetti button and particles.",
+      },
+      {
+        name: "size",
+        type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+        default: "'md'",
+        description: "Size of the button.",
+      },
+    ],
+    examples: [
+      {
+        title: "Celebration Buttons & Variants",
+        description:
+          "Interactive buttons that trigger confetti bursts using PatiyaColor themes and variants.",
+        preview: (
+          <Box className="flex flex-wrap items-center justify-center gap-4 py-8">
+            <ConfettiButton variant="solid" color="primary">
+              🎉 Primary Solid
+            </ConfettiButton>
+            <ConfettiButton variant="soft" color="secondary">
+              ✨ Soft Secondary
+            </ConfettiButton>
+            <ConfettiButton variant="outline" color="success">
+              🏆 Outline Success
+            </ConfettiButton>
+            <ConfettiButton variant="ghost" color="destructive">
+              💥 Ghost Destructive
+            </ConfettiButton>
+          </Box>
+        ),
+        code: `<ConfettiButton variant="solid" color="primary">\n  🎉 Primary Solid\n</ConfettiButton>\n\n<ConfettiButton variant="soft" color="secondary">\n  ✨ Soft Secondary\n</ConfettiButton>\n\n<ConfettiButton variant="outline" color="success">\n  🏆 Outline Success\n</ConfettiButton>\n\n<ConfettiButton variant="ghost" color="destructive">\n  💥 Ghost Destructive\n</ConfettiButton>`,
+      },
+      {
+        title: "Custom Shapes & Stars",
+        description:
+          "Confetti burst configured with custom star and ribbon particles and velocity.",
+        preview: (
+          <Box className="flex flex-wrap items-center justify-center gap-4 py-8">
+            <ConfettiButton
+              variant="soft"
+              color="accent"
+              options={{
+                shapes: ["star", "circle"],
+                particleCount: 90,
+                colors: ["#f59e0b", "#ec4899", "#8b5cf6", "#10b981"],
+                spread: 90,
+                startVelocity: 48,
+              }}
+            >
+              ⭐ Star Burst
+            </ConfettiButton>
+          </Box>
+        ),
+        code: `<ConfettiButton\n  variant="soft"\n  color="accent"\n  options={{\n    shapes: ['star', 'circle'],\n    particleCount: 90,\n    colors: ['#f59e0b', '#ec4899', '#8b5cf6', '#10b981'],\n    spread: 90,\n    startVelocity: 48,\n  }}\n>\n  ⭐ Star Burst\n</ConfettiButton>`,
+      },
+      {
+        title: "Reward Card Trigger",
+        description:
+          "Interactive milestone unlock card paired with celebratory confetti.",
+        preview: (
+          <Box className="w-full max-w-md mx-auto p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] text-center space-y-4 shadow-xl">
+            <Box className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--patiya-color-accent)]/15 text-2xl text-[var(--patiya-color-accent)]">
+              🏆
+            </Box>
+            <Box className="space-y-1">
+              <h3 className="text-lg font-bold text-[var(--patiya-color-foreground)]">
+                Pro Milestone Unlocked
+              </h3>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                You completed 100 design reviews this month.
+              </p>
+            </Box>
+            <ConfettiButton
+              variant="solid"
+              color="primary"
+              className="w-full"
+              options={{
+                particleCount: 100,
+                spread: 100,
+              }}
+            >
+              Collect 500 Credits 🚀
+            </ConfettiButton>
+          </Box>
+        ),
+        code: `<div className="p-6 rounded-2xl border text-center space-y-4">\n  <div className="h-14 w-14 mx-auto rounded-2xl bg-accent/15 text-2xl">🏆</div>\n  <h3 className="text-lg font-bold">Pro Milestone Unlocked</h3>\n  <p className="text-xs text-muted-foreground">You completed 100 reviews this month.</p>\n  <ConfettiButton variant="solid" color="primary" className="w-full">\n    Collect 500 Credits 🚀\n  </ConfettiButton>\n</div>`,
+      },
+    ],
+  },
+  pointerFollower: {
+    title: "Pointer Follower",
+    description:
+      "A multiplayer and Figma-inspired interactive cursor companion that smoothly tracks the user's pointer with spring physics, dynamic rotation, and customizable tags.",
+    installation: `import { PointerFollower } from 'patiya';`,
+    props: [
+      {
+        name: "name",
+        type: "string",
+        default: "'Alex Rivera'",
+        description:
+          "Name or label displayed on the collaborator cursor tag.",
+      },
+      {
+        name: "avatar",
+        type: "string",
+        default: "undefined",
+        description: "Optional URL for the collaborator's avatar picture.",
+      },
+      {
+        name: "badge",
+        type: "string",
+        default: "'Designing'",
+        description: "Tag label for current activity or role.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: "'#6366f1'",
+        description: "Hex or CSS color for pointer arrow and glow badges.",
+      },
+      {
+        name: "variant",
+        type: "'badge' | 'dot' | 'pill'",
+        default: "'badge'",
+        description:
+          "Visual appearance style: full badge, glow dot, or action pill.",
+      },
+      {
+        name: "pillText",
+        type: "string",
+        default: "undefined",
+        description: "Custom label displayed when variant is 'pill'.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description:
+          "Whether the interactive pointer follow effect is disabled.",
+      },
+    ],
+    examples: [
+      {
+        title: "Collaborative Canvas (Figma Style)",
+        description:
+          "Move your mouse across the interactive canvas to see live collaborator pointer physics with tilt rotation.",
+        preview: (
+          <PointerFollower
+            name="Alex Rivera"
+            badge="Lead Designer"
+            color="#6366f1"
+            className="w-full h-72 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 p-8 flex flex-col justify-between"
+          >
+            <Box className="flex items-center justify-between">
+              <Badge variant="soft" color="primary">
+                Canvas Mode
+              </Badge>
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Move cursor anywhere inside
+              </span>
+            </Box>
+            <Box className="space-y-2 text-center">
+              <h4 className="text-2xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
+                Multiplayer Design Canvas
+              </h4>
+              <p className="text-sm text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
+                Real-time cursor companion with momentum physics and dynamic
+                angle tilt based on velocity.
+              </p>
+            </Box>
+            <Box className="flex items-center justify-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                1 Live Collaborator Active
+              </span>
+            </Box>
+          </PointerFollower>
+        ),
+        code: `<PointerFollower\n  name="Alex Rivera"\n  badge="Lead Designer"\n  color="#6366f1"\n  className="w-full h-72 rounded-2xl border p-8"\n>\n  <h4>Multiplayer Design Canvas</h4>\n  <p>Move cursor anywhere inside.</p>\n</PointerFollower>`,
+      },
+      {
+        title: "Action Pill Follower",
+        description:
+          "Floating action pill that tracks the cursor over showcase project cards.",
+        preview: (
+          <PointerFollower
+            variant="pill"
+            pillText="Explore Project →"
+            color="#ec4899"
+            className="w-full h-64 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-br from-pink-500/10 via-purple-500/5 to-transparent p-6 flex flex-col justify-end"
+          >
+            <Box className="space-y-1">
+              <span className="text-xs font-semibold uppercase tracking-wider text-pink-500">
+                Case Study
+              </span>
+              <h4 className="text-xl font-bold text-[var(--patiya-color-foreground)]">
+                Modern Design System 2.0
+              </h4>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Hover to see smooth magnetic pill tracker following your pointer.
+              </p>
+            </Box>
+          </PointerFollower>
+        ),
+        code: `<PointerFollower\n  variant="pill"\n  pillText="Explore Project →"\n  color="#ec4899"\n  className="w-full h-64 rounded-2xl border p-6"\n>\n  <h4>Modern Design System 2.0</h4>\n</PointerFollower>`,
+      },
+      {
+        title: "Glowing Dot Tracer",
+        description:
+          "Minimalist neon glow dot that smoothly follows your cursor.",
+        preview: (
+          <PointerFollower
+            variant="dot"
+            color="#10b981"
+            className="w-full h-56 rounded-2xl border border-emerald-500/20 bg-neutral-950 p-6 flex items-center justify-center text-center"
+          >
+            <Box className="space-y-2">
+              <h4 className="text-lg font-bold text-white">
+                Neon Tracker Area
+              </h4>
+              <p className="text-xs text-neutral-400 max-w-xs">
+                Minimalist luminous dot with trailing pulse wave.
+              </p>
+            </Box>
+          </PointerFollower>
+        ),
+        code: `<PointerFollower\n  variant="dot"\n  color="#10b981"\n  className="w-full h-56 rounded-2xl bg-neutral-950"\n>\n  <h4>Neon Tracker Area</h4>\n</PointerFollower>`,
       },
     ],
   },

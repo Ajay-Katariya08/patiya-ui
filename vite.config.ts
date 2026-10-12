@@ -15,7 +15,16 @@ export default defineConfig({
       fileName: (format) => `patiya.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        /^react($|\/)/,
+        /^react-dom($|\/)/,
+        /^@floating-ui\/.*/,
+        /^@tiptap\/.*/,
+        /^cmdk($|\/)/,
+        /^cnfast($|\/)/,
+        /^recharts($|\/)/,
+        /^tailwindcss($|\/)/,
+      ],
       output: {
         preserveModules: true,
         preserveModulesRoot: 'src',

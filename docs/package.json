@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "16.3.8",
-    "patiya": "^1.1.5",
+    "patiya": "^2.0.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

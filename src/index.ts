@@ -53,6 +53,8 @@ export * from './components/Dock/Dock';
 export * from './components/FlipCard/FlipCard';
 export * from './components/DirectionAwareHover/DirectionAwareHover';
 export * from './components/ShimmerButton/ShimmerButton';
+export * from './components/Confetti/Confetti';
+export * from './components/PointerFollower/PointerFollower';
 export * from './components/Carousel/Carousel';
 export * from './components/VideoModal/VideoModal';
 export * from './components/ImageZoom/ImageZoom';

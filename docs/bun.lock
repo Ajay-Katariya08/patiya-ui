@@ -6,7 +6,7 @@
       "name": "docs",
       "dependencies": {
         "next": "16.3.8",
-        "patiya": "^1.1.5",
+        "patiya": "^2.0.1",
         "react": "19.2.8",
         "react-dom": "19.2.8",
       },
@@ -887,7 +887,7 @@
 
     "path-parse": ["path-parse@1.0.7", "", {}, "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw=="],
 
-    "patiya": ["patiya@1.1.5", "", { "dependencies": { "@floating-ui/react": "^0.27.0", "@tiptap/extension-placeholder": "^3.31.4", "@tiptap/react": "^3.31.4", "@tiptap/starter-kit": "^3.31.4", "cmdk": "^1.1.1", "cnfast": "^0.2.0", "recharts": "^3.10.1" }, "peerDependencies": { "react": ">=19.0.0", "react-dom": ">=19.0.0", "tailwindcss": ">=4.0.0" } }, "sha512-5BpXSmI5XdKGaXgpTj5TJbOreXMsVQ3BPhXoMxzsepEfZ0vCCYfO4eY9LL816QsXgPRsZDoOu1QwDwvXturYdA=="],
+    "patiya": ["patiya@2.0.1", "", { "dependencies": { "@floating-ui/react": "^0.27.0", "@tiptap/extension-placeholder": "^3.31.4", "@tiptap/react": "^3.31.4", "@tiptap/starter-kit": "^3.31.4", "cmdk": "^1.1.1", "cnfast": "^0.2.0", "recharts": "^3.10.1" }, "peerDependencies": { "react": ">=19.0.0", "react-dom": ">=19.0.0", "tailwindcss": ">=4.0.0" } }, "sha512-7LpGeZ7d3EhyD3u2YS9HqEvWAVQtDGu1X1Abyb0XGXJJ0iqMmOgIFscNhAbGB6Dt7aW7d9fqpHgqLYXrkFyPFQ=="],
 
     "picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 
