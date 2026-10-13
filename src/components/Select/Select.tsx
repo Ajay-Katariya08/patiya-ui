@@ -3,12 +3,12 @@ import { cn } from '../../utils/cn';
 import { PatiyaSize } from '../../types/common';
 import { Box } from '../Layout/Box';
 
-export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
+export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> & {
   inputSize?: PatiyaSize;
   variant?: 'outline' | 'filled' | 'soft';
   invalid?: boolean;
   leftIcon?: React.ReactNode;
-}
+};
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (

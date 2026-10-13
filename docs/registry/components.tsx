@@ -1023,28 +1023,111 @@ export const DrawerPreview = () => {
   return (
     <Box>
       <Button color="secondary" onClick={() => setOpen(true)}>
-        Open Drawer
+        Open Settings Drawer
       </Button>
       <Drawer open={open} onOpenChange={setOpen} side="right">
         <DrawerHeader>
-          <DrawerTitle>Configuration</DrawerTitle>
-          <DrawerDescription>Adjust your settings here.</DrawerDescription>
+          <DrawerTitle>Settings</DrawerTitle>
+          <DrawerDescription>Manage preferences and notifications.</DrawerDescription>
         </DrawerHeader>
-        <Box className="flex-1 py-4">
-          <Box className="space-y-4">
-            <Box className="flex justify-between items-center">
-              <span className="text-sm font-medium">Enable Notifications</span>
-              <Switch defaultChecked />
+        <Box className="flex-1 py-4 space-y-5">
+          <Box className="flex items-center justify-between">
+            <Box>
+              <p className="text-sm font-medium">Push Notifications</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Receive real-time alerts</p>
             </Box>
-            <Box className="flex justify-between items-center">
-              <span className="text-sm font-medium">Dark Mode</span>
-              <Switch />
+            <Switch defaultChecked />
+          </Box>
+          <Box className="flex items-center justify-between">
+            <Box>
+              <p className="text-sm font-medium">Auto Updates</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Keep app up to date</p>
             </Box>
+            <Switch defaultChecked />
+          </Box>
+          <Box className="flex items-center justify-between">
+            <Box>
+              <p className="text-sm font-medium">Telemetry Sharing</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Share anonymous crash logs</p>
+            </Box>
+            <Switch />
           </Box>
         </Box>
         <DrawerFooter>
-          <Button onClick={() => setOpen(false)} fullWidth>
-            Done
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => setOpen(false)}>
+            Save Changes
+          </Button>
+        </DrawerFooter>
+      </Drawer>
+    </Box>
+  );
+};
+
+export const DrawerLeftPreview = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Box>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open Navigation Drawer
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="left">
+        <DrawerHeader>
+          <DrawerTitle>Navigation</DrawerTitle>
+          <DrawerDescription>Explore workspace sections.</DrawerDescription>
+        </DrawerHeader>
+        <Box className="flex-1 py-4 space-y-2">
+          <Button variant="ghost" fullWidth className="justify-start">
+            Dashboard
+          </Button>
+          <Button variant="ghost" fullWidth className="justify-start">
+            Analytics
+          </Button>
+          <Button variant="ghost" fullWidth className="justify-start">
+            Projects
+          </Button>
+          <Button variant="ghost" fullWidth className="justify-start">
+            Team Members
+          </Button>
+          <Button variant="ghost" fullWidth className="justify-start">
+            Security & Billing
+          </Button>
+        </Box>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)} fullWidth>
+            Close Menu
+          </Button>
+        </DrawerFooter>
+      </Drawer>
+    </Box>
+  );
+};
+
+export const DrawerTopPreview = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Box>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open Top Announcement
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="top">
+        <DrawerHeader>
+          <DrawerTitle>System Maintenance Notice</DrawerTitle>
+          <DrawerDescription>
+            Scheduled maintenance is planned for Sunday at 02:00 UTC.
+          </DrawerDescription>
+        </DrawerHeader>
+        <Box className="py-2 text-sm text-[var(--patiya-color-muted-foreground)]">
+          All API endpoints and dashboards will experience up to 15 minutes of intermittent downtime. Please plan deployments accordingly.
+        </Box>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Dismiss
+          </Button>
+          <Button onClick={() => setOpen(false)}>
+            View Status Page
           </Button>
         </DrawerFooter>
       </Drawer>
@@ -1060,21 +1143,122 @@ export const BottomSheetPreview = () => {
         Open Bottom Sheet
       </Button>
       <Drawer open={open} onOpenChange={setOpen} side="bottom">
+        <Box className="w-12 h-1.5 bg-[var(--patiya-color-muted-foreground)]/30 rounded-full mx-auto mb-3" />
         <DrawerHeader>
-          <DrawerTitle>Bottom Sheet</DrawerTitle>
+          <DrawerTitle>Quick Actions</DrawerTitle>
           <DrawerDescription>
-            This drawer opens from the bottom.
+            Choose an action to perform on this document.
           </DrawerDescription>
         </DrawerHeader>
-        <Box className="flex-1 py-4 px-6 text-left">
-          <p className="text-sm text-(--patiya-color-muted-foreground)">
-            You can put any content here, and it will slide up from the bottom
-            of the screen. This is especially useful on mobile devices.
-          </p>
+        <Box className="grid grid-cols-2 gap-3 py-4">
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Copy Link
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Export PDF
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Send via Email
+          </Button>
+          <Button color="destructive" variant="soft" onClick={() => setOpen(false)}>
+            Move to Trash
+          </Button>
         </Box>
         <DrawerFooter>
           <Button onClick={() => setOpen(false)} fullWidth>
-            Close
+            Done
+          </Button>
+        </DrawerFooter>
+      </Drawer>
+    </Box>
+  );
+};
+
+export const DrawerFormPreview = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Box>
+      <Button onClick={() => setOpen(true)}>
+        Edit User Profile
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Edit Profile</DrawerTitle>
+          <DrawerDescription>Update public credentials and role.</DrawerDescription>
+        </DrawerHeader>
+        <Box className="flex-1 py-4 space-y-4">
+          <Box className="space-y-1.5">
+            <span className="text-xs font-semibold">Full Name</span>
+            <Input defaultValue="Sarah Connor" placeholder="Enter name" />
+          </Box>
+          <Box className="space-y-1.5">
+            <span className="text-xs font-semibold">Email</span>
+            <Input defaultValue="sarah@example.com" type="email" placeholder="Enter email" />
+          </Box>
+          <Box className="space-y-1.5">
+            <span className="text-xs font-semibold">Workspace Role</span>
+            <Select defaultValue="editor">
+              <option value="admin">Administrator</option>
+              <option value="editor">Editor</option>
+              <option value="viewer">Viewer</option>
+            </Select>
+          </Box>
+          <Box className="space-y-1.5">
+            <span className="text-xs font-semibold">Bio</span>
+            <Textarea defaultValue="Staff engineer building modern design systems." rows={3} />
+          </Box>
+        </Box>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => setOpen(false)}>
+            Save Profile
+          </Button>
+        </DrawerFooter>
+      </Drawer>
+    </Box>
+  );
+};
+
+export const DrawerCartPreview = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Box>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        View Cart (2 Items)
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Shopping Cart</DrawerTitle>
+          <DrawerDescription>You have 2 items in your cart.</DrawerDescription>
+        </DrawerHeader>
+        <Box className="flex-1 py-4 space-y-4">
+          <Box className="flex justify-between items-center pb-3 border-b border-[var(--patiya-color-border)]">
+            <Box>
+              <p className="text-sm font-semibold">Mechanical Keyboard</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Custom Linear Switches</p>
+            </Box>
+            <span className="text-sm font-medium">$149.00</span>
+          </Box>
+          <Box className="flex justify-between items-center pb-3 border-b border-[var(--patiya-color-border)]">
+            <Box>
+              <p className="text-sm font-semibold">Ergonomic Wrist Rest</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Walnut Wood</p>
+            </Box>
+            <span className="text-sm font-medium">$39.00</span>
+          </Box>
+          <Box className="pt-2 flex justify-between items-center">
+            <span className="text-base font-semibold">Total</span>
+            <span className="text-base font-bold">$188.00</span>
+          </Box>
+        </Box>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Continue Shopping
+          </Button>
+          <Button onClick={() => setOpen(false)}>
+            Checkout Now
           </Button>
         </DrawerFooter>
       </Drawer>
@@ -2124,36 +2308,176 @@ export const componentsRegistry: Record<string, any> = {
         default: "-",
         description: "Icon element to display on the right side.",
       },
+      {
+        name: "showPasswordToggle",
+        type: "boolean",
+        default: "false",
+        description: "Whether to display a built-in eye/eye-off toggle button when type='password'.",
+      },
+      {
+        name: "eyeIcon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Custom icon when password is hidden.",
+      },
+      {
+        name: "eyeOffIcon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Custom icon when password is visible.",
+      },
+      {
+        name: "clearable",
+        type: "boolean",
+        default: "false",
+        description: "Whether to display a clear button when the input has content.",
+      },
+      {
+        name: "onClear",
+        type: "() => void",
+        default: "-",
+        description: "Callback fired when the clear button is pressed.",
+      },
     ],
     examples: [
       {
         title: "Default",
         description: "The default outline input field.",
         preview: (
-          <Input placeholder="Email address" className="max-w-sm w-full" />
+          <Input placeholder="Email address" className="max-w-sm w-full" aria-label="Email address" />
         ),
         code: `<Input placeholder="Email address" />`,
       },
       {
-        title: "Filled Variant",
-        description: "An input with a filled background.",
+        title: "Variants",
+        description: "Available in outline, filled, and soft styling variants.",
+        preview: (
+          <Box className="flex flex-col gap-3 max-w-sm w-full">
+            <Input variant="outline" placeholder="Outline variant (default)" aria-label="Outline variant" />
+            <Input variant="filled" placeholder="Filled variant" aria-label="Filled variant" />
+            <Input variant="soft" placeholder="Soft variant" aria-label="Soft variant" />
+          </Box>
+        ),
+        code: `<Input variant="outline" placeholder="Outline variant (default)" />\n<Input variant="filled" placeholder="Filled variant" />\n<Input variant="soft" placeholder="Soft variant" />`,
+      },
+      {
+        title: "Sizes",
+        description: "Inputs come in sm, md, and lg sizes to match any form layout.",
+        preview: (
+          <Box className="flex flex-col gap-3 max-w-sm w-full">
+            <Input inputSize="sm" placeholder="Small size (sm)" aria-label="Small input" />
+            <Input inputSize="md" placeholder="Medium size (md - default)" aria-label="Medium input" />
+            <Input inputSize="lg" placeholder="Large size (lg)" aria-label="Large input" />
+          </Box>
+        ),
+        code: `<Input inputSize="sm" placeholder="Small size (sm)" />\n<Input inputSize="md" placeholder="Medium size (md)" />\n<Input inputSize="lg" placeholder="Large size (lg)" />`,
+      },
+      {
+        title: "With Left Icon",
+        description: "Leading icon for visual hints such as search or email.",
         preview: (
           <Input
-            placeholder="Filled input..."
-            variant="filled"
+            placeholder="Search components..."
             className="max-w-sm w-full"
+            aria-label="Search components"
+            leftIcon={
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            }
           />
         ),
-        code: `<Input placeholder="Filled input..." variant="filled" />`,
+        code: `<Input\n  placeholder="Search components..."\n  leftIcon={\n    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>\n  }\n/>`,
+      },
+      {
+        title: "With Right Icon & Shortcut",
+        description: "Trailing icon or keyboard shortcut badge.",
+        preview: (
+          <Input
+            placeholder="Quick search..."
+            className="max-w-sm w-full"
+            aria-label="Quick search"
+            leftIcon={
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            }
+            rightIcon={<Kbd size="sm">⌘K</Kbd>}
+          />
+        ),
+        code: `<Input\n  placeholder="Quick search..."\n  leftIcon={<SearchIcon />}\n  rightIcon={<Kbd size="sm">⌘K</Kbd>}\n/>`,
+      },
+      {
+        title: "Password with Toggle",
+        description: "Built-in visibility toggle handled internally without manual state.",
+        preview: (
+          <Input
+            type="password"
+            showPasswordToggle
+            placeholder="Enter your password..."
+            className="max-w-sm w-full"
+            aria-label="Password"
+          />
+        ),
+        code: `<Input\n  type="password"\n  showPasswordToggle\n  placeholder="Enter your password..."\n/>`,
+      },
+      {
+        title: "Clearable Input",
+        description: "Built-in clear button handled internally without manual state.",
+        preview: (
+          <Input
+            clearable
+            defaultValue="Search documentation"
+            placeholder="Type query..."
+            className="max-w-sm w-full"
+            aria-label="Clearable search"
+            leftIcon={
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            }
+          />
+        ),
+        code: `<Input\n  clearable\n  placeholder="Type query..."\n  leftIcon={<SearchIcon />}\n/>`,
+      },
+      {
+        title: "Invalid State",
+        description: "Error boundary styling with descriptive validation message.",
+        preview: (
+          <Box className="flex flex-col gap-1.5 max-w-sm w-full">
+            <Input
+              defaultValue="invalid-email@"
+              invalid={true}
+              placeholder="Email address"
+              aria-label="Email address with error"
+            />
+            <span className="text-xs text-[var(--patiya-color-destructive)]">
+              Please enter a valid email address.
+            </span>
+          </Box>
+        ),
+        code: `<Box className="flex flex-col gap-1.5">\n  <Input defaultValue="invalid-email@" invalid={true} />\n  <span className="text-xs text-[var(--patiya-color-destructive)]">\n    Please enter a valid email address.\n  </span>\n</Box>`,
+      },
+      {
+        title: "With Label & Helper Text",
+        description: "Structured form field with top label and bottom helper instructions.",
+        preview: (
+          <Box className="flex flex-col gap-1.5 max-w-sm w-full">
+            <label className="text-xs font-semibold text-[var(--patiya-color-foreground)] flex items-center justify-between">
+              <span>Workspace Identifier</span>
+              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">Optional</span>
+            </label>
+            <Input placeholder="acme-corp" aria-label="Workspace Identifier" />
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+              Your public workspace URL will be patiya.ui/acme-corp
+            </span>
+          </Box>
+        ),
+        code: `<Box className="flex flex-col gap-1.5">\n  <label className="text-xs font-semibold flex justify-between">\n    <span>Workspace Identifier</span>\n    <span className="text-xs text-muted-foreground">Optional</span>\n  </label>\n  <Input placeholder="acme-corp" />\n  <span className="text-xs text-muted-foreground">\n    Your public workspace URL will be patiya.ui/acme-corp\n  </span>\n</Box>`,
       },
       {
         title: "Disabled",
-        description: "A disabled input field.",
+        description: "A disabled input field preventing user interaction.",
         preview: (
           <Input
             placeholder="Disabled input"
             disabled
             className="max-w-sm w-full"
+            aria-label="Disabled input"
           />
         ),
         code: `<Input placeholder="Disabled input" disabled />`,
@@ -3455,20 +3779,14 @@ export default function App() {
       {
         name: "inputSize",
         type: "PatiyaSize",
-        default: "-",
-        description: "The size of the input element.",
+        default: "'md'",
+        description: "The size of the select element (xs, sm, md, lg, xl).",
       },
       {
         name: "variant",
         type: "'outline' | 'filled' | 'soft'",
-        default: "-",
-        description: "The visual style of the component.",
-      },
-      {
-        name: "invalid",
-        type: "boolean",
-        default: "-",
-        description: "Whether the input is in an invalid or error state.",
+        default: "'outline'",
+        description: "The visual style of the select component.",
       },
       {
         name: "leftIcon",
@@ -3476,29 +3794,214 @@ export default function App() {
         default: "-",
         description: "Icon element to display on the left side.",
       },
+      {
+        name: "invalid",
+        type: "boolean",
+        default: "false",
+        description: "Whether the select is in an invalid or error state.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether the select input is disabled.",
+      },
     ],
     examples: [
       {
         title: "Default",
+        description: "Basic select with placeholder and option choices.",
         preview: (
-          <Select defaultValue="" className="max-w-xs w-full">
+          <Select defaultValue="" className="max-w-xs w-full" aria-label="Select framework">
             <option value="" disabled>
               Select a framework
             </option>
-            <option value="1">Next.js</option>
-            <option value="2">React</option>
+            <option value="nextjs">Next.js</option>
+            <option value="react">React</option>
+            <option value="vue">Vue</option>
+            <option value="svelte">Svelte</option>
           </Select>
         ),
-        code: `<Select defaultValue="">\n  <option value="" disabled>Select</option>\n  <option value="1">Next.js</option>\n</Select>`,
+        code: `<Select defaultValue="">\n  <option value="" disabled>Select a framework</option>\n  <option value="nextjs">Next.js</option>\n  <option value="react">React</option>\n  <option value="vue">Vue</option>\n  <option value="svelte">Svelte</option>\n</Select>`,
+      },
+      {
+        title: "Variants",
+        description: "Available in outline, filled, and soft visual styles.",
+        preview: (
+          <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
+            <Box className="flex-1 space-y-1.5">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Outline (Default)</span>
+              <Select variant="outline" defaultValue="outline" aria-label="Outline variant">
+                <option value="outline">Outline</option>
+                <option value="option2">Option 2</option>
+              </Select>
+            </Box>
+            <Box className="flex-1 space-y-1.5">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Filled</span>
+              <Select variant="filled" defaultValue="filled" aria-label="Filled variant">
+                <option value="filled">Filled</option>
+                <option value="option2">Option 2</option>
+              </Select>
+            </Box>
+            <Box className="flex-1 space-y-1.5">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Soft</span>
+              <Select variant="soft" defaultValue="soft" aria-label="Soft variant">
+                <option value="soft">Soft</option>
+                <option value="option2">Option 2</option>
+              </Select>
+            </Box>
+          </Box>
+        ),
+        code: `<Select variant="outline" defaultValue="outline">\n  <option value="outline">Outline</option>\n</Select>\n\n<Select variant="filled" defaultValue="filled">\n  <option value="filled">Filled</option>\n</Select>\n\n<Select variant="soft" defaultValue="soft">\n  <option value="soft">Soft</option>\n</Select>`,
+      },
+      {
+        title: "Sizes",
+        description: "Supports xs, sm, md, lg, and xl sizes to fit different layouts.",
+        preview: (
+          <Box className="flex flex-col gap-3 w-full max-w-sm">
+            <Select inputSize="xs" defaultValue="xs" aria-label="Extra small select">
+              <option value="xs">Extra Small (xs)</option>
+            </Select>
+            <Select inputSize="sm" defaultValue="sm" aria-label="Small select">
+              <option value="sm">Small (sm)</option>
+            </Select>
+            <Select inputSize="md" defaultValue="md" aria-label="Medium select">
+              <option value="md">Medium (md)</option>
+            </Select>
+            <Select inputSize="lg" defaultValue="lg" aria-label="Large select">
+              <option value="lg">Large (lg)</option>
+            </Select>
+            <Select inputSize="xl" defaultValue="xl" aria-label="Extra large select">
+              <option value="xl">Extra Large (xl)</option>
+            </Select>
+          </Box>
+        ),
+        code: `<Select inputSize="xs">...</Select>\n<Select inputSize="sm">...</Select>\n<Select inputSize="md">...</Select>\n<Select inputSize="lg">...</Select>\n<Select inputSize="xl">...</Select>`,
+      },
+      {
+        title: "With Left Icon",
+        description: "Includes a decorative or contextual icon inside the select.",
+        preview: (
+          <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
+            <Select
+              defaultValue="us"
+              aria-label="Country or region"
+              className="flex-1"
+              leftIcon={
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              }
+            >
+              <option value="us">United States</option>
+              <option value="uk">United Kingdom</option>
+              <option value="de">Germany</option>
+              <option value="jp">Japan</option>
+            </Select>
+            <Select
+              defaultValue="usd"
+              aria-label="Billing currency"
+              className="flex-1"
+              leftIcon={
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              }
+            >
+              <option value="usd">USD ($)</option>
+              <option value="eur">EUR (€)</option>
+              <option value="gbp">GBP (£)</option>
+              <option value="jpy">JPY (¥)</option>
+            </Select>
+          </Box>
+        ),
+        code: `<Select leftIcon={<GlobeIcon />} defaultValue="us">\n  <option value="us">United States</option>\n  <option value="uk">United Kingdom</option>\n</Select>\n\n<Select leftIcon={<CreditCardIcon />} defaultValue="usd">\n  <option value="usd">USD ($)</option>\n  <option value="eur">EUR (€)</option>\n</Select>`,
+      },
+      {
+        title: "Grouped Options",
+        description: "Organize related options into categories using optgroup.",
+        preview: (
+          <Select defaultValue="" className="max-w-xs w-full" aria-label="Select tech stack">
+            <option value="" disabled>
+              Select technology...
+            </option>
+            <optgroup label="Frontend">
+              <option value="react">React</option>
+              <option value="vue">Vue</option>
+              <option value="svelte">Svelte</option>
+            </optgroup>
+            <optgroup label="Backend">
+              <option value="node">Node.js</option>
+              <option value="go">Go</option>
+              <option value="python">Python</option>
+            </optgroup>
+            <optgroup label="Database">
+              <option value="postgres">PostgreSQL</option>
+              <option value="redis">Redis</option>
+            </optgroup>
+          </Select>
+        ),
+        code: `<Select defaultValue="">\n  <option value="" disabled>Select technology...</option>\n  <optgroup label="Frontend">\n    <option value="react">React</option>\n    <option value="vue">Vue</option>\n  </optgroup>\n  <optgroup label="Backend">\n    <option value="node">Node.js</option>\n    <option value="go">Go</option>\n  </optgroup>\n</Select>`,
+      },
+      {
+        title: "With Label & Helper Text",
+        description: "Structured form field with top label and bottom helper instructions.",
+        preview: (
+          <Box className="flex flex-col gap-1.5 max-w-sm w-full">
+            <label className="text-xs font-semibold text-[var(--patiya-color-foreground)] flex items-center justify-between">
+              <span>Member Role</span>
+              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">Required</span>
+            </label>
+            <Select defaultValue="editor" aria-label="Member Role">
+              <option value="admin">Admin (Full permissions)</option>
+              <option value="editor">Editor (Can edit content)</option>
+              <option value="viewer">Viewer (Read-only)</option>
+            </Select>
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+              Determines permission level across project workspaces.
+            </span>
+          </Box>
+        ),
+        code: `<Box className="flex flex-col gap-1.5">\n  <label className="text-xs font-semibold flex justify-between">\n    <span>Member Role</span>\n    <span className="text-xs text-muted-foreground">Required</span>\n  </label>\n  <Select defaultValue="editor">\n    <option value="admin">Admin</option>\n    <option value="editor">Editor</option>\n    <option value="viewer">Viewer</option>\n  </Select>\n  <span className="text-xs text-muted-foreground">\n    Determines permission level across project workspaces.\n  </span>\n</Box>`,
+      },
+      {
+        title: "Invalid State",
+        description: "Error boundary styling with descriptive validation message.",
+        preview: (
+          <Box className="flex flex-col gap-1.5 max-w-sm w-full">
+            <Select invalid defaultValue="" aria-label="Department selection with error">
+              <option value="" disabled>
+                Select department...
+              </option>
+              <option value="eng">Engineering</option>
+              <option value="design">Design</option>
+              <option value="product">Product</option>
+            </Select>
+            <span className="text-xs text-[var(--patiya-color-destructive)]">
+              Please select a department to proceed.
+            </span>
+          </Box>
+        ),
+        code: `<Box className="flex flex-col gap-1.5">\n  <Select invalid defaultValue="">\n    <option value="" disabled>Select department...</option>\n    <option value="eng">Engineering</option>\n  </Select>\n  <span className="text-xs text-[var(--patiya-color-destructive)]">\n    Please select a department to proceed.\n  </span>\n</Box>`,
       },
       {
         title: "Disabled",
+        description: "A disabled select element or individual disabled option items.",
         preview: (
-          <Select defaultValue="1" disabled className="max-w-xs w-full">
-            <option value="1">Disabled Option</option>
-          </Select>
+          <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
+            <Box className="flex-1 space-y-1.5">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Disabled Select</span>
+              <Select disabled defaultValue="pro" aria-label="Disabled select">
+                <option value="pro">Pro Plan (Locked)</option>
+              </Select>
+            </Box>
+            <Box className="flex-1 space-y-1.5">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Disabled Options</span>
+              <Select defaultValue="starter" aria-label="Select with disabled options">
+                <option value="starter">Starter Plan</option>
+                <option value="team" disabled>Team Plan (Sold Out)</option>
+                <option value="enterprise" disabled>Enterprise (Waitlist)</option>
+              </Select>
+            </Box>
+          </Box>
         ),
-        code: `<Select disabled defaultValue="1">\n  <option value="1">Disabled</option>\n</Select>`,
+        code: `<Select disabled defaultValue="pro">\n  <option value="pro">Pro Plan (Locked)</option>\n</Select>\n\n<Select defaultValue="starter">\n  <option value="starter">Starter Plan</option>\n  <option value="team" disabled>Team Plan (Sold Out)</option>\n</Select>`,
       },
     ],
   },
@@ -4026,13 +4529,13 @@ export default function App() {
   },
   drawer: {
     title: "Drawer / Sheet",
-    description: "A panel that slides in from the edge of the screen.",
+    description: "A panel that slides smoothly in from any edge of the screen with customizable backdrop and hardware-accelerated transitions.",
     props: [
       {
         name: "open",
         type: "boolean",
-        default: "-",
-        description: "The controlled open state of the component.",
+        default: "false",
+        description: "The controlled open state of the drawer.",
       },
       {
         name: "onOpenChange",
@@ -4041,32 +4544,70 @@ export default function App() {
         description: "Event handler called when the open state changes.",
       },
       {
+        name: "side",
+        type: "'right' | 'left' | 'top' | 'bottom'",
+        default: "'right'",
+        description: "The edge of the viewport where the drawer slides in from.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to customize drawer panel size and styling.",
+      },
+      {
+        name: "overlayClassName",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes for custom backdrop styling.",
+      },
+      {
         name: "children",
         type: "React.ReactNode",
         default: "-",
-        description: "The content of the component.",
-      },
-      {
-        name: "side",
-        type: "'right' | 'left' | 'top' | 'bottom'",
-        default: "-",
-        description: "The side of the screen where the component will appear.",
+        description: "Content rendered inside the drawer.",
       },
     ],
     examples: [
       {
-        title: "Right-side Drawer",
+        title: "Right-side Drawer (Default)",
+        description: "Standard slide-over drawer from the right edge with form settings.",
         preview: <DrawerPreview />,
-        code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Settings</DrawerTitle>\n    <DrawerDescription>Manage your account settings.</DrawerDescription>\n  </DrawerHeader>\n</Drawer>`,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Settings</DrawerTitle>\n    <DrawerDescription>Manage preferences and notifications.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Box className="flex justify-between items-center">\n      <span>Push Notifications</span>\n      <Switch defaultChecked />\n    </Box>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>\n    <Button onClick={() => setOpen(false)}>Save Changes</Button>\n  </DrawerFooter>\n</Drawer>`,
+      },
+      {
+        title: "Left-side Navigation Menu",
+        description: "Drawer sliding in from the left edge, ideal for mobile or sidebar navigation.",
+        preview: <DrawerLeftPreview />,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="left">\n  <DrawerHeader>\n    <DrawerTitle>Navigation</DrawerTitle>\n    <DrawerDescription>Explore workspace sections.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-2">\n    <Button variant="ghost" fullWidth className="justify-start">Dashboard</Button>\n    <Button variant="ghost" fullWidth className="justify-start">Projects</Button>\n    <Button variant="ghost" fullWidth className="justify-start">Team Members</Button>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)} fullWidth>Close Menu</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
       {
         title: "Bottom Sheet",
+        description: "Slides up from the bottom with drag handle indicator, perfect for mobile quick actions.",
         preview: (
           <Box className="text-center w-full">
             <BottomSheetPreview />
           </Box>
         ),
-        code: `<Drawer side="bottom">\n  <DrawerHeader>\n    <DrawerTitle>Bottom Sheet</DrawerTitle>\n  </DrawerHeader>\n</Drawer>`,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="bottom">\n  <Box className="w-12 h-1.5 bg-muted-foreground/30 rounded-full mx-auto mb-3" />\n  <DrawerHeader>\n    <DrawerTitle>Quick Actions</DrawerTitle>\n    <DrawerDescription>Choose an action to perform on this document.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="grid grid-cols-2 gap-3 py-4">\n    <Button variant="outline">Copy Link</Button>\n    <Button variant="outline">Export PDF</Button>\n  </Box>\n  <DrawerFooter>\n    <Button onClick={() => setOpen(false)} fullWidth>Done</Button>\n  </DrawerFooter>\n</Drawer>`,
+      },
+      {
+        title: "Top Drawer",
+        description: "Slides down from the top edge for system announcements and maintenance banners.",
+        preview: <DrawerTopPreview />,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="top">\n  <DrawerHeader>\n    <DrawerTitle>System Maintenance Notice</DrawerTitle>\n    <DrawerDescription>Scheduled maintenance is planned for Sunday at 02:00 UTC.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="py-2 text-sm text-muted-foreground">\n    All API endpoints and dashboards will experience up to 15 minutes of downtime.\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Dismiss</Button>\n    <Button onClick={() => setOpen(false)}>View Status Page</Button>\n  </DrawerFooter>\n</Drawer>`,
+      },
+      {
+        title: "Form in Drawer",
+        description: "Edit profile slide-over with inputs, select dropdown, and bio textarea.",
+        preview: <DrawerFormPreview />,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Edit Profile</DrawerTitle>\n    <DrawerDescription>Update public credentials and role.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Input placeholder="Enter name" defaultValue="Sarah Connor" />\n    <Input type="email" placeholder="Enter email" defaultValue="sarah@example.com" />\n    <Select defaultValue="editor">\n      <option value="admin">Administrator</option>\n      <option value="editor">Editor</option>\n    </Select>\n    <Textarea defaultValue="Staff engineer building modern design systems." />\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>\n    <Button onClick={() => setOpen(false)}>Save Profile</Button>\n  </DrawerFooter>\n</Drawer>`,
+      },
+      {
+        title: "Shopping Cart Slide-Over",
+        description: "E-commerce cart drawer with item breakdown, pricing, and checkout button.",
+        preview: <DrawerCartPreview />,
+        code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Shopping Cart</DrawerTitle>\n    <DrawerDescription>You have 2 items in your cart.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Box className="flex justify-between items-center pb-3 border-b">\n      <span>Mechanical Keyboard</span>\n      <span>$149.00</span>\n    </Box>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Continue Shopping</Button>\n    <Button onClick={() => setOpen(false)}>Checkout Now</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
     ],
   },
@@ -6426,10 +6967,28 @@ export default function App() {
         title: "Custom Max Rows",
         preview: (
           <Box className="w-full max-w-lg">
-            <PromptInput placeholder="Type a long prompt..." maxRows={10} />
+            <PromptInput placeholder="Type a long prompt..." maxRows={10} aria-label="Long prompt input" />
           </Box>
         ),
         code: `<PromptInput placeholder="Type a long prompt..." maxRows={10} />`,
+      },
+      {
+        title: "With Suggestions",
+        description: "Prompt input paired with starter suggestion chips.",
+        preview: (
+          <Box className="w-full max-w-lg space-y-3">
+            <Box className="flex flex-wrap gap-2">
+              <Chip variant="outline" className="text-xs cursor-pointer">
+                Explain quantum computing
+              </Chip>
+              <Chip variant="outline" className="text-xs cursor-pointer">
+                Refactor React hook
+              </Chip>
+            </Box>
+            <PromptInput placeholder="Ask anything or pick a suggestion..." aria-label="AI prompt with suggestions" />
+          </Box>
+        ),
+        code: `<Box className="space-y-3">\n  <Box className="flex flex-wrap gap-2">\n    <Chip variant="outline">Explain quantum computing</Chip>\n    <Chip variant="outline">Refactor React hook</Chip>\n  </Box>\n  <PromptInput placeholder="Ask anything or pick a suggestion..." />\n</Box>`,
       },
     ],
   },
