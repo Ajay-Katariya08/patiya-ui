@@ -4,8 +4,8 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <Box className="w-full border-t border-[var(--patiya-color-border)] py-8 px-4 sm:px-6 md:px-12 bg-[var(--patiya-color-background)] z-10 relative mt-16">
-      <Box className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <Box className="w-full border-t border-(--patiya-color-border) py-10 px-4 sm:px-6 md:px-12 bg-[var(--patiya-color-background)] z-10 relative">
+      <Box className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <Box className="flex items-center gap-2">
           <Logo className="w-6 h-6" />
           <span className="font-semibold">Patiya UI</span>

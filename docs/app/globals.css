@@ -13,8 +13,14 @@
     background-image: radial-gradient(circle, currentColor 1px, transparent 1.5px);
   }
 
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--patiya-color-border) transparent;
+  }
+
   .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
+    height: 3px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -23,10 +29,31 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--patiya-color-border);
-    border-radius: 4px;
+    border-radius: 9999px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--patiya-color-muted-foreground);
   }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }
+

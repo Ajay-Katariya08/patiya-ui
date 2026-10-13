@@ -1,0 +1,89 @@
+# Patiya UI
+
+> Beautiful, accessible React components built with Tailwind CSS. 50+ free copy-paste components including buttons, modals, sliders, carousels, shimmer effects, dock, and AI interfaces.
+
+Patiya UI is a modern, lightweight React component library designed for physics-based micro-interactions, hardware-accelerated animations, and native Tailwind CSS v4 support.
+
+- Docs: https://patiya-ui.vercel.app/docs
+- GitHub: https://github.com/Ajay-Katariya08/patiya-ui
+- Package: bun add patiya / npm i patiya
+
+## Getting Started
+- [Installation](https://patiya-ui.vercel.app/docs): How to install and set up Patiya UI with Tailwind CSS v4.
+
+## Elements
+- [Button](https://patiya-ui.vercel.app/docs/components/button): Interactive button component with variants, loading state, and sizes.
+- [Badge](https://patiya-ui.vercel.app/docs/components/badge): Small status descriptor and count badges.
+- [Spinner](https://patiya-ui.vercel.app/docs/components/spinner): SVG loading indicator spinner.
+
+## Forms
+- [Input](https://patiya-ui.vercel.app/docs/components/input): Text field inputs with prefix, suffix, and error states.
+- [Textarea](https://patiya-ui.vercel.app/docs/components/textarea): Multi-line textarea inputs.
+- [Switch](https://patiya-ui.vercel.app/docs/components/switch): Toggle switch control.
+- [Checkbox](https://patiya-ui.vercel.app/docs/components/checkbox): Form checkbox inputs.
+- [Radio](https://patiya-ui.vercel.app/docs/components/radio): Radio buttons and radio groups.
+- [Select](https://patiya-ui.vercel.app/docs/components/select): Dropdown selection menu.
+- [Slider](https://patiya-ui.vercel.app/docs/components/slider): Range slider inputs.
+
+## Feedback
+- [Alert](https://patiya-ui.vercel.app/docs/components/alert): Feedback alert banners.
+- [Progress](https://patiya-ui.vercel.app/docs/components/progress): Determinate and indeterminate progress bars.
+- [Skeleton](https://patiya-ui.vercel.app/docs/components/skeleton): Shimmering skeleton content placeholder.
+
+## Overlays
+- [Modal](https://patiya-ui.vercel.app/docs/components/modal): Accessible dialog modal overlays.
+- [Drawer](https://patiya-ui.vercel.app/docs/components/drawer): Sliding sheet drawer panels.
+- [Tooltip](https://patiya-ui.vercel.app/docs/components/tooltip): Hover and focus floating tooltips.
+- [Popover](https://patiya-ui.vercel.app/docs/components/popover): Floating interactive popover panels.
+- [Dropdown Menu](https://patiya-ui.vercel.app/docs/components/dropdown-menu): Contextual dropdown menus.
+- [Toast](https://patiya-ui.vercel.app/docs/components/toast): Stacked notifications with toast provider.
+
+## Data Display
+- [Card](https://patiya-ui.vercel.app/docs/components/card): Container card with header, body, and footer.
+- [Avatar](https://patiya-ui.vercel.app/docs/components/avatar): User profile images and fallbacks.
+- [Chip](https://patiya-ui.vercel.app/docs/components/chip): Compact dismissible chips and tags.
+- [Table](https://patiya-ui.vercel.app/docs/components/table): Semantic styled data tables.
+- [Timeline](https://patiya-ui.vercel.app/docs/components/timeline): Vertical chronological timeline.
+- [Stepper](https://patiya-ui.vercel.app/docs/components/stepper): Multi-step progress tracker.
+
+## Interactive & Physics
+- [Dock](https://patiya-ui.vercel.app/docs/components/dock): Proximity-scaling macOS style dock.
+- [Spotlight Card](https://patiya-ui.vercel.app/docs/components/spotlightCard): Radial spotlight tracking cursor coordinates.
+- [Tilt Card](https://patiya-ui.vercel.app/docs/components/tiltCard): 3D perspective tilt effect on hover.
+- [Flip Card](https://patiya-ui.vercel.app/docs/components/flipCard): Interactive 3D flip card.
+- [Shimmer Button](https://patiya-ui.vercel.app/docs/components/shimmerButton): Conic gradient laser shimmer button.
+- [Magnetic](https://patiya-ui.vercel.app/docs/components/magnetic): Physics magnetic cursor attraction.
+- [Pointer Follower](https://patiya-ui.vercel.app/docs/components/pointerFollower): Custom mouse cursor follower and badges.
+- [Confetti](https://patiya-ui.vercel.app/docs/components/confetti): Canvas confetti fireworks effect.
+- [Scratch To Reveal](https://patiya-ui.vercel.app/docs/components/scratchToReveal): Interactive scratch-off revelation surface.
+- [Direction Aware Hover](https://patiya-ui.vercel.app/docs/components/directionAwareHover): Overlay revealing from hover entry direction.
+
+## Backgrounds & Effects
+- [Border Beam](https://patiya-ui.vercel.app/docs/components/borderBeam): Animated laser border beam outline.
+- [Spotlight](https://patiya-ui.vercel.app/docs/components/spotlight): Ambient spotlight lighting effect.
+- [Meteor Shower](https://patiya-ui.vercel.app/docs/components/meteorShower): Animated meteor shower streaks background.
+- [Aurora Background](https://patiya-ui.vercel.app/docs/components/auroraBackground): Soft flowing ambient aurora waves.
+- [Sparkles](https://patiya-ui.vercel.app/docs/components/sparkles): Dynamic particle sparkles field.
+
+## Text Effects
+- [Gradient Text](https://patiya-ui.vercel.app/docs/components/gradientText): Animated gradient clipping typography.
+- [Typing Text](https://patiya-ui.vercel.app/docs/components/typingText): Terminal typewriter text effect.
+- [Flip Text](https://patiya-ui.vercel.app/docs/components/flipText): 3D rotating character flip transitions.
+- [Blur Text](https://patiya-ui.vercel.app/docs/components/blurText): Progressive blur-in reveal typography.
+
+## AI Interfaces
+- [Prompt Input](https://patiya-ui.vercel.app/docs/components/promptInput): Auto-resizing textarea with submit and actions.
+- [Chat Bubble](https://patiya-ui.vercel.app/docs/components/chatBubble): Conversational message bubbles.
+- [Typing Indicator](https://patiya-ui.vercel.app/docs/components/typingIndicator): Pulsing AI typing dots indicator.
+- [Thinking Process](https://patiya-ui.vercel.app/docs/components/thinkingProcess): Expandable reasoning and thought disclosure.
+- [Typewriter Text](https://patiya-ui.vercel.app/docs/components/typewriterText): Token streaming typewriter text.
+- [Prompt Suggestion](https://patiya-ui.vercel.app/docs/components/promptSuggestion): Clickable prompt starter pills.
+
+## Auth & Security
+- [OTP Input](https://patiya-ui.vercel.app/docs/components/otpInput): Segmented one-time password pin input.
+- [Password Strength](https://patiya-ui.vercel.app/docs/components/passwordStrength): Dynamic password complexity meter.
+- [Social Login Button](https://patiya-ui.vercel.app/docs/components/socialLoginButton): Brand-styled OAuth login buttons.
+- [User Button](https://patiya-ui.vercel.app/docs/components/userButton): User account profile avatar menu.
+- [Security Badge](https://patiya-ui.vercel.app/docs/components/securityBadge): Cryptographic status and compliance badge.
+- [Passkey Auth](https://patiya-ui.vercel.app/docs/components/passkeyAuth): WebAuthn passkey biometric prompt.
+- [Active Sessions](https://patiya-ui.vercel.app/docs/components/activeSessions): Manage active device sessions.

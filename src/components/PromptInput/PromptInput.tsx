@@ -3,12 +3,12 @@ import { Box } from '../Layout/Box';
 import { cn } from '../../utils/cn';
 import { Button } from '../Button/Button';
 
-export interface PromptInputProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export type PromptInputProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   onValueSubmit?: (val: string) => void;
   actions?: React.ReactNode;
   attachments?: React.ReactNode;
   maxRows?: number;
-}
+};
 
 export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
   ({ className, onValueSubmit, actions, attachments, maxRows = 6, value, onChange, placeholder = 'Type a message...', ...props }, ref) => {
@@ -22,7 +22,6 @@ export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (!isControlled) setInternalVal(e.target.value);
       onChange?.(e);
-      // Auto resize
       const target = e.target;
       target.style.height = 'auto';
       target.style.height = `${Math.min(target.scrollHeight, maxRows * 24 + 16)}px`;
@@ -35,7 +34,6 @@ export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
         if (v.trim() && onValueSubmit) {
           onValueSubmit(v);
           if (!isControlled) setInternalVal('');
-          // reset height
           if (textAreaRef.current) {
             textAreaRef.current.style.height = 'auto';
           }
@@ -68,6 +66,7 @@ export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
             size="sm" 
             color="primary" 
             className="rounded-xl px-3 h-8 shrink-0" 
+            aria-label="Send message"
             disabled={!val || !(val as string).trim()}
             onClick={() => {
               if (onValueSubmit && val) {

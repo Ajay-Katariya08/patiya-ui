@@ -5,16 +5,11 @@ import {
   Button,
   IconButton,
   useTheme,
-  CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
 } from "patiya";
 import { useEffect, useState, useRef, useMemo } from "react";
 import { docsNav, renderSectionIcon } from "./Sidebar";
 import { Logo } from "./Logo";
+import { QuickSearchModal } from "./QuickSearchModal";
 import { usePathname, useRouter } from "next/navigation";
 
 export function Navbar() {
@@ -393,41 +388,7 @@ export function Navbar() {
         </div>
       )}
 
-      <CommandDialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-        <CommandInput placeholder="Search documentation..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          {docsNav.map((section) => (
-            <CommandGroup key={section.title} heading={section.title}>
-              {section.items.map((item) => (
-                <CommandItem
-                  key={item.href}
-                  value={item.title}
-                  onSelect={() => {
-                    setIsSearchOpen(false);
-                    router.push(item.href);
-                  }}
-                >
-                  <svg
-                    className="w-4 h-4 mr-2 text-(--patiya-color-muted-foreground)"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                  {item.title}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          ))}
-        </CommandList>
-      </CommandDialog>
+      <QuickSearchModal open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </>
   );
 }
