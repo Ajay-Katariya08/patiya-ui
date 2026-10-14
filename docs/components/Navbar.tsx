@@ -282,14 +282,18 @@ export function Navbar() {
                   (item) => pathname === item.href
                 );
                 const isClosed =
-                  !mobileFilter && !!mobileCollapsed[section.title] && !hasActive;
+                  !mobileFilter && !!mobileCollapsed[section.title];
 
                 return (
                   <Box key={section.title} className="group/section">
                     <button
                       type="button"
                       onClick={() => toggleMobileSection(section.title)}
-                      className="w-full flex items-center justify-between px-2 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] rounded-lg hover:bg-[var(--patiya-color-muted)]/50 transition-all cursor-pointer"
+                      className={`w-full flex items-center justify-between px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer ${
+                        hasActive
+                          ? "bg-[var(--patiya-color-primary)]/8 text-[var(--patiya-color-primary)]"
+                          : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/50"
+                      }`}
                     >
                       <span className="flex items-center gap-2">
                         <span
@@ -304,14 +308,24 @@ export function Navbar() {
                         <span className="truncate">{section.title}</span>
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-normal px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
+                        <span
+                          className={`text-[10px] font-normal px-1.5 py-0.2 rounded-md transition-colors ${
+                            hasActive
+                              ? "bg-[var(--patiya-color-primary)]/20 text-[var(--patiya-color-primary)] font-medium"
+                              : "bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]"
+                          }`}
+                        >
                           {section.items.length}
                         </span>
                         <svg
                           className={`w-3 h-3 transition-transform duration-250 ease-out ${
                             isClosed
-                              ? "-rotate-90 text-[var(--patiya-color-muted-foreground)]/50"
-                              : "rotate-0 text-[var(--patiya-color-muted-foreground)]"
+                              ? "-rotate-90 opacity-60"
+                              : "rotate-0"
+                          } ${
+                            hasActive
+                              ? "text-[var(--patiya-color-primary)]"
+                              : "text-[var(--patiya-color-muted-foreground)]"
                           }`}
                           fill="none"
                           stroke="currentColor"

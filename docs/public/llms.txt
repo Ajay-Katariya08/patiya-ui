@@ -45,6 +45,15 @@ Patiya UI is a modern, lightweight React component library designed for physics-
 - [Table](https://patiya-ui.vercel.app/docs/components/table): Semantic styled data tables.
 - [Timeline](https://patiya-ui.vercel.app/docs/components/timeline): Vertical chronological timeline.
 - [Stepper](https://patiya-ui.vercel.app/docs/components/stepper): Multi-step progress tracker.
+- [Stat](https://patiya-ui.vercel.app/docs/components/stat): Metric and KPI statistics with trend indicators.
+- [Data List](https://patiya-ui.vercel.app/docs/components/data-list): Structured key-value metadata and spec display.
+- [Tree View](https://patiya-ui.vercel.app/docs/components/tree-view): Hierarchical directory and taxonomy tree display.
+
+## Navigation
+- [Tabs](https://patiya-ui.vercel.app/docs/components/tabs): Layered section panels displayed one at a time with horizontal, vertical, and underline presets.
+- [Accordion](https://patiya-ui.vercel.app/docs/components/accordion): Vertically stacked interactive headings revealing expandable collapsible content.
+- [Breadcrumb](https://patiya-ui.vercel.app/docs/components/breadcrumb): Navigational path hierarchy links.
+- [Pagination](https://patiya-ui.vercel.app/docs/components/pagination): Page navigation controls.
 
 ## Interactive & Physics
 - [Dock](https://patiya-ui.vercel.app/docs/components/dock): Proximity-scaling macOS style dock.
@@ -78,6 +87,8 @@ Patiya UI is a modern, lightweight React component library designed for physics-
 - [Thinking Process](https://patiya-ui.vercel.app/docs/components/thinkingProcess): Expandable reasoning and thought disclosure.
 - [Typewriter Text](https://patiya-ui.vercel.app/docs/components/typewriterText): Token streaming typewriter text.
 - [Prompt Suggestion](https://patiya-ui.vercel.app/docs/components/promptSuggestion): Clickable prompt starter pills.
+- [Source Citation](https://patiya-ui.vercel.app/docs/components/sourceCitation): Grounded search and RAG source citation badges.
+- [Model Selector](https://patiya-ui.vercel.app/docs/components/modelSelector): AI model switcher with capability tags and context size.
 
 ## Auth & Security
 - [OTP Input](https://patiya-ui.vercel.app/docs/components/otpInput): Segmented one-time password pin input.

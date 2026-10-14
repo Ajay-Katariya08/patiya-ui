@@ -70,6 +70,9 @@ export const docsNav: NavSection[] = [
       { title: "Table", href: "/docs/components/table" },
       { title: "Timeline", href: "/docs/components/timeline" },
       { title: "Stepper", href: "/docs/components/stepper" },
+      { title: "Stat", href: "/docs/components/stat", badge: "New" },
+      { title: "Data List", href: "/docs/components/data-list", badge: "New" },
+      { title: "Tree View", href: "/docs/components/tree-view", badge: "New" },
     ],
   },
   {
@@ -111,7 +114,7 @@ export const docsNav: NavSection[] = [
     ],
   },
   {
-    title: "Backgrounds & Effects",
+    title: "Backgrounds",
     items: [
       { title: "Meteor Shower", href: "/docs/components/meteorShower" },
       { title: "Aurora Background", href: "/docs/components/auroraBackground" },
@@ -129,6 +132,16 @@ export const docsNav: NavSection[] = [
       { title: "Thinking Process", href: "/docs/components/thinkingProcess" },
       { title: "Typewriter Text", href: "/docs/components/typewriterText" },
       { title: "Prompt Suggestion", href: "/docs/components/promptSuggestion" },
+      {
+        title: "Source Citation",
+        href: "/docs/components/sourceCitation",
+        badge: "New",
+      },
+      {
+        title: "Model Selector",
+        href: "/docs/components/modelSelector",
+        badge: "New",
+      },
     ],
   },
   {
@@ -178,6 +191,16 @@ export const docsNav: NavSection[] = [
       { title: "Rating", href: "/docs/components/rating" },
       { title: "Status Dot", href: "/docs/components/status-dot" },
       { title: "Copy Button", href: "/docs/components/copy-button" },
+      {
+        title: "Scroll Progress",
+        href: "/docs/components/scroll-progress",
+        badge: "New",
+      },
+      {
+        title: "Browser Mockup",
+        href: "/docs/components/browser-mockup",
+        badge: "New",
+      },
     ],
   },
   {
@@ -521,30 +544,49 @@ export function Sidebar() {
             const hasActiveItem = section.items.some(
               (item) => pathname === item.href,
             );
-            const isClosed =
-              !filter && !!collapsed[section.title] && !hasActiveItem;
+            const isClosed = !filter && !!collapsed[section.title];
 
             return (
               <Box key={section.title} className="group/section">
                 <button
                   type="button"
                   onClick={() => toggleSection(section.title)}
-                  className="w-full flex items-center justify-between px-2 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] rounded-lg hover:bg-[var(--patiya-color-muted)]/50 transition-all duration-200 cursor-pointer"
+                  className={`w-full flex items-center justify-between px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer ${
+                    hasActiveItem
+                      ? "bg-[var(--patiya-color-primary)]/8 text-[var(--patiya-color-primary)]"
+                      : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/50"
+                  }`}
                 >
                   <span className="flex items-center gap-2">
                     <span
-                      className={`transition-colors duration-200 ${hasActiveItem ? "text-[var(--patiya-color-primary)]" : "text-[var(--patiya-color-muted-foreground)]"}`}
+                      className={`transition-colors duration-200 ${
+                        hasActiveItem
+                          ? "text-[var(--patiya-color-primary)]"
+                          : "text-[var(--patiya-color-muted-foreground)]"
+                      }`}
                     >
                       {renderSectionIcon(section.title)}
                     </span>
                     <span className="truncate">{section.title}</span>
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-normal px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
+                    <span
+                      className={`text-[10px] font-normal px-1.5 py-0.2 rounded-md transition-colors ${
+                        hasActiveItem
+                          ? "bg-[var(--patiya-color-primary)]/20 text-[var(--patiya-color-primary)] font-medium"
+                          : "bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]"
+                      }`}
+                    >
                       {section.items.length}
                     </span>
                     <svg
-                      className={`w-3 h-3 transition-transform duration-250 ease-out ${isClosed ? "-rotate-90 text-[var(--patiya-color-muted-foreground)]/50" : "rotate-0 text-[var(--patiya-color-muted-foreground)]"}`}
+                      className={`w-3 h-3 transition-transform duration-250 ease-out ${
+                        isClosed ? "-rotate-90 opacity-60" : "rotate-0"
+                      } ${
+                        hasActiveItem
+                          ? "text-[var(--patiya-color-primary)]"
+                          : "text-[var(--patiya-color-muted-foreground)]"
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

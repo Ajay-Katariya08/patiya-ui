@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Button,
@@ -151,6 +151,25 @@ import {
   SecurityBadge,
   PasskeyAuth,
   ActiveSessions,
+  Stat,
+  StatLabel,
+  StatValue,
+  StatTrend,
+  StatHelpText,
+  StatGroup,
+  DataList,
+  DataListItem,
+  DataListLabel,
+  DataListValue,
+  TreeView,
+  TreeItem,
+  SourceCitation,
+  SourceCitationList,
+  ModelSelector,
+  type AIModel,
+  ScrollProgress,
+  BrowserMockup,
+  type BrowserMockupTab,
   cn,
 } from "patiya";
 
@@ -427,6 +446,176 @@ export const StepperPreview = () => {
         </Step>
       </Stepper>
     </Box>
+  );
+};
+
+export const StatPreview = () => {
+  return (
+    <StatGroup columns={3} className="max-w-4xl w-full mx-auto">
+      <Stat variant="card">
+        <StatLabel>Total Revenue</StatLabel>
+        <StatValue prefix="$">45,231.89</StatValue>
+        <div className="flex items-center gap-2 mt-1">
+          <StatTrend direction="up">+20.1%</StatTrend>
+          <StatHelpText>from last month</StatHelpText>
+        </div>
+      </Stat>
+      <Stat variant="card">
+        <StatLabel>Active Subscriptions</StatLabel>
+        <StatValue prefix="+">2,350</StatValue>
+        <div className="flex items-center gap-2 mt-1">
+          <StatTrend direction="up">+180.1%</StatTrend>
+          <StatHelpText>from last quarter</StatHelpText>
+        </div>
+      </Stat>
+      <Stat variant="card">
+        <StatLabel>Churn Rate</StatLabel>
+        <StatValue suffix="%">1.2</StatValue>
+        <div className="flex items-center gap-2 mt-1">
+          <StatTrend direction="down">-0.4%</StatTrend>
+          <StatHelpText>all-time low</StatHelpText>
+        </div>
+      </Stat>
+    </StatGroup>
+  );
+};
+
+export const DataListPreview = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto">
+      <DataList variant="bordered">
+        <DataListItem>
+          <DataListLabel>Order ID</DataListLabel>
+          <DataListValue copyable copyText="#ORD-98231">
+            <span className="font-mono text-xs font-semibold">#ORD-98231</span>
+          </DataListValue>
+        </DataListItem>
+        <DataListItem>
+          <DataListLabel>Customer</DataListLabel>
+          <DataListValue>
+            <div className="flex flex-col">
+              <span className="font-medium">Sarah Jenkins</span>
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">sarah.j@example.com</span>
+            </div>
+          </DataListValue>
+        </DataListItem>
+        <DataListItem>
+          <DataListLabel>Payment</DataListLabel>
+          <DataListValue>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+              Visa ending in 4242
+            </span>
+          </DataListValue>
+        </DataListItem>
+        <DataListItem>
+          <DataListLabel>Amount</DataListLabel>
+          <DataListValue>
+            <span className="font-semibold text-base">$349.00 USD</span>
+          </DataListValue>
+        </DataListItem>
+        <DataListItem>
+          <DataListLabel>Status</DataListLabel>
+          <DataListValue>
+            <Badge variant="outline" className="text-emerald-600 border-emerald-500/30 bg-emerald-500/10">
+              Fulfilled
+            </Badge>
+          </DataListValue>
+        </DataListItem>
+      </DataList>
+    </div>
+  );
+};
+
+export const TreeViewPreview = () => {
+  return (
+    <div className="w-full max-w-md mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+      <TreeView defaultExpandedKeys={["root", "src", "components"]}>
+        <TreeItem
+          id="root"
+          label="patiya-ui"
+          icon={
+            <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+            </svg>
+          }
+        >
+          <TreeItem
+            id="src"
+            label="src"
+            icon={
+              <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+              </svg>
+            }
+          >
+            <TreeItem
+              id="components"
+              label="components"
+              icon={
+                <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+                </svg>
+              }
+            >
+              <TreeItem
+                id="stat"
+                label="Stat.tsx"
+                icon={
+                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                }
+                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+              />
+              <TreeItem
+                id="datalist"
+                label="DataList.tsx"
+                icon={
+                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                }
+                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+              />
+              <TreeItem
+                id="treeview"
+                label="TreeView.tsx"
+                icon={
+                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                }
+                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+              />
+            </TreeItem>
+            <TreeItem
+              id="index"
+              label="index.ts"
+              icon={
+                <svg className="w-4 h-4 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg>
+              }
+            />
+          </TreeItem>
+          <TreeItem
+            id="package"
+            label="package.json"
+            icon={
+              <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+            }
+          />
+        </TreeItem>
+      </TreeView>
+    </div>
   );
 };
 
@@ -2153,6 +2342,131 @@ export const CollapseHorizontalPreview = () => {
   );
 };
 
+export const ScrollProgressContainerPreview = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  return (
+    <Box className="w-full max-w-lg border border-[var(--patiya-color-border)] rounded-xl overflow-hidden bg-[var(--patiya-color-card)] shadow-sm">
+      <div className="relative">
+        <ScrollProgress containerRef={containerRef} height={4} />
+      </div>
+      <Box className="p-3 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 flex items-center justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
+        <span className="font-medium text-[var(--patiya-color-foreground)]">Reading Container</span>
+        <span>Scroll inside container ↓</span>
+      </Box>
+      <div
+        ref={containerRef}
+        className="h-44 overflow-y-auto p-4 space-y-3 text-sm text-[var(--patiya-color-muted-foreground)]"
+      >
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">1. Introduction to ScrollProgress</p>
+        <p>In modern web applications, subtle feedback cues elevate everyday user interactions into intuitive experiences. Scroll progress indicators inform users of their reading depth in long articles, documentation guides, and onboarding flows.</p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">2. Spring Micro-interactions</p>
+        <p>Micro-interactions provide visual confirmation of state changes. Combined with smooth CSS transitions, reading indicators feel alive and responsive.</p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">3. Targeted Container Binding</p>
+        <p>Whether tracking the entire browser window or targeted scrollable containers like modal dialogues, code blocks, or nested sidebars, ScrollProgress binds effortlessly to any target via containerRef.</p>
+        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">✓ You have reached the bottom!</p>
+      </div>
+    </Box>
+  );
+};
+
+export const ScrollProgressCirclePreview = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  return (
+    <Box className="relative w-full max-w-lg border border-[var(--patiya-color-border)] rounded-xl overflow-hidden bg-[var(--patiya-color-card)] shadow-sm">
+      <Box className="p-3 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 flex items-center justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
+        <span className="font-medium text-[var(--patiya-color-foreground)]">Circular Gauge with Scroll-To-Top</span>
+        <span>Scroll down & click circle</span>
+      </Box>
+      <div
+        ref={containerRef}
+        className="h-48 overflow-y-auto p-4 space-y-3 text-sm text-[var(--patiya-color-muted-foreground)]"
+      >
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">Executive Summary</p>
+        <p>Patiya UI delivers crafted primitives optimized for speed, precision, and beauty. Every component is designed to harmonize with your design system while reducing developer friction.</p>
+        <p>As you scroll down through this report, notice how the circular gauge at the bottom-right animates smoothly showing the exact completion percentage.</p>
+        <p>Hover over the circular gauge to reveal the quick "Back to Top" arrow indicator. Clicking the gauge instantly and smoothly glides your view right back to the top of the container.</p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">Key Performance Metrics</p>
+        <p>Zero external heavy dependencies, lightweight DOM footprint, native passive scroll listeners, and responsive mobile adaptation make it production-ready out of the box.</p>
+        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">✓ End of report.</p>
+      </div>
+      <div className="absolute bottom-4 right-4 z-10 pointer-events-auto">
+        <ScrollProgress
+          variant="circle"
+          containerRef={containerRef}
+          className="static shadow-lg"
+        />
+      </div>
+    </Box>
+  );
+};
+
+export const BrowserMockupInteractivePreview = () => {
+  const [activeTab, setActiveTab] = useState("preview");
+  return (
+    <BrowserMockup
+      url="https://patiya-ui.dev/dashboard"
+      tabs={[
+        { id: "preview", title: "Live Preview" },
+        { id: "analytics", title: "Analytics" },
+        { id: "settings", title: "Config" },
+      ]}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      className="w-full max-w-xl shadow-lg"
+    >
+      {activeTab === "preview" && (
+        <Box className="p-6 space-y-4 bg-gradient-to-br from-[var(--patiya-color-card)] to-[var(--patiya-color-muted)]/30">
+          <Box className="flex items-center justify-between">
+            <Box>
+              <Badge variant="soft" color="primary" size="sm">v2.4 Production</Badge>
+              <h3 className="text-base font-bold text-[var(--patiya-color-foreground)] mt-1.5">Design System Dashboard</h3>
+            </Box>
+            <span className="flex h-2.5 w-2.5 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+          </Box>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Real-time metrics and component telemetry updated across all connected client applications.</p>
+          <Box className="grid grid-cols-3 gap-3 pt-1">
+            <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Uptime</p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">99.99%</p>
+            </Box>
+            <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Latency</p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">18ms</p>
+            </Box>
+            <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Active Nodes</p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">42</p>
+            </Box>
+          </Box>
+        </Box>
+      )}
+      {activeTab === "analytics" && (
+        <Box className="p-6 space-y-4">
+          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Traffic & Conversion Metrics</p>
+          <Box className="space-y-2">
+            <Box className="flex justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
+              <span>Conversion Rate</span>
+              <span className="font-mono font-medium text-[var(--patiya-color-foreground)]">4.82% (+1.2%)</span>
+            </Box>
+            <Box className="w-full h-2 rounded-full bg-[var(--patiya-color-muted)] overflow-hidden">
+              <Box className="h-full bg-[var(--patiya-color-primary)] rounded-full w-[68%]" />
+            </Box>
+          </Box>
+        </Box>
+      )}
+      {activeTab === "settings" && (
+        <Box className="p-6 space-y-3">
+          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Mockup Configuration</p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Configure custom certificates, dark mode palettes, and title-bar controls.</p>
+        </Box>
+      )}
+    </BrowserMockup>
+  );
+};
+
 export const componentsRegistry: Record<string, any> = {
   button: {
     title: "Button",
@@ -2876,6 +3190,752 @@ export const componentsRegistry: Record<string, any> = {
       },
     ],
   },
+  stat: {
+    title: "Stat",
+    description: "Displays statistics, metrics, KPIs, and quantitative indicators with trend badges.",
+    installation: `import { Stat, StatLabel, StatValue, StatTrend, StatHelpText, StatGroup } from 'patiya';`,
+    examples: [
+      {
+        title: "KPI Dashboard Cards",
+        description: "Standard card-style metric displays with trend indicators and comparison subtitles.",
+        preview: <StatPreview />,
+        code: `<StatGroup columns={3}>\n  <Stat variant="card">\n    <StatLabel>Total Revenue</StatLabel>\n    <StatValue prefix="$">45,231.89</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="up">+20.1%</StatTrend>\n      <StatHelpText>from last month</StatHelpText>\n    </div>\n  </Stat>\n  <Stat variant="card">\n    <StatLabel>Active Subscriptions</StatLabel>\n    <StatValue prefix="+">2,350</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="up">+180.1%</StatTrend>\n      <StatHelpText>from last quarter</StatHelpText>\n    </div>\n  </Stat>\n  <Stat variant="card">\n    <StatLabel>Churn Rate</StatLabel>\n    <StatValue suffix="%">1.2</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="down">-0.4%</StatTrend>\n      <StatHelpText>all-time low</StatHelpText>\n    </div>\n  </Stat>\n</StatGroup>`,
+      },
+      {
+        title: "System Performance & Telemetry",
+        description: "Compact telemetry stats with contextual icons and inline trends.",
+        preview: (
+          <div className="w-full max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Stat variant="bordered">
+              <StatLabel
+                icon={
+                  <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <line x1="8" y1="12" x2="16" y2="12" />
+                  </svg>
+                }
+              >
+                CPU Usage
+              </StatLabel>
+              <StatValue suffix="%">38.4</StatValue>
+              <div className="flex items-center gap-2 mt-1">
+                <StatTrend direction="neutral" variant="text">Stable</StatTrend>
+                <StatHelpText>8 cores allocated</StatHelpText>
+              </div>
+            </Stat>
+            <Stat variant="bordered">
+              <StatLabel
+                icon={
+                  <svg className="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
+                }
+              >
+                API Latency
+              </StatLabel>
+              <StatValue suffix="ms">24</StatValue>
+              <div className="flex items-center gap-2 mt-1">
+                <StatTrend direction="down" variant="badge">-14ms</StatTrend>
+                <StatHelpText>p99 response</StatHelpText>
+              </div>
+            </Stat>
+            <Stat variant="bordered">
+              <StatLabel
+                icon={
+                  <svg className="w-3.5 h-3.5 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                }
+              >
+                Cost per 1k req
+              </StatLabel>
+              <StatValue prefix="$">0.002</StatValue>
+              <div className="flex items-center gap-2 mt-1">
+                <StatTrend direction="down" variant="badge">-8.2%</StatTrend>
+                <StatHelpText>optimized caching</StatHelpText>
+              </div>
+            </Stat>
+          </div>
+        ),
+        code: `<Stat variant="bordered">\n  <StatLabel icon={<CpuIcon />}>CPU Usage</StatLabel>\n  <StatValue suffix="%">38.4</StatValue>\n  <div className="flex items-center gap-2 mt-1">\n    <StatTrend direction="neutral" variant="text">Stable</StatTrend>\n    <StatHelpText>8 cores allocated</StatHelpText>\n  </div>\n</Stat>`,
+      },
+      {
+        title: "Inline Minimal Display",
+        description: "Borderless stats designed for user profile banners or hero stat counters.",
+        preview: (
+          <div className="flex flex-wrap items-center justify-around gap-8 p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 w-full max-w-xl mx-auto">
+            <Stat size="sm">
+              <StatLabel>Repositories</StatLabel>
+              <StatValue>128</StatValue>
+              <StatHelpText>Public & private</StatHelpText>
+            </Stat>
+            <div className="w-px h-10 bg-[var(--patiya-color-border)] hidden sm:block" />
+            <Stat size="sm">
+              <StatLabel>Followers</StatLabel>
+              <StatValue>14.2k</StatValue>
+              <StatHelpText>+342 this week</StatHelpText>
+            </Stat>
+            <div className="w-px h-10 bg-[var(--patiya-color-border)] hidden sm:block" />
+            <Stat size="sm">
+              <StatLabel>Contributions</StatLabel>
+              <StatValue>2,841</StatValue>
+              <StatHelpText>in the last year</StatHelpText>
+            </Stat>
+          </div>
+        ),
+        code: `<div className="flex items-center gap-8">\n  <Stat size="sm">\n    <StatLabel>Followers</StatLabel>\n    <StatValue>14.2k</StatValue>\n    <StatHelpText>+342 this week</StatHelpText>\n  </Stat>\n</div>`,
+      },
+    ],
+    props: [
+      {
+        name: "variant",
+        type: "'default' | 'card' | 'bordered'",
+        default: "'default'",
+        description: "Visual container style for the stat metric.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "'md'",
+        description: "Scale preset controlling typography size and spacing.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+      {
+        name: "StatLabel.icon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Optional leading icon next to the stat title.",
+      },
+      {
+        name: "StatValue.prefix",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Currency symbol or prefix placed before the metric value.",
+      },
+      {
+        name: "StatValue.suffix",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Unit or percentage suffix placed after the metric value.",
+      },
+      {
+        name: "StatTrend.direction",
+        type: "'up' | 'down' | 'neutral'",
+        default: "'neutral'",
+        description: "Directional indicator with arrow icon and semantic coloring.",
+      },
+      {
+        name: "StatTrend.variant",
+        type: "'badge' | 'text'",
+        default: "'badge'",
+        description: "Style mode as a rounded pill badge or plain inline text.",
+      },
+      {
+        name: "StatGroup.columns",
+        type: "1 | 2 | 3 | 4",
+        default: "3",
+        description: "Responsive grid columns count for grouping multiple stats.",
+      },
+    ],
+  },
+  "data-list": {
+    title: "Data List",
+    description: "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
+    installation: `import { DataList, DataListItem, DataListLabel, DataListValue } from 'patiya';`,
+    examples: [
+      {
+        title: "Bordered Order Details",
+        description: "Card-style divided metadata list with copyable values and status chips.",
+        preview: <DataListPreview />,
+        code: `<DataList variant="bordered">\n  <DataListItem>\n    <DataListLabel>Order ID</DataListLabel>\n    <DataListValue copyable copyText="#ORD-98231">\n      #ORD-98231\n    </DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Customer</DataListLabel>\n    <DataListValue>Sarah Jenkins (sarah.j@example.com)</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Amount</DataListLabel>\n    <DataListValue>$349.00 USD</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Status</DataListLabel>\n    <DataListValue>\n      <Badge variant="outline">Fulfilled</Badge>\n    </DataListValue>\n  </DataListItem>\n</DataList>`,
+      },
+      {
+        title: "Striped Server Specifications",
+        description: "Zebra-striped horizontal technical spec sheet.",
+        preview: (
+          <div className="w-full max-w-xl mx-auto">
+            <DataList variant="striped" size="sm">
+              <DataListItem>
+                <DataListLabel>Host Name</DataListLabel>
+                <DataListValue copyable copyText="aws-us-east-cluster-01.internal">
+                  <span className="font-mono text-xs">aws-us-east-cluster-01.internal</span>
+                </DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>Runtime</DataListLabel>
+                <DataListValue>Node.js v22.14 LTS (Bun 1.2)</DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>Memory Allocated</DataListLabel>
+                <DataListValue>32 GB / 64 GB DDR5 (50% utilization)</DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>SSL Certificate</DataListLabel>
+                <DataListValue>
+                  <span className="flex items-center gap-1.5 text-emerald-600">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                    Valid (Renews in 78 days)
+                  </span>
+                </DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>Egress IP</DataListLabel>
+                <DataListValue copyable copyText="54.210.142.89">
+                  <span className="font-mono text-xs">54.210.142.89</span>
+                </DataListValue>
+              </DataListItem>
+            </DataList>
+          </div>
+        ),
+        code: `<DataList variant="striped" size="sm">\n  <DataListItem>\n    <DataListLabel>Host Name</DataListLabel>\n    <DataListValue copyable>aws-us-east-cluster-01.internal</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Runtime</DataListLabel>\n    <DataListValue>Node.js v22.14 LTS</DataListValue>\n  </DataListItem>\n</DataList>`,
+      },
+      {
+        title: "Vertical Alignment Form Style",
+        description: "Vertical stacked metadata list suitable for sidebar panels or compact dialogs.",
+        preview: (
+          <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+            <DataList orientation="vertical" size="sm">
+              <DataListItem>
+                <DataListLabel>Workspace Slug</DataListLabel>
+                <DataListValue copyable copyText="acme-corp-hq">
+                  <span className="font-mono text-xs">acme-corp-hq</span>
+                </DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>Primary Domain</DataListLabel>
+                <DataListValue>
+                  <span className="text-[var(--patiya-color-primary)] underline cursor-pointer">acme.example.com</span>
+                </DataListValue>
+              </DataListItem>
+              <DataListItem>
+                <DataListLabel>Billing Plan</DataListLabel>
+                <DataListValue>Enterprise Tier ($1,200/mo)</DataListValue>
+              </DataListItem>
+            </DataList>
+          </div>
+        ),
+        code: `<DataList orientation="vertical" size="sm">\n  <DataListItem>\n    <DataListLabel>Workspace Slug</DataListLabel>\n    <DataListValue copyable>acme-corp-hq</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Primary Domain</DataListLabel>\n    <DataListValue>acme.example.com</DataListValue>\n  </DataListItem>\n</DataList>`,
+      },
+    ],
+    props: [
+      {
+        name: "orientation",
+        type: "'horizontal' | 'vertical'",
+        default: "'horizontal'",
+        description: "Layout direction aligning labels and values side-by-side or stacked.",
+      },
+      {
+        name: "variant",
+        type: "'plain' | 'striped' | 'divided' | 'bordered'",
+        default: "'plain'",
+        description: "Styling variant with dividing lines, alternating stripes, or card border.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "'md'",
+        description: "Typography size and vertical row padding density.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+      {
+        name: "DataListItem.align",
+        type: "'start' | 'center' | 'baseline'",
+        default: "'center'",
+        description: "Cross-axis alignment between the label and value columns.",
+      },
+      {
+        name: "DataListLabel.icon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Optional icon element preceding the label.",
+      },
+      {
+        name: "DataListValue.copyable",
+        type: "boolean",
+        default: "false",
+        description: "Whether to render a one-click copy button next to the value.",
+      },
+      {
+        name: "DataListValue.copyText",
+        type: "string",
+        default: "-",
+        description: "Custom text string to write to clipboard when copied.",
+      },
+    ],
+  },
+  dataList: {
+    title: "Data List",
+    description: "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
+    installation: `import { DataList, DataListItem, DataListLabel, DataListValue } from 'patiya';`,
+    examples: [
+      {
+        title: "Bordered Order Details",
+        description: "Card-style divided metadata list with copyable values and status chips.",
+        preview: <DataListPreview />,
+        code: `<DataList variant="bordered">\n  <DataListItem>\n    <DataListLabel>Order ID</DataListLabel>\n    <DataListValue copyable copyText="#ORD-98231">\n      #ORD-98231\n    </DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Customer</DataListLabel>\n    <DataListValue>Sarah Jenkins (sarah.j@example.com)</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Amount</DataListLabel>\n    <DataListValue>$349.00 USD</DataListValue>\n  </DataListItem>\n</DataList>`,
+      },
+    ],
+    props: [
+      {
+        name: "orientation",
+        type: "'horizontal' | 'vertical'",
+        default: "'horizontal'",
+        description: "Layout direction aligning labels and values side-by-side or stacked.",
+      },
+      {
+        name: "variant",
+        type: "'plain' | 'striped' | 'divided' | 'bordered'",
+        default: "'plain'",
+        description: "Styling variant with dividing lines, alternating stripes, or card border.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "'md'",
+        description: "Typography size and vertical row padding density.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+      {
+        name: "DataListItem.align",
+        type: "'start' | 'center' | 'baseline'",
+        default: "'center'",
+        description: "Cross-axis alignment between the label and value columns.",
+      },
+      {
+        name: "DataListLabel.icon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Optional icon element preceding the label.",
+      },
+      {
+        name: "DataListValue.copyable",
+        type: "boolean",
+        default: "false",
+        description: "Whether to render a one-click copy button next to the value.",
+      },
+      {
+        name: "DataListValue.copyText",
+        type: "string",
+        default: "-",
+        description: "Custom text string to write to clipboard when copied.",
+      },
+    ],
+  },
+  "tree-view": {
+    title: "Tree View",
+    description: "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
+    installation: `import { TreeView, TreeItem } from 'patiya';`,
+    examples: [
+      {
+        title: "Project File Explorer",
+        description: "Collapsible directory tree with branch connector lines, badges, and file type icons.",
+        preview: <TreeViewPreview />,
+        code: `<TreeView defaultExpandedKeys={["root", "src", "components"]}>\n  <TreeItem id="root" label="patiya-ui" icon={<FolderIcon />}>\n    <TreeItem id="src" label="src" icon={<FolderIcon />}>\n      <TreeItem id="components" label="components" icon={<FolderIcon />}>\n        <TreeItem id="stat" label="Stat.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="datalist" label="DataList.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="treeview" label="TreeView.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n      </TreeItem>\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+      {
+        title: "Organizational Teams Hierarchy",
+        description: "Multi-department organizational structure with member count badges.",
+        preview: (
+          <div className="w-full max-w-md mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+            <TreeView defaultExpandedKeys={["org", "eng"]}>
+              <TreeItem
+                id="org"
+                label="Acme Technologies"
+                badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">42 members</Badge>}
+              >
+                <TreeItem
+                  id="eng"
+                  label="Engineering & Ops"
+                  badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">26</Badge>}
+                >
+                  <TreeItem
+                    id="fe"
+                    label="Frontend Core (React, Next.js)"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">8</span>}
+                  />
+                  <TreeItem
+                    id="be"
+                    label="Platform Services (Go, Rust)"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">12</span>}
+                  />
+                  <TreeItem
+                    id="devops"
+                    label="Cloud Infrastructure (Kubernetes, AWS)"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">6</span>}
+                  />
+                </TreeItem>
+                <TreeItem
+                  id="design"
+                  label="Design & Product"
+                  badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">16</Badge>}
+                >
+                  <TreeItem
+                    id="uiux"
+                    label="Product Designers"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">10</span>}
+                  />
+                  <TreeItem
+                    id="research"
+                    label="UX Research & Analytics"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">6</span>}
+                  />
+                </TreeItem>
+              </TreeItem>
+            </TreeView>
+          </div>
+        ),
+        code: `<TreeView defaultExpandedKeys={["org", "eng"]}>\n  <TreeItem id="org" label="Acme Technologies" badge={<Badge>42 members</Badge>}>\n    <TreeItem id="eng" label="Engineering & Ops" badge={<Badge>26</Badge>}>\n      <TreeItem id="fe" label="Frontend Core" />\n      <TreeItem id="be" label="Platform Services" />\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+      {
+        title: "API Endpoints & Routing",
+        description: "Interactive REST endpoint tree with HTTP method badges and route parameters.",
+        preview: (
+          <div className="w-full max-w-lg mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+            <TreeView defaultExpandedKeys={["api", "v1", "users"]}>
+              <TreeItem
+                id="api"
+                label="api.gateway.io"
+                badge={<Badge variant="outline" className="text-[10px] text-emerald-600 bg-emerald-500/10 border-emerald-500/20 px-1.5 py-0 h-4">v2.4 Active</Badge>}
+              >
+                <TreeItem id="v1" label="/v1">
+                  <TreeItem id="users" label="/users">
+                    <TreeItem
+                      id="get-users"
+                      label="listAllUsers()"
+                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">GET</span>}
+                    />
+                    <TreeItem
+                      id="post-users"
+                      label="createUser()"
+                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                    />
+                    <TreeItem
+                      id="user-by-id"
+                      label="/:id"
+                    >
+                      <TreeItem
+                        id="get-user-id"
+                        label="getUserProfile()"
+                        badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">GET</span>}
+                      />
+                      <TreeItem
+                        id="delete-user-id"
+                        label="deleteUser()"
+                        badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400">DELETE</span>}
+                      />
+                    </TreeItem>
+                  </TreeItem>
+                  <TreeItem id="auth" label="/auth">
+                    <TreeItem
+                      id="post-login"
+                      label="loginWithPassword()"
+                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                    />
+                    <TreeItem
+                      id="post-passkey"
+                      label="verifyPasskey()"
+                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                    />
+                  </TreeItem>
+                </TreeItem>
+              </TreeItem>
+            </TreeView>
+          </div>
+        ),
+        code: `<TreeView defaultExpandedKeys={["api", "v1", "users"]}>\n  <TreeItem id="api" label="api.gateway.io">\n    <TreeItem id="v1" label="/v1">\n      <TreeItem id="users" label="/users">\n        <TreeItem id="get-users" label="listAllUsers()" badge={<span className="bg-emerald-500/15 text-emerald-600 px-1.5 py-0.5 rounded font-mono text-[10px] font-bold">GET</span>} />\n        <TreeItem id="post-users" label="createUser()" badge={<span className="bg-blue-500/15 text-blue-600 px-1.5 py-0.5 rounded font-mono text-[10px] font-bold">POST</span>} />\n      </TreeItem>\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+      {
+        title: "Access Permissions & Security",
+        description: "Multi-level RBAC role permission tree with access status indicators.",
+        preview: (
+          <div className="w-full max-w-md mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+            <TreeView defaultExpandedKeys={["security", "auth-settings"]}>
+              <TreeItem
+                id="security"
+                label="Security & Governance"
+                icon={
+                  <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  </svg>
+                }
+              >
+                <TreeItem id="auth-settings" label="Authentication Policies">
+                  <TreeItem
+                    id="mfa"
+                    label="Multi-Factor Authentication"
+                    badge={<Badge variant="outline" className="text-[10px] text-emerald-600 border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0 h-4">Enforced</Badge>}
+                  />
+                  <TreeItem
+                    id="sso"
+                    label="SAML 2.0 Single Sign-On"
+                    badge={<Badge variant="outline" className="text-[10px] text-sky-600 border-sky-500/30 bg-sky-500/10 px-1.5 py-0 h-4">Active</Badge>}
+                  />
+                  <TreeItem
+                    id="session-timeout"
+                    label="Idle Session Expiry (15m)"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">Enabled</span>}
+                  />
+                </TreeItem>
+                <TreeItem id="data-governance" label="Data Governance">
+                  <TreeItem
+                    id="audit-logs"
+                    label="Immutable Audit Logs"
+                    badge={<Badge variant="outline" className="text-[10px] text-amber-600 border-amber-500/30 bg-amber-500/10 px-1.5 py-0 h-4">Admin Only</Badge>}
+                  />
+                  <TreeItem
+                    id="backup"
+                    label="Automated Daily Backups"
+                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">02:00 UTC</span>}
+                  />
+                </TreeItem>
+              </TreeItem>
+            </TreeView>
+          </div>
+        ),
+        code: `<TreeView defaultExpandedKeys={["security", "auth-settings"]}>\n  <TreeItem id="security" label="Security & Governance" icon={<ShieldIcon />}>\n    <TreeItem id="auth-settings" label="Authentication Policies">\n      <TreeItem id="mfa" label="Multi-Factor Authentication" badge={<Badge>Enforced</Badge>} />\n      <TreeItem id="sso" label="SAML 2.0 SSO" badge={<Badge>Active</Badge>} />\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+      {
+        title: "Cloud Storage Bucket",
+        description: "Cloud storage object directory with file-type icons and size badges.",
+        preview: (
+          <div className="w-full max-w-lg mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+            <TreeView defaultExpandedKeys={["bucket", "images"]}>
+              <TreeItem
+                id="bucket"
+                label="s3://production-cdn-assets"
+                icon={
+                  <svg className="w-4 h-4 text-violet-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3" />
+                    <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                    <path d="M3 12A9 3 0 0 0 21 12" />
+                  </svg>
+                }
+                badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">3.4 GB total</Badge>}
+              >
+                <TreeItem id="images" label="images/">
+                  <TreeItem
+                    id="hero"
+                    label="hero-banner-dark.webp"
+                    icon={
+                      <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                      </svg>
+                    }
+                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">1.2 MB</span>}
+                  />
+                  <TreeItem
+                    id="avatar"
+                    label="user-avatar-placeholder.png"
+                    icon={
+                      <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                      </svg>
+                    }
+                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">48 KB</span>}
+                  />
+                </TreeItem>
+                <TreeItem id="docs" label="reports/">
+                  <TreeItem
+                    id="q4-audit"
+                    label="q4-financial-audit.pdf"
+                    icon={
+                      <svg className="w-4 h-4 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                      </svg>
+                    }
+                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">4.8 MB</span>}
+                  />
+                </TreeItem>
+                <TreeItem id="media" label="video/">
+                  <TreeItem
+                    id="demo-video"
+                    label="launch-announcement.mp4"
+                    icon={
+                      <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polygon points="23 7 16 12 23 17 23 7" />
+                        <rect width="14" height="14" x="1" y="5" rx="2" ry="2" />
+                      </svg>
+                    }
+                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">240 MB</span>}
+                  />
+                </TreeItem>
+              </TreeItem>
+            </TreeView>
+          </div>
+        ),
+        code: `<TreeView defaultExpandedKeys={["bucket", "images"]}>\n  <TreeItem id="bucket" label="s3://production-cdn-assets" icon={<BucketIcon />}>\n    <TreeItem id="images" label="images/">\n      <TreeItem id="hero" label="hero-banner.webp" icon={<ImageIcon />} badge={<span className="font-mono text-xs">1.2 MB</span>} />\n    </TreeItem>\n    <TreeItem id="docs" label="reports/">\n      <TreeItem id="pdf" label="audit.pdf" icon={<DocIcon />} badge={<span className="font-mono text-xs">4.8 MB</span>} />\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+    ],
+    props: [
+      {
+        name: "defaultExpandedKeys",
+        type: "string[]",
+        default: "[]",
+        description: "List of item IDs that are expanded on initial render.",
+      },
+      {
+        name: "selectedKey",
+        type: "string",
+        default: "-",
+        description: "Controlled ID of the currently selected tree item.",
+      },
+      {
+        name: "onSelect",
+        type: "(key: string) => void",
+        default: "-",
+        description: "Callback triggered when a tree item is selected.",
+      },
+      {
+        name: "showGuides",
+        type: "boolean",
+        default: "true",
+        description: "Whether to draw vertical branch connector lines for nested items.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+      {
+        name: "TreeItem.id",
+        type: "string",
+        default: "-",
+        description: "Unique string key identifying the item in the tree.",
+      },
+      {
+        name: "TreeItem.label",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Title or node content rendered for the tree item.",
+      },
+      {
+        name: "TreeItem.icon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Leading icon element (e.g. folder, file, shield).",
+      },
+      {
+        name: "TreeItem.badge",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Trailing badge or counter element aligned to the right edge.",
+      },
+      {
+        name: "TreeItem.defaultExpanded",
+        type: "boolean",
+        default: "false",
+        description: "Whether this individual item is initially expanded.",
+      },
+      {
+        name: "TreeItem.disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether interactions and clicks are disabled.",
+      },
+    ],
+  },
+  treeView: {
+    title: "Tree View",
+    description: "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
+    installation: `import { TreeView, TreeItem } from 'patiya';`,
+    examples: [
+      {
+        title: "Project File Explorer",
+        description: "Collapsible directory tree with branch connector lines, badges, and file type icons.",
+        preview: <TreeViewPreview />,
+        code: `<TreeView defaultExpandedKeys={["root", "src", "components"]}>\n  <TreeItem id="root" label="patiya-ui" icon={<FolderIcon />}>\n    <TreeItem id="src" label="src" icon={<FolderIcon />}>\n      <TreeItem id="components" label="components" icon={<FolderIcon />}>\n        <TreeItem id="stat" label="Stat.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="datalist" label="DataList.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="treeview" label="TreeView.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n      </TreeItem>\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
+      },
+    ],
+    props: [
+      {
+        name: "defaultExpandedKeys",
+        type: "string[]",
+        default: "[]",
+        description: "List of item IDs that are expanded on initial render.",
+      },
+      {
+        name: "selectedKey",
+        type: "string",
+        default: "-",
+        description: "Controlled ID of the currently selected tree item.",
+      },
+      {
+        name: "onSelect",
+        type: "(key: string) => void",
+        default: "-",
+        description: "Callback triggered when a tree item is selected.",
+      },
+      {
+        name: "showGuides",
+        type: "boolean",
+        default: "true",
+        description: "Whether to draw vertical branch connector lines for nested items.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+      {
+        name: "TreeItem.id",
+        type: "string",
+        default: "-",
+        description: "Unique string key identifying the item in the tree.",
+      },
+      {
+        name: "TreeItem.label",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Title or node content rendered for the tree item.",
+      },
+      {
+        name: "TreeItem.icon",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Leading icon element (e.g. folder, file, shield).",
+      },
+      {
+        name: "TreeItem.badge",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Trailing badge or counter element aligned to the right edge.",
+      },
+      {
+        name: "TreeItem.defaultExpanded",
+        type: "boolean",
+        default: "false",
+        description: "Whether this individual item is initially expanded.",
+      },
+      {
+        name: "TreeItem.disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether interactions and clicks are disabled.",
+      },
+    ],
+  },
   tabs: {
     title: "Tabs",
     description:
@@ -2938,7 +3998,383 @@ export const componentsRegistry: Record<string, any> = {
             <TabsContent value="3">Settings panel</TabsContent>
           </Tabs>
         ),
-        code: `<TabsList className="w-full flex">\n  <TabsTrigger className="flex-1" value="1">Overview</TabsTrigger>\n</TabsList>`,
+        code: `<TabsList className="w-full flex">\n  <TabsTrigger className="flex-1" value="1">Overview</TabsTrigger>\n  <TabsTrigger className="flex-1" value="2">Integrations</TabsTrigger>\n  <TabsTrigger className="flex-1" value="3">Settings</TabsTrigger>\n</TabsList>`,
+      },
+      {
+        title: "Dashboard & Analytics",
+        description: "Segmented tab controls with icons and live metric previews.",
+        preview: (
+          <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+            <Tabs defaultValue="metrics" className="w-full">
+              <TabsList className="grid grid-cols-3 w-full bg-[var(--patiya-color-muted)]/70 p-1 rounded-xl">
+                <TabsTrigger value="overview" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <rect width="7" height="9" x="3" y="3" rx="1" />
+                    <rect width="7" height="5" x="14" y="3" rx="1" />
+                    <rect width="7" height="9" x="14" y="12" rx="1" />
+                    <rect width="7" height="5" x="3" y="16" rx="1" />
+                  </svg>
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger value="metrics" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                  Metrics
+                </TabsTrigger>
+                <TabsTrigger value="logs" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <polyline points="4 17 10 11 4 5" />
+                    <line x1="12" y1="19" x2="20" y2="19" />
+                  </svg>
+                  Live Logs
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="overview" className="mt-4 space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">
+                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">CPU Utilization</div>
+                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">28.4%</div>
+                    <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">
+                      <div className="bg-[var(--patiya-color-primary)] h-full rounded-full w-[28%]" />
+                    </div>
+                  </div>
+                  <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">
+                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">Memory Allocated</div>
+                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">1.4 / 4.0 GB</div>
+                    <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">
+                      <div className="bg-emerald-500 h-full rounded-full w-[35%]" />
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="metrics" className="mt-4 space-y-3">
+                <div className="p-4 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] space-y-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[var(--patiya-color-foreground)]">Latency Distribution</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium">99.9% Normal</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center pt-1">
+                    <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p50</div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">14ms</div>
+                    </div>
+                    <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p95</div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">42ms</div>
+                    </div>
+                    <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p99</div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-primary)]">86ms</div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="logs" className="mt-4">
+                <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] font-mono text-[11px] space-y-1.5">
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:01</span>
+                    <span className="font-bold">[200]</span>
+                    <span>GET /api/v1/auth/session</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:04</span>
+                    <span className="font-bold">[201]</span>
+                    <span>POST /api/v1/telemetry/event</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[var(--patiya-color-primary)]">
+                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:10</span>
+                    <span className="font-bold">[101]</span>
+                    <span>UPGRADE ws://api.patiya.io/stream</span>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        ),
+        code: `<Tabs defaultValue="metrics" className="w-full">\n  <TabsList className="grid grid-cols-3 w-full bg-[var(--patiya-color-muted)]/70 p-1 rounded-xl">\n    <TabsTrigger value="overview">Overview</TabsTrigger>\n    <TabsTrigger value="metrics">Metrics</TabsTrigger>\n    <TabsTrigger value="logs">Live Logs</TabsTrigger>\n  </TabsList>\n\n  <TabsContent value="overview" className="mt-4 space-y-3">\n    <div className="grid grid-cols-2 gap-3">\n      <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">\n        <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">CPU Utilization</div>\n        <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">28.4%</div>\n        <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">\n          <div className="bg-[var(--patiya-color-primary)] h-full rounded-full w-[28%]" />\n        </div>\n      </div>\n      <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">\n        <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">Memory Allocated</div>\n        <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">1.4 / 4.0 GB</div>\n        <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">\n          <div className="bg-emerald-500 h-full rounded-full w-[35%]" />\n        </div>\n      </div>\n    </div>\n  </TabsContent>\n\n  <TabsContent value="metrics" className="mt-4 space-y-3">\n    <div className="p-4 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] space-y-3">\n      <div className="flex items-center justify-between text-xs">\n        <span className="font-semibold text-[var(--patiya-color-foreground)]">Latency Distribution</span>\n        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 font-medium">99.9% Normal</span>\n      </div>\n      <div className="grid grid-cols-3 gap-2 text-center pt-1">\n        <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p50</div>\n          <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">14ms</div>\n        </div>\n        <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p95</div>\n          <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">42ms</div>\n        </div>\n        <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p99</div>\n          <div className="text-sm font-bold font-mono text-[var(--patiya-color-primary)]">86ms</div>\n        </div>\n      </div>\n    </div>\n  </TabsContent>\n\n  <TabsContent value="logs" className="mt-4">\n    <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] font-mono text-[11px] space-y-1.5">\n      <div className="flex items-center gap-2 text-emerald-600">\n        <span className="text-[var(--patiya-color-muted-foreground)]">14:22:01</span>\n        <span className="font-bold">[200]</span>\n        <span>GET /api/v1/auth/session</span>\n      </div>\n      <div className="flex items-center gap-2 text-emerald-600">\n        <span className="text-[var(--patiya-color-muted-foreground)]">14:22:04</span>\n        <span className="font-bold">[201]</span>\n        <span>POST /api/v1/telemetry/event</span>\n      </div>\n      <div className="flex items-center gap-2 text-[var(--patiya-color-primary)]">\n        <span className="text-[var(--patiya-color-muted-foreground)]">14:22:10</span>\n        <span className="font-bold">[101]</span>\n        <span>UPGRADE ws://api.patiya.io/stream</span>\n      </div>\n    </div>\n  </TabsContent>\n</Tabs>`,
+      },
+      {
+        title: "Underline Navigation with Badges",
+        description: "Minimal border-bottom indicator tabs with status count chips.",
+        preview: (
+          <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+            <Tabs defaultValue="prs" className="w-full">
+              <TabsList className="w-full flex justify-start gap-4 border-b border-[var(--patiya-color-border)] bg-transparent p-0 h-auto rounded-none">
+                <TabsTrigger
+                  value="prs"
+                  className="relative pb-2.5 pt-1 px-1 text-xs font-semibold text-[var(--patiya-color-muted-foreground)] rounded-none bg-transparent shadow-none hover:text-[var(--patiya-color-foreground)] data-[state=active]:text-[var(--patiya-color-primary)] data-[state=active]:bg-transparent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-transparent data-[state=active]:after:bg-[var(--patiya-color-primary)]"
+                >
+                  <span className="flex items-center gap-1.5">
+                    Pull Requests
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] font-bold">
+                      4
+                    </span>
+                  </span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="issues"
+                  className="relative pb-2.5 pt-1 px-1 text-xs font-semibold text-[var(--patiya-color-muted-foreground)] rounded-none bg-transparent shadow-none hover:text-[var(--patiya-color-foreground)] data-[state=active]:text-[var(--patiya-color-primary)] data-[state=active]:bg-transparent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-transparent data-[state=active]:after:bg-[var(--patiya-color-primary)]"
+                >
+                  <span className="flex items-center gap-1.5">
+                    Issues
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)] font-medium">
+                      12
+                    </span>
+                  </span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="deployments"
+                  className="relative pb-2.5 pt-1 px-1 text-xs font-semibold text-[var(--patiya-color-muted-foreground)] rounded-none bg-transparent shadow-none hover:text-[var(--patiya-color-foreground)] data-[state=active]:text-[var(--patiya-color-primary)] data-[state=active]:bg-transparent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-transparent data-[state=active]:after:bg-[var(--patiya-color-primary)]"
+                >
+                  <span className="flex items-center gap-1.5">
+                    Deployments
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  </span>
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="prs" className="mt-4 space-y-2">
+                <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/70 bg-[var(--patiya-color-background)] flex items-center justify-between text-xs">
+                  <div className="space-y-0.5">
+                    <div className="font-semibold text-[var(--patiya-color-foreground)] hover:text-[var(--patiya-color-primary)] transition-colors cursor-pointer">
+                      feat: add animated Tabs and Accordion presets
+                    </div>
+                    <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                      #142 opened 2 hours ago by ajaykatariya
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-purple-500/15 text-purple-600 dark:text-purple-400">
+                    Needs Review
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/70 bg-[var(--patiya-color-background)] flex items-center justify-between text-xs">
+                  <div className="space-y-0.5">
+                    <div className="font-semibold text-[var(--patiya-color-foreground)] hover:text-[var(--patiya-color-primary)] transition-colors cursor-pointer">
+                      fix(theme): optimize color token contrast in dark mode
+                    </div>
+                    <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                      #141 merged yesterday
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                    Merged
+                  </span>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="issues" className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center">
+                12 active issues tracking improvements and bugfixes.
+              </TabsContent>
+
+              <TabsContent value="deployments" className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center">
+                Production deployment live on edge cluster (v2.0.4).
+              </TabsContent>
+            </Tabs>
+          </div>
+        ),
+        code: `<Tabs defaultValue="prs" className="w-full">\n  <TabsList className="w-full flex justify-start gap-4 border-b border-[var(--patiya-color-border)] bg-transparent p-0 h-auto rounded-none">\n    <TabsTrigger value="prs" className="relative pb-2.5 pt-1 px-1 text-xs font-semibold">\n      Pull Requests <span className="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)]">4</span>\n    </TabsTrigger>\n    <TabsTrigger value="issues" className="relative pb-2.5 pt-1 px-1 text-xs font-semibold">\n      Issues <span className="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-[var(--patiya-color-muted)]">12</span>\n    </TabsTrigger>\n  </TabsList>\n\n  <TabsContent value="prs" className="mt-4 space-y-2">\n    <div className="p-3 rounded-xl border bg-[var(--patiya-color-background)] flex items-center justify-between text-xs">\n      <div>\n        <div className="font-semibold">feat: add animated Tabs presets</div>\n        <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">#142 opened by ajaykatariya</div>\n      </div>\n      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-purple-500/15 text-purple-600">Needs Review</span>\n    </div>\n  </TabsContent>\n  <TabsContent value="issues">12 active issues</TabsContent>\n</Tabs>`,
+      },
+      {
+        title: "Vertical Settings Navigation",
+        description: "Side-by-side tab layout for multi-section configuration views.",
+        preview: (
+          <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+            <Tabs defaultValue="security" className="flex flex-col sm:flex-row gap-5">
+              <TabsList className="flex flex-col h-auto bg-transparent p-0 gap-1 w-full sm:w-40 shrink-0">
+                <TabsTrigger
+                  value="general"
+                  className="w-full justify-start px-3 py-2 text-xs font-semibold rounded-lg text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/50 data-[state=active]:bg-[var(--patiya-color-primary)]/10 data-[state=active]:text-[var(--patiya-color-primary)] transition-all"
+                >
+                  General
+                </TabsTrigger>
+                <TabsTrigger
+                  value="security"
+                  className="w-full justify-start px-3 py-2 text-xs font-semibold rounded-lg text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/50 data-[state=active]:bg-[var(--patiya-color-primary)]/10 data-[state=active]:text-[var(--patiya-color-primary)] transition-all"
+                >
+                  Security
+                </TabsTrigger>
+                <TabsTrigger
+                  value="notifications"
+                  className="w-full justify-start px-3 py-2 text-xs font-semibold rounded-lg text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/50 data-[state=active]:bg-[var(--patiya-color-primary)]/10 data-[state=active]:text-[var(--patiya-color-primary)] transition-all"
+                >
+                  Notifications
+                </TabsTrigger>
+              </TabsList>
+
+              <div className="flex-1 min-w-0 sm:border-l sm:border-[var(--patiya-color-border)] sm:pl-5">
+                <TabsContent value="general" className="mt-0 space-y-3">
+                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">General Profile</div>
+                  <div className="space-y-1.5 text-xs">
+                    <label className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">Display Name</label>
+                    <input className="w-full px-3 py-1.5 text-xs rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] focus:outline-none" defaultValue="Ajay Katariya" />
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="security" className="mt-0 space-y-3.5">
+                  <div>
+                    <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Security & Authentication</div>
+                    <div className="text-[11px] text-[var(--patiya-color-muted-foreground)] mt-0.5">Manage authentication protocols and session policies.</div>
+                  </div>
+                  <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Two-Factor Authentication</div>
+                      <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Secured with WebAuthn security key</div>
+                    </div>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                      Active
+                    </span>
+                  </div>
+                  <div className="flex justify-end pt-1">
+                    <Button size="sm">Update Keys</Button>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="notifications" className="mt-0 space-y-3">
+                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Notification Preferences</div>
+                  <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] flex items-center justify-between">
+                    <span className="text-xs font-medium text-[var(--patiya-color-foreground)]">Critical Security Alerts</span>
+                    <Switch defaultChecked />
+                  </div>
+                </TabsContent>
+              </div>
+            </Tabs>
+          </div>
+        ),
+        code: `<Tabs defaultValue="security" className="flex flex-col sm:flex-row gap-5">\n  <TabsList className="flex flex-col h-auto bg-transparent p-0 gap-1 w-full sm:w-40 shrink-0">\n    <TabsTrigger value="general" className="w-full justify-start">General</TabsTrigger>\n    <TabsTrigger value="security" className="w-full justify-start">Security</TabsTrigger>\n    <TabsTrigger value="notifications" className="w-full justify-start">Notifications</TabsTrigger>\n  </TabsList>\n\n  <div className="flex-1 sm:border-l sm:pl-5">\n    <TabsContent value="general" className="space-y-3">\n      <label className="text-xs font-medium">Display Name</label>\n      <input className="w-full px-3 py-1.5 text-xs rounded-lg border bg-[var(--patiya-color-background)]" defaultValue="Ajay Katariya" />\n    </TabsContent>\n    <TabsContent value="security" className="space-y-3.5">\n      <div className="p-3 rounded-xl border bg-[var(--patiya-color-background)] flex items-center justify-between">\n        <div>Two-Factor Authentication</div>\n        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600">Active</span>\n      </div>\n    </TabsContent>\n  </div>\n</Tabs>`,
+      },
+      {
+        title: "Billing Frequency Switcher",
+        description: "Interactive pill tabs toggling between annual and monthly pricing.",
+        preview: (
+          <div className="w-full max-w-xl flex flex-col items-center p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+            <Tabs defaultValue="annually" className="w-full flex flex-col items-center">
+              <TabsList className="bg-[var(--patiya-color-muted)]/70 p-1 rounded-full border border-[var(--patiya-color-border)]/60">
+                <TabsTrigger
+                  value="monthly"
+                  className="px-4 py-1.5 text-xs font-semibold rounded-full data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs transition-all"
+                >
+                  Monthly
+                </TabsTrigger>
+                <TabsTrigger
+                  value="annually"
+                  className="px-4 py-1.5 text-xs font-semibold rounded-full data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs transition-all flex items-center gap-1.5"
+                >
+                  Annually
+                  <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)]">
+                    -20%
+                  </span>
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="monthly" className="w-full mt-5">
+                <div className="grid grid-cols-2 gap-3.5">
+                  <div className="p-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-3">
+                    <div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Starter</div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$24<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full text-xs">Choose Starter</Button>
+                  </div>
+                  <div className="p-4 rounded-xl border-2 border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5 space-y-3 relative">
+                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                    <div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">Pro Team</div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$59<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                    </div>
+                    <Button size="sm" className="w-full text-xs">Choose Pro</Button>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="annually" className="w-full mt-5">
+                <div className="grid grid-cols-2 gap-3.5">
+                  <div className="p-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-3">
+                    <div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Starter</div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$19<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full text-xs">Choose Starter</Button>
+                  </div>
+                  <div className="p-4 rounded-xl border-2 border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5 space-y-3 relative">
+                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                    <div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">Pro Team</div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$47<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                    </div>
+                    <Button size="sm" className="w-full text-xs">Choose Pro</Button>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        ),
+        code: `<Tabs defaultValue="annually" className="w-full flex flex-col items-center">\n  <TabsList className="bg-[var(--patiya-color-muted)]/70 p-1 rounded-full border">\n    <TabsTrigger value="monthly" className="px-4 py-1.5 text-xs rounded-full">Monthly</TabsTrigger>\n    <TabsTrigger value="annually" className="px-4 py-1.5 text-xs rounded-full">Annually -20%</TabsTrigger>\n  </TabsList>\n\n  <TabsContent value="annually" className="w-full mt-5">\n    <div className="grid grid-cols-2 gap-3.5">\n      <div className="p-4 rounded-xl border bg-[var(--patiya-color-background)] space-y-3">\n        <div className="text-xs font-bold">Starter</div>\n        <div className="text-2xl font-black font-mono">$19<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>\n        <Button variant="outline" size="sm" className="w-full text-xs">Choose Starter</Button>\n      </div>\n      <div className="p-4 rounded-xl border-2 border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5 space-y-3">\n        <div className="text-xs font-bold text-[var(--patiya-color-primary)]">Pro Team</div>\n        <div className="text-2xl font-black font-mono">$47<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>\n        <Button size="sm" className="w-full text-xs">Choose Pro</Button>\n      </div>\n    </div>\n  </TabsContent>\n</Tabs>`,
+      },
+    ],
+    props: [
+      {
+        name: "defaultValue",
+        type: "string",
+        default: "''",
+        description: "The value of the tab to activate by default on initial render.",
+      },
+      {
+        name: "value",
+        type: "string",
+        default: "-",
+        description: "Controlled value of the active tab.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        default: "-",
+        description: "Callback invoked when the selected tab changes.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to the tabs root container.",
+      },
+      {
+        name: "TabsList.className",
+        type: "string",
+        default: "-",
+        description: "CSS classes applied to the tab trigger list bar.",
+      },
+      {
+        name: "TabsTrigger.value",
+        type: "string",
+        default: "required",
+        description: "Unique string value identifying this tab trigger.",
+      },
+      {
+        name: "TabsTrigger.disabled",
+        type: "boolean",
+        default: "false",
+        description: "Whether the tab trigger is disabled from user interactions.",
+      },
+      {
+        name: "TabsTrigger.className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes for the tab trigger button.",
+      },
+      {
+        name: "TabsContent.value",
+        type: "string",
+        default: "required",
+        description: "Value matching the TabsTrigger that activates this panel.",
+      },
+      {
+        name: "TabsContent.className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to the tab panel container.",
       },
     ],
   },
@@ -3134,6 +4570,336 @@ export default function App() {
           </Accordion>
         ),
         code: `<Accordion type="single" className="border-none">\n  <AccordionItem value="item-1" className="border-t-0 border-b border-[var(--patiya-color-border)]">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>Yes.</AccordionContent>\n  </AccordionItem>\n</Accordion>`,
+      },
+      {
+        title: "Card-Style Elevated FAQ",
+        description: "Independent card accordion items with category badges and soft hover states.",
+        preview: (
+          <div className="w-full max-w-xl">
+            <Accordion type="single" className="w-full border-none space-y-3">
+              <AccordionItem
+                value="faq-1"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs transition-colors hover:border-[var(--patiya-color-primary)]/40 overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                      Billing
+                    </span>
+                    <span>How does team seat and member billing work?</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
+                  Team seats are billed monthly on a prorated basis. You can add or remove contributors at any time directly through the organization workspace settings.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="faq-2"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs transition-colors hover:border-[var(--patiya-color-primary)]/40 overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                      Security
+                    </span>
+                    <span>Is customer data encrypted at rest and in transit?</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
+                  All stored payloads are encrypted using AES-256 at rest and TLS 1.3 in transit with automated rotation for customer-managed encryption keys.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="faq-3"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs transition-colors hover:border-[var(--patiya-color-primary)]/40 overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-600 dark:text-purple-400">
+                      Telemetry
+                    </span>
+                    <span>Can I export historical logs and audit events?</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
+                  Yes, historical logs can be exported directly to AWS S3, Google Cloud Storage, or streamed in real-time to Datadog and OpenTelemetry collectors.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        ),
+        code: `<Accordion type="single" className="w-full border-none space-y-3">\n  <AccordionItem value="faq-1" className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden">\n    <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">\n      <div className="flex items-center gap-2.5">\n        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-600">Billing</span>\n        <span>How does team seat and member billing work?</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">\n      Team seats are billed monthly on a prorated basis. You can add or remove contributors at any time directly through workspace settings.\n    </AccordionContent>\n  </AccordionItem>\n\n  <AccordionItem value="faq-2" className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden">\n    <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">\n      <div className="flex items-center gap-2.5">\n        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600">Security</span>\n        <span>Is customer data encrypted at rest and in transit?</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">\n      All stored payloads are encrypted using AES-256 at rest and TLS 1.3 in transit with automated rotation for customer-managed encryption keys.\n    </AccordionContent>\n  </AccordionItem>\n\n  <AccordionItem value="faq-3" className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden">\n    <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">\n      <div className="flex items-center gap-2.5">\n        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-600">Telemetry</span>\n        <span>Can I export historical logs and audit events?</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">\n      Yes, historical logs can be exported directly to AWS S3, Google Cloud Storage, or streamed in real-time to Datadog and OpenTelemetry collectors.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>`,
+      },
+      {
+        title: "Multi-Selection System Status",
+        description: "Accordion allowing multiple sections open simultaneously with live indicators.",
+        preview: (
+          <div className="w-full max-w-xl">
+            <Accordion
+              type="multiple"
+              defaultValue={["api-gateway", "db-cluster"]}
+              className="w-full border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] divide-y divide-[var(--patiya-color-border)] overflow-hidden shadow-xs"
+            >
+              <AccordionItem value="api-gateway" className="border-none px-5">
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    </span>
+                    <span>Production API Gateway (v2.4.1)</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.2 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                      99.98% Uptime
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs pb-4 pt-1">
+                  <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Active Nodes</div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">12 / 12</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Avg Latency</div>
+                      <div className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">22ms</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Error Rate</div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">0.002%</div>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="db-cluster" className="border-none px-5">
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                    <span>Primary PostgreSQL Cluster</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.2 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                      Synchronized
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs pb-4 pt-1 space-y-2">
+                  <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                    Leader node located in us-east-1. Zero replication lag detected across EU read-replicas.
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="vector-search" className="border-none px-5">
+                <AccordionTrigger className="py-4 text-xs font-semibold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
+                    <span>Vector Search Index (2.4M items)</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.2 rounded-full bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                      Re-indexing
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs pb-4 pt-1">
+                  <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                    Background index compaction running. Expected completion in 4 minutes.
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        ),
+        code: `<Accordion type="multiple" defaultValue={["api-gateway", "db-cluster"]} className="w-full border rounded-2xl divide-y overflow-hidden">\n  <AccordionItem value="api-gateway" className="border-none px-5">\n    <AccordionTrigger className="py-4 text-xs font-semibold">\n      <div className="flex items-center gap-2.5">\n        <span className="h-2 w-2 rounded-full bg-emerald-500" />\n        <span>Production API Gateway (v2.4.1)</span>\n        <span className="text-[10px] font-mono px-2 py-0.2 rounded-full bg-emerald-500/15 text-emerald-600">99.98% Uptime</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs pb-4 pt-1">\n      <div className="p-3 rounded-xl border grid grid-cols-3 gap-2 text-center">\n        <div>\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Active Nodes</div>\n          <div className="text-sm font-bold font-mono">12 / 12</div>\n        </div>\n        <div>\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Avg Latency</div>\n          <div className="text-sm font-bold font-mono text-emerald-600">22ms</div>\n        </div>\n        <div>\n          <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Error Rate</div>\n          <div className="text-sm font-bold font-mono">0.002%</div>\n        </div>\n      </div>\n    </AccordionContent>\n  </AccordionItem>\n\n  <AccordionItem value="db-cluster" className="border-none px-5">\n    <AccordionTrigger className="py-4 text-xs font-semibold">\n      <div className="flex items-center gap-2.5">\n        <span className="h-2 w-2 rounded-full bg-emerald-500" />\n        <span>Primary PostgreSQL Cluster</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs pb-4 pt-1">\n      Leader node located in us-east-1. Zero replication lag.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>`,
+      },
+      {
+        title: "Developer Setup Guide",
+        description: "Numbered onboarding accordion with code instructions and actionable steps.",
+        preview: (
+          <div className="w-full max-w-xl">
+            <Accordion type="single" defaultValue="step-1" className="w-full border-none space-y-2.5">
+              <AccordionItem
+                value="step-1"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] flex items-center justify-center text-[10px] font-bold">
+                      1
+                    </span>
+                    <span>Install Core Package via Bun or NPM</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 pt-1">
+                  <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between font-mono text-xs">
+                    <span className="text-[var(--patiya-color-primary)]">bun add patiya</span>
+                    <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] px-2 py-0.5 rounded-md border border-[var(--patiya-color-border)]">Copy</span>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="step-2"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] flex items-center justify-center text-[10px] font-bold">
+                      2
+                    </span>
+                    <span>Import Tokens & CSS Theme File</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 pt-1">
+                  <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] font-mono text-xs text-[var(--patiya-color-muted-foreground)]">
+                    @import &quot;patiya/dist/index.css&quot;;
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="step-3"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] flex items-center justify-center text-[10px] font-bold">
+                      3
+                    </span>
+                    <span>Mount Your First Component</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pb-4 pt-1">
+                  <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between">
+                    <span className="text-xs text-[var(--patiya-color-muted-foreground)]">Ready to build! Try the interactive button:</span>
+                    <Button size="sm">Explore UI</Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        ),
+        code: `<Accordion type="single" defaultValue="step-1" className="w-full border-none space-y-2.5">\n  <AccordionItem value="step-1" className="border rounded-2xl bg-[var(--patiya-color-card)] px-5">\n    <AccordionTrigger className="py-4 text-xs font-bold">\n      <div className="flex items-center gap-2.5">\n        <span className="w-5 h-5 rounded-full bg-[var(--patiya-color-primary)] text-white flex items-center justify-center text-[10px]">1</span>\n        <span>Install Core Package</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="pb-4 pt-1 font-mono text-xs text-[var(--patiya-color-primary)]">\n      bun add patiya\n    </AccordionContent>\n  </AccordionItem>\n\n  <AccordionItem value="step-2" className="border rounded-2xl bg-[var(--patiya-color-card)] px-5">\n    <AccordionTrigger className="py-4 text-xs font-bold">\n      <div className="flex items-center gap-2.5">\n        <span className="w-5 h-5 rounded-full bg-[var(--patiya-color-muted)] flex items-center justify-center text-[10px]">2</span>\n        <span>Import Tokens & CSS File</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="pb-4 pt-1 font-mono text-xs">\n      @import "patiya/dist/index.css";\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>`,
+      },
+      {
+        title: "Pricing Tier Breakdown",
+        description: "Accordion revealing detailed feature sets and inclusions for plan tiers.",
+        preview: (
+          <div className="w-full max-w-xl">
+            <Accordion type="single" defaultValue="pro" className="w-full border-none space-y-3">
+              <AccordionItem
+                value="starter"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center justify-between w-full pr-3">
+                    <span className="text-sm">Starter Community</span>
+                    <span className="font-mono text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">$0 / month</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] pb-4 pt-1 space-y-2">
+                  <div>Includes 5 hosted projects, community forum support, and public git repositories.</div>
+                  <Button variant="outline" size="sm" className="w-full mt-2">Get Started Free</Button>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="pro"
+                className="border-2 border-[var(--patiya-color-primary)] rounded-2xl bg-[var(--patiya-color-primary)]/5 px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-primary)]">
+                  <div className="flex items-center justify-between w-full pr-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">Pro Team</span>
+                      <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                    </div>
+                    <span className="font-mono text-xs font-bold text-[var(--patiya-color-foreground)]">$29 / month</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-foreground)] pb-4 pt-1 space-y-3">
+                  <div className="space-y-1.5 text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Unlimited team members & projects</div>
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Real-time WebSocket sync & custom domains</div>
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Priority 1-hour SLA response time</div>
+                  </div>
+                  <Button size="sm" className="w-full">Upgrade to Pro</Button>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="enterprise"
+                className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
+              >
+                <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
+                  <div className="flex items-center justify-between w-full pr-3">
+                    <span className="text-sm">Enterprise Dedicated</span>
+                    <span className="text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">Custom Quote</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] pb-4 pt-1 space-y-2">
+                  <div>Custom SLAs, dedicated VPC deployment, SOC2 Type II compliance reports, and SAML/SSO integration.</div>
+                  <Button variant="outline" size="sm" className="w-full mt-2">Contact Sales</Button>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        ),
+        code: `<Accordion type="single" defaultValue="pro" className="w-full border-none space-y-3">\n  <AccordionItem value="starter" className="border rounded-2xl bg-[var(--patiya-color-card)] px-5">\n    <AccordionTrigger className="py-4 text-xs font-bold">\n      <div className="flex items-center justify-between w-full pr-3">\n        <span className="text-sm">Starter Community</span>\n        <span className="font-mono text-xs font-semibold">$0 / month</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs pb-4 pt-1">\n      <div>Includes 5 hosted projects, community forum support, and public git repositories.</div>\n      <Button variant="outline" size="sm" className="w-full mt-2">Get Started Free</Button>\n    </AccordionContent>\n  </AccordionItem>\n\n  <AccordionItem value="pro" className="border-2 border-[var(--patiya-color-primary)] rounded-2xl bg-[var(--patiya-color-primary)]/5 px-5">\n    <AccordionTrigger className="py-4 text-xs font-bold text-[var(--patiya-color-primary)]">\n      <div className="flex items-center justify-between w-full pr-3">\n        <div className="flex items-center gap-2">\n          <span className="text-sm">Pro Team</span>\n          <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>\n        </div>\n        <span className="font-mono text-xs font-bold">$29 / month</span>\n      </div>\n    </AccordionTrigger>\n    <AccordionContent className="text-xs pb-4 pt-1 space-y-3">\n      <div className="space-y-1.5 text-[11px] text-[var(--patiya-color-muted-foreground)]">\n        <div>✓ Unlimited team members & projects</div>\n        <div>✓ Real-time WebSocket sync & custom domains</div>\n        <div>✓ Priority 1-hour SLA response time</div>\n      </div>\n      <Button size="sm" className="w-full">Upgrade to Pro</Button>\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>`,
+      },
+    ],
+    props: [
+      {
+        name: "type",
+        type: "'single' | 'multiple'",
+        default: "'single'",
+        description: "Controls whether one or multiple accordion panels can be open simultaneously.",
+      },
+      {
+        name: "defaultValue",
+        type: "string | string[]",
+        default: "[]",
+        description: "The initial value(s) of the item(s) to expand on initial render.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to the root accordion container.",
+      },
+      {
+        name: "AccordionItem.value",
+        type: "string",
+        default: "required",
+        description: "Unique string value identifying this collapsible section.",
+      },
+      {
+        name: "AccordionItem.className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to the item boundary wrapper.",
+      },
+      {
+        name: "AccordionTrigger.className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to the interactive trigger button.",
+      },
+      {
+        name: "AccordionTrigger.children",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Content displayed inside the header trigger (title, badges, leading icons).",
+      },
+      {
+        name: "AccordionContent.className",
+        type: "string",
+        default: "-",
+        description: "CSS classes applied to the collapsible content section.",
+      },
+      {
+        name: "AccordionContent.children",
+        type: "React.ReactNode",
+        default: "-",
+        description: "The expanded content revealed when the trigger is toggled open.",
       },
     ],
   },
@@ -7365,6 +9131,406 @@ export default function App() {
       },
     ],
   },
+  sourceCitation: {
+    title: "Source Citation",
+    description:
+      "Grounded source citation badges and cards for RAG search results, AI fact-checking, and research assistants.",
+    installation: `import { SourceCitation, SourceCitationList } from 'patiya';`,
+    props: [
+      {
+        name: "title",
+        type: "string",
+        default: "-",
+        description: "Title of the cited reference or web page.",
+      },
+      {
+        name: "url",
+        type: "string",
+        default: "-",
+        description: "Direct URL to the external cited resource.",
+      },
+      {
+        name: "variant",
+        type: "'badge' | 'chip' | 'card'",
+        default: "'badge'",
+        description:
+          "Display mode as an inline superscript badge, chip pill, or full card.",
+      },
+      {
+        name: "index",
+        type: "number | string",
+        default: "-",
+        description: "Citation index or numerical identifier (e.g. 1, 2).",
+      },
+      {
+        name: "domain",
+        type: "string",
+        default: "Extracted from url",
+        description: "Optional custom domain name displayed in the preview.",
+      },
+      {
+        name: "snippet",
+        type: "string",
+        default: "-",
+        description:
+          "Excerpt or quotation text displayed inside hover popup or card.",
+      },
+      {
+        name: "favicon",
+        type: "string | React.ReactNode",
+        default: "-",
+        description: "Favicon image URL or custom icon element.",
+      },
+      {
+        name: "SourceCitationList.layout",
+        type: "'row' | 'grid'",
+        default: "'row'",
+        description:
+          "Arrangement for multiple citations (flex row or multi-column grid).",
+      },
+    ],
+    examples: [
+      {
+        title: "Inline RAG Citations with Hover Preview",
+        description:
+          "Inline superscript badges that reveal rich source metadata on hover.",
+        preview: (
+          <div className="w-full max-w-xl mx-auto p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] text-sm leading-relaxed space-y-3">
+            <div className="flex items-center gap-2 text-xs font-semibold text-[var(--patiya-color-primary)]">
+              <span>✦</span> RAG Synthesized Answer
+            </div>
+            <div className="text-[var(--patiya-color-foreground)]">
+              Quantum computational supremacy relies on superconducting transmon
+              qubits cooled to millikelvin temperatures
+              <SourceCitation
+                index={1}
+                title="Quantum Computational Supremacy via Superconducting Processors"
+                url="https://nature.com/articles/s41586-019-1666-5"
+                domain="nature.com"
+                snippet="Demonstration of quantum computational supremacy using 53 programmable superconducting qubits with high-fidelity operations."
+              />
+              . Recent benchmarks demonstrate fault-tolerant logical qubits with
+              surface code error-correction thresholds exceeding 99.4%
+              <SourceCitation
+                index={2}
+                title="Fault-Tolerant Quantum Computing with Logical Qubits"
+                url="https://arxiv.org/abs/2312.03982"
+                domain="arxiv.org"
+                snippet="Experimental realization of quantum error correction with physical error rates well below the fault-tolerant threshold."
+              />
+              , allowing for scalable coherence times
+              <SourceCitation
+                index={3}
+                title="Google Quantum AI Roadmap & Milestones"
+                url="https://quantumai.google"
+                domain="quantumai.google"
+                snippet="Roadmap toward commercial-grade fault-tolerant quantum hardware with 1M physical qubits."
+              />
+              .
+            </div>
+          </div>
+        ),
+        code: `<p>\n  Superconducting qubits cooled to millikelvin temperatures\n  <SourceCitation index={1} title="Quantum Supremacy" url="https://nature.com" snippet="Demonstration of quantum supremacy." />\n  with surface code error correction thresholds exceeding 99.4%\n  <SourceCitation index={2} title="Fault Tolerant Qubits" url="https://arxiv.org" snippet="Realization of quantum error correction." />\n</p>`,
+      },
+      {
+        title: "Source Cards Grid",
+        description:
+          "Rich cards displaying full source domain, title, and relevance quote.",
+        preview: (
+          <SourceCitationList layout="grid" className="max-w-2xl mx-auto">
+            <SourceCitation
+              variant="card"
+              index={1}
+              title="Attention Is All You Need"
+              url="https://arxiv.org/abs/1706.03762"
+              domain="arxiv.org"
+              snippet="The dominant sequence transduction models are based on complex recurrent or convolutional neural networks."
+            />
+            <SourceCitation
+              variant="card"
+              index={2}
+              title="Constitutional AI: Harmlessness from AI Feedback"
+              url="https://anthropic.com/research/constitutional-ai"
+              domain="anthropic.com"
+              snippet="Techniques for training a harmless AI assistant using self-critique and revision without human labels."
+            />
+            <SourceCitation
+              variant="card"
+              index={3}
+              title="DeepSeek-R1 Technical Report"
+              url="https://github.com/deepseek-ai/DeepSeek-R1"
+              domain="github.com"
+              snippet="Incentivizing reasoning capabilities in LLMs via large-scale reinforcement learning."
+            />
+          </SourceCitationList>
+        ),
+        code: `<SourceCitationList layout="grid">\n  <SourceCitation variant="card" index={1} title="Attention Is All You Need" url="https://arxiv.org/abs/1706.03762" snippet="The dominant sequence transduction models..." />\n  <SourceCitation variant="card" index={2} title="Constitutional AI" url="https://anthropic.com" snippet="Techniques for training a harmless AI assistant..." />\n</SourceCitationList>`,
+      },
+      {
+        title: "Pill Chips Row",
+        description:
+          "Compact horizontal pills with external link indicator for quick verification.",
+        preview: (
+          <SourceCitationList
+            layout="row"
+            className="justify-center max-w-xl mx-auto"
+          >
+            <SourceCitation
+              variant="chip"
+              index={1}
+              title="Next.js Documentation"
+              url="https://nextjs.org"
+              domain="nextjs.org"
+            />
+            <SourceCitation
+              variant="chip"
+              index={2}
+              title="Tailwind CSS v4 Spec"
+              url="https://tailwindcss.com"
+              domain="tailwindcss.com"
+            />
+            <SourceCitation
+              variant="chip"
+              index={3}
+              title="TypeScript Handbook"
+              url="https://typescriptlang.org"
+              domain="typescriptlang.org"
+            />
+          </SourceCitationList>
+        ),
+        code: `<SourceCitationList layout="row">\n  <SourceCitation variant="chip" index={1} title="Next.js Docs" url="https://nextjs.org" />\n  <SourceCitation variant="chip" index={2} title="Tailwind CSS v4" url="https://tailwindcss.com" />\n</SourceCitationList>`,
+      },
+    ],
+  },
+  "source-citation": {
+    get title() {
+      return "Source Citation";
+    },
+    get description() {
+      return "Grounded source citation badges and cards for RAG search results, AI fact-checking, and research assistants.";
+    },
+    get installation() {
+      return `import { SourceCitation, SourceCitationList } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).sourceCitation.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).sourceCitation.examples;
+    },
+  },
+  modelSelector: {
+    title: "Model Selector",
+    description:
+      "A dropdown selector for switching AI models with provider icons, context window tags, and capability badges.",
+    installation: `import { ModelSelector, AIModel } from 'patiya';`,
+    props: [
+      {
+        name: "models",
+        type: "AIModel[]",
+        default: "[]",
+        description:
+          "List of available AI models with name, provider, badge, and context size.",
+      },
+      {
+        name: "value",
+        type: "string",
+        default: "-",
+        description: "Controlled model ID of the currently selected model.",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        default: "models[0].id",
+        description: "Initially selected model ID when uncontrolled.",
+      },
+      {
+        name: "onValueChange",
+        type: "(modelId: string) => void",
+        default: "-",
+        description: "Callback invoked when a new model is selected.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md'",
+        default: "'md'",
+        description: "Trigger button size and padding scale.",
+      },
+      {
+        name: "variant",
+        type: "'button' | 'compact' | 'ghost'",
+        default: "'button'",
+        description: "Visual appearance style of the dropdown trigger.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes to apply.",
+      },
+    ],
+    examples: [
+      {
+        title: "Interactive Model Switcher",
+        description:
+          "Full dropdown with model capabilities, context window sizes, and active checkmarks.",
+        preview: (
+          <div className="flex justify-center p-6 w-full min-h-[300px]">
+            <ModelSelector
+              defaultValue="claude-3-5-sonnet"
+              models={[
+                {
+                  id: "claude-3-5-sonnet",
+                  name: "Claude 3.5 Sonnet",
+                  provider: "Anthropic",
+                  description:
+                    "Industry-leading intelligence and complex coding ability",
+                  badge: "Most Capable",
+                  contextLength: "200k",
+                },
+                {
+                  id: "gpt-4o",
+                  name: "GPT-4o",
+                  provider: "OpenAI",
+                  description:
+                    "Fast multi-modal flagship model for audio, vision, and text",
+                  badge: "Omni",
+                  contextLength: "128k",
+                },
+                {
+                  id: "deepseek-r1",
+                  name: "DeepSeek R1",
+                  provider: "DeepSeek",
+                  description:
+                    "Open-weights reasoning model with state-of-the-art logic",
+                  badge: "Reasoning",
+                  contextLength: "64k",
+                },
+                {
+                  id: "gemini-1-5-pro",
+                  name: "Gemini 1.5 Pro",
+                  provider: "Google",
+                  description:
+                    "Massive 2M token context window for complex multimodal analysis",
+                  badge: "2M Context",
+                  contextLength: "2M",
+                },
+              ]}
+            />
+          </div>
+        ),
+        code: `const models: AIModel[] = [\n  { id: 'claude-3-5-sonnet', name: 'Claude 3.5 Sonnet', badge: 'Most Capable', contextLength: '200k' },\n  { id: 'gpt-4o', name: 'GPT-4o', badge: 'Omni', contextLength: '128k' },\n  { id: 'deepseek-r1', name: 'DeepSeek R1', badge: 'Reasoning', contextLength: '64k' },\n];\n\n<ModelSelector models={models} defaultValue="claude-3-5-sonnet" />`,
+      },
+      {
+        title: "Embedded in Prompt Input Bar",
+        description:
+          "Compact model selector placed directly within an AI chat input toolbar.",
+        preview: (
+          <div className="w-full max-w-xl mx-auto p-3 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs space-y-3">
+            <textarea
+              rows={2}
+              placeholder="Ask anything or generate code..."
+              className="w-full bg-transparent resize-none text-sm outline-none placeholder:text-[var(--patiya-color-muted-foreground)]"
+            />
+            <div className="flex items-center justify-between border-t border-[var(--patiya-color-border)] pt-2.5">
+              <ModelSelector
+                size="sm"
+                variant="compact"
+                defaultValue="gpt-4o"
+                models={[
+                  {
+                    id: "gpt-4o",
+                    name: "GPT-4o",
+                    badge: "Omni",
+                    contextLength: "128k",
+                  },
+                  {
+                    id: "claude-3-5-sonnet",
+                    name: "Claude 3.5",
+                    badge: "Coding",
+                    contextLength: "200k",
+                  },
+                  {
+                    id: "deepseek-r1",
+                    name: "DeepSeek R1",
+                    badge: "Reasoning",
+                    contextLength: "64k",
+                  },
+                ]}
+              />
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] shadow-xs hover:opacity-90 transition-opacity"
+              >
+                <span>Send</span>
+                <svg
+                  className="w-3 h-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ),
+        code: `<div className="flex items-center justify-between border-t pt-2.5">\n  <ModelSelector size="sm" variant="compact" models={models} defaultValue="gpt-4o" />\n  <Button size="sm">Send</Button>\n</div>`,
+      },
+      {
+        title: "Ghost Header Variant",
+        description:
+          "Borderless minimal selector suitable for top navigation bars or header controls.",
+        preview: (
+          <div className="flex items-center justify-between p-3 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 w-full max-w-md mx-auto">
+            <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+              Agent Engine:
+            </span>
+            <ModelSelector
+              variant="ghost"
+              size="sm"
+              defaultValue="deepseek-r1"
+              models={[
+                {
+                  id: "deepseek-r1",
+                  name: "DeepSeek R1",
+                  badge: "Reasoning",
+                  contextLength: "64k",
+                },
+                {
+                  id: "claude-3-5-sonnet",
+                  name: "Claude 3.5 Sonnet",
+                  badge: "Coding",
+                  contextLength: "200k",
+                },
+              ]}
+            />
+          </div>
+        ),
+        code: `<div className="flex items-center justify-between p-3">\n  <span>Agent Engine:</span>\n  <ModelSelector variant="ghost" size="sm" models={models} defaultValue="deepseek-r1" />\n</div>`,
+      },
+    ],
+  },
+  "model-selector": {
+    get title() {
+      return "Model Selector";
+    },
+    get description() {
+      return "A dropdown selector for switching AI models with provider icons, context window tags, and capability badges.";
+    },
+    get installation() {
+      return `import { ModelSelector, AIModel } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).modelSelector.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).modelSelector.examples;
+    },
+  },
   otpInput: {
     title: "OTP Input",
     description:
@@ -8159,5 +10325,431 @@ export default function App() {
 />`,
       },
     ],
+  },
+  scrollProgress: {
+    title: "Scroll Progress",
+    description: "Animated scroll progress bar and floating circular reading gauge with scroll-to-top interaction.",
+    installation: `import { ScrollProgress } from 'patiya';`,
+    props: [
+      {
+        name: "variant",
+        type: "'bar' | 'circle'",
+        default: "'bar'",
+        description: "Visual style: top/bottom progress bar or floating circular progress indicator.",
+      },
+      {
+        name: "containerRef",
+        type: "React.RefObject<HTMLElement | null>",
+        default: "-",
+        description: "Optional reference to a scrollable container element instead of the browser window.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: "'var(--patiya-color-primary)'",
+        description: "Custom fill color or gradient for the progress bar or circle stroke.",
+      },
+      {
+        name: "height",
+        type: "number | string",
+        default: "3",
+        description: "Thickness of the progress bar in pixels or CSS units (only applies to variant='bar').",
+      },
+      {
+        name: "position",
+        type: "'top' | 'bottom'",
+        default: "'top'",
+        description: "Position of the progress bar relative to the container.",
+      },
+      {
+        name: "showPercentage",
+        type: "boolean",
+        default: "true",
+        description: "Displays current scroll percentage label inside the circular gauge.",
+      },
+      {
+        name: "smooth",
+        type: "boolean",
+        default: "true",
+        description: "Enables smooth CSS transition on progress values.",
+      },
+      {
+        name: "onClick",
+        type: "(event: React.MouseEvent<HTMLDivElement>) => void",
+        default: "-",
+        description: "Click handler (automatically scrolls container or window to top for circle variant).",
+      },
+    ],
+    examples: [
+      {
+        title: "Container Scroll Tracking",
+        preview: <ScrollProgressContainerPreview />,
+        code: `import { useRef } from 'react';
+import { ScrollProgress } from 'patiya';
+
+export default function ContainerDemo() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div className="w-full max-w-lg border rounded-xl overflow-hidden shadow-sm">
+      <ScrollProgress containerRef={containerRef} height={4} />
+      <div ref={containerRef} className="h-44 overflow-y-auto p-4 space-y-3">
+        <p className="font-semibold">Scroll down to track reading progress...</p>
+        <p>Micro-interactions provide visual confirmation of state changes.</p>
+        <p>ScrollProgress binds effortlessly to any target via containerRef.</p>
+      </div>
+    </div>
+  );
+}`,
+      },
+      {
+        title: "Circular Reading Gauge with Scroll-To-Top",
+        preview: <ScrollProgressCirclePreview />,
+        code: `import { useRef } from 'react';
+import { ScrollProgress } from 'patiya';
+
+export default function CircleGaugeDemo() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div className="relative w-full max-w-lg border rounded-xl overflow-hidden shadow-sm">
+      <div ref={containerRef} className="h-48 overflow-y-auto p-4 space-y-3">
+        <p className="font-semibold">Executive Summary</p>
+        <p>Scroll down through this document to see the circular gauge fill up.</p>
+        <p>Click the gauge at any time to smoothly scroll back to top.</p>
+      </div>
+      <div className="absolute bottom-4 right-4">
+        <ScrollProgress variant="circle" containerRef={containerRef} />
+      </div>
+    </div>
+  );
+}`,
+      },
+      {
+        title: "Window Scroll Bar",
+        preview: (
+          <Box className="p-6 border border-[var(--patiya-color-border)] rounded-xl bg-[var(--patiya-color-muted)]/10 text-center space-y-3">
+            <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Fixed Global Window Progress Bar</p>
+            <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
+              Mounts to the top or bottom edge of the viewport to display article reading progression across the whole page.
+            </p>
+            <Badge variant="outline" size="sm">position="top" | position="bottom"</Badge>
+          </Box>
+        ),
+        code: `import { ScrollProgress } from 'patiya';
+
+export default function WindowScrollDemo() {
+  return (
+    <ScrollProgress
+      position="top"
+      height={3}
+      color="linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)"
+    />
+  );
+}`,
+      },
+      {
+        title: "Custom Accent Gradient",
+        preview: (
+          <Box className="w-full max-w-md border border-[var(--patiya-color-border)] rounded-lg p-5 bg-[var(--patiya-color-card)] space-y-2 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 rounded-t-lg" />
+            <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">Custom Gradient Bar</span>
+            <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+              Specify any CSS gradient or solid color value via the <code>color</code> prop.
+            </p>
+          </Box>
+        ),
+        code: `<ScrollProgress
+  height={6}
+  color="linear-gradient(90deg, #8b5cf6, #ec4899)"
+  containerRef={containerRef}
+/>`,
+      },
+    ],
+  },
+  "scroll-progress": {
+    get title() {
+      return "Scroll Progress";
+    },
+    get description() {
+      return "Animated scroll progress bar and floating circular reading gauge with scroll-to-top interaction.";
+    },
+    get installation() {
+      return `import { ScrollProgress } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).scrollProgress.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).scrollProgress.examples;
+    },
+  },
+  browserMockup: {
+    title: "Browser Mockup",
+    description: "Realistic window frame with macOS traffic lights, address bar, multi-tab support, and terminal mode.",
+    installation: `import { BrowserMockup } from 'patiya';`,
+    props: [
+      {
+        name: "variant",
+        type: "'browser' | 'terminal' | 'window'",
+        default: "'browser'",
+        description: "Visual appearance: full browser with address bar, developer terminal, or clean window.",
+      },
+      {
+        name: "url",
+        type: "string",
+        default: "'https://patiya-ui.vercel.app'",
+        description: "URL displayed in the browser address bar.",
+      },
+      {
+        name: "title",
+        type: "string",
+        default: "-",
+        description: "Header title displayed in terminal and window modes.",
+      },
+      {
+        name: "tabs",
+        type: "BrowserMockupTab[]",
+        default: "-",
+        description: "Array of tab objects ({ id, title, icon }) rendered in the header bar.",
+      },
+      {
+        name: "activeTab",
+        type: "string",
+        default: "-",
+        description: "Controlled currently active tab ID.",
+      },
+      {
+        name: "defaultActiveTab",
+        type: "string",
+        default: "-",
+        description: "Uncontrolled initial active tab ID.",
+      },
+      {
+        name: "onTabChange",
+        type: "(tabId: string) => void",
+        default: "-",
+        description: "Callback fired when a tab is clicked.",
+      },
+      {
+        name: "showControls",
+        type: "boolean",
+        default: "true",
+        description: "Toggles macOS traffic light buttons (close, minimize, maximize).",
+      },
+      {
+        name: "copyable",
+        type: "boolean",
+        default: "true",
+        description: "Shows a quick copy action button for the address bar URL or title.",
+      },
+      {
+        name: "onClose",
+        type: "() => void",
+        default: "-",
+        description: "Callback fired when the close traffic light button is clicked.",
+      },
+      {
+        name: "onMinimize",
+        type: "() => void",
+        default: "-",
+        description: "Callback fired when the minimize traffic light button is clicked.",
+      },
+      {
+        name: "onMaximize",
+        type: "() => void",
+        default: "-",
+        description: "Callback fired when the maximize traffic light button is clicked.",
+      },
+      {
+        name: "children",
+        type: "React.ReactNode",
+        default: "-",
+        description: "Content rendered within the mockup viewport.",
+      },
+    ],
+    examples: [
+      {
+        title: "Interactive Multi-Tab Window",
+        preview: <BrowserMockupInteractivePreview />,
+        code: `import { useState } from 'react';
+import { BrowserMockup, Badge, Box } from 'patiya';
+
+export default function InteractiveMockupDemo() {
+  const [activeTab, setActiveTab] = useState('preview');
+
+  return (
+    <BrowserMockup
+      url="https://patiya-ui.dev/dashboard"
+      tabs={[
+        { id: 'preview', title: 'Live Preview' },
+        { id: 'analytics', title: 'Analytics' },
+        { id: 'settings', title: 'Config' },
+      ]}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      className="w-full max-w-xl shadow-lg"
+    >
+      {activeTab === 'preview' && (
+        <div className="p-6 space-y-4">
+          <Badge variant="soft" color="primary" size="sm">v2.4 Production</Badge>
+          <h3 className="text-base font-bold mt-1.5">Design System Dashboard</h3>
+          <p className="text-xs text-muted-foreground">Real-time metrics and component telemetry.</p>
+        </div>
+      )}
+    </BrowserMockup>
+  );
+}`,
+      },
+      {
+        title: "Clean Browser with Address Bar",
+        preview: (
+          <BrowserMockup
+            url="https://patiya-ui.dev/components/button"
+            className="w-full max-w-lg shadow-md"
+          >
+            <Box className="p-6 text-center space-y-3 bg-[var(--patiya-color-card)]">
+              <Badge variant="soft" color="primary">Component Showcase</Badge>
+              <h4 className="text-lg font-bold text-[var(--patiya-color-foreground)]">Interactive Documentation</h4>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
+                Showcase your live product features, SaaS marketing landing pages, and component sandboxes inside authentic browser frames.
+              </p>
+              <Box className="flex justify-center gap-2 pt-2">
+                <Button size="sm">Get Started</Button>
+                <Button variant="outline" size="sm">Documentation</Button>
+              </Box>
+            </Box>
+          </BrowserMockup>
+        ),
+        code: `import { BrowserMockup, Button, Badge } from 'patiya';
+
+export default function BrowserPreview() {
+  return (
+    <BrowserMockup url="https://patiya-ui.dev/components/button" className="max-w-lg shadow-md">
+      <div className="p-6 text-center space-y-3">
+        <Badge variant="soft" color="primary">Component Showcase</Badge>
+        <h4 className="text-lg font-bold">Interactive Documentation</h4>
+        <p className="text-xs text-muted-foreground">
+          Showcase your live product features inside authentic browser frames.
+        </p>
+        <div className="flex justify-center gap-2 pt-2">
+          <Button size="sm">Get Started</Button>
+          <Button variant="outline" size="sm">Documentation</Button>
+        </div>
+      </div>
+    </BrowserMockup>
+  );
+}`,
+      },
+      {
+        title: "Developer Terminal Frame",
+        preview: (
+          <BrowserMockup
+            variant="terminal"
+            title="zsh — ~/workspace/patiya-ui"
+            className="w-full max-w-lg shadow-xl"
+          >
+            <Box className="p-4 font-mono text-xs space-y-2 bg-[#0c1017] text-[#e6edf3]">
+              <Box className="flex items-center gap-2 text-emerald-400">
+                <span>➜</span>
+                <span className="text-sky-400">patiya-ui</span>
+                <span className="text-neutral-400">git:(main)</span>
+                <span className="text-emerald-400">bun run build</span>
+              </Box>
+              <p className="text-neutral-400">$ vite build --mode production</p>
+              <p className="text-emerald-400">✓ 84 modules transformed.</p>
+              <p className="text-neutral-400">dist/index.js   48.2 kB │ gzip: 12.8 kB</p>
+              <p className="text-emerald-400">✓ Built in 248ms.</p>
+            </Box>
+          </BrowserMockup>
+        ),
+        code: `import { BrowserMockup } from 'patiya';
+
+export default function TerminalMockupDemo() {
+  return (
+    <BrowserMockup
+      variant="terminal"
+      title="zsh — ~/workspace/patiya-ui"
+      className="w-full max-w-lg shadow-xl"
+    >
+      <div className="p-4 font-mono text-xs space-y-2 bg-[#0c1017] text-[#e6edf3]">
+        <div className="flex items-center gap-2 text-emerald-400">
+          <span>➜</span>
+          <span className="text-sky-400">patiya-ui</span>
+          <span className="text-neutral-400">git:(main)</span>
+          <span className="text-emerald-400">bun run build</span>
+        </div>
+        <p className="text-neutral-400">$ vite build --mode production</p>
+        <p className="text-emerald-400">✓ 84 modules transformed.</p>
+        <p className="text-neutral-400">dist/index.js 48.2 kB │ gzip: 12.8 kB</p>
+        <p className="text-emerald-400">✓ Built in 248ms.</p>
+      </div>
+    </BrowserMockup>
+  );
+}`,
+      },
+      {
+        title: "Standard Application Window",
+        preview: (
+          <BrowserMockup
+            variant="window"
+            title="Inspector — AppConfig.json"
+            className="w-full max-w-lg shadow-md"
+          >
+            <Box className="p-5 space-y-3 bg-[var(--patiya-color-card)]">
+              <Box className="flex items-center justify-between pb-2 border-b border-[var(--patiya-color-border)]">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">System Properties</span>
+                <Badge size="sm" variant="outline">JSON</Badge>
+              </Box>
+              <pre className="text-xs font-mono text-[var(--patiya-color-muted-foreground)] overflow-x-auto">
+{`{
+  "theme": "adaptive",
+  "gpuAcceleration": true,
+  "telemetry": false
+}`}
+              </pre>
+            </Box>
+          </BrowserMockup>
+        ),
+        code: `import { BrowserMockup, Badge } from 'patiya';
+
+export default function WindowMockupDemo() {
+  return (
+    <BrowserMockup
+      variant="window"
+      title="Inspector — AppConfig.json"
+      className="w-full max-w-lg shadow-md"
+    >
+      <div className="p-5 space-y-3">
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="text-xs font-semibold">System Properties</span>
+          <Badge size="sm" variant="outline">JSON</Badge>
+        </div>
+        <pre className="text-xs font-mono text-muted-foreground">
+          {JSON.stringify({ theme: "adaptive", gpuAcceleration: true }, null, 2)}
+        </pre>
+      </div>
+    </BrowserMockup>
+  );
+}`,
+      },
+    ],
+  },
+  "browser-mockup": {
+    get title() {
+      return "Browser Mockup";
+    },
+    get description() {
+      return "Realistic window frame with macOS traffic lights, address bar, multi-tab support, and terminal mode.";
+    },
+    get installation() {
+      return `import { BrowserMockup } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).browserMockup.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).browserMockup.examples;
+    },
   },
 };

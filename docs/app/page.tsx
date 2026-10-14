@@ -349,8 +349,8 @@ export function FeatureCard() {
               <Link href="/docs">
                 <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-md hover:border-[var(--patiya-color-primary)] transition-colors">
                   <StatusDot status="online" ping={true} size="sm" />
-                  <span className="font-mono text-xs tracking-wide uppercase text-[var(--patiya-color-foreground)]">
-                    Patiya UI v2.0
+                  <span className="font-mono text-xs tracking-wide  text-[var(--patiya-color-foreground)]">
+                    Patiya UI V2.0
                   </span>
                   <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
                     50+ Animated Components
@@ -639,15 +639,15 @@ export function FeatureCard() {
         <section className="w-full border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/30">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--patiya-color-border)]">
-              <div className="py-5 px-6 text-center md:text-left space-y-1">
+              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
-                  50+
+                  80+
                 </div>
                 <div className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
                   Ready Components
                 </div>
               </div>
-              <div className="py-5 px-6 text-center md:text-left space-y-1">
+              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                   60 FPS
                 </div>
@@ -655,7 +655,7 @@ export function FeatureCard() {
                   Hardware Motion
                 </div>
               </div>
-              <div className="py-5 px-6 text-center md:text-left space-y-1">
+              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                   &lt;15 KB
                 </div>
@@ -663,7 +663,7 @@ export function FeatureCard() {
                   Gzip Footprint
                 </div>
               </div>
-              <div className="py-5 px-6 text-center md:text-left space-y-1">
+              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                   Zero
                 </div>

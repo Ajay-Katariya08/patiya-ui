@@ -37,6 +37,9 @@ export * from './components/Chip/Chip';
 export * from './components/Table/Table';
 export * from './components/Timeline/Timeline';
 export * from './components/Stepper/Stepper';
+export * from './components/Stat/Stat';
+export * from './components/DataList/DataList';
+export * from './components/TreeView/TreeView';
 export * from './components/Tabs/Tabs';
 export * from './components/Accordion/Accordion';
 export * from './components/Collapse/Collapse';
@@ -84,6 +87,8 @@ export * from './components/TypingIndicator/TypingIndicator';
 export * from './components/ThinkingProcess/ThinkingProcess';
 export * from './components/TypewriterText/TypewriterText';
 export * from './components/PromptSuggestion/PromptSuggestion';
+export * from './components/SourceCitation/SourceCitation';
+export * from './components/ModelSelector/ModelSelector';
 
 // Authentication & Security
 export * from './components/OTPInput/OTPInput';
@@ -104,6 +109,8 @@ export * from './components/Divider/Divider';
 export * from './components/Rating/Rating';
 export * from './components/StatusDot/StatusDot';
 export * from './components/CopyButton/CopyButton';
+export * from './components/ScrollProgress/ScrollProgress';
+export * from './components/BrowserMockup/BrowserMockup';
 
 // Utils
 export * from './utils/cn';
