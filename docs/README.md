@@ -23,7 +23,7 @@ Visit the official site to explore all components:
 
 ## 🚀 Why Patiya UI?
 
-If you are looking for a highly customizable **Tailwind CSS component library**, Patiya UI gives you over 50+ beautiful, fully accessible, copy-paste ready **React UI components** including:
+If you are looking for a highly customizable **Tailwind CSS component library**, Patiya UI gives you over 80+ beautiful, fully accessible, copy-paste ready **React UI components** including:
 
 - Advanced Layouts (Dock, Spotlights, Direction-Aware Hover)
 - Interactive Elements (Shimmer buttons, Magnetic buttons, Scratch to Reveal)

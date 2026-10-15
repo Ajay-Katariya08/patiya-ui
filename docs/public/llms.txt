@@ -1,6 +1,6 @@
 # Patiya UI
 
-> Beautiful, accessible React components built with Tailwind CSS. 50+ free copy-paste components including buttons, modals, sliders, carousels, shimmer effects, dock, and AI interfaces.
+> Beautiful, accessible React components built with Tailwind CSS. 80+ free copy-paste components including buttons, modals, sliders, carousels, shimmer effects, dock, and AI interfaces.
 
 Patiya UI is a modern, lightweight React component library designed for physics-based micro-interactions, hardware-accelerated animations, and native Tailwind CSS v4 support.
 

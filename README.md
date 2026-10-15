@@ -19,7 +19,7 @@
 
 ## ⚡ Overview
 
-Patiya UI is a React component suite built from the ground up for modern web applications. It offers 50+ accessible primitives, rich micro-interactions, AI interface elements, visual effects, and theme management with zero configuration.
+Patiya UI is a React component suite built from the ground up for modern web applications. It offers 80+ accessible primitives, rich micro-interactions, AI interface elements, visual effects, and theme management with zero configuration.
 
 ### Highlights
 

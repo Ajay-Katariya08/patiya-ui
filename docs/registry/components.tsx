@@ -495,7 +495,9 @@ export const DataListPreview = () => {
           <DataListValue>
             <div className="flex flex-col">
               <span className="font-medium">Sarah Jenkins</span>
-              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">sarah.j@example.com</span>
+              <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                sarah.j@example.com
+              </span>
             </div>
           </DataListValue>
         </DataListItem>
@@ -517,7 +519,10 @@ export const DataListPreview = () => {
         <DataListItem>
           <DataListLabel>Status</DataListLabel>
           <DataListValue>
-            <Badge variant="outline" className="text-emerald-600 border-emerald-500/30 bg-emerald-500/10">
+            <Badge
+              variant="outline"
+              className="text-emerald-600 border-emerald-500/30 bg-emerald-500/10"
+            >
               Fulfilled
             </Badge>
           </DataListValue>
@@ -535,7 +540,15 @@ export const TreeViewPreview = () => {
           id="root"
           label="patiya-ui"
           icon={
-            <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="w-4 h-4 text-amber-500"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
             </svg>
           }
@@ -544,7 +557,15 @@ export const TreeViewPreview = () => {
             id="src"
             label="src"
             icon={
-              <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                className="w-4 h-4 text-amber-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
               </svg>
             }
@@ -553,7 +574,15 @@ export const TreeViewPreview = () => {
               id="components"
               label="components"
               icon={
-                <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="w-4 h-4 text-amber-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
               }
@@ -562,41 +591,94 @@ export const TreeViewPreview = () => {
                 id="stat"
                 label="Stat.tsx"
                 icon={
-                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-4 h-4 text-sky-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="16 18 22 12 16 6" />
                     <polyline points="8 6 2 12 8 18" />
                   </svg>
                 }
-                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1 py-0 h-4"
+                  >
+                    New
+                  </Badge>
+                }
               />
               <TreeItem
                 id="datalist"
                 label="DataList.tsx"
                 icon={
-                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-4 h-4 text-sky-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="16 18 22 12 16 6" />
                     <polyline points="8 6 2 12 8 18" />
                   </svg>
                 }
-                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1 py-0 h-4"
+                  >
+                    New
+                  </Badge>
+                }
               />
               <TreeItem
                 id="treeview"
                 label="TreeView.tsx"
                 icon={
-                  <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-4 h-4 text-sky-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="16 18 22 12 16 6" />
                     <polyline points="8 6 2 12 8 18" />
                   </svg>
                 }
-                badge={<Badge variant="outline" className="text-[10px] px-1 py-0 h-4">New</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1 py-0 h-4"
+                  >
+                    New
+                  </Badge>
+                }
               />
             </TreeItem>
             <TreeItem
               id="index"
               label="index.ts"
               icon={
-                <svg className="w-4 h-4 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="w-4 h-4 text-blue-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <polyline points="14 2 14 8 20 8" />
                 </svg>
@@ -607,7 +689,15 @@ export const TreeViewPreview = () => {
             id="package"
             label="package.json"
             icon={
-              <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                className="w-4 h-4 text-emerald-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
@@ -1217,27 +1307,35 @@ export const DrawerPreview = () => {
       <Drawer open={open} onOpenChange={setOpen} side="right">
         <DrawerHeader>
           <DrawerTitle>Settings</DrawerTitle>
-          <DrawerDescription>Manage preferences and notifications.</DrawerDescription>
+          <DrawerDescription>
+            Manage preferences and notifications.
+          </DrawerDescription>
         </DrawerHeader>
         <Box className="flex-1 py-4 space-y-5">
           <Box className="flex items-center justify-between">
             <Box>
               <p className="text-sm font-medium">Push Notifications</p>
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Receive real-time alerts</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Receive real-time alerts
+              </p>
             </Box>
             <Switch defaultChecked />
           </Box>
           <Box className="flex items-center justify-between">
             <Box>
               <p className="text-sm font-medium">Auto Updates</p>
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Keep app up to date</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Keep app up to date
+              </p>
             </Box>
             <Switch defaultChecked />
           </Box>
           <Box className="flex items-center justify-between">
             <Box>
               <p className="text-sm font-medium">Telemetry Sharing</p>
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Share anonymous crash logs</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Share anonymous crash logs
+              </p>
             </Box>
             <Switch />
           </Box>
@@ -1246,9 +1344,7 @@ export const DrawerPreview = () => {
           <Button variant="outline" onClick={() => setOpen(false)}>
             Cancel
           </Button>
-          <Button onClick={() => setOpen(false)}>
-            Save Changes
-          </Button>
+          <Button onClick={() => setOpen(false)}>Save Changes</Button>
         </DrawerFooter>
       </Drawer>
     </Box>
@@ -1309,15 +1405,14 @@ export const DrawerTopPreview = () => {
           </DrawerDescription>
         </DrawerHeader>
         <Box className="py-2 text-sm text-[var(--patiya-color-muted-foreground)]">
-          All API endpoints and dashboards will experience up to 15 minutes of intermittent downtime. Please plan deployments accordingly.
+          All API endpoints and dashboards will experience up to 15 minutes of
+          intermittent downtime. Please plan deployments accordingly.
         </Box>
         <DrawerFooter>
           <Button variant="outline" onClick={() => setOpen(false)}>
             Dismiss
           </Button>
-          <Button onClick={() => setOpen(false)}>
-            View Status Page
-          </Button>
+          <Button onClick={() => setOpen(false)}>View Status Page</Button>
         </DrawerFooter>
       </Drawer>
     </Box>
@@ -1349,7 +1444,11 @@ export const BottomSheetPreview = () => {
           <Button variant="outline" onClick={() => setOpen(false)}>
             Send via Email
           </Button>
-          <Button color="destructive" variant="soft" onClick={() => setOpen(false)}>
+          <Button
+            color="destructive"
+            variant="soft"
+            onClick={() => setOpen(false)}
+          >
             Move to Trash
           </Button>
         </Box>
@@ -1367,13 +1466,13 @@ export const DrawerFormPreview = () => {
   const [open, setOpen] = useState(false);
   return (
     <Box>
-      <Button onClick={() => setOpen(true)}>
-        Edit User Profile
-      </Button>
+      <Button onClick={() => setOpen(true)}>Edit User Profile</Button>
       <Drawer open={open} onOpenChange={setOpen} side="right">
         <DrawerHeader>
           <DrawerTitle>Edit Profile</DrawerTitle>
-          <DrawerDescription>Update public credentials and role.</DrawerDescription>
+          <DrawerDescription>
+            Update public credentials and role.
+          </DrawerDescription>
         </DrawerHeader>
         <Box className="flex-1 py-4 space-y-4">
           <Box className="space-y-1.5">
@@ -1382,7 +1481,11 @@ export const DrawerFormPreview = () => {
           </Box>
           <Box className="space-y-1.5">
             <span className="text-xs font-semibold">Email</span>
-            <Input defaultValue="sarah@example.com" type="email" placeholder="Enter email" />
+            <Input
+              defaultValue="sarah@example.com"
+              type="email"
+              placeholder="Enter email"
+            />
           </Box>
           <Box className="space-y-1.5">
             <span className="text-xs font-semibold">Workspace Role</span>
@@ -1394,16 +1497,17 @@ export const DrawerFormPreview = () => {
           </Box>
           <Box className="space-y-1.5">
             <span className="text-xs font-semibold">Bio</span>
-            <Textarea defaultValue="Staff engineer building modern design systems." rows={3} />
+            <Textarea
+              defaultValue="Staff engineer building modern design systems."
+              rows={3}
+            />
           </Box>
         </Box>
         <DrawerFooter>
           <Button variant="outline" onClick={() => setOpen(false)}>
             Cancel
           </Button>
-          <Button onClick={() => setOpen(false)}>
-            Save Profile
-          </Button>
+          <Button onClick={() => setOpen(false)}>Save Profile</Button>
         </DrawerFooter>
       </Drawer>
     </Box>
@@ -1426,14 +1530,18 @@ export const DrawerCartPreview = () => {
           <Box className="flex justify-between items-center pb-3 border-b border-[var(--patiya-color-border)]">
             <Box>
               <p className="text-sm font-semibold">Mechanical Keyboard</p>
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Custom Linear Switches</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Custom Linear Switches
+              </p>
             </Box>
             <span className="text-sm font-medium">$149.00</span>
           </Box>
           <Box className="flex justify-between items-center pb-3 border-b border-[var(--patiya-color-border)]">
             <Box>
               <p className="text-sm font-semibold">Ergonomic Wrist Rest</p>
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Walnut Wood</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                Walnut Wood
+              </p>
             </Box>
             <span className="text-sm font-medium">$39.00</span>
           </Box>
@@ -1446,9 +1554,7 @@ export const DrawerCartPreview = () => {
           <Button variant="outline" onClick={() => setOpen(false)}>
             Continue Shopping
           </Button>
-          <Button onClick={() => setOpen(false)}>
-            Checkout Now
-          </Button>
+          <Button onClick={() => setOpen(false)}>Checkout Now</Button>
         </DrawerFooter>
       </Drawer>
     </Box>
@@ -2074,7 +2180,12 @@ export const RadioColorsPreview = () => {
   return (
     <Box className="flex flex-wrap items-center gap-6">
       <Box className="flex items-center gap-2">
-        <Radio id="r-col-primary" name="r-col-1" color="primary" defaultChecked />
+        <Radio
+          id="r-col-primary"
+          name="r-col-1"
+          color="primary"
+          defaultChecked
+        />
         <label
           htmlFor="r-col-primary"
           className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
@@ -2097,7 +2208,12 @@ export const RadioColorsPreview = () => {
         </label>
       </Box>
       <Box className="flex items-center gap-2">
-        <Radio id="r-col-success" name="r-col-3" color="success" defaultChecked />
+        <Radio
+          id="r-col-success"
+          name="r-col-3"
+          color="success"
+          defaultChecked
+        />
         <label
           htmlFor="r-col-success"
           className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
@@ -2106,7 +2222,12 @@ export const RadioColorsPreview = () => {
         </label>
       </Box>
       <Box className="flex items-center gap-2">
-        <Radio id="r-col-warning" name="r-col-4" color="warning" defaultChecked />
+        <Radio
+          id="r-col-warning"
+          name="r-col-4"
+          color="warning"
+          defaultChecked
+        />
         <label
           htmlFor="r-col-warning"
           className="text-xs capitalize text-[var(--patiya-color-muted-foreground)] cursor-pointer"
@@ -2350,20 +2471,43 @@ export const ScrollProgressContainerPreview = () => {
         <ScrollProgress containerRef={containerRef} height={4} />
       </div>
       <Box className="p-3 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 flex items-center justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
-        <span className="font-medium text-[var(--patiya-color-foreground)]">Reading Container</span>
+        <span className="font-medium text-[var(--patiya-color-foreground)]">
+          Reading Container
+        </span>
         <span>Scroll inside container ↓</span>
       </Box>
       <div
         ref={containerRef}
         className="h-44 overflow-y-auto p-4 space-y-3 text-sm text-[var(--patiya-color-muted-foreground)]"
       >
-        <p className="font-semibold text-[var(--patiya-color-foreground)]">1. Introduction to ScrollProgress</p>
-        <p>In modern web applications, subtle feedback cues elevate everyday user interactions into intuitive experiences. Scroll progress indicators inform users of their reading depth in long articles, documentation guides, and onboarding flows.</p>
-        <p className="font-semibold text-[var(--patiya-color-foreground)]">2. Spring Micro-interactions</p>
-        <p>Micro-interactions provide visual confirmation of state changes. Combined with smooth CSS transitions, reading indicators feel alive and responsive.</p>
-        <p className="font-semibold text-[var(--patiya-color-foreground)]">3. Targeted Container Binding</p>
-        <p>Whether tracking the entire browser window or targeted scrollable containers like modal dialogues, code blocks, or nested sidebars, ScrollProgress binds effortlessly to any target via containerRef.</p>
-        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">✓ You have reached the bottom!</p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">
+          1. Introduction to ScrollProgress
+        </p>
+        <p>
+          In modern web applications, subtle feedback cues elevate everyday user
+          interactions into intuitive experiences. Scroll progress indicators
+          inform users of their reading depth in long articles, documentation
+          guides, and onboarding flows.
+        </p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">
+          2. Spring Micro-interactions
+        </p>
+        <p>
+          Micro-interactions provide visual confirmation of state changes.
+          Combined with smooth CSS transitions, reading indicators feel alive
+          and responsive.
+        </p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">
+          3. Targeted Container Binding
+        </p>
+        <p>
+          Whether tracking the entire browser window or targeted scrollable
+          containers like modal dialogues, code blocks, or nested sidebars,
+          ScrollProgress binds effortlessly to any target via containerRef.
+        </p>
+        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">
+          ✓ You have reached the bottom!
+        </p>
       </div>
     </Box>
   );
@@ -2374,20 +2518,44 @@ export const ScrollProgressCirclePreview = () => {
   return (
     <Box className="relative w-full max-w-lg border border-[var(--patiya-color-border)] rounded-xl overflow-hidden bg-[var(--patiya-color-card)] shadow-sm">
       <Box className="p-3 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 flex items-center justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
-        <span className="font-medium text-[var(--patiya-color-foreground)]">Circular Gauge with Scroll-To-Top</span>
+        <span className="font-medium text-[var(--patiya-color-foreground)]">
+          Circular Gauge with Scroll-To-Top
+        </span>
         <span>Scroll down & click circle</span>
       </Box>
       <div
         ref={containerRef}
         className="h-48 overflow-y-auto p-4 space-y-3 text-sm text-[var(--patiya-color-muted-foreground)]"
       >
-        <p className="font-semibold text-[var(--patiya-color-foreground)]">Executive Summary</p>
-        <p>Patiya UI delivers crafted primitives optimized for speed, precision, and beauty. Every component is designed to harmonize with your design system while reducing developer friction.</p>
-        <p>As you scroll down through this report, notice how the circular gauge at the bottom-right animates smoothly showing the exact completion percentage.</p>
-        <p>Hover over the circular gauge to reveal the quick "Back to Top" arrow indicator. Clicking the gauge instantly and smoothly glides your view right back to the top of the container.</p>
-        <p className="font-semibold text-[var(--patiya-color-foreground)]">Key Performance Metrics</p>
-        <p>Zero external heavy dependencies, lightweight DOM footprint, native passive scroll listeners, and responsive mobile adaptation make it production-ready out of the box.</p>
-        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">✓ End of report.</p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">
+          Executive Summary
+        </p>
+        <p>
+          Patiya UI delivers crafted primitives optimized for speed, precision,
+          and beauty. Every component is designed to harmonize with your design
+          system while reducing developer friction.
+        </p>
+        <p>
+          As you scroll down through this report, notice how the circular gauge
+          at the bottom-right animates smoothly showing the exact completion
+          percentage.
+        </p>
+        <p>
+          Hover over the circular gauge to reveal the quick "Back to Top" arrow
+          indicator. Clicking the gauge instantly and smoothly glides your view
+          right back to the top of the container.
+        </p>
+        <p className="font-semibold text-[var(--patiya-color-foreground)]">
+          Key Performance Metrics
+        </p>
+        <p>
+          Zero external heavy dependencies, lightweight DOM footprint, native
+          passive scroll listeners, and responsive mobile adaptation make it
+          production-ready out of the box.
+        </p>
+        <p className="text-xs text-[var(--patiya-color-primary)] font-medium">
+          ✓ End of report.
+        </p>
       </div>
       <div className="absolute bottom-4 right-4 z-10 pointer-events-auto">
         <ScrollProgress
@@ -2418,38 +2586,61 @@ export const BrowserMockupInteractivePreview = () => {
         <Box className="p-6 space-y-4 bg-gradient-to-br from-[var(--patiya-color-card)] to-[var(--patiya-color-muted)]/30">
           <Box className="flex items-center justify-between">
             <Box>
-              <Badge variant="soft" color="primary" size="sm">v2.4 Production</Badge>
-              <h3 className="text-base font-bold text-[var(--patiya-color-foreground)] mt-1.5">Design System Dashboard</h3>
+              <Badge variant="soft" color="primary" size="sm">
+                v2.4 Production
+              </Badge>
+              <h3 className="text-base font-bold text-[var(--patiya-color-foreground)] mt-1.5">
+                Design System Dashboard
+              </h3>
             </Box>
             <span className="flex h-2.5 w-2.5 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
           </Box>
-          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Real-time metrics and component telemetry updated across all connected client applications.</p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Real-time metrics and component telemetry updated across all
+            connected client applications.
+          </p>
           <Box className="grid grid-cols-3 gap-3 pt-1">
             <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
-              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Uptime</p>
-              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">99.99%</p>
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">
+                Uptime
+              </p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">
+                99.99%
+              </p>
             </Box>
             <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
-              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Latency</p>
-              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">18ms</p>
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">
+                Latency
+              </p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">
+                18ms
+              </p>
             </Box>
             <Box className="p-3 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
-              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">Active Nodes</p>
-              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">42</p>
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-semibold">
+                Active Nodes
+              </p>
+              <p className="text-base font-bold text-[var(--patiya-color-foreground)] mt-0.5">
+                42
+              </p>
             </Box>
           </Box>
         </Box>
       )}
       {activeTab === "analytics" && (
         <Box className="p-6 space-y-4">
-          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Traffic & Conversion Metrics</p>
+          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">
+            Traffic & Conversion Metrics
+          </p>
           <Box className="space-y-2">
             <Box className="flex justify-between text-xs text-[var(--patiya-color-muted-foreground)]">
               <span>Conversion Rate</span>
-              <span className="font-mono font-medium text-[var(--patiya-color-foreground)]">4.82% (+1.2%)</span>
+              <span className="font-mono font-medium text-[var(--patiya-color-foreground)]">
+                4.82% (+1.2%)
+              </span>
             </Box>
             <Box className="w-full h-2 rounded-full bg-[var(--patiya-color-muted)] overflow-hidden">
               <Box className="h-full bg-[var(--patiya-color-primary)] rounded-full w-[68%]" />
@@ -2459,8 +2650,13 @@ export const BrowserMockupInteractivePreview = () => {
       )}
       {activeTab === "settings" && (
         <Box className="p-6 space-y-3">
-          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Mockup Configuration</p>
-          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">Configure custom certificates, dark mode palettes, and title-bar controls.</p>
+          <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">
+            Mockup Configuration
+          </p>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Configure custom certificates, dark mode palettes, and title-bar
+            controls.
+          </p>
         </Box>
       )}
     </BrowserMockup>
@@ -2626,7 +2822,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "showPasswordToggle",
         type: "boolean",
         default: "false",
-        description: "Whether to display a built-in eye/eye-off toggle button when type='password'.",
+        description:
+          "Whether to display a built-in eye/eye-off toggle button when type='password'.",
       },
       {
         name: "eyeIcon",
@@ -2644,7 +2841,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "clearable",
         type: "boolean",
         default: "false",
-        description: "Whether to display a clear button when the input has content.",
+        description:
+          "Whether to display a clear button when the input has content.",
       },
       {
         name: "onClear",
@@ -2658,7 +2856,11 @@ export const componentsRegistry: Record<string, any> = {
         title: "Default",
         description: "The default outline input field.",
         preview: (
-          <Input placeholder="Email address" className="max-w-sm w-full" aria-label="Email address" />
+          <Input
+            placeholder="Email address"
+            className="max-w-sm w-full"
+            aria-label="Email address"
+          />
         ),
         code: `<Input placeholder="Email address" />`,
       },
@@ -2667,21 +2869,46 @@ export const componentsRegistry: Record<string, any> = {
         description: "Available in outline, filled, and soft styling variants.",
         preview: (
           <Box className="flex flex-col gap-3 max-w-sm w-full">
-            <Input variant="outline" placeholder="Outline variant (default)" aria-label="Outline variant" />
-            <Input variant="filled" placeholder="Filled variant" aria-label="Filled variant" />
-            <Input variant="soft" placeholder="Soft variant" aria-label="Soft variant" />
+            <Input
+              variant="outline"
+              placeholder="Outline variant (default)"
+              aria-label="Outline variant"
+            />
+            <Input
+              variant="filled"
+              placeholder="Filled variant"
+              aria-label="Filled variant"
+            />
+            <Input
+              variant="soft"
+              placeholder="Soft variant"
+              aria-label="Soft variant"
+            />
           </Box>
         ),
         code: `<Input variant="outline" placeholder="Outline variant (default)" />\n<Input variant="filled" placeholder="Filled variant" />\n<Input variant="soft" placeholder="Soft variant" />`,
       },
       {
         title: "Sizes",
-        description: "Inputs come in sm, md, and lg sizes to match any form layout.",
+        description:
+          "Inputs come in sm, md, and lg sizes to match any form layout.",
         preview: (
           <Box className="flex flex-col gap-3 max-w-sm w-full">
-            <Input inputSize="sm" placeholder="Small size (sm)" aria-label="Small input" />
-            <Input inputSize="md" placeholder="Medium size (md - default)" aria-label="Medium input" />
-            <Input inputSize="lg" placeholder="Large size (lg)" aria-label="Large input" />
+            <Input
+              inputSize="sm"
+              placeholder="Small size (sm)"
+              aria-label="Small input"
+            />
+            <Input
+              inputSize="md"
+              placeholder="Medium size (md - default)"
+              aria-label="Medium input"
+            />
+            <Input
+              inputSize="lg"
+              placeholder="Large size (lg)"
+              aria-label="Large input"
+            />
           </Box>
         ),
         code: `<Input inputSize="sm" placeholder="Small size (sm)" />\n<Input inputSize="md" placeholder="Medium size (md)" />\n<Input inputSize="lg" placeholder="Large size (lg)" />`,
@@ -2695,7 +2922,20 @@ export const componentsRegistry: Record<string, any> = {
             className="max-w-sm w-full"
             aria-label="Search components"
             leftIcon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
             }
           />
         ),
@@ -2710,7 +2950,20 @@ export const componentsRegistry: Record<string, any> = {
             className="max-w-sm w-full"
             aria-label="Quick search"
             leftIcon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
             }
             rightIcon={<Kbd size="sm">⌘K</Kbd>}
           />
@@ -2719,7 +2972,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Password with Toggle",
-        description: "Built-in visibility toggle handled internally without manual state.",
+        description:
+          "Built-in visibility toggle handled internally without manual state.",
         preview: (
           <Input
             type="password"
@@ -2733,7 +2987,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Clearable Input",
-        description: "Built-in clear button handled internally without manual state.",
+        description:
+          "Built-in clear button handled internally without manual state.",
         preview: (
           <Input
             clearable
@@ -2742,7 +2997,20 @@ export const componentsRegistry: Record<string, any> = {
             className="max-w-sm w-full"
             aria-label="Clearable search"
             leftIcon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
             }
           />
         ),
@@ -2750,7 +3018,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Invalid State",
-        description: "Error boundary styling with descriptive validation message.",
+        description:
+          "Error boundary styling with descriptive validation message.",
         preview: (
           <Box className="flex flex-col gap-1.5 max-w-sm w-full">
             <Input
@@ -2768,12 +3037,15 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "With Label & Helper Text",
-        description: "Structured form field with top label and bottom helper instructions.",
+        description:
+          "Structured form field with top label and bottom helper instructions.",
         preview: (
           <Box className="flex flex-col gap-1.5 max-w-sm w-full">
             <label className="text-xs font-semibold text-[var(--patiya-color-foreground)] flex items-center justify-between">
               <span>Workspace Identifier</span>
-              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">Optional</span>
+              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">
+                Optional
+              </span>
             </label>
             <Input placeholder="acme-corp" aria-label="Workspace Identifier" />
             <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
@@ -3192,24 +3464,35 @@ export const componentsRegistry: Record<string, any> = {
   },
   stat: {
     title: "Stat",
-    description: "Displays statistics, metrics, KPIs, and quantitative indicators with trend badges.",
+    description:
+      "Displays statistics, metrics, KPIs, and quantitative indicators with trend badges.",
     installation: `import { Stat, StatLabel, StatValue, StatTrend, StatHelpText, StatGroup } from 'patiya';`,
     examples: [
       {
         title: "KPI Dashboard Cards",
-        description: "Standard card-style metric displays with trend indicators and comparison subtitles.",
+        description:
+          "Standard card-style metric displays with trend indicators and comparison subtitles.",
         preview: <StatPreview />,
         code: `<StatGroup columns={3}>\n  <Stat variant="card">\n    <StatLabel>Total Revenue</StatLabel>\n    <StatValue prefix="$">45,231.89</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="up">+20.1%</StatTrend>\n      <StatHelpText>from last month</StatHelpText>\n    </div>\n  </Stat>\n  <Stat variant="card">\n    <StatLabel>Active Subscriptions</StatLabel>\n    <StatValue prefix="+">2,350</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="up">+180.1%</StatTrend>\n      <StatHelpText>from last quarter</StatHelpText>\n    </div>\n  </Stat>\n  <Stat variant="card">\n    <StatLabel>Churn Rate</StatLabel>\n    <StatValue suffix="%">1.2</StatValue>\n    <div className="flex items-center gap-2 mt-1">\n      <StatTrend direction="down">-0.4%</StatTrend>\n      <StatHelpText>all-time low</StatHelpText>\n    </div>\n  </Stat>\n</StatGroup>`,
       },
       {
         title: "System Performance & Telemetry",
-        description: "Compact telemetry stats with contextual icons and inline trends.",
+        description:
+          "Compact telemetry stats with contextual icons and inline trends.",
         preview: (
           <div className="w-full max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Stat variant="bordered">
               <StatLabel
                 icon={
-                  <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-3.5 h-3.5 text-primary"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <rect width="18" height="18" x="3" y="3" rx="2" />
                     <line x1="8" y1="12" x2="16" y2="12" />
                   </svg>
@@ -3219,14 +3502,24 @@ export const componentsRegistry: Record<string, any> = {
               </StatLabel>
               <StatValue suffix="%">38.4</StatValue>
               <div className="flex items-center gap-2 mt-1">
-                <StatTrend direction="neutral" variant="text">Stable</StatTrend>
+                <StatTrend direction="neutral" variant="text">
+                  Stable
+                </StatTrend>
                 <StatHelpText>8 cores allocated</StatHelpText>
               </div>
             </Stat>
             <Stat variant="bordered">
               <StatLabel
                 icon={
-                  <svg className="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-3.5 h-3.5 text-emerald-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                   </svg>
                 }
@@ -3235,14 +3528,24 @@ export const componentsRegistry: Record<string, any> = {
               </StatLabel>
               <StatValue suffix="ms">24</StatValue>
               <div className="flex items-center gap-2 mt-1">
-                <StatTrend direction="down" variant="badge">-14ms</StatTrend>
+                <StatTrend direction="down" variant="badge">
+                  -14ms
+                </StatTrend>
                 <StatHelpText>p99 response</StatHelpText>
               </div>
             </Stat>
             <Stat variant="bordered">
               <StatLabel
                 icon={
-                  <svg className="w-3.5 h-3.5 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-3.5 h-3.5 text-sky-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                   </svg>
                 }
@@ -3251,7 +3554,9 @@ export const componentsRegistry: Record<string, any> = {
               </StatLabel>
               <StatValue prefix="$">0.002</StatValue>
               <div className="flex items-center gap-2 mt-1">
-                <StatTrend direction="down" variant="badge">-8.2%</StatTrend>
+                <StatTrend direction="down" variant="badge">
+                  -8.2%
+                </StatTrend>
                 <StatHelpText>optimized caching</StatHelpText>
               </div>
             </Stat>
@@ -3261,7 +3566,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Inline Minimal Display",
-        description: "Borderless stats designed for user profile banners or hero stat counters.",
+        description:
+          "Borderless stats designed for user profile banners or hero stat counters.",
         preview: (
           <div className="flex flex-wrap items-center justify-around gap-8 p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20 w-full max-w-xl mx-auto">
             <Stat size="sm">
@@ -3315,7 +3621,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "StatValue.prefix",
         type: "React.ReactNode",
         default: "-",
-        description: "Currency symbol or prefix placed before the metric value.",
+        description:
+          "Currency symbol or prefix placed before the metric value.",
       },
       {
         name: "StatValue.suffix",
@@ -3327,7 +3634,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "StatTrend.direction",
         type: "'up' | 'down' | 'neutral'",
         default: "'neutral'",
-        description: "Directional indicator with arrow icon and semantic coloring.",
+        description:
+          "Directional indicator with arrow icon and semantic coloring.",
       },
       {
         name: "StatTrend.variant",
@@ -3339,18 +3647,21 @@ export const componentsRegistry: Record<string, any> = {
         name: "StatGroup.columns",
         type: "1 | 2 | 3 | 4",
         default: "3",
-        description: "Responsive grid columns count for grouping multiple stats.",
+        description:
+          "Responsive grid columns count for grouping multiple stats.",
       },
     ],
   },
   "data-list": {
     title: "Data List",
-    description: "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
+    description:
+      "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
     installation: `import { DataList, DataListItem, DataListLabel, DataListValue } from 'patiya';`,
     examples: [
       {
         title: "Bordered Order Details",
-        description: "Card-style divided metadata list with copyable values and status chips.",
+        description:
+          "Card-style divided metadata list with copyable values and status chips.",
         preview: <DataListPreview />,
         code: `<DataList variant="bordered">\n  <DataListItem>\n    <DataListLabel>Order ID</DataListLabel>\n    <DataListValue copyable copyText="#ORD-98231">\n      #ORD-98231\n    </DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Customer</DataListLabel>\n    <DataListValue>Sarah Jenkins (sarah.j@example.com)</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Amount</DataListLabel>\n    <DataListValue>$349.00 USD</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Status</DataListLabel>\n    <DataListValue>\n      <Badge variant="outline">Fulfilled</Badge>\n    </DataListValue>\n  </DataListItem>\n</DataList>`,
       },
@@ -3362,8 +3673,13 @@ export const componentsRegistry: Record<string, any> = {
             <DataList variant="striped" size="sm">
               <DataListItem>
                 <DataListLabel>Host Name</DataListLabel>
-                <DataListValue copyable copyText="aws-us-east-cluster-01.internal">
-                  <span className="font-mono text-xs">aws-us-east-cluster-01.internal</span>
+                <DataListValue
+                  copyable
+                  copyText="aws-us-east-cluster-01.internal"
+                >
+                  <span className="font-mono text-xs">
+                    aws-us-east-cluster-01.internal
+                  </span>
                 </DataListValue>
               </DataListItem>
               <DataListItem>
@@ -3372,7 +3688,9 @@ export const componentsRegistry: Record<string, any> = {
               </DataListItem>
               <DataListItem>
                 <DataListLabel>Memory Allocated</DataListLabel>
-                <DataListValue>32 GB / 64 GB DDR5 (50% utilization)</DataListValue>
+                <DataListValue>
+                  32 GB / 64 GB DDR5 (50% utilization)
+                </DataListValue>
               </DataListItem>
               <DataListItem>
                 <DataListLabel>SSL Certificate</DataListLabel>
@@ -3396,7 +3714,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Vertical Alignment Form Style",
-        description: "Vertical stacked metadata list suitable for sidebar panels or compact dialogs.",
+        description:
+          "Vertical stacked metadata list suitable for sidebar panels or compact dialogs.",
         preview: (
           <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
             <DataList orientation="vertical" size="sm">
@@ -3409,7 +3728,9 @@ export const componentsRegistry: Record<string, any> = {
               <DataListItem>
                 <DataListLabel>Primary Domain</DataListLabel>
                 <DataListValue>
-                  <span className="text-[var(--patiya-color-primary)] underline cursor-pointer">acme.example.com</span>
+                  <span className="text-[var(--patiya-color-primary)] underline cursor-pointer">
+                    acme.example.com
+                  </span>
                 </DataListValue>
               </DataListItem>
               <DataListItem>
@@ -3427,13 +3748,15 @@ export const componentsRegistry: Record<string, any> = {
         name: "orientation",
         type: "'horizontal' | 'vertical'",
         default: "'horizontal'",
-        description: "Layout direction aligning labels and values side-by-side or stacked.",
+        description:
+          "Layout direction aligning labels and values side-by-side or stacked.",
       },
       {
         name: "variant",
         type: "'plain' | 'striped' | 'divided' | 'bordered'",
         default: "'plain'",
-        description: "Styling variant with dividing lines, alternating stripes, or card border.",
+        description:
+          "Styling variant with dividing lines, alternating stripes, or card border.",
       },
       {
         name: "size",
@@ -3451,7 +3774,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "DataListItem.align",
         type: "'start' | 'center' | 'baseline'",
         default: "'center'",
-        description: "Cross-axis alignment between the label and value columns.",
+        description:
+          "Cross-axis alignment between the label and value columns.",
       },
       {
         name: "DataListLabel.icon",
@@ -3463,7 +3787,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "DataListValue.copyable",
         type: "boolean",
         default: "false",
-        description: "Whether to render a one-click copy button next to the value.",
+        description:
+          "Whether to render a one-click copy button next to the value.",
       },
       {
         name: "DataListValue.copyText",
@@ -3475,12 +3800,14 @@ export const componentsRegistry: Record<string, any> = {
   },
   dataList: {
     title: "Data List",
-    description: "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
+    description:
+      "Displays structured key-value pairs, metadata, and technical specifications with customizable layouts.",
     installation: `import { DataList, DataListItem, DataListLabel, DataListValue } from 'patiya';`,
     examples: [
       {
         title: "Bordered Order Details",
-        description: "Card-style divided metadata list with copyable values and status chips.",
+        description:
+          "Card-style divided metadata list with copyable values and status chips.",
         preview: <DataListPreview />,
         code: `<DataList variant="bordered">\n  <DataListItem>\n    <DataListLabel>Order ID</DataListLabel>\n    <DataListValue copyable copyText="#ORD-98231">\n      #ORD-98231\n    </DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Customer</DataListLabel>\n    <DataListValue>Sarah Jenkins (sarah.j@example.com)</DataListValue>\n  </DataListItem>\n  <DataListItem>\n    <DataListLabel>Amount</DataListLabel>\n    <DataListValue>$349.00 USD</DataListValue>\n  </DataListItem>\n</DataList>`,
       },
@@ -3490,13 +3817,15 @@ export const componentsRegistry: Record<string, any> = {
         name: "orientation",
         type: "'horizontal' | 'vertical'",
         default: "'horizontal'",
-        description: "Layout direction aligning labels and values side-by-side or stacked.",
+        description:
+          "Layout direction aligning labels and values side-by-side or stacked.",
       },
       {
         name: "variant",
         type: "'plain' | 'striped' | 'divided' | 'bordered'",
         default: "'plain'",
-        description: "Styling variant with dividing lines, alternating stripes, or card border.",
+        description:
+          "Styling variant with dividing lines, alternating stripes, or card border.",
       },
       {
         name: "size",
@@ -3514,7 +3843,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "DataListItem.align",
         type: "'start' | 'center' | 'baseline'",
         default: "'center'",
-        description: "Cross-axis alignment between the label and value columns.",
+        description:
+          "Cross-axis alignment between the label and value columns.",
       },
       {
         name: "DataListLabel.icon",
@@ -3526,7 +3856,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "DataListValue.copyable",
         type: "boolean",
         default: "false",
-        description: "Whether to render a one-click copy button next to the value.",
+        description:
+          "Whether to render a one-click copy button next to the value.",
       },
       {
         name: "DataListValue.copyText",
@@ -3538,61 +3869,105 @@ export const componentsRegistry: Record<string, any> = {
   },
   "tree-view": {
     title: "Tree View",
-    description: "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
+    description:
+      "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
     installation: `import { TreeView, TreeItem } from 'patiya';`,
     examples: [
       {
         title: "Project File Explorer",
-        description: "Collapsible directory tree with branch connector lines, badges, and file type icons.",
+        description:
+          "Collapsible directory tree with branch connector lines, badges, and file type icons.",
         preview: <TreeViewPreview />,
         code: `<TreeView defaultExpandedKeys={["root", "src", "components"]}>\n  <TreeItem id="root" label="patiya-ui" icon={<FolderIcon />}>\n    <TreeItem id="src" label="src" icon={<FolderIcon />}>\n      <TreeItem id="components" label="components" icon={<FolderIcon />}>\n        <TreeItem id="stat" label="Stat.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="datalist" label="DataList.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="treeview" label="TreeView.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n      </TreeItem>\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
       },
       {
         title: "Organizational Teams Hierarchy",
-        description: "Multi-department organizational structure with member count badges.",
+        description:
+          "Multi-department organizational structure with member count badges.",
         preview: (
           <div className="w-full max-w-md mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
             <TreeView defaultExpandedKeys={["org", "eng"]}>
               <TreeItem
                 id="org"
                 label="Acme Technologies"
-                badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">42 members</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4"
+                  >
+                    42 members
+                  </Badge>
+                }
               >
                 <TreeItem
                   id="eng"
                   label="Engineering & Ops"
-                  badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">26</Badge>}
+                  badge={
+                    <Badge
+                      variant="outline"
+                      className="text-[10px] px-1.5 py-0 h-4"
+                    >
+                      26
+                    </Badge>
+                  }
                 >
                   <TreeItem
                     id="fe"
                     label="Frontend Core (React, Next.js)"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">8</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        8
+                      </span>
+                    }
                   />
                   <TreeItem
                     id="be"
                     label="Platform Services (Go, Rust)"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">12</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        12
+                      </span>
+                    }
                   />
                   <TreeItem
                     id="devops"
                     label="Cloud Infrastructure (Kubernetes, AWS)"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">6</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        6
+                      </span>
+                    }
                   />
                 </TreeItem>
                 <TreeItem
                   id="design"
                   label="Design & Product"
-                  badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">16</Badge>}
+                  badge={
+                    <Badge
+                      variant="outline"
+                      className="text-[10px] px-1.5 py-0 h-4"
+                    >
+                      16
+                    </Badge>
+                  }
                 >
                   <TreeItem
                     id="uiux"
                     label="Product Designers"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">10</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        10
+                      </span>
+                    }
                   />
                   <TreeItem
                     id="research"
                     label="UX Research & Analytics"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">6</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        6
+                      </span>
+                    }
                   />
                 </TreeItem>
               </TreeItem>
@@ -3603,40 +3978,61 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "API Endpoints & Routing",
-        description: "Interactive REST endpoint tree with HTTP method badges and route parameters.",
+        description:
+          "Interactive REST endpoint tree with HTTP method badges and route parameters.",
         preview: (
           <div className="w-full max-w-lg mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
             <TreeView defaultExpandedKeys={["api", "v1", "users"]}>
               <TreeItem
                 id="api"
                 label="api.gateway.io"
-                badge={<Badge variant="outline" className="text-[10px] text-emerald-600 bg-emerald-500/10 border-emerald-500/20 px-1.5 py-0 h-4">v2.4 Active</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] text-emerald-600 bg-emerald-500/10 border-emerald-500/20 px-1.5 py-0 h-4"
+                  >
+                    v2.4 Active
+                  </Badge>
+                }
               >
                 <TreeItem id="v1" label="/v1">
                   <TreeItem id="users" label="/users">
                     <TreeItem
                       id="get-users"
                       label="listAllUsers()"
-                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">GET</span>}
+                      badge={
+                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                          GET
+                        </span>
+                      }
                     />
                     <TreeItem
                       id="post-users"
                       label="createUser()"
-                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                      badge={
+                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                          POST
+                        </span>
+                      }
                     />
-                    <TreeItem
-                      id="user-by-id"
-                      label="/:id"
-                    >
+                    <TreeItem id="user-by-id" label="/:id">
                       <TreeItem
                         id="get-user-id"
                         label="getUserProfile()"
-                        badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">GET</span>}
+                        badge={
+                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                            GET
+                          </span>
+                        }
                       />
                       <TreeItem
                         id="delete-user-id"
                         label="deleteUser()"
-                        badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400">DELETE</span>}
+                        badge={
+                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400">
+                            DELETE
+                          </span>
+                        }
                       />
                     </TreeItem>
                   </TreeItem>
@@ -3644,12 +4040,20 @@ export const componentsRegistry: Record<string, any> = {
                     <TreeItem
                       id="post-login"
                       label="loginWithPassword()"
-                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                      badge={
+                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                          POST
+                        </span>
+                      }
                     />
                     <TreeItem
                       id="post-passkey"
                       label="verifyPasskey()"
-                      badge={<span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">POST</span>}
+                      badge={
+                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                          POST
+                        </span>
+                      }
                     />
                   </TreeItem>
                 </TreeItem>
@@ -3661,7 +4065,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Access Permissions & Security",
-        description: "Multi-level RBAC role permission tree with access status indicators.",
+        description:
+          "Multi-level RBAC role permission tree with access status indicators.",
         preview: (
           <div className="w-full max-w-md mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
             <TreeView defaultExpandedKeys={["security", "auth-settings"]}>
@@ -3669,7 +4074,15 @@ export const componentsRegistry: Record<string, any> = {
                 id="security"
                 label="Security & Governance"
                 icon={
-                  <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-4 h-4 text-emerald-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                   </svg>
                 }
@@ -3678,29 +4091,58 @@ export const componentsRegistry: Record<string, any> = {
                   <TreeItem
                     id="mfa"
                     label="Multi-Factor Authentication"
-                    badge={<Badge variant="outline" className="text-[10px] text-emerald-600 border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0 h-4">Enforced</Badge>}
+                    badge={
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] text-emerald-600 border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0 h-4"
+                      >
+                        Enforced
+                      </Badge>
+                    }
                   />
                   <TreeItem
                     id="sso"
                     label="SAML 2.0 Single Sign-On"
-                    badge={<Badge variant="outline" className="text-[10px] text-sky-600 border-sky-500/30 bg-sky-500/10 px-1.5 py-0 h-4">Active</Badge>}
+                    badge={
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] text-sky-600 border-sky-500/30 bg-sky-500/10 px-1.5 py-0 h-4"
+                      >
+                        Active
+                      </Badge>
+                    }
                   />
                   <TreeItem
                     id="session-timeout"
                     label="Idle Session Expiry (15m)"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">Enabled</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        Enabled
+                      </span>
+                    }
                   />
                 </TreeItem>
                 <TreeItem id="data-governance" label="Data Governance">
                   <TreeItem
                     id="audit-logs"
                     label="Immutable Audit Logs"
-                    badge={<Badge variant="outline" className="text-[10px] text-amber-600 border-amber-500/30 bg-amber-500/10 px-1.5 py-0 h-4">Admin Only</Badge>}
+                    badge={
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] text-amber-600 border-amber-500/30 bg-amber-500/10 px-1.5 py-0 h-4"
+                      >
+                        Admin Only
+                      </Badge>
+                    }
                   />
                   <TreeItem
                     id="backup"
                     label="Automated Daily Backups"
-                    badge={<span className="text-xs text-[var(--patiya-color-muted-foreground)]">02:00 UTC</span>}
+                    badge={
+                      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        02:00 UTC
+                      </span>
+                    }
                   />
                 </TreeItem>
               </TreeItem>
@@ -3711,7 +4153,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Cloud Storage Bucket",
-        description: "Cloud storage object directory with file-type icons and size badges.",
+        description:
+          "Cloud storage object directory with file-type icons and size badges.",
         preview: (
           <div className="w-full max-w-lg mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
             <TreeView defaultExpandedKeys={["bucket", "images"]}>
@@ -3719,38 +4162,91 @@ export const componentsRegistry: Record<string, any> = {
                 id="bucket"
                 label="s3://production-cdn-assets"
                 icon={
-                  <svg className="w-4 h-4 text-violet-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    className="w-4 h-4 text-violet-500"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <ellipse cx="12" cy="5" rx="9" ry="3" />
                     <path d="M3 5V19A9 3 0 0 0 21 19V5" />
                     <path d="M3 12A9 3 0 0 0 21 12" />
                   </svg>
                 }
-                badge={<Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">3.4 GB total</Badge>}
+                badge={
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4"
+                  >
+                    3.4 GB total
+                  </Badge>
+                }
               >
                 <TreeItem id="images" label="images/">
                   <TreeItem
                     id="hero"
                     label="hero-banner-dark.webp"
                     icon={
-                      <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                      <svg
+                        className="w-4 h-4 text-emerald-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="18"
+                          x="3"
+                          y="3"
+                          rx="2"
+                          ry="2"
+                        />
                         <circle cx="9" cy="9" r="2" />
                         <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
                       </svg>
                     }
-                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">1.2 MB</span>}
+                    badge={
+                      <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                        1.2 MB
+                      </span>
+                    }
                   />
                   <TreeItem
                     id="avatar"
                     label="user-avatar-placeholder.png"
                     icon={
-                      <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                      <svg
+                        className="w-4 h-4 text-emerald-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="18"
+                          x="3"
+                          y="3"
+                          rx="2"
+                          ry="2"
+                        />
                         <circle cx="9" cy="9" r="2" />
                         <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
                       </svg>
                     }
-                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">48 KB</span>}
+                    badge={
+                      <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                        48 KB
+                      </span>
+                    }
                   />
                 </TreeItem>
                 <TreeItem id="docs" label="reports/">
@@ -3758,12 +4254,24 @@ export const componentsRegistry: Record<string, any> = {
                     id="q4-audit"
                     label="q4-financial-audit.pdf"
                     icon={
-                      <svg className="w-4 h-4 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        className="w-4 h-4 text-rose-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                         <polyline points="14 2 14 8 20 8" />
                       </svg>
                     }
-                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">4.8 MB</span>}
+                    badge={
+                      <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                        4.8 MB
+                      </span>
+                    }
                   />
                 </TreeItem>
                 <TreeItem id="media" label="video/">
@@ -3771,12 +4279,31 @@ export const componentsRegistry: Record<string, any> = {
                     id="demo-video"
                     label="launch-announcement.mp4"
                     icon={
-                      <svg className="w-4 h-4 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        className="w-4 h-4 text-sky-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <polygon points="23 7 16 12 23 17 23 7" />
-                        <rect width="14" height="14" x="1" y="5" rx="2" ry="2" />
+                        <rect
+                          width="14"
+                          height="14"
+                          x="1"
+                          y="5"
+                          rx="2"
+                          ry="2"
+                        />
                       </svg>
                     }
-                    badge={<span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">240 MB</span>}
+                    badge={
+                      <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                        240 MB
+                      </span>
+                    }
                   />
                 </TreeItem>
               </TreeItem>
@@ -3809,7 +4336,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "showGuides",
         type: "boolean",
         default: "true",
-        description: "Whether to draw vertical branch connector lines for nested items.",
+        description:
+          "Whether to draw vertical branch connector lines for nested items.",
       },
       {
         name: "className",
@@ -3839,7 +4367,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "TreeItem.badge",
         type: "React.ReactNode",
         default: "-",
-        description: "Trailing badge or counter element aligned to the right edge.",
+        description:
+          "Trailing badge or counter element aligned to the right edge.",
       },
       {
         name: "TreeItem.defaultExpanded",
@@ -3857,12 +4386,14 @@ export const componentsRegistry: Record<string, any> = {
   },
   treeView: {
     title: "Tree View",
-    description: "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
+    description:
+      "Hierarchical interactive data display with collapsible folder nodes, custom icons, and guide lines.",
     installation: `import { TreeView, TreeItem } from 'patiya';`,
     examples: [
       {
         title: "Project File Explorer",
-        description: "Collapsible directory tree with branch connector lines, badges, and file type icons.",
+        description:
+          "Collapsible directory tree with branch connector lines, badges, and file type icons.",
         preview: <TreeViewPreview />,
         code: `<TreeView defaultExpandedKeys={["root", "src", "components"]}>\n  <TreeItem id="root" label="patiya-ui" icon={<FolderIcon />}>\n    <TreeItem id="src" label="src" icon={<FolderIcon />}>\n      <TreeItem id="components" label="components" icon={<FolderIcon />}>\n        <TreeItem id="stat" label="Stat.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="datalist" label="DataList.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n        <TreeItem id="treeview" label="TreeView.tsx" icon={<CodeIcon />} badge={<Badge>New</Badge>} />\n      </TreeItem>\n    </TreeItem>\n  </TreeItem>\n</TreeView>`,
       },
@@ -3890,7 +4421,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "showGuides",
         type: "boolean",
         default: "true",
-        description: "Whether to draw vertical branch connector lines for nested items.",
+        description:
+          "Whether to draw vertical branch connector lines for nested items.",
       },
       {
         name: "className",
@@ -3920,7 +4452,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "TreeItem.badge",
         type: "React.ReactNode",
         default: "-",
-        description: "Trailing badge or counter element aligned to the right edge.",
+        description:
+          "Trailing badge or counter element aligned to the right edge.",
       },
       {
         name: "TreeItem.defaultExpanded",
@@ -4002,13 +4535,23 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Dashboard & Analytics",
-        description: "Segmented tab controls with icons and live metric previews.",
+        description:
+          "Segmented tab controls with icons and live metric previews.",
         preview: (
           <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
             <Tabs defaultValue="metrics" className="w-full">
               <TabsList className="grid grid-cols-3 w-full bg-[var(--patiya-color-muted)]/70 p-1 rounded-xl">
-                <TabsTrigger value="overview" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <TabsTrigger
+                  value="overview"
+                  className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs"
+                >
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <rect width="7" height="9" x="3" y="3" rx="1" />
                     <rect width="7" height="5" x="14" y="3" rx="1" />
                     <rect width="7" height="9" x="14" y="12" rx="1" />
@@ -4016,14 +4559,36 @@ export const componentsRegistry: Record<string, any> = {
                   </svg>
                   Overview
                 </TabsTrigger>
-                <TabsTrigger value="metrics" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                <TabsTrigger
+                  value="metrics"
+                  className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs"
+                >
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                    />
                   </svg>
                   Metrics
                 </TabsTrigger>
-                <TabsTrigger value="logs" className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <TabsTrigger
+                  value="logs"
+                  className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-lg data-[state=active]:bg-[var(--patiya-color-background)] data-[state=active]:text-[var(--patiya-color-foreground)] data-[state=active]:shadow-xs"
+                >
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <polyline points="4 17 10 11 4 5" />
                     <line x1="12" y1="19" x2="20" y2="19" />
                   </svg>
@@ -4034,15 +4599,23 @@ export const componentsRegistry: Record<string, any> = {
               <TabsContent value="overview" className="mt-4 space-y-3">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">
-                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">CPU Utilization</div>
-                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">28.4%</div>
+                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">
+                      CPU Utilization
+                    </div>
+                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">
+                      28.4%
+                    </div>
                     <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">
                       <div className="bg-[var(--patiya-color-primary)] h-full rounded-full w-[28%]" />
                     </div>
                   </div>
                   <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)]">
-                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">Memory Allocated</div>
-                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">1.4 / 4.0 GB</div>
+                    <div className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">
+                      Memory Allocated
+                    </div>
+                    <div className="mt-1 text-xl font-bold font-mono text-[var(--patiya-color-foreground)]">
+                      1.4 / 4.0 GB
+                    </div>
                     <div className="mt-2 w-full bg-[var(--patiya-color-muted)] h-1.5 rounded-full overflow-hidden">
                       <div className="bg-emerald-500 h-full rounded-full w-[35%]" />
                     </div>
@@ -4053,21 +4626,37 @@ export const componentsRegistry: Record<string, any> = {
               <TabsContent value="metrics" className="mt-4 space-y-3">
                 <div className="p-4 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[var(--patiya-color-foreground)]">Latency Distribution</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium">99.9% Normal</span>
+                    <span className="font-semibold text-[var(--patiya-color-foreground)]">
+                      Latency Distribution
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium">
+                      99.9% Normal
+                    </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-center pt-1">
                     <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p50</div>
-                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">14ms</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        p50
+                      </div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">
+                        14ms
+                      </div>
                     </div>
                     <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p95</div>
-                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">42ms</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        p95
+                      </div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">
+                        42ms
+                      </div>
                     </div>
                     <div className="p-2 rounded-lg bg-[var(--patiya-color-muted)]/40">
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">p99</div>
-                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-primary)]">86ms</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        p99
+                      </div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-primary)]">
+                        86ms
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -4076,17 +4665,23 @@ export const componentsRegistry: Record<string, any> = {
               <TabsContent value="logs" className="mt-4">
                 <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] font-mono text-[11px] space-y-1.5">
                   <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:01</span>
+                    <span className="text-[var(--patiya-color-muted-foreground)]">
+                      14:22:01
+                    </span>
                     <span className="font-bold">[200]</span>
                     <span>GET /api/v1/auth/session</span>
                   </div>
                   <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:04</span>
+                    <span className="text-[var(--patiya-color-muted-foreground)]">
+                      14:22:04
+                    </span>
                     <span className="font-bold">[201]</span>
                     <span>POST /api/v1/telemetry/event</span>
                   </div>
                   <div className="flex items-center gap-2 text-[var(--patiya-color-primary)]">
-                    <span className="text-[var(--patiya-color-muted-foreground)]">14:22:10</span>
+                    <span className="text-[var(--patiya-color-muted-foreground)]">
+                      14:22:10
+                    </span>
                     <span className="font-bold">[101]</span>
                     <span>UPGRADE ws://api.patiya.io/stream</span>
                   </div>
@@ -4099,7 +4694,8 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Underline Navigation with Badges",
-        description: "Minimal border-bottom indicator tabs with status count chips.",
+        description:
+          "Minimal border-bottom indicator tabs with status count chips.",
         preview: (
           <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
             <Tabs defaultValue="prs" className="w-full">
@@ -4166,11 +4762,17 @@ export const componentsRegistry: Record<string, any> = {
                 </div>
               </TabsContent>
 
-              <TabsContent value="issues" className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center">
+              <TabsContent
+                value="issues"
+                className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center"
+              >
                 12 active issues tracking improvements and bugfixes.
               </TabsContent>
 
-              <TabsContent value="deployments" className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center">
+              <TabsContent
+                value="deployments"
+                className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center"
+              >
                 Production deployment live on edge cluster (v2.0.4).
               </TabsContent>
             </Tabs>
@@ -4180,10 +4782,14 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Vertical Settings Navigation",
-        description: "Side-by-side tab layout for multi-section configuration views.",
+        description:
+          "Side-by-side tab layout for multi-section configuration views.",
         preview: (
           <div className="w-full max-w-xl p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
-            <Tabs defaultValue="security" className="flex flex-col sm:flex-row gap-5">
+            <Tabs
+              defaultValue="security"
+              className="flex flex-col sm:flex-row gap-5"
+            >
               <TabsList className="flex flex-col h-auto bg-transparent p-0 gap-1 w-full sm:w-40 shrink-0">
                 <TabsTrigger
                   value="general"
@@ -4207,22 +4813,37 @@ export const componentsRegistry: Record<string, any> = {
 
               <div className="flex-1 min-w-0 sm:border-l sm:border-[var(--patiya-color-border)] sm:pl-5">
                 <TabsContent value="general" className="mt-0 space-y-3">
-                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">General Profile</div>
+                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                    General Profile
+                  </div>
                   <div className="space-y-1.5 text-xs">
-                    <label className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">Display Name</label>
-                    <input className="w-full px-3 py-1.5 text-xs rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] focus:outline-none" defaultValue="Ajay Katariya" />
+                    <label className="text-[11px] font-medium text-[var(--patiya-color-muted-foreground)]">
+                      Display Name
+                    </label>
+                    <input
+                      className="w-full px-3 py-1.5 text-xs rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] focus:outline-none"
+                      defaultValue="Ajay Katariya"
+                    />
                   </div>
                 </TabsContent>
 
                 <TabsContent value="security" className="mt-0 space-y-3.5">
                   <div>
-                    <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Security & Authentication</div>
-                    <div className="text-[11px] text-[var(--patiya-color-muted-foreground)] mt-0.5">Manage authentication protocols and session policies.</div>
+                    <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                      Security & Authentication
+                    </div>
+                    <div className="text-[11px] text-[var(--patiya-color-muted-foreground)] mt-0.5">
+                      Manage authentication protocols and session policies.
+                    </div>
                   </div>
                   <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Two-Factor Authentication</div>
-                      <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Secured with WebAuthn security key</div>
+                      <div className="text-xs font-semibold text-[var(--patiya-color-foreground)]">
+                        Two-Factor Authentication
+                      </div>
+                      <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+                        Secured with WebAuthn security key
+                      </div>
                     </div>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
                       Active
@@ -4234,9 +4855,13 @@ export const componentsRegistry: Record<string, any> = {
                 </TabsContent>
 
                 <TabsContent value="notifications" className="mt-0 space-y-3">
-                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Notification Preferences</div>
+                  <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                    Notification Preferences
+                  </div>
                   <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] flex items-center justify-between">
-                    <span className="text-xs font-medium text-[var(--patiya-color-foreground)]">Critical Security Alerts</span>
+                    <span className="text-xs font-medium text-[var(--patiya-color-foreground)]">
+                      Critical Security Alerts
+                    </span>
                     <Switch defaultChecked />
                   </div>
                 </TabsContent>
@@ -4248,10 +4873,14 @@ export const componentsRegistry: Record<string, any> = {
       },
       {
         title: "Billing Frequency Switcher",
-        description: "Interactive pill tabs toggling between annual and monthly pricing.",
+        description:
+          "Interactive pill tabs toggling between annual and monthly pricing.",
         preview: (
           <div className="w-full max-w-xl flex flex-col items-center p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
-            <Tabs defaultValue="annually" className="w-full flex flex-col items-center">
+            <Tabs
+              defaultValue="annually"
+              className="w-full flex flex-col items-center"
+            >
               <TabsList className="bg-[var(--patiya-color-muted)]/70 p-1 rounded-full border border-[var(--patiya-color-border)]/60">
                 <TabsTrigger
                   value="monthly"
@@ -4274,18 +4903,42 @@ export const componentsRegistry: Record<string, any> = {
                 <div className="grid grid-cols-2 gap-3.5">
                   <div className="p-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-3">
                     <div>
-                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Starter</div>
-                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$24<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                        Starter
+                      </div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">
+                        $24
+                        <span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">
+                          /mo
+                        </span>
+                      </div>
                     </div>
-                    <Button variant="outline" size="sm" className="w-full text-xs">Choose Starter</Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-xs"
+                    >
+                      Choose Starter
+                    </Button>
                   </div>
                   <div className="p-4 rounded-xl border-2 border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5 space-y-3 relative">
-                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">
+                      Popular
+                    </span>
                     <div>
-                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">Pro Team</div>
-                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$59<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">
+                        Pro Team
+                      </div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">
+                        $59
+                        <span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">
+                          /mo
+                        </span>
+                      </div>
                     </div>
-                    <Button size="sm" className="w-full text-xs">Choose Pro</Button>
+                    <Button size="sm" className="w-full text-xs">
+                      Choose Pro
+                    </Button>
                   </div>
                 </div>
               </TabsContent>
@@ -4294,18 +4947,42 @@ export const componentsRegistry: Record<string, any> = {
                 <div className="grid grid-cols-2 gap-3.5">
                   <div className="p-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-3">
                     <div>
-                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">Starter</div>
-                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$19<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                        Starter
+                      </div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">
+                        $19
+                        <span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">
+                          /mo
+                        </span>
+                      </div>
                     </div>
-                    <Button variant="outline" size="sm" className="w-full text-xs">Choose Starter</Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-xs"
+                    >
+                      Choose Starter
+                    </Button>
                   </div>
                   <div className="p-4 rounded-xl border-2 border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/5 space-y-3 relative">
-                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                    <span className="absolute -top-2.5 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--patiya-color-primary)] text-white">
+                      Popular
+                    </span>
                     <div>
-                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">Pro Team</div>
-                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">$47<span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">/mo</span></div>
+                      <div className="text-xs font-bold text-[var(--patiya-color-primary)]">
+                        Pro Team
+                      </div>
+                      <div className="text-2xl font-black font-mono text-[var(--patiya-color-foreground)] mt-1">
+                        $47
+                        <span className="text-xs font-normal text-[var(--patiya-color-muted-foreground)]">
+                          /mo
+                        </span>
+                      </div>
                     </div>
-                    <Button size="sm" className="w-full text-xs">Choose Pro</Button>
+                    <Button size="sm" className="w-full text-xs">
+                      Choose Pro
+                    </Button>
                   </div>
                 </div>
               </TabsContent>
@@ -4320,7 +4997,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "defaultValue",
         type: "string",
         default: "''",
-        description: "The value of the tab to activate by default on initial render.",
+        description:
+          "The value of the tab to activate by default on initial render.",
       },
       {
         name: "value",
@@ -4338,7 +5016,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes applied to the tabs root container.",
+        description:
+          "Additional CSS classes applied to the tabs root container.",
       },
       {
         name: "TabsList.className",
@@ -4356,7 +5035,8 @@ export const componentsRegistry: Record<string, any> = {
         name: "TabsTrigger.disabled",
         type: "boolean",
         default: "false",
-        description: "Whether the tab trigger is disabled from user interactions.",
+        description:
+          "Whether the tab trigger is disabled from user interactions.",
       },
       {
         name: "TabsTrigger.className",
@@ -4368,13 +5048,15 @@ export const componentsRegistry: Record<string, any> = {
         name: "TabsContent.value",
         type: "string",
         default: "required",
-        description: "Value matching the TabsTrigger that activates this panel.",
+        description:
+          "Value matching the TabsTrigger that activates this panel.",
       },
       {
         name: "TabsContent.className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes applied to the tab panel container.",
+        description:
+          "Additional CSS classes applied to the tab panel container.",
       },
     ],
   },
@@ -4573,7 +5255,8 @@ export default function App() {
       },
       {
         title: "Card-Style Elevated FAQ",
-        description: "Independent card accordion items with category badges and soft hover states.",
+        description:
+          "Independent card accordion items with category badges and soft hover states.",
         preview: (
           <div className="w-full max-w-xl">
             <Accordion type="single" className="w-full border-none space-y-3">
@@ -4590,7 +5273,9 @@ export default function App() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
-                  Team seats are billed monthly on a prorated basis. You can add or remove contributors at any time directly through the organization workspace settings.
+                  Team seats are billed monthly on a prorated basis. You can add
+                  or remove contributors at any time directly through the
+                  organization workspace settings.
                 </AccordionContent>
               </AccordionItem>
 
@@ -4603,11 +5288,15 @@ export default function App() {
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
                       Security
                     </span>
-                    <span>Is customer data encrypted at rest and in transit?</span>
+                    <span>
+                      Is customer data encrypted at rest and in transit?
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
-                  All stored payloads are encrypted using AES-256 at rest and TLS 1.3 in transit with automated rotation for customer-managed encryption keys.
+                  All stored payloads are encrypted using AES-256 at rest and
+                  TLS 1.3 in transit with automated rotation for
+                  customer-managed encryption keys.
                 </AccordionContent>
               </AccordionItem>
 
@@ -4624,7 +5313,9 @@ export default function App() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed pb-4 pt-1">
-                  Yes, historical logs can be exported directly to AWS S3, Google Cloud Storage, or streamed in real-time to Datadog and OpenTelemetry collectors.
+                  Yes, historical logs can be exported directly to AWS S3,
+                  Google Cloud Storage, or streamed in real-time to Datadog and
+                  OpenTelemetry collectors.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -4634,7 +5325,8 @@ export default function App() {
       },
       {
         title: "Multi-Selection System Status",
-        description: "Accordion allowing multiple sections open simultaneously with live indicators.",
+        description:
+          "Accordion allowing multiple sections open simultaneously with live indicators.",
         preview: (
           <div className="w-full max-w-xl">
             <Accordion
@@ -4658,16 +5350,28 @@ export default function App() {
                 <AccordionContent className="text-xs pb-4 pt-1">
                   <div className="p-3 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-background)] grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Active Nodes</div>
-                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">12 / 12</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        Active Nodes
+                      </div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">
+                        12 / 12
+                      </div>
                     </div>
                     <div>
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Avg Latency</div>
-                      <div className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">22ms</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        Avg Latency
+                      </div>
+                      <div className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">
+                        22ms
+                      </div>
                     </div>
                     <div>
-                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Error Rate</div>
-                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">0.002%</div>
+                      <div className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                        Error Rate
+                      </div>
+                      <div className="text-sm font-bold font-mono text-[var(--patiya-color-foreground)]">
+                        0.002%
+                      </div>
                     </div>
                   </div>
                 </AccordionContent>
@@ -4685,7 +5389,8 @@ export default function App() {
                 </AccordionTrigger>
                 <AccordionContent className="text-xs pb-4 pt-1 space-y-2">
                   <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
-                    Leader node located in us-east-1. Zero replication lag detected across EU read-replicas.
+                    Leader node located in us-east-1. Zero replication lag
+                    detected across EU read-replicas.
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -4702,7 +5407,8 @@ export default function App() {
                 </AccordionTrigger>
                 <AccordionContent className="text-xs pb-4 pt-1">
                   <div className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
-                    Background index compaction running. Expected completion in 4 minutes.
+                    Background index compaction running. Expected completion in
+                    4 minutes.
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -4713,10 +5419,15 @@ export default function App() {
       },
       {
         title: "Developer Setup Guide",
-        description: "Numbered onboarding accordion with code instructions and actionable steps.",
+        description:
+          "Numbered onboarding accordion with code instructions and actionable steps.",
         preview: (
           <div className="w-full max-w-xl">
-            <Accordion type="single" defaultValue="step-1" className="w-full border-none space-y-2.5">
+            <Accordion
+              type="single"
+              defaultValue="step-1"
+              className="w-full border-none space-y-2.5"
+            >
               <AccordionItem
                 value="step-1"
                 className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
@@ -4731,8 +5442,12 @@ export default function App() {
                 </AccordionTrigger>
                 <AccordionContent className="pb-4 pt-1">
                   <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between font-mono text-xs">
-                    <span className="text-[var(--patiya-color-primary)]">bun add patiya</span>
-                    <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] px-2 py-0.5 rounded-md border border-[var(--patiya-color-border)]">Copy</span>
+                    <span className="text-[var(--patiya-color-primary)]">
+                      bun add patiya
+                    </span>
+                    <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] px-2 py-0.5 rounded-md border border-[var(--patiya-color-border)]">
+                      Copy
+                    </span>
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -4770,7 +5485,9 @@ export default function App() {
                 </AccordionTrigger>
                 <AccordionContent className="pb-4 pt-1">
                   <div className="p-3.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between">
-                    <span className="text-xs text-[var(--patiya-color-muted-foreground)]">Ready to build! Try the interactive button:</span>
+                    <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                      Ready to build! Try the interactive button:
+                    </span>
                     <Button size="sm">Explore UI</Button>
                   </div>
                 </AccordionContent>
@@ -4782,10 +5499,15 @@ export default function App() {
       },
       {
         title: "Pricing Tier Breakdown",
-        description: "Accordion revealing detailed feature sets and inclusions for plan tiers.",
+        description:
+          "Accordion revealing detailed feature sets and inclusions for plan tiers.",
         preview: (
           <div className="w-full max-w-xl">
-            <Accordion type="single" defaultValue="pro" className="w-full border-none space-y-3">
+            <Accordion
+              type="single"
+              defaultValue="pro"
+              className="w-full border-none space-y-3"
+            >
               <AccordionItem
                 value="starter"
                 className="border border-[var(--patiya-color-border)] rounded-2xl bg-[var(--patiya-color-card)] px-5 shadow-xs overflow-hidden"
@@ -4793,12 +5515,19 @@ export default function App() {
                 <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
                   <div className="flex items-center justify-between w-full pr-3">
                     <span className="text-sm">Starter Community</span>
-                    <span className="font-mono text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">$0 / month</span>
+                    <span className="font-mono text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">
+                      $0 / month
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] pb-4 pt-1 space-y-2">
-                  <div>Includes 5 hosted projects, community forum support, and public git repositories.</div>
-                  <Button variant="outline" size="sm" className="w-full mt-2">Get Started Free</Button>
+                  <div>
+                    Includes 5 hosted projects, community forum support, and
+                    public git repositories.
+                  </div>
+                  <Button variant="outline" size="sm" className="w-full mt-2">
+                    Get Started Free
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
 
@@ -4810,18 +5539,30 @@ export default function App() {
                   <div className="flex items-center justify-between w-full pr-3">
                     <div className="flex items-center gap-2">
                       <span className="text-sm">Pro Team</span>
-                      <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-[var(--patiya-color-primary)] text-white">Popular</span>
+                      <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-[var(--patiya-color-primary)] text-white">
+                        Popular
+                      </span>
                     </div>
-                    <span className="font-mono text-xs font-bold text-[var(--patiya-color-foreground)]">$29 / month</span>
+                    <span className="font-mono text-xs font-bold text-[var(--patiya-color-foreground)]">
+                      $29 / month
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-foreground)] pb-4 pt-1 space-y-3">
                   <div className="space-y-1.5 text-[11px] text-[var(--patiya-color-muted-foreground)]">
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Unlimited team members & projects</div>
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Real-time WebSocket sync & custom domains</div>
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">✓ Priority 1-hour SLA response time</div>
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">
+                      ✓ Unlimited team members & projects
+                    </div>
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">
+                      ✓ Real-time WebSocket sync & custom domains
+                    </div>
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">
+                      ✓ Priority 1-hour SLA response time
+                    </div>
                   </div>
-                  <Button size="sm" className="w-full">Upgrade to Pro</Button>
+                  <Button size="sm" className="w-full">
+                    Upgrade to Pro
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
 
@@ -4832,12 +5573,19 @@ export default function App() {
                 <AccordionTrigger className="py-4 text-xs font-bold hover:no-underline text-[var(--patiya-color-foreground)]">
                   <div className="flex items-center justify-between w-full pr-3">
                     <span className="text-sm">Enterprise Dedicated</span>
-                    <span className="text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">Custom Quote</span>
+                    <span className="text-xs font-semibold text-[var(--patiya-color-muted-foreground)]">
+                      Custom Quote
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-xs text-[var(--patiya-color-muted-foreground)] pb-4 pt-1 space-y-2">
-                  <div>Custom SLAs, dedicated VPC deployment, SOC2 Type II compliance reports, and SAML/SSO integration.</div>
-                  <Button variant="outline" size="sm" className="w-full mt-2">Contact Sales</Button>
+                  <div>
+                    Custom SLAs, dedicated VPC deployment, SOC2 Type II
+                    compliance reports, and SAML/SSO integration.
+                  </div>
+                  <Button variant="outline" size="sm" className="w-full mt-2">
+                    Contact Sales
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -4851,43 +5599,50 @@ export default function App() {
         name: "type",
         type: "'single' | 'multiple'",
         default: "'single'",
-        description: "Controls whether one or multiple accordion panels can be open simultaneously.",
+        description:
+          "Controls whether one or multiple accordion panels can be open simultaneously.",
       },
       {
         name: "defaultValue",
         type: "string | string[]",
         default: "[]",
-        description: "The initial value(s) of the item(s) to expand on initial render.",
+        description:
+          "The initial value(s) of the item(s) to expand on initial render.",
       },
       {
         name: "className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes applied to the root accordion container.",
+        description:
+          "Additional CSS classes applied to the root accordion container.",
       },
       {
         name: "AccordionItem.value",
         type: "string",
         default: "required",
-        description: "Unique string value identifying this collapsible section.",
+        description:
+          "Unique string value identifying this collapsible section.",
       },
       {
         name: "AccordionItem.className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes applied to the item boundary wrapper.",
+        description:
+          "Additional CSS classes applied to the item boundary wrapper.",
       },
       {
         name: "AccordionTrigger.className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes applied to the interactive trigger button.",
+        description:
+          "Additional CSS classes applied to the interactive trigger button.",
       },
       {
         name: "AccordionTrigger.children",
         type: "React.ReactNode",
         default: "-",
-        description: "Content displayed inside the header trigger (title, badges, leading icons).",
+        description:
+          "Content displayed inside the header trigger (title, badges, leading icons).",
       },
       {
         name: "AccordionContent.className",
@@ -4899,7 +5654,8 @@ export default function App() {
         name: "AccordionContent.children",
         type: "React.ReactNode",
         default: "-",
-        description: "The expanded content revealed when the trigger is toggled open.",
+        description:
+          "The expanded content revealed when the trigger is toggled open.",
       },
     ],
   },
@@ -5578,7 +6334,11 @@ export default function App() {
         title: "Default",
         description: "Basic select with placeholder and option choices.",
         preview: (
-          <Select defaultValue="" className="max-w-xs w-full" aria-label="Select framework">
+          <Select
+            defaultValue=""
+            className="max-w-xs w-full"
+            aria-label="Select framework"
+          >
             <option value="" disabled>
               Select a framework
             </option>
@@ -5596,22 +6356,40 @@ export default function App() {
         preview: (
           <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
             <Box className="flex-1 space-y-1.5">
-              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Outline (Default)</span>
-              <Select variant="outline" defaultValue="outline" aria-label="Outline variant">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                Outline (Default)
+              </span>
+              <Select
+                variant="outline"
+                defaultValue="outline"
+                aria-label="Outline variant"
+              >
                 <option value="outline">Outline</option>
                 <option value="option2">Option 2</option>
               </Select>
             </Box>
             <Box className="flex-1 space-y-1.5">
-              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Filled</span>
-              <Select variant="filled" defaultValue="filled" aria-label="Filled variant">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                Filled
+              </span>
+              <Select
+                variant="filled"
+                defaultValue="filled"
+                aria-label="Filled variant"
+              >
                 <option value="filled">Filled</option>
                 <option value="option2">Option 2</option>
               </Select>
             </Box>
             <Box className="flex-1 space-y-1.5">
-              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Soft</span>
-              <Select variant="soft" defaultValue="soft" aria-label="Soft variant">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                Soft
+              </span>
+              <Select
+                variant="soft"
+                defaultValue="soft"
+                aria-label="Soft variant"
+              >
                 <option value="soft">Soft</option>
                 <option value="option2">Option 2</option>
               </Select>
@@ -5622,10 +6400,15 @@ export default function App() {
       },
       {
         title: "Sizes",
-        description: "Supports xs, sm, md, lg, and xl sizes to fit different layouts.",
+        description:
+          "Supports xs, sm, md, lg, and xl sizes to fit different layouts.",
         preview: (
           <Box className="flex flex-col gap-3 w-full max-w-sm">
-            <Select inputSize="xs" defaultValue="xs" aria-label="Extra small select">
+            <Select
+              inputSize="xs"
+              defaultValue="xs"
+              aria-label="Extra small select"
+            >
               <option value="xs">Extra Small (xs)</option>
             </Select>
             <Select inputSize="sm" defaultValue="sm" aria-label="Small select">
@@ -5637,7 +6420,11 @@ export default function App() {
             <Select inputSize="lg" defaultValue="lg" aria-label="Large select">
               <option value="lg">Large (lg)</option>
             </Select>
-            <Select inputSize="xl" defaultValue="xl" aria-label="Extra large select">
+            <Select
+              inputSize="xl"
+              defaultValue="xl"
+              aria-label="Extra large select"
+            >
               <option value="xl">Extra Large (xl)</option>
             </Select>
           </Box>
@@ -5646,7 +6433,8 @@ export default function App() {
       },
       {
         title: "With Left Icon",
-        description: "Includes a decorative or contextual icon inside the select.",
+        description:
+          "Includes a decorative or contextual icon inside the select.",
         preview: (
           <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
             <Select
@@ -5654,7 +6442,21 @@ export default function App() {
               aria-label="Country or region"
               className="flex-1"
               leftIcon={
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                  <path d="M2 12h20" />
+                </svg>
               }
             >
               <option value="us">United States</option>
@@ -5667,7 +6469,20 @@ export default function App() {
               aria-label="Billing currency"
               className="flex-1"
               leftIcon={
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="20" height="14" x="2" y="5" rx="2" />
+                  <line x1="2" x2="22" y1="10" y2="10" />
+                </svg>
               }
             >
               <option value="usd">USD ($)</option>
@@ -5683,7 +6498,11 @@ export default function App() {
         title: "Grouped Options",
         description: "Organize related options into categories using optgroup.",
         preview: (
-          <Select defaultValue="" className="max-w-xs w-full" aria-label="Select tech stack">
+          <Select
+            defaultValue=""
+            className="max-w-xs w-full"
+            aria-label="Select tech stack"
+          >
             <option value="" disabled>
               Select technology...
             </option>
@@ -5707,12 +6526,15 @@ export default function App() {
       },
       {
         title: "With Label & Helper Text",
-        description: "Structured form field with top label and bottom helper instructions.",
+        description:
+          "Structured form field with top label and bottom helper instructions.",
         preview: (
           <Box className="flex flex-col gap-1.5 max-w-sm w-full">
             <label className="text-xs font-semibold text-[var(--patiya-color-foreground)] flex items-center justify-between">
               <span>Member Role</span>
-              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">Required</span>
+              <span className="text-[10px] text-[var(--patiya-color-muted-foreground)] font-normal">
+                Required
+              </span>
             </label>
             <Select defaultValue="editor" aria-label="Member Role">
               <option value="admin">Admin (Full permissions)</option>
@@ -5728,10 +6550,15 @@ export default function App() {
       },
       {
         title: "Invalid State",
-        description: "Error boundary styling with descriptive validation message.",
+        description:
+          "Error boundary styling with descriptive validation message.",
         preview: (
           <Box className="flex flex-col gap-1.5 max-w-sm w-full">
-            <Select invalid defaultValue="" aria-label="Department selection with error">
+            <Select
+              invalid
+              defaultValue=""
+              aria-label="Department selection with error"
+            >
               <option value="" disabled>
                 Select department...
               </option>
@@ -5748,21 +6575,33 @@ export default function App() {
       },
       {
         title: "Disabled",
-        description: "A disabled select element or individual disabled option items.",
+        description:
+          "A disabled select element or individual disabled option items.",
         preview: (
           <Box className="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
             <Box className="flex-1 space-y-1.5">
-              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Disabled Select</span>
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                Disabled Select
+              </span>
               <Select disabled defaultValue="pro" aria-label="Disabled select">
                 <option value="pro">Pro Plan (Locked)</option>
               </Select>
             </Box>
             <Box className="flex-1 space-y-1.5">
-              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Disabled Options</span>
-              <Select defaultValue="starter" aria-label="Select with disabled options">
+              <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+                Disabled Options
+              </span>
+              <Select
+                defaultValue="starter"
+                aria-label="Select with disabled options"
+              >
                 <option value="starter">Starter Plan</option>
-                <option value="team" disabled>Team Plan (Sold Out)</option>
-                <option value="enterprise" disabled>Enterprise (Waitlist)</option>
+                <option value="team" disabled>
+                  Team Plan (Sold Out)
+                </option>
+                <option value="enterprise" disabled>
+                  Enterprise (Waitlist)
+                </option>
               </Select>
             </Box>
           </Box>
@@ -6295,7 +7134,8 @@ export default function App() {
   },
   drawer: {
     title: "Drawer / Sheet",
-    description: "A panel that slides smoothly in from any edge of the screen with customizable backdrop and hardware-accelerated transitions.",
+    description:
+      "A panel that slides smoothly in from any edge of the screen with customizable backdrop and hardware-accelerated transitions.",
     props: [
       {
         name: "open",
@@ -6313,13 +7153,15 @@ export default function App() {
         name: "side",
         type: "'right' | 'left' | 'top' | 'bottom'",
         default: "'right'",
-        description: "The edge of the viewport where the drawer slides in from.",
+        description:
+          "The edge of the viewport where the drawer slides in from.",
       },
       {
         name: "className",
         type: "string",
         default: "-",
-        description: "Additional CSS classes to customize drawer panel size and styling.",
+        description:
+          "Additional CSS classes to customize drawer panel size and styling.",
       },
       {
         name: "overlayClassName",
@@ -6337,19 +7179,22 @@ export default function App() {
     examples: [
       {
         title: "Right-side Drawer (Default)",
-        description: "Standard slide-over drawer from the right edge with form settings.",
+        description:
+          "Standard slide-over drawer from the right edge with form settings.",
         preview: <DrawerPreview />,
         code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Settings</DrawerTitle>\n    <DrawerDescription>Manage preferences and notifications.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Box className="flex justify-between items-center">\n      <span>Push Notifications</span>\n      <Switch defaultChecked />\n    </Box>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>\n    <Button onClick={() => setOpen(false)}>Save Changes</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
       {
         title: "Left-side Navigation Menu",
-        description: "Drawer sliding in from the left edge, ideal for mobile or sidebar navigation.",
+        description:
+          "Drawer sliding in from the left edge, ideal for mobile or sidebar navigation.",
         preview: <DrawerLeftPreview />,
         code: `<Drawer open={open} onOpenChange={setOpen} side="left">\n  <DrawerHeader>\n    <DrawerTitle>Navigation</DrawerTitle>\n    <DrawerDescription>Explore workspace sections.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-2">\n    <Button variant="ghost" fullWidth className="justify-start">Dashboard</Button>\n    <Button variant="ghost" fullWidth className="justify-start">Projects</Button>\n    <Button variant="ghost" fullWidth className="justify-start">Team Members</Button>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)} fullWidth>Close Menu</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
       {
         title: "Bottom Sheet",
-        description: "Slides up from the bottom with drag handle indicator, perfect for mobile quick actions.",
+        description:
+          "Slides up from the bottom with drag handle indicator, perfect for mobile quick actions.",
         preview: (
           <Box className="text-center w-full">
             <BottomSheetPreview />
@@ -6359,19 +7204,22 @@ export default function App() {
       },
       {
         title: "Top Drawer",
-        description: "Slides down from the top edge for system announcements and maintenance banners.",
+        description:
+          "Slides down from the top edge for system announcements and maintenance banners.",
         preview: <DrawerTopPreview />,
         code: `<Drawer open={open} onOpenChange={setOpen} side="top">\n  <DrawerHeader>\n    <DrawerTitle>System Maintenance Notice</DrawerTitle>\n    <DrawerDescription>Scheduled maintenance is planned for Sunday at 02:00 UTC.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="py-2 text-sm text-muted-foreground">\n    All API endpoints and dashboards will experience up to 15 minutes of downtime.\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Dismiss</Button>\n    <Button onClick={() => setOpen(false)}>View Status Page</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
       {
         title: "Form in Drawer",
-        description: "Edit profile slide-over with inputs, select dropdown, and bio textarea.",
+        description:
+          "Edit profile slide-over with inputs, select dropdown, and bio textarea.",
         preview: <DrawerFormPreview />,
         code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Edit Profile</DrawerTitle>\n    <DrawerDescription>Update public credentials and role.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Input placeholder="Enter name" defaultValue="Sarah Connor" />\n    <Input type="email" placeholder="Enter email" defaultValue="sarah@example.com" />\n    <Select defaultValue="editor">\n      <option value="admin">Administrator</option>\n      <option value="editor">Editor</option>\n    </Select>\n    <Textarea defaultValue="Staff engineer building modern design systems." />\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>\n    <Button onClick={() => setOpen(false)}>Save Profile</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
       {
         title: "Shopping Cart Slide-Over",
-        description: "E-commerce cart drawer with item breakdown, pricing, and checkout button.",
+        description:
+          "E-commerce cart drawer with item breakdown, pricing, and checkout button.",
         preview: <DrawerCartPreview />,
         code: `<Drawer open={open} onOpenChange={setOpen} side="right">\n  <DrawerHeader>\n    <DrawerTitle>Shopping Cart</DrawerTitle>\n    <DrawerDescription>You have 2 items in your cart.</DrawerDescription>\n  </DrawerHeader>\n  <Box className="flex-1 py-4 space-y-4">\n    <Box className="flex justify-between items-center pb-3 border-b">\n      <span>Mechanical Keyboard</span>\n      <span>$149.00</span>\n    </Box>\n  </Box>\n  <DrawerFooter>\n    <Button variant="outline" onClick={() => setOpen(false)}>Continue Shopping</Button>\n    <Button onClick={() => setOpen(false)}>Checkout Now</Button>\n  </DrawerFooter>\n</Drawer>`,
       },
@@ -7193,8 +8041,7 @@ export default function App() {
         name: "name",
         type: "string",
         default: "'Alex Rivera'",
-        description:
-          "Name or label displayed on the collaborator cursor tag.",
+        description: "Name or label displayed on the collaborator cursor tag.",
       },
       {
         name: "avatar",
@@ -7293,7 +8140,8 @@ export default function App() {
                 Modern Design System 2.0
               </h4>
               <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
-                Hover to see smooth magnetic pill tracker following your pointer.
+                Hover to see smooth magnetic pill tracker following your
+                pointer.
               </p>
             </Box>
           </PointerFollower>
@@ -8733,7 +9581,11 @@ export default function App() {
         title: "Custom Max Rows",
         preview: (
           <Box className="w-full max-w-lg">
-            <PromptInput placeholder="Type a long prompt..." maxRows={10} aria-label="Long prompt input" />
+            <PromptInput
+              placeholder="Type a long prompt..."
+              maxRows={10}
+              aria-label="Long prompt input"
+            />
           </Box>
         ),
         code: `<PromptInput placeholder="Type a long prompt..." maxRows={10} />`,
@@ -8751,7 +9603,10 @@ export default function App() {
                 Refactor React hook
               </Chip>
             </Box>
-            <PromptInput placeholder="Ask anything or pick a suggestion..." aria-label="AI prompt with suggestions" />
+            <PromptInput
+              placeholder="Ask anything or pick a suggestion..."
+              aria-label="AI prompt with suggestions"
+            />
           </Box>
         ),
         code: `<Box className="space-y-3">\n  <Box className="flex flex-wrap gap-2">\n    <Chip variant="outline">Explain quantum computing</Chip>\n    <Chip variant="outline">Refactor React hook</Chip>\n  </Box>\n  <PromptInput placeholder="Ask anything or pick a suggestion..." />\n</Box>`,
@@ -10328,32 +11183,37 @@ export default function App() {
   },
   scrollProgress: {
     title: "Scroll Progress",
-    description: "Animated scroll progress bar and floating circular reading gauge with scroll-to-top interaction.",
+    description:
+      "Animated scroll progress bar and floating circular reading gauge with scroll-to-top interaction.",
     installation: `import { ScrollProgress } from 'patiya';`,
     props: [
       {
         name: "variant",
         type: "'bar' | 'circle'",
         default: "'bar'",
-        description: "Visual style: top/bottom progress bar or floating circular progress indicator.",
+        description:
+          "Visual style: top/bottom progress bar or floating circular progress indicator.",
       },
       {
         name: "containerRef",
         type: "React.RefObject<HTMLElement | null>",
         default: "-",
-        description: "Optional reference to a scrollable container element instead of the browser window.",
+        description:
+          "Optional reference to a scrollable container element instead of the browser window.",
       },
       {
         name: "color",
         type: "string",
         default: "'var(--patiya-color-primary)'",
-        description: "Custom fill color or gradient for the progress bar or circle stroke.",
+        description:
+          "Custom fill color or gradient for the progress bar or circle stroke.",
       },
       {
         name: "height",
         type: "number | string",
         default: "3",
-        description: "Thickness of the progress bar in pixels or CSS units (only applies to variant='bar').",
+        description:
+          "Thickness of the progress bar in pixels or CSS units (only applies to variant='bar').",
       },
       {
         name: "position",
@@ -10365,7 +11225,8 @@ export default function App() {
         name: "showPercentage",
         type: "boolean",
         default: "true",
-        description: "Displays current scroll percentage label inside the circular gauge.",
+        description:
+          "Displays current scroll percentage label inside the circular gauge.",
       },
       {
         name: "smooth",
@@ -10377,7 +11238,8 @@ export default function App() {
         name: "onClick",
         type: "(event: React.MouseEvent<HTMLDivElement>) => void",
         default: "-",
-        description: "Click handler (automatically scrolls container or window to top for circle variant).",
+        description:
+          "Click handler (automatically scrolls container or window to top for circle variant).",
       },
     ],
     examples: [
@@ -10429,11 +11291,16 @@ export default function CircleGaugeDemo() {
         title: "Window Scroll Bar",
         preview: (
           <Box className="p-6 border border-[var(--patiya-color-border)] rounded-xl bg-[var(--patiya-color-muted)]/10 text-center space-y-3">
-            <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">Fixed Global Window Progress Bar</p>
-            <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
-              Mounts to the top or bottom edge of the viewport to display article reading progression across the whole page.
+            <p className="text-sm font-semibold text-[var(--patiya-color-foreground)]">
+              Fixed Global Window Progress Bar
             </p>
-            <Badge variant="outline" size="sm">position="top" | position="bottom"</Badge>
+            <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
+              Mounts to the top or bottom edge of the viewport to display
+              article reading progression across the whole page.
+            </p>
+            <Badge variant="outline" size="sm">
+              position="top" | position="bottom"
+            </Badge>
           </Box>
         ),
         code: `import { ScrollProgress } from 'patiya';
@@ -10453,9 +11320,12 @@ export default function WindowScrollDemo() {
         preview: (
           <Box className="w-full max-w-md border border-[var(--patiya-color-border)] rounded-lg p-5 bg-[var(--patiya-color-card)] space-y-2 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 rounded-t-lg" />
-            <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">Custom Gradient Bar</span>
+            <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">
+              Custom Gradient Bar
+            </span>
             <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
-              Specify any CSS gradient or solid color value via the <code>color</code> prop.
+              Specify any CSS gradient or solid color value via the{" "}
+              <code>color</code> prop.
             </p>
           </Box>
         ),
@@ -10486,14 +11356,16 @@ export default function WindowScrollDemo() {
   },
   browserMockup: {
     title: "Browser Mockup",
-    description: "Realistic window frame with macOS traffic lights, address bar, multi-tab support, and terminal mode.",
+    description:
+      "Realistic window frame with macOS traffic lights, address bar, multi-tab support, and terminal mode.",
     installation: `import { BrowserMockup } from 'patiya';`,
     props: [
       {
         name: "variant",
         type: "'browser' | 'terminal' | 'window'",
         default: "'browser'",
-        description: "Visual appearance: full browser with address bar, developer terminal, or clean window.",
+        description:
+          "Visual appearance: full browser with address bar, developer terminal, or clean window.",
       },
       {
         name: "url",
@@ -10511,7 +11383,8 @@ export default function WindowScrollDemo() {
         name: "tabs",
         type: "BrowserMockupTab[]",
         default: "-",
-        description: "Array of tab objects ({ id, title, icon }) rendered in the header bar.",
+        description:
+          "Array of tab objects ({ id, title, icon }) rendered in the header bar.",
       },
       {
         name: "activeTab",
@@ -10535,31 +11408,36 @@ export default function WindowScrollDemo() {
         name: "showControls",
         type: "boolean",
         default: "true",
-        description: "Toggles macOS traffic light buttons (close, minimize, maximize).",
+        description:
+          "Toggles macOS traffic light buttons (close, minimize, maximize).",
       },
       {
         name: "copyable",
         type: "boolean",
         default: "true",
-        description: "Shows a quick copy action button for the address bar URL or title.",
+        description:
+          "Shows a quick copy action button for the address bar URL or title.",
       },
       {
         name: "onClose",
         type: "() => void",
         default: "-",
-        description: "Callback fired when the close traffic light button is clicked.",
+        description:
+          "Callback fired when the close traffic light button is clicked.",
       },
       {
         name: "onMinimize",
         type: "() => void",
         default: "-",
-        description: "Callback fired when the minimize traffic light button is clicked.",
+        description:
+          "Callback fired when the minimize traffic light button is clicked.",
       },
       {
         name: "onMaximize",
         type: "() => void",
         default: "-",
-        description: "Callback fired when the maximize traffic light button is clicked.",
+        description:
+          "Callback fired when the maximize traffic light button is clicked.",
       },
       {
         name: "children",
@@ -10609,14 +11487,21 @@ export default function InteractiveMockupDemo() {
             className="w-full max-w-lg shadow-md"
           >
             <Box className="p-6 text-center space-y-3 bg-[var(--patiya-color-card)]">
-              <Badge variant="soft" color="primary">Component Showcase</Badge>
-              <h4 className="text-lg font-bold text-[var(--patiya-color-foreground)]">Interactive Documentation</h4>
+              <Badge variant="soft" color="primary">
+                Component Showcase
+              </Badge>
+              <h4 className="text-lg font-bold text-[var(--patiya-color-foreground)]">
+                Interactive Documentation
+              </h4>
               <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-sm mx-auto">
-                Showcase your live product features, SaaS marketing landing pages, and component sandboxes inside authentic browser frames.
+                Showcase your live product features, SaaS marketing landing
+                pages, and component sandboxes inside authentic browser frames.
               </p>
               <Box className="flex justify-center gap-2 pt-2">
                 <Button size="sm">Get Started</Button>
-                <Button variant="outline" size="sm">Documentation</Button>
+                <Button variant="outline" size="sm">
+                  Documentation
+                </Button>
               </Box>
             </Box>
           </BrowserMockup>
@@ -10658,7 +11543,9 @@ export default function BrowserPreview() {
               </Box>
               <p className="text-neutral-400">$ vite build --mode production</p>
               <p className="text-emerald-400">✓ 84 modules transformed.</p>
-              <p className="text-neutral-400">dist/index.js   48.2 kB │ gzip: 12.8 kB</p>
+              <p className="text-neutral-400">
+                dist/index.js 48.2 kB │ gzip: 12.8 kB
+              </p>
               <p className="text-emerald-400">✓ Built in 248ms.</p>
             </Box>
           </BrowserMockup>
@@ -10698,11 +11585,15 @@ export default function TerminalMockupDemo() {
           >
             <Box className="p-5 space-y-3 bg-[var(--patiya-color-card)]">
               <Box className="flex items-center justify-between pb-2 border-b border-[var(--patiya-color-border)]">
-                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">System Properties</span>
-                <Badge size="sm" variant="outline">JSON</Badge>
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">
+                  System Properties
+                </span>
+                <Badge size="sm" variant="outline">
+                  JSON
+                </Badge>
               </Box>
               <pre className="text-xs font-mono text-[var(--patiya-color-muted-foreground)] overflow-x-auto">
-{`{
+                {`{
   "theme": "adaptive",
   "gpuAcceleration": true,
   "telemetry": false

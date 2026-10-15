@@ -353,7 +353,7 @@ export function FeatureCard() {
                     Patiya UI V2.0
                   </span>
                   <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
-                    50+ Animated Components
+                    80+ Animated Components
                   </span>
                   <svg
                     className="w-3.5 h-3.5 text-[var(--patiya-color-muted-foreground)]"

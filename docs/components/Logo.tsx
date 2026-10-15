@@ -9,13 +9,12 @@ export function Logo({ className = "w-8 h-8" }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="32" height="32" rx="10" fill="currentColor" />
-      {/* P shape */}
       <path 
-        d="M11 9H17.5C20.5376 9 23 11.4624 23 14.5C23 17.5376 20.5376 20 17.5 20H11V9Z" 
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11 9H17.5C20.5376 9 23 11.4624 23 14.5C23 17.5376 20.5376 20 17.5 20H15V25H11V9ZM16.5 12C17.8807 12 19 13.1193 19 14.5C19 15.8807 17.8807 17 16.5 17C15.1193 17 14 15.8807 14 14.5C14 13.1193 15.1193 12 16.5 12Z" 
         fill="var(--patiya-color-background, white)" 
       />
-      <rect x="11" y="19" width="4" height="6" fill="var(--patiya-color-background, white)" />
-      <circle cx="16.5" cy="14.5" r="2.5" fill="currentColor" />
     </svg>
   );
 }
