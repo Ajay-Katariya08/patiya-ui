@@ -36,8 +36,8 @@ export default function BlockPage({ params }: BlockPageProps) {
           <h2 id="preview" className="text-2xl font-semibold">Live Component Preview</h2>
           <span className="text-xs text-[var(--patiya-color-muted-foreground)]">Powered by Motion.dev</span>
         </div>
-        <ExampleCard code={block.code} className="p-4 sm:p-8 bg-[var(--patiya-color-background)]">
-          <div className="w-full flex justify-center relative z-10 overflow-hidden">
+        <ExampleCard code={block.code} className="bg-[var(--patiya-color-background)]">
+          <div className="w-full flex justify-center relative z-10 overflow-x-auto no-scrollbar py-2">
             {block.preview}
           </div>
         </ExampleCard>

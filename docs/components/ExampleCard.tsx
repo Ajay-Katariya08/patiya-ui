@@ -7,7 +7,7 @@ export function ExampleCard({ children, code, className }: { children: React.Rea
   const [showCode, setShowCode] = useState(false);
   return (
     <div className="border border-[var(--patiya-color-border)] rounded-xl bg-[var(--patiya-color-background)] overflow-hidden flex flex-col mt-4">
-      <div className={`p-8 flex-1 relative ${className || ''}`}>
+      <div className={`p-3 sm:p-6 md:p-8 flex-1 relative ${className || ''}`}>
         {children}
       </div>
       <div className="border-t border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/10 px-4 py-3 flex items-center justify-start">

@@ -13,12 +13,12 @@ export default function GettingStartedPage() {
   ];
 
   const motionCategories = [
+    { name: "Smart Workspaces", count: "9 blocks", href: "/docs/blocks/prompt-model-switcher" },
+    { name: "Spatial Dynamic Hubs", count: "6 blocks", href: "/docs/blocks/dynamic-island-hub" },
+    { name: "Tactile Surfaces", count: "7 blocks", href: "/docs/blocks/fluid-equalizer-scrubber" },
+    { name: "Interactive Studios", count: "5 blocks", href: "/docs/blocks/bezier-curve-surface" },
     { name: "Toolbars & Docks", count: "4 blocks", href: "/docs/blocks/action-dock" },
-    { name: "Metrics & Stats", count: "3 blocks", href: "/docs/blocks/metric-card" },
-    { name: "Notifications", count: "4 blocks", href: "/docs/blocks/notification-stack" },
-    { name: "Progress & Steps", count: "3 blocks", href: "/docs/blocks/step-tracker" },
-    { name: "Segmented Controls", count: "3 blocks", href: "/docs/blocks/segmented-control" },
-    { name: "Expandable Cards", count: "2 blocks", href: "/docs/blocks/expandable-card" },
+    { name: "Metrics & Telemetry", count: "3 blocks", href: "/docs/blocks/telemetry-live-stream" },
   ];
 
   return (

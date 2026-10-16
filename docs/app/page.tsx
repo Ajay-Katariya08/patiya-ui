@@ -414,7 +414,7 @@ export function FeatureCard() {
               >
                 <span>Blocks</span>
                 <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
-                  18 Blocks
+                  45+ Blocks
                 </span>
               </Link>
               <Link
@@ -463,10 +463,10 @@ export function FeatureCard() {
                     Patiya UI v2.0
                   </span>
                   <span className="hidden sm:inline text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
-                    80+ Components • 18+ Motion Blocks
+                    80+ Components • 45+ Motion Blocks
                   </span>
                   <span className="sm:hidden text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
-                    18+ Motion Blocks
+                    45+ Motion Blocks
                   </span>
                   <svg
                     className="w-3.5 h-3.5 text-[var(--patiya-color-muted-foreground)] shrink-0"
@@ -772,7 +772,7 @@ export function FeatureCard() {
               </div>
               <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-b md:border-b-0 md:border-r border-[var(--patiya-color-border)]">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-primary)]">
-                  18+
+                  45+
                 </div>
                 <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
                   Motion Blocks
@@ -1021,7 +1021,7 @@ export function FeatureCard() {
                   variant="outline"
                   className="h-10 px-5 rounded-xl text-xs font-semibold border-[var(--patiya-color-border)] hover:bg-[var(--patiya-color-card)] flex items-center gap-2"
                 >
-                  <span>Browse All 18 Blocks</span>
+                  <span>Browse All 45+ Blocks</span>
                   <svg
                     className="w-3.5 h-3.5"
                     viewBox="0 0 24 24"
@@ -1039,6 +1039,38 @@ export function FeatureCard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
                 {
+                  title: "Smart Workspaces",
+                  count: "9 blocks",
+                  description:
+                    "AI prompt switchers, dynamic payment vaults, presence bars, command palettes, and asset staging trays.",
+                  slug: "prompt-model-switcher",
+                  badge: "Workspaces",
+                },
+                {
+                  title: "Spatial Dynamic Hubs",
+                  count: "6 blocks",
+                  description:
+                    "Morphing dynamic island hubs, holographic 3D tilt cards, magnetic fluid metaballs, and decryptors.",
+                  slug: "dynamic-island-hub",
+                  badge: "Spatial",
+                },
+                {
+                  title: "Tactile Surfaces",
+                  count: "7 blocks",
+                  description:
+                    "Fluid equalizer scrubbers, tactile rotary dials, spatial coordinate pads, and interactive gesture decks.",
+                  slug: "fluid-equalizer-scrubber",
+                  badge: "Tactile",
+                },
+                {
+                  title: "Interactive Studios",
+                  count: "5 blocks",
+                  description:
+                    "Bezier curve surfaces, palette & gradient tuners, layer hierarchy trees, and studio track arrangers.",
+                  slug: "bezier-curve-surface",
+                  badge: "Studio",
+                },
+                {
                   title: "Toolbars & Docks",
                   count: "4 blocks",
                   description:
@@ -1047,44 +1079,12 @@ export function FeatureCard() {
                   badge: "Toolbars",
                 },
                 {
-                  title: "Metrics & Stats",
+                  title: "Metrics & Telemetry",
                   count: "3 blocks",
                   description:
                     "Real-time telemetry charts, live frequency bars, and animated spark KPI cards.",
                   slug: "telemetry-live-stream",
                   badge: "Telemetry",
-                },
-                {
-                  title: "Notifications",
-                  count: "4 blocks",
-                  description:
-                    "Dynamic island pills, live activity sync banners, and swipe-to-dismiss notification stacks.",
-                  slug: "live-activity-banner",
-                  badge: "Alerts",
-                },
-                {
-                  title: "Progress & Steps",
-                  count: "3 blocks",
-                  description:
-                    "Deployment pipeline release steppers, circular journey rings, and task checklists.",
-                  slug: "deploy-pipeline-stepper",
-                  badge: "Steps",
-                },
-                {
-                  title: "Segmented Controls",
-                  count: "3 blocks",
-                  description:
-                    "Adaptive multi-category filter bars, status switchers, and faceted filter pills.",
-                  slug: "adaptive-filter-bar",
-                  badge: "Filters",
-                },
-                {
-                  title: "Expandable Cards",
-                  count: "2 blocks",
-                  description:
-                    "FLIP animated detail drawers, layered feature cards, and collapsible inspect panels.",
-                  slug: "expandable-card",
-                  badge: "Cards",
                 },
               ].map((item) => (
                 <Link

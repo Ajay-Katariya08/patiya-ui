@@ -372,6 +372,134 @@ export const docsNavGroups: NavGroup[] = [
           },
         ],
       },
+      {
+        title: "Tactile Surfaces & Controls",
+        items: [
+          {
+            title: "Fluid Equalizer Scrubber",
+            href: "/docs/blocks/fluid-equalizer-scrubber",
+          },
+          {
+            title: "Tactile Rotary Dial",
+            href: "/docs/blocks/tactile-rotary-dial",
+          },
+          {
+            title: "Spatial Coordinate Pad",
+            href: "/docs/blocks/spatial-coordinate-pad",
+          },
+          {
+            title: "Elastic Spring Slider",
+            href: "/docs/blocks/elastic-spring-slider",
+          },
+          {
+            title: "Morphing Arc Radial Menu",
+            href: "/docs/blocks/morphing-arc-menu",
+          },
+          {
+            title: "Haptic Keypad Matrix",
+            href: "/docs/blocks/haptic-keypad-matrix",
+          },
+          {
+            title: "Interactive Gesture Deck",
+            href: "/docs/blocks/interactive-gesture-deck",
+          },
+        ],
+      },
+      {
+        title: "Interactive Studio Surfaces",
+        items: [
+          {
+            title: "Bezier Curve Surface",
+            href: "/docs/blocks/bezier-curve-surface",
+          },
+          {
+            title: "Palette & Gradient Tuner",
+            href: "/docs/blocks/palette-gradient-tuner",
+          },
+          {
+            title: "Layer Hierarchy Tree",
+            href: "/docs/blocks/layer-hierarchy-tree",
+          },
+          {
+            title: "Studio Track Arranger",
+            href: "/docs/blocks/studio-track-arranger",
+          },
+          {
+            title: "Asset Pipeline Dropzone",
+            href: "/docs/blocks/asset-pipeline-dropzone",
+          },
+        ],
+      },
+      {
+        title: "Spatial Dynamic Hubs",
+        items: [
+          {
+            title: "Morphing Dynamic Island Hub",
+            href: "/docs/blocks/dynamic-island-hub",
+          },
+          {
+            title: "Holographic 3D Tilt Card",
+            href: "/docs/blocks/holographic-tilt-card",
+          },
+          {
+            title: "Magnetic Fluid Tether Node",
+            href: "/docs/blocks/magnetic-fluid-metaball",
+          },
+          {
+            title: "Matrix Token Decryptor",
+            href: "/docs/blocks/matrix-code-decryptor",
+          },
+          {
+            title: "Orbital Command System",
+            href: "/docs/blocks/orbital-command-hub",
+          },
+          {
+            title: "Time-Travel History Scrubber",
+            href: "/docs/blocks/time-travel-scrubber",
+          },
+        ],
+      },
+      {
+        title: "Smart Interactive Workspaces",
+        items: [
+          {
+            title: "AI Prompt & Model Tuner",
+            href: "/docs/blocks/prompt-model-switcher",
+          },
+          {
+            title: "Dynamic Payment Vault & Slide Pay",
+            href: "/docs/blocks/dynamic-checkout-vault",
+          },
+          {
+            title: "Real-Time Collaboration Presence Stack",
+            href: "/docs/blocks/collaboration-presence-bar",
+          },
+          {
+            title: "Spotlight Smart Command Palette",
+            href: "/docs/blocks/smart-command-palette",
+          },
+          {
+            title: "Linear Priority Task Flow",
+            href: "/docs/blocks/interactive-kanban-pill",
+          },
+          {
+            title: "Multi-Asset Staging Upload Tray",
+            href: "/docs/blocks/file-staging-upload-tray",
+          },
+          {
+            title: "Audit & Security Event Stream",
+            href: "/docs/blocks/audit-log-inspector",
+          },
+          {
+            title: "SaaS Tier & Seat Allocation Matrix",
+            href: "/docs/blocks/workspace-billing-matrix",
+          },
+          {
+            title: "Interactive Notification Hub & Inbox",
+            href: "/docs/blocks/notification-inbox-center",
+          },
+        ],
+      },
     ],
   },
 ];
@@ -689,6 +817,80 @@ export const renderSectionIcon = (title: string) => {
           <rect x="3" y="3" width="18" height="18" rx="2" />
           <polyline points="8 12 12 16 16 12" />
           <line x1="12" y1="8" x2="12" y2="16" />
+        </svg>
+      );
+    case "Tactile Surfaces & Controls":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 3v4" />
+          <path d="M12 17v4" />
+          <path d="M3 12h4" />
+          <path d="M17 12h4" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+      );
+    case "Interactive Studio Surfaces":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m12 19 7-7 3 3-7 7-3-3z" />
+          <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+          <path d="m2 2 7.586 7.586" />
+          <circle cx="11" cy="11" r="2" />
+        </svg>
+      );
+    case "Spatial Dynamic Hubs":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2v3" />
+          <path d="M12 19v3" />
+          <path d="M2 12h3" />
+          <path d="M19 12h3" />
+          <path d="M4.93 4.93l2.12 2.12" />
+          <path d="M16.95 16.95l2.12 2.12" />
+          <path d="M4.93 19.07l2.12-2.12" />
+          <path d="M16.95 7.05l2.12-2.12" />
+        </svg>
+      );
+    case "Smart Interactive Workspaces":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect width="18" height="18" x="3" y="3" rx="2" />
+          <path d="M3 9h18" />
+          <path d="M9 21V9" />
         </svg>
       );
     default:
