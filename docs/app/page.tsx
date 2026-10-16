@@ -120,6 +120,7 @@ export default function Home() {
   useScrollObserver();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeHeroTab, setActiveHeroTab] = useState<HeroTab>("dock");
   const [activeCategory, setActiveCategory] =
     useState<PlaygroundCategory>("buttons");
@@ -228,8 +229,8 @@ export function FeatureCard() {
   return (
     <Box className="flex flex-col min-h-screen bg-[var(--patiya-color-background)] text-[var(--patiya-color-foreground)] selection:bg-[var(--patiya-color-primary)] selection:text-white">
       <header className="sticky top-0 z-50 w-full border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/85 backdrop-blur-md">
-        <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 group">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
             <Logo className="w-7 h-7 transition-transform duration-300 group-hover:scale-105" />
             <span className="font-semibold text-base tracking-tight">
               Patiya UI
@@ -239,7 +240,7 @@ export function FeatureCard() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--patiya-color-muted-foreground)]">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-[var(--patiya-color-muted-foreground)]">
             <Link
               href="#stage"
               className="hover:text-[var(--patiya-color-foreground)] transition-colors"
@@ -251,6 +252,15 @@ export function FeatureCard() {
               className="hover:text-[var(--patiya-color-foreground)] transition-colors"
             >
               Showcase
+            </Link>
+            <Link
+              href="#blocks"
+              className="hover:text-[var(--patiya-color-foreground)] transition-colors inline-flex items-center gap-1.5"
+            >
+              <span>Blocks</span>
+              <span className="text-[11px] font-bold tracking-wider  px-1.5 py-0.2 rounded-md  text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
+                New
+              </span>
             </Link>
             <Link
               href="#matrix"
@@ -278,7 +288,7 @@ export function FeatureCard() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
@@ -336,27 +346,130 @@ export function FeatureCard() {
                 Get Started
               </Button>
             </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-[var(--patiya-color-border)] text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] transition-colors cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? (
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <>
+            <div
+              className="fixed inset-0 top-16 bg-black/40 backdrop-blur-xs z-40 lg:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="absolute top-full left-0 w-full border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/95 backdrop-blur-xl px-4 py-4 space-y-1 z-50 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
+              <Link
+                href="#stage"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                Workbench
+              </Link>
+              <Link
+                href="#showcase"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                Showcase
+              </Link>
+              <Link
+                href="#blocks"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                <span>Blocks</span>
+                <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
+                  18 Blocks
+                </span>
+              </Link>
+              <Link
+                href="#matrix"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                Playground
+              </Link>
+              <Link
+                href="#principles"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                Principles
+              </Link>
+              <Link
+                href="#faq"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                FAQ
+              </Link>
+              <Link
+                href="/docs"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--patiya-color-primary)] hover:bg-[var(--patiya-color-muted)]/30 transition-colors"
+              >
+                Documentation →
+              </Link>
+            </div>
+          </>
+        )}
       </header>
 
       <main className="flex-1 flex flex-col items-center w-full">
-        <section className="w-full relative px-4 sm:px-6 md:px-8 pt-10 pb-12 md:pt-14 md:pb-16 overflow-hidden border-b border-[var(--patiya-color-border)]">
+        <section className="w-full relative px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-18 md:pb-20 overflow-hidden border-b border-[var(--patiya-color-border)]">
           <div className="absolute inset-0 z-0 bg-dot opacity-[0.12] dark:opacity-[0.25] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,black_30%,transparent_100%)]" />
 
           <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10 space-y-6">
             <Magnetic intensity={0.2} range={140}>
               <Link href="/docs">
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-md hover:border-[var(--patiya-color-primary)] transition-colors">
+                <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-md hover:border-[var(--patiya-color-primary)] transition-colors max-w-full">
                   <StatusDot status="online" ping={true} size="sm" />
-                  <span className="font-mono text-xs tracking-wide  text-[var(--patiya-color-foreground)]">
-                    Patiya UI V2.0
+                  <span className="font-mono text-xs tracking-wide text-[var(--patiya-color-foreground)] whitespace-nowrap">
+                    Patiya UI v2.0
                   </span>
-                  <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
-                    80+ Animated Components
+                  <span className="hidden sm:inline text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
+                    80+ Components • 18+ Motion Blocks
+                  </span>
+                  <span className="sm:hidden text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
+                    18+ Motion Blocks
                   </span>
                   <svg
-                    className="w-3.5 h-3.5 text-[var(--patiya-color-muted-foreground)]"
+                    className="w-3.5 h-3.5 text-[var(--patiya-color-muted-foreground)] shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -372,20 +485,21 @@ export function FeatureCard() {
               </Link>
             </Magnetic>
 
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.05] max-w-4xl text-(--patiya-color-foreground)">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tighter leading-[1.08] max-w-4xl text-[var(--patiya-color-foreground)]">
               Form follows feeling. <br />
-              <span className="text-(--patiya-color-primary)">
+              <span className="text-[var(--patiya-color-primary)]">
                 Engineered for speed.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-(--patiya-color-muted-foreground) max-w-2xl font-normal leading-relaxed">
-              Accessible React components designed for craft-minded developers.
-              Hairline geometry, physics-driven animations, zero shadow soup,
-              and native Tailwind CSS v4 support.
+            <p className="text-base sm:text-lg md:text-xl text-[var(--patiya-color-muted-foreground)] max-w-2xl font-normal leading-relaxed">
+              Accessible React components and production-ready Motion.dev blocks
+              designed for craft-minded developers. Hairline geometry,
+              physics-driven animations, zero shadow soup, and native Tailwind
+              CSS v4 support.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full max-w-2xl pt-2">
               <Link href="/docs" className="w-full sm:w-auto">
                 <ShimmerButton
                   background="var(--patiya-color-primary)"
@@ -397,7 +511,16 @@ export function FeatureCard() {
                 </ShimmerButton>
               </Link>
 
-              <div className="w-full sm:w-auto flex items-center justify-between gap-3 h-12 px-3.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/60 font-mono text-xs">
+              <Link href="/docs/blocks" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto h-12 px-6 rounded-xl text-sm font-medium border-[var(--patiya-color-border)] !text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-card)]"
+                >
+                  Explore Blocks
+                </Button>
+              </Link>
+
+              <div className="w-full sm:w-auto flex items-center justify-between sm:justify-center gap-3 h-12 px-3.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/60 font-mono text-xs">
                 <span className="text-[var(--patiya-color-muted-foreground)]">
                   $
                 </span>
@@ -414,7 +537,7 @@ export function FeatureCard() {
               </div>
             </div>
 
-            <div id="stage" className="w-full max-w-5xl mt-8 pt-2">
+            <div id="stage" className="w-full max-w-5xl mt-6 sm:mt-8 pt-2">
               <div className="relative rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-xl overflow-hidden text-left">
                 <BorderBeam
                   size={280}
@@ -423,7 +546,7 @@ export function FeatureCard() {
                   colorTo="#8b5cf6"
                 />
 
-                <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20">
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-5 py-3.5 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80 inline-block" />
@@ -433,7 +556,7 @@ export function FeatureCard() {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1 p-1 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60">
+                  <div className="flex items-center gap-1 p-1 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60 overflow-x-auto max-w-full">
                     {(
                       [
                         { id: "dock", label: "macOS Dock" },
@@ -448,7 +571,7 @@ export function FeatureCard() {
                         onClick={() =>
                           startTransition(() => setActiveHeroTab(tab.id))
                         }
-                        className={`px-3 py-1 text-xs rounded-md font-medium transition-colors cursor-pointer ${
+                        className={`px-3 py-1 text-xs rounded-md font-medium transition-colors cursor-pointer shrink-0 whitespace-nowrap ${
                           activeHeroTab === tab.id
                             ? "bg-[var(--patiya-color-primary)] text-white"
                             : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
@@ -460,7 +583,7 @@ export function FeatureCard() {
                   </div>
                 </div>
 
-                <div className="p-6 sm:p-10 min-h-[380px] flex items-center justify-center relative">
+                <div className="p-5 sm:p-8 lg:p-10 min-h-[360px] sm:min-h-[400px] flex items-center justify-center relative">
                   {activeHeroTab === "dock" && (
                     <div className="flex flex-col items-center gap-8 w-full max-w-lg">
                       <div className="text-center space-y-1">
@@ -476,8 +599,8 @@ export function FeatureCard() {
                         </p>
                       </div>
 
-                      <div className="px-5 py-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 backdrop-blur-md">
-                        <Dock magnification={64} distance={140}>
+                      <div className="px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 backdrop-blur-md max-w-full overflow-x-auto">
+                        <Dock magnification={60} distance={130}>
                           <DockItem className="bg-gradient-to-tr from-sky-500 to-blue-600 text-white border border-white/20">
                             ⚡
                           </DockItem>
@@ -499,8 +622,8 @@ export function FeatureCard() {
                   )}
 
                   {activeHeroTab === "card3d" && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl items-center">
-                      <div className="flex flex-col items-center text-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-2xl items-center justify-items-center">
+                      <div className="flex flex-col items-center text-center w-full">
                         <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3">
                           3D Tilt Physics
                         </span>
@@ -516,7 +639,7 @@ export function FeatureCard() {
                             </span>
                             <StatusDot status="online" size="sm" />
                           </div>
-                          <div className="space-y-1">
+                          <div className="space-y-1 text-left">
                             <div className="font-mono text-sm tracking-widest text-[var(--patiya-color-foreground)]">
                               •••• 4892
                             </div>
@@ -527,7 +650,7 @@ export function FeatureCard() {
                         </TiltCard>
                       </div>
 
-                      <div className="flex flex-col items-center text-center">
+                      <div className="flex flex-col items-center text-center w-full">
                         <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3">
                           Spatial Flip Card (Click to Flip)
                         </span>
@@ -599,8 +722,8 @@ export function FeatureCard() {
                   )}
 
                   {activeHeroTab === "spotlight" && (
-                    <div className="w-full max-w-md">
-                      <SpotlightCard className="p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] rounded-2xl flex flex-col items-center text-center gap-5">
+                    <div className="w-full max-w-md mx-auto">
+                      <SpotlightCard className="p-6 sm:p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] rounded-2xl flex flex-col items-center text-center gap-5">
                         <Magnetic intensity={0.35} range={160}>
                           <div className="w-16 h-16 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-tr from-blue-500/20 to-purple-500/20 flex items-center justify-center text-[var(--patiya-color-primary)]">
                             <svg
@@ -637,38 +760,38 @@ export function FeatureCard() {
         </section>
 
         <section className="w-full border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/30">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--patiya-color-border)]">
-              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-r border-b md:border-b-0 border-[var(--patiya-color-border)]">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                   80+
                 </div>
-                <div className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
-                  Ready Components
+                <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
+                  UI Components
                 </div>
               </div>
-              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
+              <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-b md:border-b-0 md:border-r border-[var(--patiya-color-border)]">
+                <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-primary)]">
+                  18+
+                </div>
+                <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
+                  Motion Blocks
+                </div>
+              </div>
+              <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-r md:border-r border-[var(--patiya-color-border)]">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
-                  60 FPS
+                  120 FPS
                 </div>
-                <div className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
-                  Hardware Motion
-                </div>
-              </div>
-              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
-                <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
-                  &lt;15 KB
-                </div>
-                <div className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
-                  Gzip Footprint
+                <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
+                  Spring Physics
                 </div>
               </div>
-              <div className="py-5 flex flex-col items-center justify-center  md:text-left gap-1">
+              <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                   Zero
                 </div>
-                <div className="font-mono text-xs text-(--patiya-color-muted-foreground) uppercase tracking-wider">
-                  CSS Runtime Overhead
+                <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
+                  Drop Shadows
                 </div>
               </div>
             </div>
@@ -677,14 +800,14 @@ export function FeatureCard() {
 
         <section
           id="showcase"
-          className="w-full py-12 sm:py-16 px-4 sm:px-6 md:px-8 border-b border-[var(--patiya-color-border)]"
+          className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--patiya-color-border)]"
         >
           <div className="max-w-6xl mx-auto space-y-10">
             <div className="reveal-item space-y-3 max-w-2xl">
               <div className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
                 01 / Interactive Suite
               </div>
-              <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
                 Crafted with physics. Built for performance.
               </h2>
               <p className="text-sm sm:text-base text-[var(--patiya-color-muted-foreground)] leading-relaxed">
@@ -695,25 +818,25 @@ export function FeatureCard() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="reveal-item md:col-span-2 rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="reveal-item col-span-1 md:col-span-1 lg:col-span-2 rounded-2xl border border-[var(--patiya-color-border)] p-6 sm:p-7 lg:p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[340px] lg:min-h-[360px] relative overflow-hidden group">
                 <div className="space-y-2 relative z-10 max-w-md">
                   <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase">
                     Cursor-Aware Physics
                   </span>
-                  <h3 className="text-2xl font-semibold">
+                  <h3 className="text-xl sm:text-2xl font-semibold">
                     Spotlight Tracking Card
                   </h3>
-                  <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+                  <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)]">
                     Calculates light vector coordinates continuously without
                     causing document reflow or frame drops.
                   </p>
                 </div>
 
-                <div className="my-8 flex items-center justify-center relative z-10">
-                  <SpotlightCard className="w-full max-w-md p-6 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] rounded-xl flex items-center justify-between">
+                <div className="my-6 sm:my-8 flex items-center justify-center relative z-10 w-full">
+                  <SpotlightCard className="w-full max-w-md p-5 sm:p-6 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] rounded-xl flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[var(--patiya-color-primary)]/10 border border-[var(--patiya-color-primary)]/20 flex items-center justify-center text-[var(--patiya-color-primary)]">
+                      <div className="w-10 h-10 rounded-lg bg-[var(--patiya-color-primary)]/10 border border-[var(--patiya-color-primary)]/20 flex items-center justify-center text-[var(--patiya-color-primary)] shrink-0">
                         <svg
                           className="w-5 h-5"
                           fill="none"
@@ -728,16 +851,21 @@ export function FeatureCard() {
                           />
                         </svg>
                       </div>
-                      <div>
-                        <div className="text-sm font-semibold">
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold truncate">
                           Live Proximity
                         </div>
-                        <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                        <div className="text-xs text-[var(--patiya-color-muted-foreground)] truncate">
                           Hover around this card
                         </div>
                       </div>
                     </div>
-                    <Badge variant="soft" color="primary" size="sm">
+                    <Badge
+                      variant="soft"
+                      color="primary"
+                      size="sm"
+                      className="shrink-0"
+                    >
                       Active
                     </Badge>
                   </SpotlightCard>
@@ -750,13 +878,15 @@ export function FeatureCard() {
                 </div>
               </div>
 
-              <div className="reveal-item md:col-span-1 rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[360px]">
+              <div className="reveal-item col-span-1 md:col-span-1 lg:col-span-1 rounded-2xl border border-[var(--patiya-color-border)] p-6 sm:p-7 lg:p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[340px] lg:min-h-[360px]">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase">
                     Micro-Interactions
                   </span>
-                  <h3 className="text-2xl font-semibold">Border Beam</h3>
-                  <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+                  <h3 className="text-xl sm:text-2xl font-semibold">
+                    Border Beam
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)]">
                     Continuous neon laser contours traveling along CSS border
                     geometries.
                   </p>
@@ -787,13 +917,15 @@ export function FeatureCard() {
                 </div>
               </div>
 
-              <div className="reveal-item md:col-span-1 rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[360px]">
+              <div className="reveal-item col-span-1 md:col-span-1 lg:col-span-1 rounded-2xl border border-[var(--patiya-color-border)] p-6 sm:p-7 lg:p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[340px] lg:min-h-[360px]">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase">
                     Direction Sensing
                   </span>
-                  <h3 className="text-2xl font-semibold">Direction Hover</h3>
-                  <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+                  <h3 className="text-xl sm:text-2xl font-semibold">
+                    Direction Hover
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)]">
                     Calculates entrance angle from top, bottom, left, or right
                     coordinates.
                   </p>
@@ -820,21 +952,21 @@ export function FeatureCard() {
                 </div>
               </div>
 
-              <div className="reveal-item md:col-span-2 rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[360px]">
+              <div className="reveal-item col-span-1 md:col-span-1 lg:col-span-2 rounded-2xl border border-[var(--patiya-color-border)] p-6 sm:p-7 lg:p-8 bg-[var(--patiya-color-card)]/50 backdrop-blur-md flex flex-col justify-between min-h-[340px] lg:min-h-[360px]">
                 <div className="space-y-2 max-w-md">
                   <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase">
                     AI Interface Primitives
                   </span>
-                  <h3 className="text-2xl font-semibold">
+                  <h3 className="text-xl sm:text-2xl font-semibold">
                     Conversational Stack
                   </h3>
-                  <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+                  <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)]">
                     Production-grade PromptInput, ChatBubble, and Typing
                     indicators for AI-native software.
                   </p>
                 </div>
 
-                <div className="my-6 space-y-3">
+                <div className="my-6 space-y-3 w-full">
                   <ChatBubble
                     variant="assistant"
                     className="p-3 text-xs bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)]"
@@ -859,16 +991,154 @@ export function FeatureCard() {
         </section>
 
         <section
+          id="blocks"
+          className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/20"
+        >
+          <div className="max-w-6xl mx-auto space-y-10">
+            <div className="reveal-item flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div className="space-y-3 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
+                    02 / Motion Blocks
+                  </span>
+                  <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.2 rounded-md  text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
+                    motion.dev
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
+                  Modular, animated component blocks.
+                </h2>
+                <p className="text-sm sm:text-base text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                  Self-contained interactive UI blocks built with Motion.dev
+                  spring physics. Hairline borders, zero drop shadows, and
+                  copy-paste ready for your Next.js and React apps.
+                </p>
+              </div>
+
+              <Link href="/docs/blocks" className="shrink-0">
+                <Button
+                  color="primary"
+                  variant="outline"
+                  className="h-10 px-5 rounded-xl text-xs font-semibold border-[var(--patiya-color-border)] hover:bg-[var(--patiya-color-card)] flex items-center gap-2"
+                >
+                  <span>Browse All 18 Blocks</span>
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  title: "Toolbars & Docks",
+                  count: "4 blocks",
+                  description:
+                    "Floating action bars, command palettes, and canvas tool docks with spring magnification and layoutId pills.",
+                  slug: "action-dock",
+                  badge: "Toolbars",
+                },
+                {
+                  title: "Metrics & Stats",
+                  count: "3 blocks",
+                  description:
+                    "Real-time telemetry charts, live frequency bars, and animated spark KPI cards.",
+                  slug: "telemetry-live-stream",
+                  badge: "Telemetry",
+                },
+                {
+                  title: "Notifications",
+                  count: "4 blocks",
+                  description:
+                    "Dynamic island pills, live activity sync banners, and swipe-to-dismiss notification stacks.",
+                  slug: "live-activity-banner",
+                  badge: "Alerts",
+                },
+                {
+                  title: "Progress & Steps",
+                  count: "3 blocks",
+                  description:
+                    "Deployment pipeline release steppers, circular journey rings, and task checklists.",
+                  slug: "deploy-pipeline-stepper",
+                  badge: "Steps",
+                },
+                {
+                  title: "Segmented Controls",
+                  count: "3 blocks",
+                  description:
+                    "Adaptive multi-category filter bars, status switchers, and faceted filter pills.",
+                  slug: "adaptive-filter-bar",
+                  badge: "Filters",
+                },
+                {
+                  title: "Expandable Cards",
+                  count: "2 blocks",
+                  description:
+                    "FLIP animated detail drawers, layered feature cards, and collapsible inspect panels.",
+                  slug: "expandable-card",
+                  badge: "Cards",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  href={`/docs/blocks/${item.slug}`}
+                  className="reveal-item p-5 sm:p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/50 hover:bg-[var(--patiya-color-card)] hover:border-[var(--patiya-color-primary)]/40 transition-all flex flex-col justify-between group"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--patiya-color-primary)] font-bold">
+                        {item.badge}
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-[var(--patiya-color-muted-foreground)]">
+                        {item.count}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-[var(--patiya-color-foreground)] group-hover:text-[var(--patiya-color-primary)] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-6 flex items-center gap-1.5 text-xs font-semibold text-[var(--patiya-color-primary)]">
+                    <span>View component</span>
+                    <svg
+                      className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
           id="matrix"
-          className="w-full py-12 sm:py-16 px-4 sm:px-6 md:px-8 border-b border-[var(--patiya-color-border)]"
+          className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--patiya-color-border)]"
         >
           <div className="max-w-6xl mx-auto space-y-8">
-            <div className="reveal-item flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="reveal-item flex flex-col sm:flex-row sm:items-end justify-between gap-6">
               <div className="space-y-3 max-w-xl">
                 <div className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
-                  02 / Component Playground
+                  03 / Component Playground
                 </div>
-                <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
                   Inspect the source. Copy in one click.
                 </h2>
                 <p className="text-sm sm:text-base text-[var(--patiya-color-muted-foreground)]">
@@ -877,7 +1147,7 @@ export function FeatureCard() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-1 p-1 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/60">
+              <div className="flex flex-wrap gap-1 p-1 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/60 max-w-full overflow-x-auto">
                 {(
                   [
                     { id: "buttons", label: "Buttons" },
@@ -892,7 +1162,7 @@ export function FeatureCard() {
                     onClick={() =>
                       startTransition(() => setActiveCategory(cat.id))
                     }
-                    className={`px-3.5 py-1.5 text-xs rounded-lg font-medium transition-colors cursor-pointer ${
+                    className={`px-3 sm:px-3.5 py-1.5 text-xs rounded-lg font-medium transition-colors cursor-pointer shrink-0 ${
                       activeCategory === cat.id
                         ? "bg-[var(--patiya-color-primary)] text-white"
                         : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
@@ -904,10 +1174,10 @@ export function FeatureCard() {
               </div>
             </div>
 
-            <div className="reveal-item grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 p-8 flex flex-col justify-center items-center min-h-[340px]">
+            <div className="reveal-item grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+              <div className="rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 p-6 sm:p-8 flex flex-col justify-center items-center min-h-[320px] sm:min-h-[360px]">
                 {activeCategory === "buttons" && (
-                  <div className="flex flex-wrap items-center justify-center gap-4">
+                  <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                     <Magnetic intensity={0.3}>
                       <ShimmerButton
                         background="var(--patiya-color-primary)"
@@ -933,7 +1203,7 @@ export function FeatureCard() {
                 )}
 
                 {activeCategory === "status" && (
-                  <div className="flex flex-wrap items-center justify-center gap-5">
+                  <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
                     <StatusDot status="online" ping={true} label="Connected" />
                     <StatusDot status="busy" label="Rendering" />
                     <Badge variant="soft" color="primary">
@@ -977,7 +1247,7 @@ export function FeatureCard() {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-[var(--patiya-color-border)] bg-[#0d1117] text-[#c9d1d9] overflow-hidden flex flex-col">
+              <div className="rounded-2xl border border-[var(--patiya-color-border)] bg-[#0d1117] text-[#c9d1d9] overflow-hidden flex flex-col min-h-[320px] sm:min-h-[360px]">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-[#30363d] bg-[#161b22]">
                   <span className="font-mono text-xs text-[#8b949e]">
                     {playgroundSnippets[activeCategory].title}
@@ -990,7 +1260,7 @@ export function FeatureCard() {
                     aria-label="Copy code snippet"
                   />
                 </div>
-                <div className="p-5 font-mono text-xs overflow-x-auto custom-scrollbar flex-1">
+                <div className="p-4 sm:p-5 font-mono text-xs overflow-x-auto custom-scrollbar flex-1 flex flex-col justify-center">
                   <pre className="m-0 p-0 leading-relaxed text-[#58a6ff]">
                     <code>{playgroundSnippets[activeCategory].code}</code>
                   </pre>
@@ -1002,14 +1272,14 @@ export function FeatureCard() {
 
         <section
           id="principles"
-          className="w-full py-12 sm:py-16 px-4 sm:px-6 md:px-8 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/20"
+          className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/20"
         >
           <div className="max-w-6xl mx-auto space-y-10">
             <div className="reveal-item space-y-3 max-w-xl">
               <div className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
-                03 / Craft Philosophy
+                04 / Craft Philosophy
               </div>
-              <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
                 Why Patiya UI feels right.
               </h2>
               <p className="text-sm sm:text-base text-[var(--patiya-color-muted-foreground)]">
@@ -1019,37 +1289,43 @@ export function FeatureCard() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-background)] space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-6 lg:p-8 bg-[var(--patiya-color-background)] space-y-4">
                 <div className="w-10 h-10 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/30 flex items-center justify-center font-mono text-sm">
                   01
                 </div>
-                <h3 className="text-xl font-semibold">Hairline Depth</h3>
-                <p className="text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  Hairline Depth
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
                   Blurry drop shadows make interfaces feel heavy and indistinct.
                   We achieve visual hierarchy using 1px geometric borders,
                   luminance contrast, and frosted layers.
                 </p>
               </div>
 
-              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-background)] space-y-4">
+              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-6 lg:p-8 bg-[var(--patiya-color-background)] space-y-4">
                 <div className="w-10 h-10 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/30 flex items-center justify-center font-mono text-sm">
                   02
                 </div>
-                <h3 className="text-xl font-semibold">Hardware Acceleration</h3>
-                <p className="text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  Hardware Acceleration
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
                   Animations are strictly confined to GPU-composited transform
                   and opacity. No animating layout properties like height or
                   padding that cause frame stutter.
                 </p>
               </div>
 
-              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-8 bg-[var(--patiya-color-background)] space-y-4">
+              <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] p-6 lg:p-8 bg-[var(--patiya-color-background)] space-y-4">
                 <div className="w-10 h-10 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/30 flex items-center justify-center font-mono text-sm">
                   03
                 </div>
-                <h3 className="text-xl font-semibold">Tailwind v4 Native</h3>
-                <p className="text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  Tailwind v4 Native
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
                   Written for the latest CSS specifications using native CSS
                   variables. Zero runtime JavaScript injecting styles into head
                   tags, instant build performance.
@@ -1061,19 +1337,19 @@ export function FeatureCard() {
 
         <section
           id="faq"
-          className="w-full py-12 sm:py-16 px-4 sm:px-6 md:px-8 border-b border-[var(--patiya-color-border)]"
+          className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--patiya-color-border)]"
         >
-          <div className="max-w-6xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8">
             <div className="reveal-item space-y-3 text-center sm:text-left">
               <div className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
-                04 / Frequent Inquiries
+                05 / Frequent Inquiries
               </div>
-              <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
                 Frequently asked questions.
               </h2>
             </div>
 
-            <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 p-6 sm:p-8">
+            <div className="reveal-item rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 p-5 sm:p-7 lg:p-8">
               <Accordion type="single" defaultValue="item-1">
                 <AccordionItem value="item-1">
                   <AccordionTrigger className="text-base font-semibold hover:no-underline">
@@ -1084,6 +1360,22 @@ export function FeatureCard() {
                     generic animations. Patiya UI is built around design
                     engineering standards: crisp hairline borders, physics-based
                     springs, and zero CSS runtime overhead.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-blocks">
+                  <AccordionTrigger className="text-base font-semibold hover:no-underline">
+                    What are Motion Blocks?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed pt-2">
+                    Motion Blocks are self-contained, pre-animated component
+                    blocks powered by Motion.dev (
+                    <code className="text-xs font-mono px-1 py-0.5 rounded bg-[var(--patiya-color-muted)]">
+                      motion/react
+                    </code>
+                    ). They include floating docks, real-time telemetry cards,
+                    interactive alert capsules, steppers, and filters ready to
+                    copy and paste.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -1125,9 +1417,9 @@ export function FeatureCard() {
           </div>
         </section>
 
-        <section className="w-full py-12 sm:py-16 px-4 sm:px-6 md:px-8">
+        <section className="w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="reveal-item relative rounded-3xl border border-[var(--patiya-color-border)] p-8 sm:p-12 bg-[var(--patiya-color-card)]/80 backdrop-blur-xl overflow-hidden text-center space-y-6">
+            <div className="reveal-item relative rounded-3xl border border-[var(--patiya-color-border)] p-6 sm:p-10 md:p-12 bg-[var(--patiya-color-card)]/80 backdrop-blur-xl overflow-hidden text-center space-y-6">
               <BorderBeam
                 size={320}
                 duration={12}
@@ -1139,7 +1431,7 @@ export function FeatureCard() {
                 <div className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] uppercase">
                   Ready to Ship
                 </div>
-                <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter">
                   Elevate your interface today.
                 </h2>
                 <p className="text-sm sm:text-base text-[var(--patiya-color-muted-foreground)]">
@@ -1149,7 +1441,7 @@ export function FeatureCard() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 relative z-10 pt-2">
-                <div className="flex items-center gap-3 h-12 px-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] font-mono text-xs">
+                <div className="w-full sm:w-auto flex items-center justify-between sm:justify-center gap-3 h-12 px-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] font-mono text-xs">
                   <span className="text-[var(--patiya-color-muted-foreground)]">
                     $
                   </span>
@@ -1163,12 +1455,12 @@ export function FeatureCard() {
                   />
                 </div>
 
-                <Link href="/docs">
+                <Link href="/docs" className="w-full sm:w-auto">
                   <ShimmerButton
                     background="var(--patiya-color-primary)"
                     shimmerColor="#ffffff"
                     borderRadius="12px"
-                    className="h-12 px-8 text-sm font-medium"
+                    className="w-full sm:w-auto h-12 px-8 text-sm font-medium justify-center"
                   >
                     Explore Documentation
                   </ShimmerButton>

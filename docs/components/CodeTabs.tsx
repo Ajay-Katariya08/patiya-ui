@@ -13,7 +13,7 @@ export function CodeTabs({ tabs }: { tabs: { name: string, code: string }[] }) {
   };
 
   return (
-    <Box className="rounded-xl overflow-hidden border border-[var(--patiya-color-border)] bg-[#0d1117] text-[#c9d1d9] shadow-lg relative group">
+    <Box className="rounded-xl overflow-hidden border border-[var(--patiya-color-border)] bg-[#0d1117] text-[#c9d1d9] relative group">
       <Box className="flex border-b border-[#30363d] bg-[#161b22] justify-between items-center pr-4">
         <Box className="flex">
           {tabs.map((tab, i) => (

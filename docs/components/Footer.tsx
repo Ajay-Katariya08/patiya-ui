@@ -34,6 +34,12 @@ export function Footer() {
             Documentation
           </Link>
           <Link
+            href="/docs/blocks"
+            className="text-sm text-(--patiya-color-muted-foreground) hover:text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            Blocks
+          </Link>
+          <Link
             href="https://github.com/Ajay-Katariya08/patiya-ui"
             target="_blank"
             className="text-sm text-(--patiya-color-muted-foreground) hover:text-[var(--patiya-color-foreground)] transition-colors"

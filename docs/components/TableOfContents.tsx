@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Box, cn } from "patiya";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 
 type TocItem = {
   id: string;
@@ -13,31 +14,67 @@ type TableOfContentsProps = {
   items?: TocItem[];
 };
 
-export function TableOfContents({
-  items: initialItems = [],
-}: TableOfContentsProps) {
+export function TableOfContents({ items: initialItems }: TableOfContentsProps) {
   const pathname = usePathname();
   const [activeId, setActiveId] = useState<string>("");
-  const [items, setItems] = useState<TocItem[]>(initialItems);
+  const [items, setItems] = useState<TocItem[]>(initialItems || []);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copied, setCopied] = useState(false);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const cancelClickScroll = () => {
+      if (isClickScrollingRef.current) {
+        isClickScrollingRef.current = false;
+        if (clickTimeoutRef.current) {
+          clearTimeout(clickTimeoutRef.current);
+          clickTimeoutRef.current = null;
+        }
+      }
+    };
+
+    window.addEventListener("wheel", cancelClickScroll, { passive: true });
+    window.addEventListener("touchmove", cancelClickScroll, { passive: true });
+    window.addEventListener("scrollend", cancelClickScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", cancelClickScroll);
+      window.removeEventListener("touchmove", cancelClickScroll);
+      window.removeEventListener("scrollend", cancelClickScroll);
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
       const total = document.documentElement.scrollHeight - window.innerHeight;
       if (total > 0) {
-        const current = (window.pageYOffset / total) * 100;
+        const current = (scrollY / total) * 100;
         setScrollProgress(Math.min(100, Math.max(0, current)));
+      } else {
+        setScrollProgress(0);
       }
     };
+
+    setScrollProgress(0);
+    setActiveId("");
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const timer = setTimeout(handleScroll, 60);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [pathname]);
 
   useEffect(() => {
-    if (initialItems.length === 0) {
-      const timeout = setTimeout(() => {
+    if (!initialItems || initialItems.length === 0) {
+      const updateHeadings = () => {
         const headings = Array.from(
           document.querySelectorAll("h2[id], h3[id]"),
         );
@@ -45,65 +82,96 @@ export function TableOfContents({
           id: h.id,
           title: h.textContent?.trim() || "",
         }));
-        setItems(generatedItems);
-        if (!activeId && generatedItems.length > 0) {
+
+        setItems((prev) => {
+          if (
+            prev.length === generatedItems.length &&
+            prev.every((item, idx) => item.id === generatedItems[idx]?.id)
+          ) {
+            return prev;
+          }
+          return generatedItems;
+        });
+
+        if (generatedItems.length > 0) {
           const hash = window.location.hash.replace("#", "");
-          setActiveId(
-            hash && generatedItems.some((i) => i.id === hash)
-              ? hash
-              : generatedItems[0].id,
-          );
+          setActiveId((prev) => {
+            if (hash && generatedItems.some((i) => i.id === hash)) return hash;
+            if (prev && generatedItems.some((i) => i.id === prev)) return prev;
+            return generatedItems[0].id;
+          });
         }
-      }, 120);
-      return () => clearTimeout(timeout);
+      };
+
+      updateHeadings();
+      const timer = setTimeout(updateHeadings, 60);
+      return () => clearTimeout(timer);
     } else {
-      setItems(initialItems);
-      if (!activeId && initialItems.length > 0) {
-        const hash = window.location.hash.replace("#", "");
-        setActiveId(
-          hash && initialItems.some((i) => i.id === hash)
-            ? hash
-            : initialItems[0].id,
-        );
-      }
+      setItems((prev) => {
+        if (
+          prev.length === initialItems.length &&
+          prev.every((item, idx) => item.id === initialItems[idx]?.id)
+        ) {
+          return prev;
+        }
+        return initialItems;
+      });
+      const hash = window.location.hash.replace("#", "");
+      setActiveId((prev) => {
+        if (hash && initialItems.some((i) => i.id === hash)) return hash;
+        if (prev && initialItems.some((i) => i.id === prev)) return prev;
+        return initialItems[0].id;
+      });
     }
   }, [initialItems, pathname]);
 
   useEffect(() => {
     if (items.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-80px 0% -60% 0%" },
-    );
+    const findActiveHeading = () => {
+      if (isClickScrollingRef.current) return;
 
-    items.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
+      const headingElements = items
+        .map((item) => {
+          const el = document.getElementById(item.id);
+          return el
+            ? { id: item.id, top: el.getBoundingClientRect().top }
+            : null;
+        })
+        .filter(Boolean) as { id: string; top: number }[];
+
+      if (headingElements.length === 0) return;
+
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0 && scrollY >= total - 30) {
+        setActiveId(headingElements[headingElements.length - 1].id);
+        return;
       }
-    });
 
-    return () => {
-      items.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
+      const passed = headingElements.filter((h) => h.top <= 140);
+      if (passed.length > 0) {
+        setActiveId(passed[passed.length - 1].id);
+      } else {
+        setActiveId(headingElements[0].id);
+      }
     };
+
+    window.addEventListener("scroll", findActiveHeading, { passive: true });
+    findActiveHeading();
+
+    return () => window.removeEventListener("scroll", findActiveHeading);
   }, [items]);
 
   if (items.length === 0) return null;
 
   return (
-    <Box className="w-full px-5 py-6">
+    <motion.div
+      initial={{ opacity: 0, x: 6 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full px-5 py-6 select-none"
+    >
       <Box className="relative">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--patiya-color-muted-foreground)]">
@@ -128,9 +196,10 @@ export function TableOfContents({
         </div>
 
         <div className="w-full h-[2px] bg-[var(--patiya-color-border)]/60 rounded-full mb-5 overflow-hidden">
-          <div
-            className="h-full bg-[var(--patiya-color-primary)] transition-all duration-200 ease-out"
-            style={{ width: `${scrollProgress}%` }}
+          <motion.div
+            className="h-full bg-[var(--patiya-color-primary)]"
+            animate={{ width: `${scrollProgress}%` }}
+            transition={{ ease: "easeOut", duration: 0.1 }}
           />
         </div>
 
@@ -141,32 +210,47 @@ export function TableOfContents({
               return (
                 <li key={item.id} className="relative">
                   {isActive && (
-                    <span
-                      className="absolute -left-[14px] top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-full bg-[var(--patiya-color-primary)] transition-all duration-300"
-                      style={{ boxShadow: "none" }}
+                    <motion.span
+                      layoutId="toc-indicator"
+                      className="absolute -left-[14px] top-1/2 -translate-y-1/2 w-[2.5px] h-4 rounded-full bg-[var(--patiya-color-primary)]"
+                      transition={{
+                        type: "spring",
+                        stiffness: 1250,
+                        damping: 38,
+                      }}
                     />
                   )}
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => {
                       e.preventDefault();
+                      isClickScrollingRef.current = true;
+                      setActiveId(item.id);
+
+                      if (clickTimeoutRef.current) {
+                        clearTimeout(clickTimeoutRef.current);
+                      }
+                      clickTimeoutRef.current = setTimeout(() => {
+                        isClickScrollingRef.current = false;
+                      }, 750);
+
                       const el = document.getElementById(item.id);
                       if (el) {
+                        const targetY =
+                          window.scrollY + el.getBoundingClientRect().top - 80;
                         window.scrollTo({
-                          top: el.offsetTop - 90,
+                          top: targetY,
                           behavior: "smooth",
                         });
                       }
                       window.history.pushState(null, "", `#${item.id}`);
-                      setActiveId(item.id);
                     }}
                     className={cn(
-                      "group flex items-center px-2.5 py-1.5 rounded-lg text-xs transition-all duration-200 select-none",
+                      "group flex items-center px-2.5 py-1.5 rounded-lg text-xs transition-colors duration-100 select-none",
                       isActive
                         ? "bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)] font-medium"
                         : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 font-normal",
                     )}
-                    style={{ boxShadow: "none" }}
                   >
                     <span className="truncate">{item.title}</span>
                   </a>
@@ -180,8 +264,7 @@ export function TableOfContents({
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 rounded-lg transition-colors duration-150"
-            style={{ boxShadow: "none" }}
+            className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 rounded-lg transition-colors duration-150 cursor-pointer"
           >
             <svg
               className="w-3.5 h-3.5 shrink-0"
@@ -207,8 +290,7 @@ export function TableOfContents({
                 setTimeout(() => setCopied(false), 2000);
               }
             }}
-            className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 rounded-lg transition-colors duration-150"
-            style={{ boxShadow: "none" }}
+            className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/30 rounded-lg transition-colors duration-150 cursor-pointer"
           >
             {copied ? (
               <>
@@ -250,6 +332,6 @@ export function TableOfContents({
           </button>
         </div>
       </Box>
-    </Box>
+    </motion.div>
   );
 }

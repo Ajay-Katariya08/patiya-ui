@@ -23,12 +23,20 @@ export function QuickSearchModal({ open, onOpenChange }: QuickSearchModalProps) 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const allItems: FlatSearchItem[] = useMemo(() => {
-    return docsNav.flatMap((section) =>
-      section.items.map((item) => ({
-        ...item,
-        category: section.title,
-      }))
-    );
+    const seen = new Set<string>();
+    const items: FlatSearchItem[] = [];
+    for (const section of docsNav) {
+      for (const item of section.items) {
+        if (!seen.has(item.href)) {
+          seen.add(item.href);
+          items.push({
+            ...item,
+            category: section.title,
+          });
+        }
+      }
+    }
+    return items;
   }, []);
 
   const categories = useMemo(() => {
@@ -200,7 +208,7 @@ export function QuickSearchModal({ open, onOpenChange }: QuickSearchModalProps) 
               const isSelected = idx === selectedIndex;
               return (
                 <div
-                  key={item.href}
+                  key={`${item.href}-${idx}`}
                   data-index={idx}
                   onClick={() => handleSelect(item.href)}
                   onMouseEnter={() => setSelectedIndex(idx)}
