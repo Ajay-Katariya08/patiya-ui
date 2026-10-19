@@ -27,9 +27,26 @@ import {
 } from "patiya";
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
-import { QuickSearchModal } from "../components/QuickSearchModal";
+import dynamic from "next/dynamic";
+import { motion } from "motion/react";
 import { Logo } from "../components/Logo";
 import { Footer } from "../components/Footer";
+
+const QuickSearchModal = dynamic(
+  () =>
+    import("../components/QuickSearchModal").then(
+      (mod) => mod.QuickSearchModal,
+    ),
+  { ssr: false },
+);
+
+const BackgroundCubesGrid = dynamic(
+  () =>
+    import("../components/ui/background-cubes-grid").then(
+      (mod) => mod.BackgroundCubesGrid,
+    ),
+  { ssr: false },
+);
 
 type HeroTab = "dock" | "card3d" | "ai" | "spotlight";
 
@@ -118,6 +135,8 @@ function ThemeToggle() {
 
 export default function Home() {
   useScrollObserver();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -452,7 +471,13 @@ export function FeatureCard() {
 
       <main className="flex-1 flex flex-col items-center w-full">
         <section className="w-full relative px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-18 md:pb-20 overflow-hidden border-b border-[var(--patiya-color-border)]">
-          <div className="absolute inset-0 z-0 bg-dot opacity-[0.12] dark:opacity-[0.25] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,black_30%,transparent_100%)]" />
+          <BackgroundCubesGrid
+            className="z-0 pointer-events-none"
+            topColor={isDark ? "#09090b" : "#fafaf9"}
+            leftColor={isDark ? "#141416" : "#e7e5e4"}
+            rightColor={isDark ? "#1f1f23" : "#d6d3d1"}
+            glowColor={isDark ? "#3b82f6" : "#a8a29e"}
+          />
 
           <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10 space-y-6">
             <Magnetic intensity={0.2} range={140}>
@@ -537,156 +562,254 @@ export function FeatureCard() {
               </div>
             </div>
 
-            <div id="stage" className="w-full max-w-5xl mt-6 sm:mt-8 pt-2">
-              <div className="relative rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-xl overflow-hidden text-left">
+            <div id="stage" className="w-full max-w-5xl mt-8 sm:mt-12 pt-2">
+              <div className="relative rounded-3xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/65 dark:bg-[var(--patiya-color-card)]/40 backdrop-blur-3xl shadow-3xl shadow-black/[0.04] dark:shadow-black/60 overflow-hidden text-left transition-all duration-300">
                 <BorderBeam
-                  size={280}
-                  duration={14}
-                  colorFrom="#3b82f6"
-                  colorTo="#8b5cf6"
+                  size={320}
+                  duration={12}
+                  colorFrom="var(--patiya-color-primary)"
+                  colorTo="#a855f7"
                 />
 
-                <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-5 py-3.5 border-b border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/20">
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-[var(--patiya-color-border)]/70 bg-[var(--patiya-color-background)]/50 backdrop-blur-md">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-400/80 inline-block" />
-                    <span className="ml-2 font-mono text-xs text-[var(--patiya-color-muted-foreground)] hidden sm:inline-block">
-                      studio-workbench.tsx
-                    </span>
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--patiya-color-muted)]/50 border border-[var(--patiya-color-border)]/60 text-xs font-mono text-[var(--patiya-color-foreground)] select-none">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-[var(--patiya-color-muted-foreground)]">
+                        Sandbox
+                      </span>
+                      <span className="text-[var(--patiya-color-border)]">
+                        /
+                      </span>
+                      <span className="font-medium text-[var(--patiya-color-primary)]">
+                        60fps Physics
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-1 p-1 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60 overflow-x-auto max-w-full">
+                  <div className="flex items-center gap-1 p-1 rounded-xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/90 backdrop-blur-lg overflow-x-auto max-w-full">
                     {(
                       [
-                        { id: "dock", label: "macOS Dock" },
+                        { id: "dock", label: "Proximity Dock" },
                         { id: "card3d", label: "Spatial 3D" },
-                        { id: "ai", label: "AI Chat" },
+                        { id: "ai", label: "Neural AI" },
                         { id: "spotlight", label: "Spotlight" },
                       ] as const
-                    ).map((tab) => (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() =>
-                          startTransition(() => setActiveHeroTab(tab.id))
-                        }
-                        className={`px-3 py-1 text-xs rounded-md font-medium transition-colors cursor-pointer shrink-0 whitespace-nowrap ${
-                          activeHeroTab === tab.id
-                            ? "bg-[var(--patiya-color-primary)] text-white"
-                            : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
+                    ).map((tab) => {
+                      const isActive = activeHeroTab === tab.id;
+                      return (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() =>
+                            startTransition(() => setActiveHeroTab(tab.id))
+                          }
+                          className={`relative px-3 sm:px-3.5 py-1.5 text-xs rounded-lg font-medium transition-colors cursor-pointer shrink-0 whitespace-nowrap flex items-center gap-1.5 select-none ${
+                            isActive
+                              ? "text-[var(--patiya-color-foreground)] font-semibold"
+                              : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
+                          }`}
+                        >
+                          {isActive && (
+                            <motion.div
+                              layoutId="hero-active-tab-indicator"
+                              className="absolute inset-0 rounded-lg bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)] shadow-xs"
+                              transition={{
+                                type: "spring",
+                                stiffness: 450,
+                                damping: 32,
+                              }}
+                            />
+                          )}
+
+                          <span className="relative z-10">{tab.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <div className="p-5 sm:p-8 lg:p-10 min-h-[360px] sm:min-h-[400px] flex items-center justify-center relative">
+                <div className="p-6 sm:p-10 lg:p-12 min-h-[380px] sm:min-h-[420px] flex items-center justify-center relative">
                   {activeHeroTab === "dock" && (
-                    <div className="flex flex-col items-center gap-8 w-full max-w-lg">
-                      <div className="text-center space-y-1">
-                        <span className="font-mono text-xs text-[var(--patiya-color-primary)] uppercase tracking-wider">
-                          Interactive Physics
+                    <div className="flex flex-col items-center justify-center gap-7 w-full max-w-md text-center">
+                      <div className="space-y-2">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-[var(--patiya-color-primary)]  tracking-wider px-3 py-1 rounded-full bg-[var(--patiya-color-primary)]/10 border border-[var(--patiya-color-primary)]/20">
+                          Interactive Spring Geometry
                         </span>
-                        <div className="text-lg font-semibold">
+                        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                           Magnification Dock
-                        </div>
-                        <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
-                          Move cursor across icons to test smooth proximity
-                          scaling.
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)] max-w-xs mx-auto leading-relaxed">
+                          Fluid spring physics with continuous proximity scaling
+                          and responsive layout morphing.
                         </p>
                       </div>
 
-                      <div className="px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 backdrop-blur-md max-w-full overflow-x-auto">
-                        <Dock magnification={60} distance={130}>
-                          <DockItem className="bg-gradient-to-tr from-sky-500 to-blue-600 text-white border border-white/20">
-                            ⚡
+                      <div className="p-2 sm:p-2.5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-2xl shadow-xs shadow-black/5 dark:shadow-black/40 inline-flex items-center">
+                        <Dock magnification={64} distance={140}>
+                          <DockItem className="bg-gradient-to-tr from-sky-500 to-blue-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                              />
+                            </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-emerald-500 to-teal-600 text-white border border-white/20">
-                            🌿
+                          <DockItem className="bg-gradient-to-tr from-emerald-500 to-teal-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                              />
+                            </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-amber-500 to-orange-600 text-white border border-white/20">
-                            ✨
+                          <DockItem className="bg-gradient-to-tr from-amber-500 to-orange-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3.5z"
+                              />
+                            </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-purple-500 to-pink-600 text-white border border-white/20">
-                            🎨
+                          <DockItem className="bg-gradient-to-tr from-purple-500 to-pink-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                              />
+                            </svg>
                           </DockItem>
-                          <DockItem className="bg-[var(--patiya-color-primary)] text-white border border-white/20">
-                            P
+                          <DockItem className="bg-[var(--patiya-color-primary)] text-white shadow-xs border border-white/25 hover:scale-105 transition-transform">
+                            <svg
+                              className="w-5 h-5 text-white"
+                              viewBox="0 0 32 32"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M11 9H17.5C20.5376 9 23 11.4624 23 14.5C23 17.5376 20.5376 20 17.5 20H15V25H11V9ZM16.5 12C17.8807 12 19 13.1193 19 14.5C19 15.8807 17.8807 17 16.5 17C15.1193 17 14 15.8807 14 14.5C14 13.1193 15.1193 12 16.5 12Z"
+                              />
+                            </svg>
                           </DockItem>
                         </Dock>
+                      </div>
+
+                      <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--patiya-color-primary)]" />
+                        Move cursor across dock to trigger proximity magnify
                       </div>
                     </div>
                   )}
 
                   {activeHeroTab === "card3d" && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-2xl items-center justify-items-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 w-full max-w-2xl items-center justify-items-center">
                       <div className="flex flex-col items-center text-center w-full">
-                        <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3">
-                          3D Tilt Physics
+                        <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                          Gyro Tilt Physics
                         </span>
                         <TiltCard
-                          className="w-full max-w-[280px] h-[170px]"
-                          cardClassName="rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-background)]"
-                          tiltMaxAngleX={18}
-                          tiltMaxAngleY={18}
+                          className="w-full max-w-[290px] h-[178px]"
+                          cardClassName="rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl shadow-lg shadow-black/5"
+                          tiltMaxAngleX={16}
+                          tiltMaxAngleY={16}
                         >
                           <div className="flex justify-between items-center">
-                            <span className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] font-semibold">
-                              PATIYA PASS
+                            <span className="font-mono text-xs tracking-widest text-[var(--patiya-color-primary)] font-bold">
+                              PATIYA ULTIMATE
                             </span>
                             <StatusDot status="online" size="sm" />
                           </div>
                           <div className="space-y-1 text-left">
-                            <div className="font-mono text-sm tracking-widest text-[var(--patiya-color-foreground)]">
-                              •••• 4892
+                            <div className="font-mono text-sm tracking-widest text-[var(--patiya-color-foreground)] font-semibold">
+                              •••• 8824 0912
                             </div>
-                            <div className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-mono">
-                              Studio Edition
+                            <div className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase font-mono flex items-center justify-between">
+                              <span>Hardware Accelerated</span>
+                              <span>EXP 12/29</span>
                             </div>
                           </div>
                         </TiltCard>
                       </div>
 
                       <div className="flex flex-col items-center text-center w-full">
-                        <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3">
-                          Spatial Flip Card (Click to Flip)
+                        <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)] uppercase mb-3 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                          Spatial Flip (Click to Flip)
                         </span>
                         <FlipCard
-                          className="w-full max-w-[280px] h-[170px]"
+                          className="w-full max-w-[290px] h-[178px]"
                           front={
-                            <div className="w-full h-full rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-background)] text-left">
-                              <Badge variant="outline" size="sm">
-                                Standard
-                              </Badge>
+                            <div className="w-full h-full rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl shadow-lg shadow-black/5 text-left">
+                              <div className="flex items-center justify-between">
+                                <Badge variant="outline" size="sm">
+                                  Standard Pass
+                                </Badge>
+                                <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                                  Front
+                                </span>
+                              </div>
                               <div className="space-y-1">
-                                <div className="font-semibold text-sm">
-                                  Developer Key
+                                <div className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+                                  Developer Access Key
                                 </div>
                                 <p className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
-                                  Click to reveal back
+                                  Click surface to inspect rear cryptographic
+                                  hash
                                 </p>
                               </div>
                             </div>
                           }
                           back={
-                            <div className="w-full h-full rounded-2xl border border-transparent p-5 flex flex-col justify-between bg-gradient-to-tr from-blue-600 to-indigo-600 text-white text-left">
-                              <Badge
-                                variant="solid"
-                                color="secondary"
-                                size="sm"
-                                className="bg-white/20 text-white"
-                              >
-                                Active
-                              </Badge>
+                            <div className="w-full h-full rounded-2xl border border-white/20 p-5 flex flex-col justify-between bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white text-left shadow-xl">
+                              <div className="flex items-center justify-between">
+                                <Badge
+                                  variant="solid"
+                                  color="secondary"
+                                  size="sm"
+                                  className="bg-white/20 text-white border border-white/30"
+                                >
+                                  Verified Active
+                                </Badge>
+                                <span className="text-[10px] font-mono text-white/70">
+                                  Back
+                                </span>
+                              </div>
                               <div className="space-y-1">
-                                <div className="font-semibold text-sm">
-                                  Lifetime Pro
+                                <div className="font-semibold text-sm text-white">
+                                  Lifetime Studio Pro
                                 </div>
-                                <p className="text-[11px] text-white/80">
-                                  Full token access enabled
+                                <p className="text-[11px] text-white/80 font-mono">
+                                  sha256:9f83...bc41
                                 </p>
                               </div>
                             </div>
@@ -698,12 +821,12 @@ export function FeatureCard() {
 
                   {activeHeroTab === "ai" && (
                     <div className="w-full max-w-xl flex flex-col gap-4">
-                      <div className="max-h-[220px] overflow-y-auto custom-scrollbar space-y-3 pr-1">
+                      <div className="max-h-[230px] overflow-y-auto custom-scrollbar space-y-3 pr-1">
                         {chatMessages.map((msg) => (
                           <ChatBubble
                             key={msg.id}
                             variant={msg.sender}
-                            className="p-3 text-xs"
+                            className="p-3 text-xs leading-relaxed"
                           >
                             {msg.text}
                           </ChatBubble>
@@ -714,18 +837,18 @@ export function FeatureCard() {
                         value={promptText}
                         onChange={(e) => setPromptText(e.target.value)}
                         onValueSubmit={handlePromptSubmit}
-                        placeholder="Type prompt and press Enter..."
+                        placeholder="Ask AI to design or refine a component..."
                         aria-label="Interactive AI chat prompt"
-                        className="bg-[var(--patiya-color-background)] border-[var(--patiya-color-border)]"
+                        className="bg-[var(--patiya-color-card)] border-[var(--patiya-color-border)] shadow-sm"
                       />
                     </div>
                   )}
 
                   {activeHeroTab === "spotlight" && (
                     <div className="w-full max-w-md mx-auto">
-                      <SpotlightCard className="p-6 sm:p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] rounded-2xl flex flex-col items-center text-center gap-5">
+                      <SpotlightCard className="p-6 sm:p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-xl rounded-2xl flex flex-col items-center text-center gap-5 shadow-xl shadow-black/5">
                         <Magnetic intensity={0.35} range={160}>
-                          <div className="w-16 h-16 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-tr from-blue-500/20 to-purple-500/20 flex items-center justify-center text-[var(--patiya-color-primary)]">
+                          <div className="w-16 h-16 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-tr from-blue-500/15 to-purple-500/15 flex items-center justify-center text-[var(--patiya-color-primary)] shadow-sm">
                             <svg
                               className="w-7 h-7"
                               fill="none"
@@ -742,12 +865,12 @@ export function FeatureCard() {
                           </div>
                         </Magnetic>
                         <div className="space-y-2">
-                          <div className="text-lg font-semibold">
+                          <div className="text-lg font-bold text-[var(--patiya-color-foreground)]">
                             Cursor Tracking Spotlight
                           </div>
-                          <p className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed">
-                            Calculates radial lighting vectors strictly on
-                            pointer events without causing layout repaints.
+                          <p className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed max-w-xs mx-auto">
+                            Continuous radial lighting vectors calculated via
+                            pointer physics with zero layout thrash.
                           </p>
                         </div>
                       </SpotlightCard>
