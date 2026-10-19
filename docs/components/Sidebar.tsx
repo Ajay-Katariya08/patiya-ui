@@ -500,6 +500,56 @@ export const docsNavGroups: NavGroup[] = [
           },
         ],
       },
+      {
+        title: "Agentic AI & Neural Surfaces",
+        items: [
+          {
+            title: "Multimodal Voice & Neural Orb",
+            href: "/docs/blocks/agent-voice-orb",
+          },
+          {
+            title: "Agentic Execution Graph",
+            href: "/docs/blocks/agentic-flow-pipeline",
+          },
+          {
+            title: "AI Semantic Diff & Patch Lens",
+            href: "/docs/blocks/semantic-patch-reviewer",
+          },
+          {
+            title: "Neural Vector Context Vault",
+            href: "/docs/blocks/neural-vector-cluster",
+          },
+          {
+            title: "Model Arena & Inference Gauge",
+            href: "/docs/blocks/model-arena-benchmark",
+          },
+        ],
+      },
+      {
+        title: "Biometric & Cryptographic Vaults",
+        items: [
+          {
+            title: "Passkey & Biometric Scanner",
+            href: "/docs/blocks/biometric-passkey-vault",
+          },
+          {
+            title: "Radial TOTP Authenticator",
+            href: "/docs/blocks/totp-authenticator-ring",
+          },
+          {
+            title: "Cryptographic Key Rotator & Vault",
+            href: "/docs/blocks/cryptographic-key-vault",
+          },
+          {
+            title: "Zero-Trust Session Radar",
+            href: "/docs/blocks/zero-trust-access-radar",
+          },
+          {
+            title: "Stealth Secret Masker",
+            href: "/docs/blocks/stealth-secret-masker",
+          },
+        ],
+      },
     ],
   },
 ];
@@ -893,6 +943,36 @@ export const renderSectionIcon = (title: string) => {
           <path d="M9 21V9" />
         </svg>
       );
+    case "Agentic AI & Neural Surfaces":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 2a8 8 0 0 0-8 8c0 3.36 2.07 6.24 5 7.42V19a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-1.58c2.93-1.18 5-4.06 5-7.42a8 8 0 0 0-8-8z" />
+          <path d="M9 13a3 3 0 0 0 6 0" />
+        </svg>
+      );
+    case "Biometric & Cryptographic Vaults":
+      return (
+        <svg
+          className="w-3.5 h-3.5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+      );
     default:
       return (
         <svg
@@ -1158,15 +1238,14 @@ export function Sidebar({ isMobile = false, onClose }: SidebarProps = {}) {
                     </span>
 
                     <span className="flex items-center gap-1.5">
-                      {group.badge ? (
+                      {group.badge && (
                         <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
                           {group.badge}
                         </span>
-                      ) : (
-                        <span className="text-[9px] font-mono text-[var(--patiya-color-muted-foreground)]/60">
-                          {totalItemsCount}
-                        </span>
                       )}
+                      <span className="text-[9px] font-mono text-[var(--patiya-color-muted-foreground)]/60">
+                        {totalItemsCount}
+                      </span>
                       <svg
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
                           isGroupClosed ? "-rotate-90 opacity-60" : "rotate-0"

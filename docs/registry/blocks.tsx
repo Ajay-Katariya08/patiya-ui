@@ -92,7 +92,7 @@ export const ActionDockPreview = () => {
 
   return (
     <div className="w-full max-w-md mx-auto py-4 sm:py-8 flex flex-col items-center">
-      <div className="w-full flex justify-center overflow-x-auto no-scrollbar py-1">
+      <div className="w-full flex justify-center  no-scrollbar py-1">
         <div className="relative inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] select-none shrink-0">
           {items.map((item, idx) => {
             const isActive = activeTab === idx;
@@ -1393,7 +1393,7 @@ export const ContextualToolPalettePreview = () => {
   ];
 
   return (
-    <div className="w-full max-w-lg mx-auto py-4 sm:py-6 flex flex-col items-center gap-4 sm:gap-5 select-none">
+    <div className="w-full max-w-lg mx-auto pt-16 pb-4 sm:pt-20 sm:pb-6 flex flex-col items-center gap-4 sm:gap-5 select-none">
       <div className="relative flex flex-col items-center w-full">
         <AnimatePresence>
           {activeTool === "shape" && showSubMenu && (
@@ -5451,7 +5451,11 @@ export const PromptModelSwitcherPreview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const models = ["Claude 3.5", "GPT-4o", "Gemini 1.5"];
-  const suggestions = ["Analyze bundle size", "Refactor to React hook", "Generate API schema"];
+  const suggestions = [
+    "Analyze bundle size",
+    "Refactor to React hook",
+    "Generate API schema",
+  ];
 
   const handleSend = () => {
     if (!prompt.trim()) return;
@@ -5466,8 +5470,12 @@ export const PromptModelSwitcherPreview = () => {
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">Prompt & Model Studio</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Adaptive AI Command Interface</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Prompt & Model Studio
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Adaptive AI Command Interface
+          </p>
         </div>
         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)]">
           Temp: {temperature}
@@ -5489,7 +5497,9 @@ export const PromptModelSwitcherPreview = () => {
                   transition={{ type: "spring", stiffness: 450, damping: 30 }}
                 />
               )}
-              <span className={`relative z-10 truncate block ${model === m ? "text-[var(--patiya-color-primary)] font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}>
+              <span
+                className={`relative z-10 truncate block ${model === m ? "text-[var(--patiya-color-primary)] font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}
+              >
                 {m}
               </span>
             </button>
@@ -5529,11 +5539,17 @@ export const PromptModelSwitcherPreview = () => {
 
         <div className="flex items-center justify-between text-[10px] font-mono pt-1 text-[var(--patiya-color-muted-foreground)] border-t border-[var(--patiya-color-border)]">
           <div className="flex items-center gap-2">
-            <span>Tokens: {prompt.length ? Math.ceil(prompt.length / 3) : 0} / 8,192</span>
+            <span>
+              Tokens: {prompt.length ? Math.ceil(prompt.length / 3) : 0} / 8,192
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <button
-              onClick={() => setTemperature((t) => Number((t <= 0.2 ? 1.0 : t - 0.2).toFixed(1)))}
+              onClick={() =>
+                setTemperature((t) =>
+                  Number((t <= 0.2 ? 1.0 : t - 0.2).toFixed(1)),
+                )
+              }
               className="hover:text-[var(--patiya-color-foreground)]"
             >
               Adjust Temp ↻
@@ -5559,10 +5575,16 @@ export const DynamicCheckoutVaultPreview = () => {
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">Fluid Checkout Vault</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Interactive Payment Slider Pill</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Fluid Checkout Vault
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Interactive Payment Slider Pill
+          </p>
         </div>
-        <span className="text-xs font-bold text-[var(--patiya-color-primary)] font-mono">$89.00 / mo</span>
+        <span className="text-xs font-bold text-[var(--patiya-color-primary)] font-mono">
+          $89.00 / mo
+        </span>
       </div>
 
       <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
@@ -5583,8 +5605,14 @@ export const DynamicCheckoutVaultPreview = () => {
                   transition={{ type: "spring", stiffness: 450, damping: 30 }}
                 />
               )}
-              <span className={`relative z-10 ${method === m ? "text-[var(--patiya-color-primary)] font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}>
-                {m === "card" ? "Credit Card" : m === "apple" ? "Apple Pay" : "USDC Crypto"}
+              <span
+                className={`relative z-10 ${method === m ? "text-[var(--patiya-color-primary)] font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}
+              >
+                {m === "card"
+                  ? "Credit Card"
+                  : m === "apple"
+                    ? "Apple Pay"
+                    : "USDC Crypto"}
               </span>
             </button>
           ))}
@@ -5596,11 +5624,17 @@ export const DynamicCheckoutVaultPreview = () => {
               VISA
             </div>
             <div>
-              <p className="font-bold text-[var(--patiya-color-foreground)]">•••• 4242</p>
-              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)]">Exp: 08/28</p>
+              <p className="font-bold text-[var(--patiya-color-foreground)]">
+                •••• 4242
+              </p>
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)]">
+                Exp: 08/28
+              </p>
             </div>
           </div>
-          <span className="text-[10px] text-emerald-500 font-bold">Default</span>
+          <span className="text-[10px] text-emerald-500 font-bold">
+            Default
+          </span>
         </div>
 
         <div className="relative h-12 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center px-1 overflow-hidden">
@@ -5612,7 +5646,10 @@ export const DynamicCheckoutVaultPreview = () => {
                 className="w-full flex items-center justify-center gap-2 text-xs font-bold text-emerald-500"
               >
                 <span>✓ Payment Dispatched</span>
-                <button onClick={reset} className="underline text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                <button
+                  onClick={reset}
+                  className="underline text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]"
+                >
                   Reset
                 </button>
               </motion.div>
@@ -5645,14 +5682,28 @@ export const DynamicCheckoutVaultPreview = () => {
 };
 
 export const CollaborationPresenceBarPreview = () => {
-  const [reactions, setReactions] = useState<{ id: number; emoji: string }[]>([]);
+  const [reactions, setReactions] = useState<{ id: number; emoji: string }[]>(
+    [],
+  );
   const [micActive, setMicActive] = useState(false);
   const [selectedUser, setSelectedUser] = useState("Elena");
 
   const users = [
-    { name: "Elena", color: "from-purple-500 to-indigo-500", status: "Editing Navbar" },
-    { name: "Marcus", color: "from-emerald-500 to-teal-500", status: "Reviewing Tokens" },
-    { name: "Sara", color: "from-amber-500 to-rose-500", status: "Viewing Metrics" },
+    {
+      name: "Elena",
+      color: "from-purple-500 to-indigo-500",
+      status: "Editing Navbar",
+    },
+    {
+      name: "Marcus",
+      color: "from-emerald-500 to-teal-500",
+      status: "Reviewing Tokens",
+    },
+    {
+      name: "Sara",
+      color: "from-amber-500 to-rose-500",
+      status: "Viewing Metrics",
+    },
   ];
 
   const triggerReaction = (emoji: string) => {
@@ -5667,8 +5718,12 @@ export const CollaborationPresenceBarPreview = () => {
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">Live Presence & Co-Pilot</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Multi-User Active Session Bar</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Live Presence & Co-Pilot
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Multi-User Active Session Bar
+          </p>
         </div>
         <span className="text-[10px] font-mono font-bold text-emerald-500 flex items-center gap-1">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -5685,7 +5740,9 @@ export const CollaborationPresenceBarPreview = () => {
                 whileHover={{ scale: 1.15, zIndex: 10 }}
                 onClick={() => setSelectedUser(u.name)}
                 className={`relative w-8 h-8 rounded-full border-2 border-[var(--patiya-color-background)] bg-gradient-to-tr ${u.color} text-white font-bold text-xs flex items-center justify-center shadow-sm ${
-                  selectedUser === u.name ? "ring-2 ring-[var(--patiya-color-primary)]" : ""
+                  selectedUser === u.name
+                    ? "ring-2 ring-[var(--patiya-color-primary)]"
+                    : ""
                 }`}
               >
                 {u.name[0]}
@@ -5709,7 +5766,9 @@ export const CollaborationPresenceBarPreview = () => {
 
         <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between text-xs">
           <div>
-            <span className="font-bold text-[var(--patiya-color-foreground)]">{selectedUser}</span>
+            <span className="font-bold text-[var(--patiya-color-foreground)]">
+              {selectedUser}
+            </span>
             <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
               {users.find((u) => u.name === selectedUser)?.status}
             </p>
@@ -5720,7 +5779,9 @@ export const CollaborationPresenceBarPreview = () => {
         </div>
 
         <div className="flex items-center justify-between pt-1">
-          <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Send Live Reaction:</span>
+          <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Send Live Reaction:
+          </span>
           <div className="flex gap-1.5">
             {["🔥", "❤️", "🚀", "🎉"].map((emoji) => (
               <motion.button
@@ -5740,7 +5801,11 @@ export const CollaborationPresenceBarPreview = () => {
             {reactions.map((r) => (
               <motion.div
                 key={r.id}
-                initial={{ opacity: 1, y: 120, x: 260 + (Math.random() * 40 - 20) }}
+                initial={{
+                  opacity: 1,
+                  y: 120,
+                  x: 260 + (Math.random() * 40 - 20),
+                }}
                 animate={{ opacity: 0, y: 20 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
@@ -5762,16 +5827,42 @@ export const SmartCommandPalettePreview = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   const commands = [
-    { id: "1", title: "Create new React component", cat: "Actions", shortcut: "⌘N" },
-    { id: "2", title: "Deploy to Production Edge", cat: "Actions", shortcut: "⌘D" },
-    { id: "3", title: "Billing & Invoices Documentation", cat: "Docs", shortcut: "G B" },
-    { id: "4", title: "API Authentication Tokens", cat: "Docs", shortcut: "G A" },
-    { id: "5", title: "Invite team member to workspace", cat: "Users", shortcut: "⌘I" },
+    {
+      id: "1",
+      title: "Create new React component",
+      cat: "Actions",
+      shortcut: "⌘N",
+    },
+    {
+      id: "2",
+      title: "Deploy to Production Edge",
+      cat: "Actions",
+      shortcut: "⌘D",
+    },
+    {
+      id: "3",
+      title: "Billing & Invoices Documentation",
+      cat: "Docs",
+      shortcut: "G B",
+    },
+    {
+      id: "4",
+      title: "API Authentication Tokens",
+      cat: "Docs",
+      shortcut: "G A",
+    },
+    {
+      id: "5",
+      title: "Invite team member to workspace",
+      cat: "Users",
+      shortcut: "⌘I",
+    },
   ];
 
   const filtered = commands.filter((c) => {
     const matchCat = filter === "All" || c.cat === filter;
-    const matchQuery = !query || c.title.toLowerCase().includes(query.toLowerCase());
+    const matchQuery =
+      !query || c.title.toLowerCase().includes(query.toLowerCase());
     return matchCat && matchQuery;
   });
 
@@ -5779,8 +5870,12 @@ export const SmartCommandPalettePreview = () => {
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">Command & Action Palette</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Fuzzy Filter & Hotkey Surface</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Command & Action Palette
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Fuzzy Filter & Hotkey Surface
+          </p>
         </div>
         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
           ⌘K
@@ -5849,8 +5944,12 @@ export const SmartCommandPalettePreview = () => {
 };
 
 export const InteractiveKanbanPillPreview = () => {
-  const [priority, setPriority] = useState<"Urgent" | "High" | "Normal">("High");
-  const [status, setStatus] = useState<"Backlog" | "In Progress" | "Done">("In Progress");
+  const [priority, setPriority] = useState<"Urgent" | "High" | "Normal">(
+    "High",
+  );
+  const [status, setStatus] = useState<"Backlog" | "In Progress" | "Done">(
+    "In Progress",
+  );
   const [subtasks, setSubtasks] = useState([
     { id: 1, text: "Write Unit Test Suite", done: true },
     { id: 2, text: "Verify Mobile Breakpoints", done: false },
@@ -5858,7 +5957,9 @@ export const InteractiveKanbanPillPreview = () => {
   ]);
 
   const toggleSubtask = (id: number) => {
-    setSubtasks((prev) => prev.map((s) => (s.id === id ? { ...s, done: !s.done } : s)));
+    setSubtasks((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, done: !s.done } : s)),
+    );
   };
 
   const nextStatus = () => {
@@ -5871,10 +5972,16 @@ export const InteractiveKanbanPillPreview = () => {
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">Interactive Issue Card</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Linear-Grade Task Workflow Pill</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Interactive Issue Card
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Linear-Grade Task Workflow Pill
+          </p>
         </div>
-        <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-muted-foreground)]">ENG-409</span>
+        <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-muted-foreground)]">
+          ENG-409
+        </span>
       </div>
 
       <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
@@ -5885,8 +5992,8 @@ export const InteractiveKanbanPillPreview = () => {
               status === "Done"
                 ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-500"
                 : status === "In Progress"
-                ? "border-amber-500/40 bg-amber-500/10 text-amber-500"
-                : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-[var(--patiya-color-muted-foreground)]"
+                  ? "border-amber-500/40 bg-amber-500/10 text-amber-500"
+                  : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-[var(--patiya-color-muted-foreground)]"
             }`}
           >
             ● {status}
@@ -5922,10 +6029,18 @@ export const InteractiveKanbanPillPreview = () => {
               onClick={() => toggleSubtask(st.id)}
               className="p-2 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between text-xs cursor-pointer"
             >
-              <span className={st.done ? "line-through text-[var(--patiya-color-muted-foreground)]" : "font-medium text-[var(--patiya-color-foreground)]"}>
+              <span
+                className={
+                  st.done
+                    ? "line-through text-[var(--patiya-color-muted-foreground)]"
+                    : "font-medium text-[var(--patiya-color-foreground)]"
+                }
+              >
                 {st.text}
               </span>
-              <span className={`font-mono text-xs ${st.done ? "text-emerald-500 font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}>
+              <span
+                className={`font-mono text-xs ${st.done ? "text-emerald-500 font-bold" : "text-[var(--patiya-color-muted-foreground)]"}`}
+              >
                 {st.done ? "✓" : "○"}
               </span>
             </motion.div>
@@ -5938,9 +6053,27 @@ export const InteractiveKanbanPillPreview = () => {
 
 export const FileStagingUploadTrayPreview = () => {
   const [files, setFiles] = useState([
-    { id: "1", name: "figma_tokens_export.json", size: "142 KB", progress: 100, status: "Done" },
-    { id: "2", name: "hero_scene_mesh.glb", size: "18.4 MB", progress: 68, status: "Uploading" },
-    { id: "3", name: "production_bundle.js", size: "840 KB", progress: 34, status: "Uploading" },
+    {
+      id: "1",
+      name: "figma_tokens_export.json",
+      size: "142 KB",
+      progress: 100,
+      status: "Done",
+    },
+    {
+      id: "2",
+      name: "hero_scene_mesh.glb",
+      size: "18.4 MB",
+      progress: 68,
+      status: "Uploading",
+    },
+    {
+      id: "3",
+      name: "production_bundle.js",
+      size: "840 KB",
+      progress: 34,
+      status: "Uploading",
+    },
   ]);
 
   const removeFile = (id: string) => {
@@ -5948,18 +6081,25 @@ export const FileStagingUploadTrayPreview = () => {
   };
 
   const uploadAll = () => {
-    setFiles((prev) => prev.map((f) => ({ ...f, progress: 100, status: "Done" })));
+    setFiles((prev) =>
+      prev.map((f) => ({ ...f, progress: 100, status: "Done" })),
+    );
   };
 
   return (
     <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
         <div>
-          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">File Staging & Delivery Tray</h4>
-          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">Multi-Asset Pipeline Monitor</p>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            File Staging & Delivery Tray
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Multi-Asset Pipeline Monitor
+          </p>
         </div>
         <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-primary)]">
-          {files.filter((f) => f.status === "Done").length} / {files.length} Ready
+          {files.filter((f) => f.status === "Done").length} / {files.length}{" "}
+          Ready
         </span>
       </div>
 
@@ -5980,7 +6120,9 @@ export const FileStagingUploadTrayPreview = () => {
                     <span className="w-5 h-5 rounded bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)] flex items-center justify-center font-mono text-[10px] font-bold">
                       ⊞
                     </span>
-                    <span className="font-bold text-[var(--patiya-color-foreground)] truncate">{file.name}</span>
+                    <span className="font-bold text-[var(--patiya-color-foreground)] truncate">
+                      {file.name}
+                    </span>
                   </div>
                   <button
                     onClick={() => removeFile(file.id)}
@@ -5992,8 +6134,16 @@ export const FileStagingUploadTrayPreview = () => {
 
                 <div className="flex justify-between items-center text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
                   <span>{file.size}</span>
-                  <span className={file.status === "Done" ? "text-emerald-500 font-bold" : "text-[var(--patiya-color-primary)]"}>
-                    {file.status === "Done" ? "Uploaded ✓" : `${file.progress}%`}
+                  <span
+                    className={
+                      file.status === "Done"
+                        ? "text-emerald-500 font-bold"
+                        : "text-[var(--patiya-color-primary)]"
+                    }
+                  >
+                    {file.status === "Done"
+                      ? "Uploaded ✓"
+                      : `${file.progress}%`}
                   </span>
                 </div>
 
@@ -6085,7 +6235,7 @@ export const AuditLogInspectorPreview = () => {
   const [expandedId, setExpandedId] = useState<string | null>("ev-9104");
 
   const filteredLogs = logs.filter((item) =>
-    filter === "all" ? true : item.severity === filter
+    filter === "all" ? true : item.severity === filter,
   );
 
   const severityBadge = (sev: LogItem["severity"]) => {
@@ -6162,7 +6312,7 @@ export const AuditLogInspectorPreview = () => {
                   <div className="flex items-center gap-2 min-w-0">
                     <span
                       className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase border ${severityBadge(
-                        log.severity
+                        log.severity,
                       )}`}
                     >
                       {log.severity}
@@ -6222,7 +6372,14 @@ export const WorkspaceBillingMatrixPreview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const basePrice = plan === "team" ? (cycle === "annual" ? 18 : 24) : (cycle === "annual" ? 45 : 59);
+  const basePrice =
+    plan === "team"
+      ? cycle === "annual"
+        ? 18
+        : 24
+      : cycle === "annual"
+        ? 45
+        : 59;
   const monthlyTotal = seats * basePrice;
 
   const handleUpgrade = () => {
@@ -6279,8 +6436,18 @@ export const WorkspaceBillingMatrixPreview = () => {
 
       <div className="grid grid-cols-2 gap-2">
         {[
-          { id: "team", title: "Team Pro", desc: "Collaborative squads", rate: cycle === "annual" ? "$18" : "$24" },
-          { id: "enterprise", title: "Enterprise", desc: "SSO, custom SLA & audit", rate: cycle === "annual" ? "$45" : "$59" },
+          {
+            id: "team",
+            title: "Team Pro",
+            desc: "Collaborative squads",
+            rate: cycle === "annual" ? "$18" : "$24",
+          },
+          {
+            id: "enterprise",
+            title: "Enterprise",
+            desc: "SSO, custom SLA & audit",
+            rate: cycle === "annual" ? "$45" : "$59",
+          },
         ].map((item) => {
           const selected = plan === item.id;
           return (
@@ -6295,10 +6462,16 @@ export const WorkspaceBillingMatrixPreview = () => {
               }`}
             >
               <div className="flex justify-between items-baseline">
-                <span className="text-xs font-bold text-[var(--patiya-color-foreground)]">{item.title}</span>
-                <span className="text-xs font-mono font-bold text-[var(--patiya-color-primary)]">{item.rate}</span>
+                <span className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+                  {item.title}
+                </span>
+                <span className="text-xs font-mono font-bold text-[var(--patiya-color-primary)]">
+                  {item.rate}
+                </span>
               </div>
-              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] mt-0.5 truncate">{item.desc}</p>
+              <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] mt-0.5 truncate">
+                {item.desc}
+              </p>
             </motion.button>
           );
         })}
@@ -6306,8 +6479,12 @@ export const WorkspaceBillingMatrixPreview = () => {
 
       <div className="space-y-1.5 p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]">
         <div className="flex justify-between text-xs font-semibold">
-          <span className="text-[var(--patiya-color-foreground)]">Seats ({seats})</span>
-          <span className="font-mono text-[var(--patiya-color-primary)]">${monthlyTotal}/mo</span>
+          <span className="text-[var(--patiya-color-foreground)]">
+            Seats ({seats})
+          </span>
+          <span className="font-mono text-[var(--patiya-color-primary)]">
+            ${monthlyTotal}/mo
+          </span>
         </div>
         <input
           type="range"
@@ -6339,7 +6516,9 @@ export const WorkspaceBillingMatrixPreview = () => {
         ) : isSuccess ? (
           <span>✓ Workspace Updated Successfully</span>
         ) : (
-          <span>Confirm {seats} Seats • ${monthlyTotal}/mo</span>
+          <span>
+            Confirm {seats} Seats • ${monthlyTotal}/mo
+          </span>
         )}
       </motion.button>
     </div>
@@ -6360,7 +6539,8 @@ export const NotificationInboxCenterPreview = () => {
     {
       id: "n-1",
       title: "@alex tagged you in PR #412",
-      description: "Added unit tests for token streaming decoder and gesture friction.",
+      description:
+        "Added unit tests for token streaming decoder and gesture friction.",
       time: "3m ago",
       category: "mentions",
       read: false,
@@ -6368,7 +6548,8 @@ export const NotificationInboxCenterPreview = () => {
     {
       id: "n-2",
       title: "Edge Node eu-west-1 scale event",
-      description: "Auto-scaled ingress from 4 to 12 micro-containers due to load peak.",
+      description:
+        "Auto-scaled ingress from 4 to 12 micro-containers due to load peak.",
       time: "18m ago",
       category: "system",
       read: false,
@@ -6376,7 +6557,8 @@ export const NotificationInboxCenterPreview = () => {
     {
       id: "n-3",
       title: "@sarah approved production release",
-      description: "Staging gate pipeline passed all 42 automated regression checks.",
+      description:
+        "Staging gate pipeline passed all 42 automated regression checks.",
       time: "1h ago",
       category: "mentions",
       read: true,
@@ -6389,7 +6571,7 @@ export const NotificationInboxCenterPreview = () => {
   const unreadCount = items.filter((n) => !n.read).length;
 
   const filtered = items.filter((item) =>
-    tab === "all" ? true : item.category === tab
+    tab === "all" ? true : item.category === tab,
   );
 
   const markAllRead = () => {
@@ -6461,7 +6643,9 @@ export const NotificationInboxCenterPreview = () => {
               exit={{ opacity: 0 }}
               className="py-10 text-center space-y-1.5"
             >
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">No notifications in {tab}</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                No notifications in {tab}
+              </p>
               <button
                 onClick={() => setItems(initialItems)}
                 className="text-[10px] text-[var(--patiya-color-primary)] font-semibold underline cursor-pointer"
@@ -6485,7 +6669,9 @@ export const NotificationInboxCenterPreview = () => {
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <p className={`text-xs truncate ${item.read ? "text-[var(--patiya-color-foreground)]" : "font-bold text-[var(--patiya-color-foreground)]"}`}>
+                    <p
+                      className={`text-xs truncate ${item.read ? "text-[var(--patiya-color-foreground)]" : "font-bold text-[var(--patiya-color-foreground)]"}`}
+                    >
                       {item.title}
                     </p>
                     <p className="text-[10px] text-[var(--patiya-color-muted-foreground)] mt-0.5 line-clamp-1">
@@ -6507,6 +6693,1373 @@ export const NotificationInboxCenterPreview = () => {
             ))
           )}
         </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+export const AgentVoiceOrbPreview = () => {
+  const [state, setState] = useState<"idle" | "listening" | "thinking" | "speaking">("speaking");
+  const [isMuted, setIsMuted] = useState(false);
+  const [gain, setGain] = useState(72);
+
+  const states = [
+    { id: "idle", label: "Idle" },
+    { id: "listening", label: "Listening" },
+    { id: "thinking", label: "Thinking" },
+    { id: "speaking", label: "Speaking" },
+  ] as const;
+
+  const barHeights = [
+    [15, 25, 40, 20, 60, 35, 50, 25, 45, 20, 30, 15],
+    [30, 50, 75, 45, 90, 65, 80, 50, 70, 40, 55, 30],
+    [20, 35, 45, 30, 50, 40, 45, 30, 40, 25, 35, 20],
+    [40, 70, 95, 60, 100, 80, 90, 65, 85, 50, 70, 35],
+  ];
+
+  const currentBars =
+    state === "idle"
+      ? barHeights[0]
+      : state === "listening"
+        ? barHeights[1]
+        : state === "thinking"
+          ? barHeights[2]
+          : barHeights[3];
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Multimodal Voice & Neural Orb
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Realtime Audio Spectrum & Agent Core
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>124ms edge</span>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
+        <div className="flex items-center justify-center p-1 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] gap-1">
+          {states.map((s) => {
+            const active = state === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setState(s.id)}
+                className="relative flex-1 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+              >
+                {active && (
+                  <motion.div
+                    layoutId="orb-mode-pill"
+                    className="absolute inset-0 rounded-lg bg-[var(--patiya-color-primary)]/15 border border-[var(--patiya-color-primary)]/30"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 capitalize ${
+                    active
+                      ? "text-[var(--patiya-color-primary)]"
+                      : "text-[var(--patiya-color-muted-foreground)]"
+                  }`}
+                >
+                  {s.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="relative h-44 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/70 overflow-hidden flex flex-col items-center justify-center">
+          <div className="absolute inset-0 bg-radial from-[var(--patiya-color-primary)]/10 via-transparent to-transparent pointer-events-none" />
+
+          <div className="relative flex items-center justify-center">
+            <motion.div
+              animate={{
+                scale: isMuted
+                  ? 0.8
+                  : state === "speaking"
+                    ? [1, 1.25, 1.05, 1.2, 1]
+                    : state === "listening"
+                      ? [1, 1.15, 1]
+                      : state === "thinking"
+                        ? [1, 1.08, 1]
+                        : [1, 1.04, 1],
+                rotate: state === "thinking" ? 360 : 0,
+              }}
+              transition={{
+                duration: state === "thinking" ? 3 : 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="w-20 h-20 rounded-full bg-gradient-to-tr from-[var(--patiya-color-primary)] via-indigo-500 to-cyan-400 blur-sm opacity-80"
+            />
+            <motion.div
+              animate={{
+                scale: isMuted ? 0.9 : state === "speaking" ? [0.95, 1.1, 0.95] : [1, 1.02, 1],
+              }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-14 h-14 rounded-full border border-white/40 bg-[var(--patiya-color-background)]/80 backdrop-blur-md flex items-center justify-center shadow-inner"
+            >
+              <span className="text-base font-bold">
+                {isMuted ? "🔇" : state === "speaking" ? "⚡" : state === "listening" ? "🎙️" : "✨"}
+              </span>
+            </motion.div>
+          </div>
+
+          <div className="absolute bottom-3 left-0 right-0 px-6 flex items-end justify-center gap-1.5 h-8">
+            {currentBars.map((h, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  height: isMuted ? 4 : `${Math.round(h * (gain / 100))}%`,
+                  opacity: isMuted ? 0.3 : 1,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 18,
+                  delay: i * 0.02,
+                }}
+                className="w-1.5 rounded-full bg-gradient-to-t from-[var(--patiya-color-primary)]/40 to-[var(--patiya-color-primary)]"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
+              isMuted
+                ? "border-red-500/40 bg-red-500/10 text-red-500"
+                : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-[var(--patiya-color-foreground)]"
+            }`}
+          >
+            <span>{isMuted ? "Unmute Mic" : "Mute Mic"}</span>
+          </button>
+
+          <div className="flex-1 flex items-center gap-2">
+            <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] shrink-0">
+              Gain: {gain}%
+            </span>
+            <input
+              type="range"
+              min="20"
+              max="100"
+              value={gain}
+              onChange={(e) => setGain(Number(e.target.value))}
+              className="w-full accent-[var(--patiya-color-primary)] h-1.5 bg-[var(--patiya-color-muted)] rounded-lg cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const AgenticFlowPipelinePreview = () => {
+  type Step = {
+    id: string;
+    title: string;
+    tool: string;
+    ms: number;
+    tokens: number;
+  };
+
+  const steps: Step[] = [
+    { id: "s-1", title: "Query Intent Parser", tool: "Semantics v2", ms: 42, tokens: 128 },
+    { id: "s-2", title: "Pinecone Context Recall", tool: "Dense Vector", ms: 96, tokens: 840 },
+    { id: "s-3", title: "Autonomous Tool Dispatch", tool: "GitHub Graph API", ms: 210, tokens: 460 },
+    { id: "s-4", title: "Output CoT Synthesis", tool: "DeepSeek R1", ms: 145, tokens: 1024 },
+  ];
+
+  const [activeStep, setActiveStep] = useState(2);
+  const [isRunning, setIsRunning] = useState(false);
+  const [selectedNode, setSelectedNode] = useState<Step | null>(steps[2]);
+
+  const handleRun = () => {
+    setIsRunning(true);
+    setActiveStep(0);
+    let cur = 0;
+    const interval = setInterval(() => {
+      cur += 1;
+      if (cur >= steps.length) {
+        clearInterval(interval);
+        setIsRunning(false);
+        setActiveStep(steps.length - 1);
+        setSelectedNode(steps[steps.length - 1]);
+      } else {
+        setActiveStep(cur);
+        setSelectedNode(steps[cur]);
+      }
+    }, 650);
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Agentic Execution Graph
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Autonomous Multi-Step Reasoning Pipeline
+          </p>
+        </div>
+        <motion.button
+          whileTap={{ scale: 0.92 }}
+          onClick={handleRun}
+          disabled={isRunning}
+          className="px-2.5 py-1 rounded-lg bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] text-[10px] font-bold flex items-center gap-1 cursor-pointer disabled:opacity-50"
+        >
+          {isRunning ? (
+            <motion.span
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 0.7, ease: "linear" }}
+              className="inline-block w-2.5 h-2.5 border-2 border-white border-t-transparent rounded-full"
+            />
+          ) : (
+            <span>▶ Run Flow</span>
+          )}
+        </motion.button>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
+        <div className="space-y-2">
+          {steps.map((st, idx) => {
+            const isDone = idx < activeStep || (!isRunning && activeStep === steps.length - 1);
+            const isCurrent = idx === activeStep && isRunning;
+            const isSelected = selectedNode?.id === st.id;
+
+            return (
+              <motion.div
+                key={st.id}
+                layout
+                onClick={() => setSelectedNode(st)}
+                whileHover={{ x: 2 }}
+                className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
+                  isSelected
+                    ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-background)] ring-1 ring-[var(--patiya-color-primary)]/40"
+                    : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60"
+                }`}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div
+                    className={`w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-mono font-bold shrink-0 transition-colors ${
+                      isDone
+                        ? "bg-emerald-500/20 text-emerald-500 border border-emerald-500/40"
+                        : isCurrent
+                          ? "bg-[var(--patiya-color-primary)]/20 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/40 animate-pulse"
+                          : "bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]"
+                    }`}
+                  >
+                    {isDone ? "✓" : idx + 1}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-[var(--patiya-color-foreground)] truncate">
+                      {st.title}
+                    </p>
+                    <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                      {st.tool}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-right shrink-0">
+                  <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-foreground)] block">
+                    {st.ms}ms
+                  </span>
+                  <span className="text-[9px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                    {st.tokens} tok
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <AnimatePresence mode="wait">
+          {selectedNode && (
+            <motion.div
+              key={selectedNode.id}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-1.5"
+            >
+              <div className="flex items-center justify-between text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                <span>INSPECT NODE: {selectedNode.id}</span>
+                <span className="text-emerald-500 font-bold">STATUS: READY</span>
+              </div>
+              <p className="text-xs font-mono text-[var(--patiya-color-foreground)]">
+                payload: &#123; engine: &quot;{selectedNode.tool}&quot;, latency: &quot;{selectedNode.ms}ms&quot;, tokens: {selectedNode.tokens} &#125;
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+export const SemanticPatchReviewerPreview = () => {
+  type DiffLine = {
+    id: string;
+    type: "delete" | "add";
+    code: string;
+    status: "pending" | "accepted" | "rejected";
+  };
+
+  const initialDiff: DiffLine[] = [
+    { id: "d-1", type: "delete", code: "- const token = await syncStorage.get('auth');", status: "pending" },
+    { id: "d-2", type: "add", code: "+ const { token } = await agentSession.useToken();", status: "pending" },
+    { id: "d-3", type: "delete", code: "- return streamHandler(token, { retry: 3 });", status: "pending" },
+    { id: "d-4", type: "add", code: "+ return streamHandler(token, { fallback: 'local-llm' });", status: "pending" },
+  ];
+
+  const [lines, setLines] = useState<DiffLine[]>(initialDiff);
+  const [viewMode, setViewMode] = useState<"unified" | "split">("unified");
+
+  const handleAction = (id: string, status: "accepted" | "rejected") => {
+    setLines((prev) => prev.map((l) => (l.id === id ? { ...l, status } : l)));
+  };
+
+  const acceptAll = () => {
+    setLines((prev) => prev.map((l) => ({ ...l, status: "accepted" })));
+  };
+
+  const resetAll = () => {
+    setLines(initialDiff);
+  };
+
+  const pendingCount = lines.filter((l) => l.status === "pending").length;
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            AI Semantic Diff & Patch Lens
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Agentic Code Mutation Reviewer
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
+          <span>98.6% Confidence</span>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-mono text-[11px] text-[var(--patiya-color-foreground)] font-bold truncate">
+            src/hooks/use-agent-stream.ts
+          </span>
+          <div className="flex items-center p-0.5 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/50 shrink-0">
+            {(["unified", "split"] as const).map((m) => (
+              <button
+                key={m}
+                onClick={() => setViewMode(m)}
+                className={`relative px-2 py-0.5 text-[10px] font-semibold capitalize rounded-md transition-colors cursor-pointer ${
+                  viewMode === m
+                    ? "text-[var(--patiya-color-foreground)] bg-[var(--patiya-color-background)] shadow-xs"
+                    : "text-[var(--patiya-color-muted-foreground)]"
+                }`}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-1.5 font-mono text-[11px] overflow-hidden rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] p-2">
+          {lines.map((l) => {
+            const isAdd = l.type === "add";
+            return (
+              <motion.div
+                key={l.id}
+                layout
+                className={`p-1.5 rounded-lg flex items-center justify-between gap-2 transition-all ${
+                  l.status === "accepted"
+                    ? "opacity-40 line-through"
+                    : l.status === "rejected"
+                      ? "opacity-30 grayscale"
+                      : isAdd
+                        ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
+                        : "bg-rose-500/10 text-rose-500 border border-rose-500/20"
+                }`}
+              >
+                <span className="truncate">{l.code}</span>
+                <div className="flex items-center gap-1 shrink-0">
+                  {l.status === "pending" ? (
+                    <>
+                      <button
+                        onClick={() => handleAction(l.id, "accepted")}
+                        className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500 hover:text-white transition-colors flex items-center justify-center text-[10px] cursor-pointer"
+                        title="Accept"
+                      >
+                        ✓
+                      </button>
+                      <button
+                        onClick={() => handleAction(l.id, "rejected")}
+                        className="w-5 h-5 rounded bg-rose-500/20 text-rose-500 hover:bg-rose-500 hover:text-white transition-colors flex items-center justify-center text-[10px] cursor-pointer"
+                        title="Reject"
+                      >
+                        ✕
+                      </button>
+                    </>
+                  ) : (
+                    <span className="text-[10px] font-bold uppercase">
+                      {l.status}
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center justify-between pt-1">
+          <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            {pendingCount} pending decisions
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={resetAll}
+              className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] underline cursor-pointer"
+            >
+              Reset
+            </button>
+            <motion.button
+              whileTap={{ scale: 0.94 }}
+              onClick={acceptAll}
+              disabled={pendingCount === 0}
+              className="px-2.5 py-1 rounded-lg bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] text-xs font-bold disabled:opacity-40 cursor-pointer"
+            >
+              Accept All
+            </motion.button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const NeuralVectorClusterPreview = () => {
+  type MemoryNode = {
+    id: string;
+    label: string;
+    score: number;
+    dim: string;
+    category: "Auth" | "Memory" | "Pipeline";
+  };
+
+  const initialNodes: MemoryNode[] = [
+    { id: "m-1", label: "JWT Session Claim", score: 0.94, dim: "1536-d", category: "Auth" },
+    { id: "m-2", label: "Workspace Access Policy", score: 0.89, dim: "1536-d", category: "Auth" },
+    { id: "m-3", label: "Recent User Prompt Cache", score: 0.82, dim: "3072-d", category: "Memory" },
+    { id: "m-4", label: "Tool Sandbox Container", score: 0.77, dim: "1536-d", category: "Pipeline" },
+    { id: "m-5", label: "Rate Limit Token Bucket", score: 0.69, dim: "768-d", category: "Pipeline" },
+  ];
+
+  const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState("m-1");
+  const [nodes] = useState(initialNodes);
+
+  const filtered = nodes.filter((n) =>
+    !query ? true : n.label.toLowerCase().includes(query.toLowerCase()),
+  );
+
+  const selectedNode = nodes.find((n) => n.id === selectedId) || nodes[0];
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Neural Vector Context Vault
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Embedding Semantic Distance Matrix
+          </p>
+        </div>
+        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
+          Cosine Sim
+        </span>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
+        <div className="relative">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Semantic query filter..."
+            className="w-full px-3 py-1.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-xs text-[var(--patiya-color-foreground)] placeholder:text-[var(--patiya-color-muted-foreground)] focus:outline-none focus:ring-1 focus:ring-[var(--patiya-color-primary)] font-mono"
+          />
+          {query && (
+            <button
+              onClick={() => setQuery("")}
+              className="absolute right-2.5 top-2 text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        <div className="space-y-1.5 min-h-[140px]">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((node) => {
+              const isSelected = node.id === selectedId;
+              return (
+                <motion.div
+                  key={node.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  onClick={() => setSelectedId(node.id)}
+                  whileHover={{ scale: 1.01 }}
+                  className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
+                    isSelected
+                      ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-background)] shadow-xs"
+                      : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span
+                      className={`w-2 h-2 rounded-full shrink-0 ${
+                        node.score > 0.85
+                          ? "bg-emerald-500"
+                          : node.score > 0.75
+                            ? "bg-amber-500"
+                            : "bg-blue-500"
+                      }`}
+                    />
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-[var(--patiya-color-foreground)] truncate">
+                        {node.label}
+                      </p>
+                      <p className="text-[9px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                        {node.category} • {node.dim}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className="w-16 h-1.5 bg-[var(--patiya-color-muted)] rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-[var(--patiya-color-primary)] rounded-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${node.score * 100}%` }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-primary)]">
+                      {node.score.toFixed(2)}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        <div className="p-2.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 flex items-center justify-between text-[10px] font-mono">
+          <span className="text-[var(--patiya-color-muted-foreground)]">
+            Active: <strong className="text-[var(--patiya-color-foreground)]">{selectedNode.label}</strong>
+          </span>
+          <span className="text-emerald-500 font-bold">
+            Sim {(selectedNode.score * 100).toFixed(0)}%
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ModelArenaBenchmarkPreview = () => {
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [progressA, setProgressA] = useState(100);
+  const [progressB, setProgressB] = useState(100);
+  const [winner, setWinner] = useState<"alpha" | "tie" | "beta" | null>("alpha");
+
+  const runRace = () => {
+    setIsStreaming(true);
+    setProgressA(0);
+    setProgressB(0);
+    setWinner(null);
+
+    let pA = 0;
+    let pB = 0;
+
+    const interval = setInterval(() => {
+      pA += Math.floor(Math.random() * 18) + 8;
+      pB += Math.floor(Math.random() * 14) + 6;
+
+      setProgressA(Math.min(100, pA));
+      setProgressB(Math.min(100, pB));
+
+      if (pA >= 100 && pB >= 100) {
+        clearInterval(interval);
+        setIsStreaming(false);
+        setWinner(pA >= pB ? "alpha" : "beta");
+      }
+    }, 120);
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Model Arena & Inference Gauge
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Side-by-Side Dual Engine Velocity
+          </p>
+        </div>
+        <motion.button
+          whileTap={{ scale: 0.92 }}
+          onClick={runRace}
+          disabled={isStreaming}
+          className="px-2.5 py-1 rounded-lg bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] text-[10px] font-bold cursor-pointer disabled:opacity-50"
+        >
+          {isStreaming ? "Streaming..." : "⚡ Race Models"}
+        </motion.button>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
+        <div className="space-y-3">
+          <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold text-[var(--patiya-color-foreground)]">
+                Model Alpha (Reasoning 32B)
+              </span>
+              <span className="font-mono text-[10px] text-emerald-500 font-bold">
+                84 tok/s • 118ms TTFT
+              </span>
+            </div>
+            <div className="w-full h-2 rounded-full bg-[var(--patiya-color-muted)] overflow-hidden">
+              <motion.div
+                className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full"
+                animate={{ width: `${progressA}%` }}
+                transition={{ duration: 0.1 }}
+              />
+            </div>
+          </div>
+
+          <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold text-[var(--patiya-color-foreground)]">
+                Model Beta (Flash 8B)
+              </span>
+              <span className="font-mono text-[10px] text-amber-500 font-bold">
+                62 tok/s • 176ms TTFT
+              </span>
+            </div>
+            <div className="w-full h-2 rounded-full bg-[var(--patiya-color-muted)] overflow-hidden">
+              <motion.div
+                className="h-full bg-gradient-to-r from-amber-500 to-rose-400 rounded-full"
+                animate={{ width: `${progressB}%` }}
+                transition={{ duration: 0.1 }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-1">
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] mb-2">
+            Vote Output Quality:
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {(
+              [
+                { id: "alpha", label: "Alpha Wins" },
+                { id: "tie", label: "Tie" },
+                { id: "beta", label: "Beta Wins" },
+              ] as const
+            ).map((v) => {
+              const selected = winner === v.id;
+              return (
+                <button
+                  key={v.id}
+                  onClick={() => setWinner(v.id)}
+                  className={`py-1.5 rounded-xl border text-[11px] font-semibold transition-all cursor-pointer ${
+                    selected
+                      ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)] shadow-xs"
+                      : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
+                  }`}
+                >
+                  {v.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const BiometricPasskeyVaultPreview = () => {
+  const [authStatus, setAuthStatus] = useState<"idle" | "scanning" | "verified" | "failed">("idle");
+  const [credentialType, setCredentialType] = useState<"passkey" | "fido2" | "yubikey">("passkey");
+
+  const startScan = () => {
+    if (authStatus === "scanning") return;
+    setAuthStatus("scanning");
+    setTimeout(() => {
+      setAuthStatus("verified");
+    }, 1400);
+  };
+
+  const reset = () => {
+    setAuthStatus("idle");
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Passkey & Biometric Scanner
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            FIDO2 WebAuthn Hardware Authenticator
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>FIPS 140-3</span>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
+        <div className="flex items-center justify-center p-1 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] gap-1">
+          {(["passkey", "fido2", "yubikey"] as const).map((t) => {
+            const active = credentialType === t;
+            return (
+              <button
+                key={t}
+                onClick={() => setCredentialType(t)}
+                className="relative flex-1 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer capitalize"
+              >
+                {active && (
+                  <motion.div
+                    layoutId="cred-type-pill"
+                    className="absolute inset-0 rounded-lg bg-[var(--patiya-color-primary)]/15 border border-[var(--patiya-color-primary)]/30"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 ${
+                    active
+                      ? "text-[var(--patiya-color-primary)]"
+                      : "text-[var(--patiya-color-muted-foreground)]"
+                  }`}
+                >
+                  {t}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="relative h-44 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/70 overflow-hidden flex flex-col items-center justify-center">
+          <div className="relative w-20 h-20 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] flex items-center justify-center overflow-hidden">
+            <svg
+              className={`w-12 h-12 transition-colors duration-300 ${
+                authStatus === "verified"
+                  ? "text-emerald-500"
+                  : authStatus === "scanning"
+                    ? "text-[var(--patiya-color-primary)]"
+                    : "text-[var(--patiya-color-muted-foreground)]"
+              }`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
+              <path d="M14 13.12c0 2.38 0 6.38-1 8.88" />
+              <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" />
+              <path d="M2 12a10 10 0 0 1 18-6" />
+              <path d="M2 16h.01" />
+              <path d="M21.8 16c.2-2 .131-5.354 0-6" />
+              <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2" />
+              <path d="M8.65 22c.21-.66.45-1.32.57-2" />
+              <path d="M9 6.8a6 6 0 0 1 9 5.2v2" />
+            </svg>
+
+            {authStatus === "scanning" && (
+              <motion.div
+                initial={{ top: "0%" }}
+                animate={{ top: ["0%", "95%", "0%"] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute left-0 right-0 h-0.5 bg-[var(--patiya-color-primary)] shadow-[0_0_8px_var(--patiya-color-primary)]"
+              />
+            )}
+
+            {authStatus === "verified" && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="absolute inset-0 bg-emerald-500/15 flex items-center justify-center backdrop-blur-xs"
+              >
+                <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">
+                  ✓
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          <p className="mt-3 text-xs font-mono font-bold text-[var(--patiya-color-foreground)]">
+            {authStatus === "idle" && "Ready to Verify"}
+            {authStatus === "scanning" && "Validating Cryptographic Attestation..."}
+            {authStatus === "verified" && "✓ Hardware Key Attested & Bound"}
+          </p>
+
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] mt-0.5">
+            sha256: 4f8a...c92b • secp256r1
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          {authStatus === "verified" ? (
+            <button
+              onClick={reset}
+              className="w-full py-2 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-xs font-semibold cursor-pointer"
+            >
+              Reset Session
+            </button>
+          ) : (
+            <motion.button
+              whileTap={{ scale: 0.96 }}
+              onClick={startScan}
+              disabled={authStatus === "scanning"}
+              className="w-full py-2 rounded-xl bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+            >
+              {authStatus === "scanning" ? (
+                <>
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                    className="inline-block w-3 h-3 border-2 border-white border-t-transparent rounded-full"
+                  />
+                  <span>Verifying Token...</span>
+                </>
+              ) : (
+                <span>⚡ Touch Biometric Sensor</span>
+              )}
+            </motion.button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const TotpAuthenticatorRingPreview = () => {
+  type Account = {
+    id: string;
+    name: string;
+    issuer: string;
+    token: string;
+  };
+
+  const accounts: Account[] = [
+    { id: "1", name: "dev-cluster@github.com", issuer: "GitHub", token: "849 201" },
+    { id: "2", name: "root@aws-production", issuer: "AWS IAM", token: "412 995" },
+    { id: "3", name: "sre-ops@cloudflare", issuer: "Cloudflare", token: "603 148" },
+  ];
+
+  const [activeAccount, setActiveAccount] = useState(accounts[0]);
+  const [seconds, setSeconds] = useState(24);
+  const [copied, setCopied] = useState(false);
+
+  const radius = 16;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (seconds / 30) * circumference;
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Radial TOTP Authenticator
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Time-Decay Multi-Factor Security Ring
+          </p>
+        </div>
+        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
+          RFC 6238
+        </span>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-4">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]">
+          {accounts.map((acc) => {
+            const active = activeAccount.id === acc.id;
+            return (
+              <button
+                key={acc.id}
+                onClick={() => setActiveAccount(acc)}
+                className="relative flex-1 py-1 text-xs font-semibold rounded-lg transition-colors cursor-pointer truncate"
+              >
+                {active && (
+                  <motion.div
+                    layoutId="totp-acc-pill"
+                    className="absolute inset-0 rounded-lg bg-[var(--patiya-color-primary)]/15 border border-[var(--patiya-color-primary)]/30"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 ${
+                    active
+                      ? "text-[var(--patiya-color-primary)]"
+                      : "text-[var(--patiya-color-muted-foreground)]"
+                  }`}
+                >
+                  {acc.issuer}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="p-4 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <span className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] block truncate">
+              {activeAccount.name}
+            </span>
+            <span className="text-2xl sm:text-3xl font-mono font-extrabold tracking-widest text-[var(--patiya-color-foreground)] block mt-0.5">
+              {activeAccount.token}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="relative w-10 h-10 flex items-center justify-center">
+              <svg className="w-10 h-10 -rotate-90" viewBox="0 0 40 40">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r={radius}
+                  className="stroke-[var(--patiya-color-muted)]"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <circle
+                  cx="20"
+                  cy="20"
+                  r={radius}
+                  className="stroke-[var(--patiya-color-primary)] transition-all duration-300"
+                  strokeWidth="3"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  fill="none"
+                />
+              </svg>
+              <span className="absolute text-[10px] font-mono font-bold text-[var(--patiya-color-foreground)]">
+                {seconds}s
+              </span>
+            </div>
+
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={handleCopy}
+              className="p-2 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] hover:text-[var(--patiya-color-primary)] text-xs cursor-pointer"
+              title="Copy Token"
+            >
+              {copied ? "✓" : "📋"}
+            </motion.button>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] pt-0.5">
+          <span>HMAC-SHA1 Algorithm</span>
+          <button
+            onClick={() => setSeconds((s) => (s <= 5 ? 30 : s - 5))}
+            className="hover:text-[var(--patiya-color-foreground)] underline cursor-pointer"
+          >
+            Advance Decay ↻
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const CryptographicKeyVaultPreview = () => {
+  type KeySpec = {
+    id: string;
+    algorithm: string;
+    fingerprint: string;
+    entropy: string;
+    status: "active" | "rotated" | "shredded";
+  };
+
+  const [activeSpec, setActiveSpec] = useState<KeySpec>({
+    id: "kms_live_890af2",
+    algorithm: "AES-256-GCM",
+    fingerprint: "e3:b0:c4:42:98:fc:1c:14",
+    entropy: "256.0 bits",
+    status: "active",
+  });
+  const [isRotating, setIsRotating] = useState(false);
+
+  const rotateKey = () => {
+    setIsRotating(true);
+    setTimeout(() => {
+      const hex = Array.from({ length: 6 }, () =>
+        Math.floor(Math.random() * 16).toString(16),
+      ).join("");
+      setActiveSpec({
+        id: `kms_live_${hex}`,
+        algorithm: activeSpec.algorithm,
+        fingerprint: `${hex.slice(0, 2)}:${hex.slice(2, 4)}:${hex.slice(4, 6)}:c4:98:fc`,
+        entropy: "256.0 bits",
+        status: "active",
+      });
+      setIsRotating(false);
+    }, 700);
+  };
+
+  const shredKey = () => {
+    setActiveSpec((prev) => ({ ...prev, status: "shredded" }));
+  };
+
+  const restoreKey = () => {
+    setActiveSpec({
+      id: "kms_live_890af2",
+      algorithm: "AES-256-GCM",
+      fingerprint: "e3:b0:c4:42:98:fc:1c:14",
+      entropy: "256.0 bits",
+      status: "active",
+    });
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Cryptographic Key Rotator & Vault
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Hardware Security Module Key Lifecycle
+          </p>
+        </div>
+        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)]">
+          HSM Level 3
+        </span>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
+        <div className="p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+              {activeSpec.algorithm}
+            </span>
+            <span
+              className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded uppercase ${
+                activeSpec.status === "active"
+                  ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
+                  : "bg-red-500/10 text-red-500 border border-red-500/20"
+              }`}
+            >
+              {activeSpec.status}
+            </span>
+          </div>
+
+          <div className="space-y-1 font-mono text-[10px]">
+            <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
+              <span>KEY ID:</span>
+              <span className="text-[var(--patiya-color-foreground)] font-bold">{activeSpec.id}</span>
+            </div>
+            <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
+              <span>FINGERPRINT:</span>
+              <span className="text-[var(--patiya-color-foreground)]">{activeSpec.fingerprint}</span>
+            </div>
+            <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
+              <span>ENTROPY POOL:</span>
+              <span className="text-emerald-500 font-bold">{activeSpec.entropy}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 pt-1">
+          <motion.button
+            whileTap={{ scale: 0.94 }}
+            onClick={rotateKey}
+            disabled={isRotating || activeSpec.status === "shredded"}
+            className="py-1.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-40"
+          >
+            {isRotating ? (
+              <motion.span
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 0.7, ease: "linear" }}
+                className="inline-block w-3 h-3 border-2 border-[var(--patiya-color-foreground)] border-t-transparent rounded-full"
+              />
+            ) : (
+              <span>↻ Rotate Key</span>
+            )}
+          </motion.button>
+
+          {activeSpec.status === "shredded" ? (
+            <button
+              onClick={restoreKey}
+              className="py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-xs font-semibold cursor-pointer"
+            >
+              Restore Key
+            </button>
+          ) : (
+            <motion.button
+              whileTap={{ scale: 0.94 }}
+              onClick={shredKey}
+              className="py-1.5 rounded-xl border border-red-500/30 bg-red-500/10 text-red-500 text-xs font-semibold cursor-pointer"
+            >
+              ⚠️ Shred Key
+            </motion.button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ZeroTrustAccessRadarPreview = () => {
+  type SessionNode = {
+    id: string;
+    city: string;
+    device: string;
+    ip: string;
+    active: boolean;
+  };
+
+  const initialSessions: SessionNode[] = [
+    { id: "s-1", city: "San Francisco, US", device: "MacBook Pro M3", ip: "198.51.100.4", active: true },
+    { id: "s-2", city: "Tokyo, JP", device: "iPhone 16 Pro", ip: "203.0.113.19", active: true },
+    { id: "s-3", city: "Frankfurt, DE", device: "Linux Node v2", ip: "192.0.2.82", active: true },
+  ];
+
+  const [sessions, setSessions] = useState(initialSessions);
+  const [selectedSession, setSelectedSession] = useState(sessions[0]);
+
+  const revoke = (id: string) => {
+    setSessions((prev) => prev.filter((s) => s.id !== id));
+    if (selectedSession.id === id) {
+      setSelectedSession(sessions.find((s) => s.id !== id) || sessions[0]);
+    }
+  };
+
+  const resetSessions = () => {
+    setSessions(initialSessions);
+    setSelectedSession(initialSessions[0]);
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Zero-Trust Session Radar
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Realtime Perimeter Threat & Device Graph
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+          <span>0.02 Low Risk</span>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
+        <div className="relative h-36 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 flex items-center justify-center overflow-hidden">
+          <div className="absolute w-28 h-28 rounded-full border border-[var(--patiya-color-border)]/60" />
+          <div className="absolute w-20 h-20 rounded-full border border-[var(--patiya-color-border)]/40" />
+          <div className="absolute w-12 h-12 rounded-full border border-[var(--patiya-color-border)]/30" />
+
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div className="w-1/2 h-0.5 bg-gradient-to-r from-transparent to-[var(--patiya-color-primary)] origin-right" />
+          </motion.div>
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="w-2.5 h-2.5 rounded-full bg-[var(--patiya-color-primary)] ring-4 ring-[var(--patiya-color-primary)]/20" />
+          </div>
+
+          <div className="absolute top-3 left-4 text-[9px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            NODES ACTIVE: {sessions.length}
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <AnimatePresence mode="popLayout">
+            {sessions.map((sess) => (
+              <motion.div
+                key={sess.id}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, x: -20 }}
+                onClick={() => setSelectedSession(sess)}
+                className={`p-2 rounded-xl border flex items-center justify-between text-xs cursor-pointer ${
+                  selectedSession.id === sess.id
+                    ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-background)] shadow-xs"
+                    : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/60"
+                }`}
+              >
+                <div className="min-w-0">
+                  <p className="font-bold text-[var(--patiya-color-foreground)] truncate">
+                    {sess.city}
+                  </p>
+                  <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)] truncate">
+                    {sess.device} • {sess.ip}
+                  </p>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    revoke(sess.id);
+                  }}
+                  className="px-2 py-0.5 rounded text-[10px] font-mono text-red-500 hover:bg-red-500/10 cursor-pointer shrink-0"
+                >
+                  Revoke
+                </button>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {sessions.length === 0 && (
+            <div className="py-6 text-center space-y-1">
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">All sessions revoked</p>
+              <button
+                onClick={resetSessions}
+                className="text-[10px] font-mono text-[var(--patiya-color-primary)] underline cursor-pointer"
+              >
+                Reset sessions
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const StealthSecretMaskerPreview = () => {
+  type SecretItem = {
+    key: string;
+    value: string;
+    revealed: boolean;
+  };
+
+  const initialSecrets: SecretItem[] = [
+    { key: "DATABASE_URL", value: "postgresql://usr:k89x2@edge-pg.internal:5432/db", revealed: false },
+    { key: "STRIPE_SECRET_KEY", value: "sk_live_51N8xZ9021qLk9912", revealed: false },
+    { key: "JWT_HMAC_SECRET", value: "x9f2_auth_sig_88920194bc0281", revealed: false },
+  ];
+
+  const [secrets, setSecrets] = useState(initialSecrets);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const toggleReveal = (key: string) => {
+    setSecrets((prev) =>
+      prev.map((s) => (s.key === key ? { ...s, revealed: !s.revealed } : s)),
+    );
+  };
+
+  const copyVal = (s: SecretItem) => {
+    setCopiedKey(s.key);
+    setTimeout(() => setCopiedKey(null), 1500);
+  };
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md mx-auto select-none space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div>
+          <h4 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Stealth Secret Masker
+          </h4>
+          <p className="text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
+            Zero-Leak Environment Variable Vault
+          </p>
+        </div>
+        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--patiya-color-muted)] text-[var(--patiya-color-muted-foreground)]">
+          Auto-Mask
+        </span>
+      </div>
+
+      <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-2.5">
+        {secrets.map((s) => (
+          <div
+            key={s.key}
+            className="p-2.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-1.5"
+          >
+            <div className="flex items-center justify-between text-[11px] font-mono">
+              <span className="font-bold text-[var(--patiya-color-foreground)]">{s.key}</span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => toggleReveal(s.key)}
+                  className="px-1.5 py-0.5 rounded text-[10px] text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)] cursor-pointer"
+                >
+                  {s.revealed ? "Hide" : "Reveal"}
+                </button>
+                <button
+                  onClick={() => copyVal(s)}
+                  className="px-1.5 py-0.5 rounded text-[10px] text-[var(--patiya-color-primary)] hover:bg-[var(--patiya-color-primary)]/10 cursor-pointer"
+                >
+                  {copiedKey === s.key ? "Copied ✓" : "Copy"}
+                </button>
+              </div>
+            </div>
+
+            <div className="p-1.5 rounded-lg bg-[var(--patiya-color-muted)]/50 font-mono text-[10px] text-[var(--patiya-color-foreground)] overflow-hidden">
+              <AnimatePresence mode="wait">
+                {s.revealed ? (
+                  <motion.div
+                    key="clear"
+                    initial={{ opacity: 0, y: 2 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -2 }}
+                    className="truncate text-emerald-500 font-semibold"
+                  >
+                    {s.value}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="dots"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="tracking-widest text-[var(--patiya-color-muted-foreground)]"
+                  >
+                    ••••••••••••••••••••••••••••••••
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -9527,6 +11080,584 @@ export function NotificationInboxCenter() {
   );
 }`,
   },
+  "agent-voice-orb": {
+    title: "Multimodal Voice & Neural Orb",
+    description:
+      "Interactive AI agent voice sphere with dynamic frequency waves, speech mode state transitions, and responsive audio gain control.",
+    category: "Agentic AI & Neural Surfaces",
+    badge: "motion.dev",
+    preview: <AgentVoiceOrbPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+export function AgentVoiceOrb() {
+  const [state, setState] = useState<'idle' | 'listening' | 'speaking'>('speaking');
+  const [gain, setGain] = useState(75);
+
+  const bars = [25, 45, 70, 95, 60, 100, 80, 90, 65, 85, 50, 30];
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-5 rounded-2xl border bg-card space-y-4">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">Neural Voice Core</span>
+        <span className="font-mono text-[10px] text-emerald-500 font-bold">● Active 124ms</span>
+      </div>
+
+      <div className="relative h-40 rounded-xl border bg-background/80 flex flex-col items-center justify-center overflow-hidden">
+        <motion.div
+          animate={{
+            scale: state === 'speaking' ? [1, 1.25, 1.05, 1.2, 1] : [1, 1.05, 1],
+            rotate: state === 'listening' ? 360 : 0,
+          }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-16 h-16 rounded-full bg-gradient-to-tr from-primary via-indigo-500 to-cyan-400 blur-sm opacity-80"
+        />
+
+        <div className="absolute bottom-3 inset-x-0 px-6 flex items-end justify-center gap-1.5 h-7">
+          {bars.map((h, i) => (
+            <motion.div
+              key={i}
+              animate={{ height: \`\${Math.round(h * (gain / 100))}%\` }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20, delay: i * 0.02 }}
+              className="w-1.5 rounded-full bg-primary"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        {(['idle', 'listening', 'speaking'] as const).map((s) => (
+          <button
+            key={s}
+            onClick={() => setState(s)}
+            className={\`flex-1 py-1 text-xs font-semibold rounded-lg capitalize border \${
+              state === s ? 'bg-primary/10 border-primary text-primary' : 'border-border text-muted-foreground'
+            }\`}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}`,
+  },
+  "agentic-flow-pipeline": {
+    title: "Agentic Execution Graph",
+    description:
+      "Visual multi-step agent reasoning workflow with live state transitions, animated data streams, and expandable node inspect drawers.",
+    category: "Agentic AI & Neural Surfaces",
+    badge: "motion.dev",
+    preview: <AgenticFlowPipelinePreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+type Step = { id: string; title: string; tool: string; ms: number };
+
+export function AgenticFlowPipeline() {
+  const steps: Step[] = [
+    { id: '1', title: 'Intent Classifier', tool: 'Semantics v2', ms: 42 },
+    { id: '2', title: 'Context Retrieval', tool: 'Vector DB', ms: 96 },
+    { id: '3', title: 'Autonomous Action', tool: 'GitHub API', ms: 210 },
+    { id: '4', title: 'Synthesis & CoT', tool: 'DeepSeek R1', ms: 145 },
+  ];
+
+  const [active, setActive] = useState(2);
+  const [selected, setSelected] = useState<Step>(steps[2]);
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex items-center justify-between pb-2 border-b">
+        <span className="text-xs font-bold">Agent Reasoning Graph</span>
+        <button
+          onClick={() => setActive((a) => (a + 1) % steps.length)}
+          className="px-2 py-0.5 rounded bg-primary text-primary-foreground text-[10px] font-bold"
+        >
+          Step Next
+        </button>
+      </div>
+
+      <div className="space-y-2">
+        {steps.map((st, idx) => {
+          const isDone = idx <= active;
+          const isCurrent = idx === active;
+          return (
+            <motion.div
+              key={st.id}
+              layout
+              onClick={() => setSelected(st)}
+              className={\`p-2 rounded-xl border flex items-center justify-between text-xs cursor-pointer \${
+                selected.id === st.id ? 'border-primary bg-background' : 'border-border bg-background/50'
+              }\`}
+            >
+              <div className="flex items-center gap-2">
+                <span className={\`w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold \${
+                  isDone ? 'bg-emerald-500/20 text-emerald-500' : 'bg-muted text-muted-foreground'
+                }\`}>
+                  {isDone ? '✓' : idx + 1}
+                </span>
+                <div>
+                  <p className="font-bold">{st.title}</p>
+                  <p className="text-[10px] text-muted-foreground">{st.tool}</p>
+                </div>
+              </div>
+              <span className="font-mono text-[10px]">{st.ms}ms</span>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}`,
+  },
+  "semantic-patch-reviewer": {
+    title: "AI Semantic Diff & Patch Lens",
+    description:
+      "Interactive code mutation reviewer with spring-loaded line approvals, confidence score radar pill, and instant reject/accept animations.",
+    category: "Agentic AI & Neural Surfaces",
+    badge: "motion.dev",
+    preview: <SemanticPatchReviewerPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+type Diff = { id: string; type: 'add' | 'del'; text: string; done: boolean };
+
+export function SemanticPatchReviewer() {
+  const [diffs, setDiffs] = useState<Diff[]>([
+    { id: '1', type: 'del', text: "- const auth = syncStorage.get('token');", done: false },
+    { id: '2', type: 'add', text: "+ const { auth } = useAgentSession();", done: false },
+    { id: '3', type: 'del', text: '- return dispatchStream(auth, { retry: 3 });', done: false },
+    { id: '4', type: 'add', text: \"+ return dispatchStream(auth, { fallback: 'local' });\", done: false },
+  ]);
+
+  const toggle = (id: string) => {
+    setDiffs((prev) => prev.map((d) => (d.id === id ? { ...d, done: !d.done } : d)));
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-mono text-[11px] font-bold">src/agent/stream.ts</span>
+        <span className="text-[10px] font-mono text-primary font-bold">98.6% Confidence</span>
+      </div>
+
+      <div className="space-y-1.5 font-mono text-[11px] p-2 rounded-xl border bg-background">
+        {diffs.map((d) => (
+          <motion.div
+            key={d.id}
+            layout
+            onClick={() => toggle(d.id)}
+            className={\`p-1.5 rounded-lg flex justify-between items-center cursor-pointer transition-opacity \${
+              d.done ? 'opacity-30 line-through' : d.type === 'add' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'
+            }\`}
+          >
+            <span className="truncate">{d.text}</span>
+            <span className="text-[10px] ml-2 font-bold">{d.done ? '✓' : '○'}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}`,
+  },
+  "neural-vector-cluster": {
+    title: "Neural Vector Context Vault",
+    description:
+      "Spatial semantic memory cluster explorer with distance-spring physics, interactive pin selection, and live relevance scoring.",
+    category: "Agentic AI & Neural Surfaces",
+    badge: "motion.dev",
+    preview: <NeuralVectorClusterPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+type Memory = { id: string; label: string; score: number };
+
+export function NeuralVectorCluster() {
+  const [items] = useState<Memory[]>([
+    { id: '1', label: 'JWT Session Claim', score: 0.94 },
+    { id: '2', label: 'Workspace Policy Matrix', score: 0.89 },
+    { id: '3', label: 'Prompt Context Window', score: 0.82 },
+    { id: '4', label: 'Tool Dispatch Sandbox', score: 0.77 },
+  ]);
+
+  const [active, setActive] = useState('1');
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">Neural Vector Memory</span>
+        <span className="font-mono text-[10px] text-muted-foreground">Cosine Sim</span>
+      </div>
+
+      <div className="space-y-1.5">
+        {items.map((m) => {
+          const isSelected = active === m.id;
+          return (
+            <motion.div
+              key={m.id}
+              layout
+              onClick={() => setActive(m.id)}
+              className={\`p-2.5 rounded-xl border flex items-center justify-between text-xs cursor-pointer \${
+                isSelected ? 'border-primary bg-background shadow-xs' : 'border-border bg-background/50'
+              }\`}
+            >
+              <span className="font-medium">{m.label}</span>
+              <div className="flex items-center gap-2">
+                <div className="w-14 h-1.5 rounded-full bg-muted overflow-hidden">
+                  <motion.div
+                    className="h-full bg-primary rounded-full"
+                    animate={{ width: \`\${m.score * 100}%\` }}
+                  />
+                </div>
+                <span className="font-mono text-[10px] text-primary font-bold">{m.score.toFixed(2)}</span>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}`,
+  },
+  "model-arena-benchmark": {
+    title: "Model Arena & Inference Gauge",
+    description:
+      "Side-by-side comparative LLM benchmark with dynamic token stream velocity gauges, real-time TTFT telemetry, and blind vote selection.",
+    category: "Agentic AI & Neural Surfaces",
+    badge: "motion.dev",
+    preview: <ModelArenaBenchmarkPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+export function ModelArenaBenchmark() {
+  const [running, setRunning] = useState(false);
+  const [progressA, setProgressA] = useState(100);
+  const [progressB, setProgressB] = useState(100);
+  const [vote, setVote] = useState<'a' | 'b' | null>('a');
+
+  const startRace = () => {
+    setRunning(true);
+    setProgressA(0);
+    setProgressB(0);
+    let pA = 0;
+    let pB = 0;
+    const interval = setInterval(() => {
+      pA += Math.floor(Math.random() * 20) + 10;
+      pB += Math.floor(Math.random() * 16) + 8;
+      setProgressA(Math.min(100, pA));
+      setProgressB(Math.min(100, pB));
+      if (pA >= 100 && pB >= 100) {
+        clearInterval(interval);
+        setRunning(false);
+      }
+    }, 120);
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-4">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">Dual LLM Velocity Gauge</span>
+        <button
+          onClick={startRace}
+          disabled={running}
+          className="px-2.5 py-1 rounded-lg bg-primary text-primary-foreground text-[10px] font-bold"
+        >
+          {running ? 'Streaming...' : 'Race Engines'}
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        <div className="p-2.5 rounded-xl border bg-background space-y-1.5">
+          <div className="flex justify-between text-xs">
+            <span className="font-bold">Model Alpha (32B)</span>
+            <span className="font-mono text-[10px] text-emerald-500 font-bold">84 tok/s</span>
+          </div>
+          <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400"
+              animate={{ width: \`\${progressA}%\` }}
+            />
+          </div>
+        </div>
+
+        <div className="p-2.5 rounded-xl border bg-background space-y-1.5">
+          <div className="flex justify-between text-xs">
+            <span className="font-bold">Model Beta (8B)</span>
+            <span className="font-mono text-[10px] text-amber-500 font-bold">62 tok/s</span>
+          </div>
+          <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-amber-500 to-rose-400"
+              animate={{ width: \`\${progressB}%\` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2 pt-1">
+        <button
+          onClick={() => setVote('a')}
+          className={\`py-1.5 rounded-lg border text-xs font-semibold \${
+            vote === 'a' ? 'bg-primary/10 border-primary text-primary' : 'border-border text-muted-foreground'
+          }\`}
+        >
+          Vote Alpha
+        </button>
+        <button
+          onClick={() => setVote('b')}
+          className={\`py-1.5 rounded-lg border text-xs font-semibold \${
+            vote === 'b' ? 'bg-primary/10 border-primary text-primary' : 'border-border text-muted-foreground'
+          }\`}
+        >
+          Vote Beta
+        </button>
+      </div>
+    </div>
+  );
+}`,
+  },
+  "biometric-passkey-vault": {
+    title: "Passkey & Biometric Scanner",
+    description:
+      "Interactive FIDO2 WebAuthn credential authenticator with laser fingerprint scanning beam, challenge verification, and cryptographic hash telemetry.",
+    category: "Biometric & Cryptographic Vaults",
+    badge: "motion.dev",
+    preview: <BiometricPasskeyVaultPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+export function BiometricPasskeyVault() {
+  const [status, setStatus] = useState<'idle' | 'scanning' | 'verified'>('idle');
+
+  const authenticate = () => {
+    setStatus('scanning');
+    setTimeout(() => setStatus('verified'), 1400);
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-5 rounded-2xl border bg-card space-y-4">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">Passkey WebAuthn</span>
+        <span className="font-mono text-[10px] text-emerald-500 font-bold">● Hardware Level</span>
+      </div>
+
+      <div className="relative h-36 rounded-xl border bg-background flex flex-col items-center justify-center overflow-hidden">
+        <div className="relative w-16 h-16 rounded-xl border flex items-center justify-center">
+          <svg className={\`w-10 h-10 \${status === 'verified' ? 'text-emerald-500' : 'text-muted-foreground'}\`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
+            <path d="M14 13.12c0 2.38 0 6.38-1 8.88" />
+            <path d="M2 12a10 10 0 0 1 18-6" />
+          </svg>
+          {status === 'scanning' && (
+            <motion.div
+              animate={{ top: ['0%', '100%', '0%'] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute left-0 right-0 h-0.5 bg-primary shadow-sm"
+            />
+          )}
+        </div>
+        <span className="text-xs font-mono font-bold mt-2">
+          {status === 'idle' ? 'Ready to Scan' : status === 'scanning' ? 'Verifying Challenge...' : '✓ Hardware Attested'}
+        </span>
+      </div>
+
+      <button
+        onClick={status === 'verified' ? () => setStatus('idle') : authenticate}
+        className="w-full py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold"
+      >
+        {status === 'verified' ? 'Reset' : 'Touch Biometric'}
+      </button>
+    </div>
+  );
+}`,
+  },
+  "totp-authenticator-ring": {
+    title: "Radial TOTP Authenticator",
+    description:
+      "Multi-account 2FA security authenticator with circular time-decay ring, animated 6-digit rolling token codes, and copy-to-clipboard micro-interactions.",
+    category: "Biometric & Cryptographic Vaults",
+    badge: "motion.dev",
+    preview: <TotpAuthenticatorRingPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+export function TotpAuthenticatorRing() {
+  const [copied, setCopied] = useState(false);
+  const token = '849 201';
+
+  const copy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">2FA Rolling Token</span>
+        <span className="font-mono text-[10px] text-muted-foreground">RFC 6238</span>
+      </div>
+
+      <div className="p-4 rounded-xl border bg-background flex items-center justify-between">
+        <div>
+          <span className="text-[10px] font-mono text-muted-foreground">dev-cluster@github.com</span>
+          <span className="text-2xl font-mono font-extrabold tracking-widest block mt-0.5">{token}</span>
+        </div>
+
+        <button
+          onClick={copy}
+          className="px-3 py-1.5 rounded-lg border text-xs font-bold"
+        >
+          {copied ? '✓' : 'Copy'}
+        </button>
+      </div>
+    </div>
+  );
+}`,
+  },
+  "cryptographic-key-vault": {
+    title: "Cryptographic Key Rotator & Vault",
+    description:
+      "Hardware-security-module key management surface with live rotation triggers, entropy visualizer, and hold-to-shred progress bar.",
+    category: "Biometric & Cryptographic Vaults",
+    badge: "motion.dev",
+    preview: <CryptographicKeyVaultPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+export function CryptographicKeyVault() {
+  const [keyId, setKeyId] = useState('kms_live_890af2');
+  const [rotating, setRotating] = useState(false);
+
+  const rotate = () => {
+    setRotating(true);
+    setTimeout(() => {
+      setKeyId(\`kms_live_\${Math.random().toString(16).slice(2, 8)}\`);
+      setRotating(false);
+    }, 600);
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">HSM Key Lifecycle</span>
+        <span className="font-mono text-[10px] text-primary font-bold">AES-256-GCM</span>
+      </div>
+
+      <div className="p-3 rounded-xl border bg-background font-mono text-xs space-y-1">
+        <p className="text-muted-foreground text-[10px]">CURRENT KEY:</p>
+        <p className="font-bold">{keyId}</p>
+        <p className="text-emerald-500 text-[10px]">Entropy: 256.0 bits</p>
+      </div>
+
+      <button
+        onClick={rotate}
+        disabled={rotating}
+        className="w-full py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold"
+      >
+        {rotating ? 'Rotating Key...' : 'Rotate Key ↻'}
+      </button>
+    </div>
+  );
+}`,
+  },
+  "zero-trust-access-radar": {
+    title: "Zero-Trust Session Radar",
+    description:
+      "Live distributed device perimeter radar with spinning sweep beam, threat score indicator, and instant session revoking.",
+    category: "Biometric & Cryptographic Vaults",
+    badge: "motion.dev",
+    preview: <ZeroTrustAccessRadarPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+export function ZeroTrustAccessRadar() {
+  const [nodes, setNodes] = useState(['San Francisco (MacBook)', 'Tokyo (iPhone 16)']);
+
+  const revoke = (name: string) => {
+    setNodes((n) => n.filter((x) => x !== name));
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">Zero-Trust Device Radar</span>
+        <span className="font-mono text-[10px] text-emerald-500 font-bold">Threat: 0.02</span>
+      </div>
+
+      <div className="relative h-28 rounded-xl border bg-background/80 flex items-center justify-center overflow-hidden">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+          <div className="w-1/2 h-0.5 bg-gradient-to-r from-transparent to-primary origin-right" />
+        </motion.div>
+        <span className="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/20" />
+      </div>
+
+      <div className="space-y-1">
+        {nodes.map((node) => (
+          <div key={node} className="p-2 rounded-lg border bg-background flex justify-between items-center text-xs">
+            <span>{node}</span>
+            <button onClick={() => revoke(node)} className="text-[10px] font-mono text-red-500">Revoke</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}`,
+  },
+  "stealth-secret-masker": {
+    title: "Stealth Secret Masker",
+    description:
+      "Zero-leak environment variable inspector with matrix character scramble, temporary peek timer, and auto-mask countdown.",
+    category: "Biometric & Cryptographic Vaults",
+    badge: "motion.dev",
+    preview: <StealthSecretMaskerPreview />,
+    code: `'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+export function StealthSecretMasker() {
+  const [revealed, setRevealed] = useState(false);
+  const secret = 'sk_live_51N8xZ9021qLk9912';
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4 rounded-2xl border bg-card space-y-3">
+      <div className="flex justify-between items-center text-xs">
+        <span className="font-bold">STRIPE_SECRET_KEY</span>
+        <button
+          onClick={() => setRevealed(!revealed)}
+          className="px-2 py-0.5 rounded border text-[10px] font-mono"
+        >
+          {revealed ? 'Mask' : 'Reveal'}
+        </button>
+      </div>
+
+      <div className="p-2 rounded-lg bg-muted/50 font-mono text-xs overflow-hidden">
+        {revealed ? <span className="text-emerald-500">{secret}</span> : <span>••••••••••••••••••••</span>}
+      </div>
+    </div>
+  );
+}`,
+  },
 };
-
-

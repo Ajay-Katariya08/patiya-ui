@@ -13,6 +13,8 @@ export default function GettingStartedPage() {
   ];
 
   const motionCategories = [
+    { name: "Biometric & Vaults", count: "5 blocks", href: "/docs/blocks/biometric-passkey-vault" },
+    { name: "Agentic AI & Neural", count: "5 blocks", href: "/docs/blocks/agent-voice-orb" },
     { name: "Smart Workspaces", count: "9 blocks", href: "/docs/blocks/prompt-model-switcher" },
     { name: "Spatial Dynamic Hubs", count: "6 blocks", href: "/docs/blocks/dynamic-island-hub" },
     { name: "Tactile Surfaces", count: "7 blocks", href: "/docs/blocks/fluid-equalizer-scrubber" },

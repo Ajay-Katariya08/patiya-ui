@@ -414,7 +414,7 @@ export function FeatureCard() {
               >
                 <span>Blocks</span>
                 <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.2 rounded-md bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] border border-[var(--patiya-color-primary)]/20">
-                  45+ Blocks
+                  50+ Blocks
                 </span>
               </Link>
               <Link
@@ -463,10 +463,10 @@ export function FeatureCard() {
                     Patiya UI v2.0
                   </span>
                   <span className="hidden sm:inline text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
-                    80+ Components • 45+ Motion Blocks
+                    80+ Components • 50+ Motion Blocks
                   </span>
                   <span className="sm:hidden text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
-                    45+ Motion Blocks
+                    50+ Motion Blocks
                   </span>
                   <svg
                     className="w-3.5 h-3.5 text-[var(--patiya-color-muted-foreground)] shrink-0"
@@ -772,7 +772,7 @@ export function FeatureCard() {
               </div>
               <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-b md:border-b-0 md:border-r border-[var(--patiya-color-border)]">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-primary)]">
-                  45+
+                  50+
                 </div>
                 <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
                   Motion Blocks
@@ -1021,7 +1021,7 @@ export function FeatureCard() {
                   variant="outline"
                   className="h-10 px-5 rounded-xl text-xs font-semibold border-[var(--patiya-color-border)] hover:bg-[var(--patiya-color-card)] flex items-center gap-2"
                 >
-                  <span>Browse All 45+ Blocks</span>
+                  <span>Browse All 50+ Blocks</span>
                   <svg
                     className="w-3.5 h-3.5"
                     viewBox="0 0 24 24"

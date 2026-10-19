@@ -33,10 +33,17 @@ export default function BlockPage({ params }: BlockPageProps) {
 
       <Box className="space-y-6 scroll-mt-28">
         <div className="flex items-center justify-between border-b border-[var(--patiya-color-border)] pb-3">
-          <h2 id="preview" className="text-2xl font-semibold">Live Component Preview</h2>
-          <span className="text-xs text-[var(--patiya-color-muted-foreground)]">Powered by Motion.dev</span>
+          <h2 id="preview" className="text-2xl font-semibold">
+            Live Component Preview
+          </h2>
+          <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            Powered by Motion.dev
+          </span>
         </div>
-        <ExampleCard code={block.code} className="bg-[var(--patiya-color-background)]">
+        <ExampleCard
+          code={block.code}
+          className="bg-[var(--patiya-color-background)]"
+        >
           <div className="w-full flex justify-center relative z-10 overflow-x-auto no-scrollbar py-2">
             {block.preview}
           </div>
@@ -44,7 +51,10 @@ export default function BlockPage({ params }: BlockPageProps) {
       </Box>
 
       <Box className="space-y-6 mt-8 scroll-mt-28">
-        <h2 id="installation" className="text-2xl font-semibold border-b border-[var(--patiya-color-border)] pb-3">
+        <h2
+          id="installation"
+          className="text-2xl font-semibold border-b border-[var(--patiya-color-border)] pb-3"
+        >
           Installation
         </h2>
         <CodeTabs
@@ -58,7 +68,10 @@ export default function BlockPage({ params }: BlockPageProps) {
       </Box>
 
       <Box className="space-y-6 mt-8 scroll-mt-28">
-        <h2 id="import" className="text-2xl font-semibold border-b border-[var(--patiya-color-border)] pb-3">
+        <h2
+          id="import"
+          className="text-2xl font-semibold border-b border-[var(--patiya-color-border)] pb-3"
+        >
           Import Reference
         </h2>
         <CodeTabs

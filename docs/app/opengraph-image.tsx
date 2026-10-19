@@ -44,7 +44,7 @@ export default async function Image() {
             fontSize: 24,
           }}
         >
-          80+ Components • 45+ Blocks
+          80+ Components • 50+ Blocks
         </div>
         <div
           style={{
