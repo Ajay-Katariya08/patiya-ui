@@ -7,10 +7,10 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
-import { useAnimationFrame, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const SIM_HZ = 120;
+const SIM_HZ = 60;
 const STEP = 1 / SIM_HZ;
 const BRUSH_RADIUS = 1.1;
 const PUSH_PER_CELL = 0.16;
@@ -102,14 +102,27 @@ function createIsometricScene(
 
   const c2 = Math.min((speed / SIM_HZ) ** 2, 0.5);
   const flowDrag = -Math.log(Math.min(Math.max(damping, 1e-4), 1));
-  const settleDrag = -Math.log(0.02);
+  const settleDrag = -Math.log(0.01);
   const flowPull = 0.8;
-  const settlePull = 3.5;
+  const settlePull = 4.0;
   const SETTLE_AFTER = 0.15;
-  const SETTLE_RAMP = 0.8;
-  const FLAT = 0.004;
+  const SETTLE_RAMP = 0.6;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+  if (!gl) return { dispose: () => {} };
+
+  let renderer: THREE.WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      context: gl,
+      antialias: false,
+      powerPreference: "low-power",
+    });
+  } catch {
+    return { dispose: () => {} };
+  }
+  renderer.setPixelRatio(1);
   renderer.setClearColor(topColor);
   const scene = new THREE.Scene();
 
@@ -163,8 +176,14 @@ function createIsometricScene(
         offsets[(i * size + j) * 2 + 1] = j - half;
       }
     }
-    geometry.setAttribute("aOffset", new THREE.InstancedBufferAttribute(offsets, 2));
-    heightAttribute = new THREE.InstancedBufferAttribute(new Float32Array(size * size), 1);
+    geometry.setAttribute(
+      "aOffset",
+      new THREE.InstancedBufferAttribute(offsets, 2),
+    );
+    heightAttribute = new THREE.InstancedBufferAttribute(
+      new Float32Array(size * size),
+      1,
+    );
     heightAttribute.setUsage(THREE.DynamicDrawUsage);
     geometry.setAttribute("aHeight", heightAttribute);
     glowAttribute = new THREE.InstancedBufferAttribute(glowField, 1);
@@ -177,11 +196,16 @@ function createIsometricScene(
     scene.add(mesh);
   };
 
-  let awake = true;
+  let awake = false;
+  let isRunning = false;
+  let isVisible = true;
+  let rafId: number | null = null;
+  let lastFrameTime = 0;
+
   const resize = () => {
     const width = container.clientWidth;
     const viewHeight = container.clientHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    if (width === 0 || viewHeight === 0) return;
     renderer.setSize(width, viewHeight, false);
 
     const scale = cellSize / Math.SQRT2;
@@ -191,21 +215,38 @@ function createIsometricScene(
     camera.bottom = -viewHeight / 2 / scale;
     camera.updateProjectionMatrix();
 
-    const needed = Math.ceil(((width + viewHeight * 2) / cellSize) * 1.1) + 4;
+    const needed = Math.min(
+      Math.ceil(((width + viewHeight * 2) / cellSize) * 1.1) + 2,
+      38,
+    );
     if (needed > size) build(needed);
-    awake = true;
+    renderer.render(scene, camera);
   };
 
-  const brush = (gx: number, gz: number, strength: number, radius = BRUSH_RADIUS) => {
-    const reach = Math.ceil(radius * 3);
+  const brush = (
+    gx: number,
+    gz: number,
+    strength: number,
+    radius = BRUSH_RADIUS,
+  ) => {
+    const reach = Math.ceil(radius * 2);
     const inv = 1 / (2 * radius * radius);
     const ci = Math.round(gx);
     const cj = Math.round(gz);
-    for (let i = Math.max(1, ci - reach); i <= Math.min(size - 2, ci + reach); i++) {
-      for (let j = Math.max(1, cj - reach); j <= Math.min(size - 2, cj + reach); j++) {
+    for (
+      let i = Math.max(1, ci - reach);
+      i <= Math.min(size - 2, ci + reach);
+      i++
+    ) {
+      for (
+        let j = Math.max(1, cj - reach);
+        j <= Math.min(size - 2, cj + reach);
+        j++
+      ) {
         const dx = i - gx;
         const dz = j - gz;
-        velocity[i * size + j] -= strength * Math.exp(-(dx * dx + dz * dz) * inv);
+        velocity[i * size + j] -=
+          strength * Math.exp(-(dx * dx + dz * dz) * inv);
       }
     }
     awake = true;
@@ -218,29 +259,6 @@ function createIsometricScene(
   let target: { x: number; z: number } | null = null;
   let brushAt: { x: number; z: number } | null = null;
   let idleTime = 0;
-  let quietTime = 0;
-  let idleTimer = 0;
-  let autoMode = false;
-  let lastEnergy = 0;
-
-  const onPointerMove = (e: PointerEvent) => {
-    const rect = container.getBoundingClientRect();
-    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-    if (Math.abs(nx) > 1 || Math.abs(ny) > 1) {
-      target = null;
-      brushAt = null;
-      return;
-    }
-    pointer.set(nx, ny);
-    raycaster.setFromCamera(pointer, camera);
-    if (!raycaster.ray.intersectPlane(ground, hit)) return;
-    const half = (size - 1) / 2;
-    target = { x: hit.x + half, z: hit.z + half };
-    idleTime = 0;
-    quietTime = 0;
-    autoMode = false;
-  };
 
   const applyPointer = () => {
     if (!target) return;
@@ -252,16 +270,23 @@ function createIsometricScene(
     const dz = target.z - brushAt.z;
     const distance = Math.hypot(dx, dz);
     if (distance < 0.01) return;
-    const samples = Math.ceil(distance / 0.35);
-    const push = (Math.min(distance, 3) * PUSH_PER_CELL) / samples;
+    const samples = Math.ceil(distance / 0.5);
+    const push = (Math.min(distance, 2.5) * PUSH_PER_CELL) / samples;
     for (let s = 1; s <= samples; s++) {
-      brush(brushAt.x + (dx * s) / samples, brushAt.z + (dz * s) / samples, push);
+      brush(
+        brushAt.x + (dx * s) / samples,
+        brushAt.z + (dz * s) / samples,
+        push,
+      );
     }
     brushAt = { ...target };
   };
 
   const step = () => {
-    const ramp = autoMode ? 0 : Math.min(Math.max((idleTime - SETTLE_AFTER) / SETTLE_RAMP, 0), 1);
+    const ramp = Math.min(
+      Math.max((idleTime - SETTLE_AFTER) / SETTLE_RAMP, 0),
+      1,
+    );
     const s = ramp * ramp * (3 - 2 * ramp);
     const keep = Math.exp(-(flowDrag + (settleDrag - flowDrag) * s) / SIM_HZ);
     const relax = Math.exp(-(flowPull + (settlePull - flowPull) * s) / SIM_HZ);
@@ -269,14 +294,19 @@ function createIsometricScene(
     for (let i = 1; i < size - 1; i++) {
       for (let j = 1; j < size - 1; j++) {
         const k = i * size + j;
-        const edges = height[k - 1] + height[k + 1] + height[k - size] + height[k + size];
+        const edges =
+          height[k - 1] + height[k + 1] + height[k - size] + height[k + size];
         const corners =
-          height[k - size - 1] + height[k - size + 1] + height[k + size - 1] + height[k + size + 1];
+          height[k - size - 1] +
+          height[k - size + 1] +
+          height[k + size - 1] +
+          height[k + size + 1];
         const laplacian = (4 * edges + corners - 20 * height[k]) / 6;
         velocity[k] = (velocity[k] + c2 * laplacian) * keep;
       }
     }
-    for (let k = 0; k < height.length; k++) height[k] = (height[k] + velocity[k]) * relax;
+    for (let k = 0; k < height.length; k++)
+      height[k] = (height[k] + velocity[k]) * relax;
 
     for (let i = 1; i < size - 1; i++) {
       for (let j = 1; j < size - 1; j++) {
@@ -288,7 +318,8 @@ function createIsometricScene(
             Math.abs(height[k - size]) +
             Math.abs(height[k + size])) /
           8;
-        glowField[k] += (energy - glowField[k]) * (energy > glowField[k] ? 0.08 : 0.015);
+        glowField[k] +=
+          (energy - glowField[k]) * (energy > glowField[k] ? 0.12 : 0.05);
       }
     }
   };
@@ -298,31 +329,10 @@ function createIsometricScene(
     if (!heightAttribute || !glowAttribute) return;
 
     idleTime += delta;
-    quietTime = !autoMode && idleTime > SETTLE_AFTER && lastEnergy < FLAT ? quietTime + delta : 0;
-    if (idleRipples && !autoMode && quietTime > idleDelay) autoMode = true;
-    if (autoMode) {
-      idleTimer += delta;
-      if (idleTimer > 1.8) {
-        idleTimer = 0;
-        const spread = size * 0.15;
-        brush(
-          size / 2 + (Math.random() - 0.5) * spread * 2,
-          size / 2 + (Math.random() - 0.5) * spread * 2,
-          0.28,
-          1.8,
-        );
-      }
-    } else {
-      idleTimer = 1.8;
-    }
-
     applyPointer();
-    if (!awake) {
-      lastEnergy = 0;
-      return;
-    }
+    if (!awake) return;
 
-    accumulator = Math.min(accumulator + delta, STEP * 8);
+    accumulator = Math.min(accumulator + delta, STEP * 2);
     while (accumulator >= STEP) {
       step();
       accumulator -= STEP;
@@ -334,86 +344,219 @@ function createIsometricScene(
     let light = 0;
     for (let k = 0; k < height.length; k++) {
       display[k] = lastHeight[k] + (height[k] - lastHeight[k]) * alpha;
-      wave = Math.max(wave, Math.abs(height[k]), Math.abs(velocity[k]) * 20);
+      wave = Math.max(wave, Math.abs(height[k]), Math.abs(velocity[k]) * 10);
       light = Math.max(light, glowField[k]);
     }
+
+    const energy = Math.max(wave, light);
+
+    if (energy < 0.005 || idleTime > 1.2) {
+      height.fill(0);
+      velocity.fill(0);
+      glowField.fill(0);
+      lastHeight.fill(0);
+      display.fill(0);
+      (glowAttribute.array as Float32Array).fill(0);
+      heightAttribute.needsUpdate = true;
+      glowAttribute.needsUpdate = true;
+      renderer.render(scene, camera);
+      awake = false;
+      isRunning = false;
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      return;
+    }
+
     heightAttribute.needsUpdate = true;
     glowAttribute.needsUpdate = true;
     renderer.render(scene, camera);
-    lastEnergy = wave;
-    const energy = Math.max(wave, light);
-
-    if (energy < 1e-4) awake = false;
   };
 
-  const observer = new ResizeObserver(resize);
-  observer.observe(container);
-  window.addEventListener("pointermove", onPointerMove);
+  const renderFrame = (now: number) => {
+    if (!isRunning || !isVisible) {
+      isRunning = false;
+      rafId = null;
+      return;
+    }
+
+    if (now - lastFrameTime < 16) {
+      rafId = requestAnimationFrame(renderFrame);
+      return;
+    }
+    const delta = lastFrameTime
+      ? Math.min((now - lastFrameTime) / 1000, 0.033)
+      : 0.016;
+    lastFrameTime = now;
+    update(delta);
+
+    if (!awake) {
+      isRunning = false;
+      rafId = null;
+      return;
+    }
+
+    rafId = requestAnimationFrame(renderFrame);
+  };
+
+  const startLoop = () => {
+    if (isRunning || !isVisible) return;
+    isRunning = true;
+    awake = true;
+    lastFrameTime = performance.now();
+    rafId = requestAnimationFrame(renderFrame);
+  };
+
+  const host = container.parentElement ?? container;
+  let moveRaf: number | null = null;
+  const onPointerMove = (e: PointerEvent) => {
+    if (!isVisible) return;
+    if (moveRaf !== null) return;
+    moveRaf = requestAnimationFrame(() => {
+      moveRaf = null;
+      const rect = container.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      if (Math.abs(nx) > 1.05 || Math.abs(ny) > 1.05) {
+        target = null;
+        brushAt = null;
+        return;
+      }
+      pointer.set(nx, ny);
+      raycaster.setFromCamera(pointer, camera);
+      if (!raycaster.ray.intersectPlane(ground, hit)) return;
+      const half = (size - 1) / 2;
+      target = { x: hit.x + half, z: hit.z + half };
+      idleTime = 0;
+      startLoop();
+    });
+  };
+
+  const onPointerLeave = () => {
+    target = null;
+    brushAt = null;
+    idleTime = 0.8;
+  };
+
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      isRunning = false;
+      awake = false;
+    }
+  };
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(container);
+
+  const intersectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        isVisible = entry.isIntersecting;
+        if (!isVisible && rafId !== null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+          isRunning = false;
+          awake = false;
+        }
+      }
+    },
+    { threshold: 0.05 },
+  );
+  intersectionObserver.observe(container);
+
+  host.addEventListener("pointermove", onPointerMove as EventListener, {
+    passive: true,
+  });
+  host.addEventListener("pointerleave", onPointerLeave, { passive: true });
+  document.addEventListener("visibilitychange", onVisibilityChange);
 
   const dispose = () => {
-    observer.disconnect();
-    window.removeEventListener("pointermove", onPointerMove);
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    if (moveRaf !== null) cancelAnimationFrame(moveRaf);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    host.removeEventListener("pointermove", onPointerMove as EventListener);
+    host.removeEventListener("pointerleave", onPointerLeave);
+    intersectionObserver.disconnect();
+    resizeObserver.disconnect();
     geometry?.dispose();
     material.dispose();
     renderer.dispose();
   };
 
-  return { update, dispose };
+  return { dispose };
 }
 
 function IsometricCubes({
   className,
-  cellSize = 150,
+  cellSize = 105,
   gap = 0.025,
   topColor = "#fafaf9",
   leftColor = "#e7e5e4",
   rightColor = "#d6d3d1",
-  amplitude = 0.7,
-  speed = 7,
-  damping = 0.08,
-  idleRipples = true,
+  amplitude = 0.6,
+  speed = 6,
+  damping = 0.12,
+  idleRipples = false,
   idleDelay = 1.5,
   glowColor = "#a8a29e",
-  glow = 0.5,
+  glow = 0.4,
 }: IsometricCubesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const updateRef = useRef<((delta: number) => void) | null>(null);
   const reduceMotion = useReducedMotion();
-  const idle = idleRipples && !reduceMotion;
 
   useEffect(() => {
-    if (!canvasRef.current || !containerRef.current) return;
-    const { update, dispose } = createIsometricScene(canvasRef.current, containerRef.current, {
-      cellSize,
-      gap,
-      topColor,
-      leftColor,
-      rightColor,
-      amplitude,
-      speed,
-      damping,
-      idleRipples: idle,
-      idleDelay,
-      glowColor,
-      glow,
-    });
-    updateRef.current = update;
+    if (!canvasRef.current || !containerRef.current || reduceMotion) return;
+    const { dispose } = createIsometricScene(
+      canvasRef.current,
+      containerRef.current,
+      {
+        cellSize,
+        gap,
+        topColor,
+        leftColor,
+        rightColor,
+        amplitude,
+        speed,
+        damping,
+        idleRipples,
+        idleDelay,
+        glowColor,
+        glow,
+      },
+    );
     return () => {
-      updateRef.current = null;
       dispose();
     };
-  }, [cellSize, gap, topColor, leftColor, rightColor, amplitude, speed, damping, idle, idleDelay, glowColor, glow]);
-
-  useAnimationFrame((_, delta) => {
-    updateRef.current?.(Math.min(delta / 1000, 0.1));
-  });
+  }, [
+    cellSize,
+    gap,
+    topColor,
+    leftColor,
+    rightColor,
+    amplitude,
+    speed,
+    damping,
+    idleRipples,
+    idleDelay,
+    glowColor,
+    glow,
+    reduceMotion,
+  ]);
 
   return (
     <div
       ref={containerRef}
       aria-hidden
-      className={cn("absolute inset-0 overflow-hidden", className)}
+      className={cn(
+        "absolute inset-0 overflow-hidden pointer-events-none",
+        className,
+      )}
       style={{ backgroundColor: topColor }}
     >
       <canvas ref={canvasRef} className="block h-full w-full" />
@@ -421,7 +564,7 @@ function IsometricCubes({
   );
 }
 
-const MAX_TRAIL = 128;
+const MAX_TRAIL = 64;
 const CUBE_WIDTH = 0.72;
 const CUBE_HEIGHT = 3;
 const CAMERA_RADIUS = 12;
@@ -434,7 +577,7 @@ const PERSPECTIVE_WAVE = {
   width: 3.0,
   jitter: 0.2,
   fadeTime: 2.0,
-  trailSpacing: 0.1,
+  trailSpacing: 0.15,
   idleStrength: 0.8,
 };
 
@@ -547,18 +690,28 @@ const overrideVertexShader = (vertexShader: string) =>
 
 type TrailPoint = { x: number; z: number; age: number; distDelta: number };
 
-type SceneOptions = Required<Omit<PerspectiveCubesProps, "className" | "variant">>;
+type SceneOptions = Required<
+  Omit<PerspectiveCubesProps, "className" | "variant">
+>;
 
 function createPerspectiveScene(
   canvas: HTMLCanvasElement,
   container: HTMLDivElement,
   options: SceneOptions,
 ) {
-  const { gridSize, gap, baseColor, waveColor, backgroundColor, glow, amplitude, tilt, idleRipples } =
-    options;
+  const {
+    gridSize,
+    gap,
+    baseColor,
+    waveColor,
+    backgroundColor,
+    glow,
+    amplitude,
+    tilt,
+    idleRipples,
+  } = options;
   let width = container.clientWidth;
   let height = container.clientHeight;
-  let pixelRatio = Math.min(window.devicePixelRatio, 2);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(backgroundColor);
@@ -580,34 +733,36 @@ function createPerspectiveScene(
   };
   updateCamera(0, 0);
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+  if (!gl) return { dispose: () => {} };
+
+  let renderer: THREE.WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      context: gl,
+      antialias: false,
+      powerPreference: "low-power",
+    });
+  } catch {
+    return { dispose: () => {} };
+  }
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.3;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.enabled = false;
   renderer.setSize(width, height, false);
-  renderer.setPixelRatio(pixelRatio);
+  renderer.setPixelRatio(1);
 
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   composer.addPass(new ShaderPass(VignetteRGBShiftShader));
   composer.addPass(new OutputPass());
   composer.setSize(width, height);
-  composer.setPixelRatio(pixelRatio);
+  composer.setPixelRatio(1);
 
   scene.add(new THREE.AmbientLight("#ffffff", 0.35));
   const keyLight = new THREE.DirectionalLight("#ffffff", 3.0);
   keyLight.position.set(-20, 12, -6);
-  keyLight.castShadow = true;
-  keyLight.shadow.mapSize.set(1024, 1024);
-  keyLight.shadow.radius = 6;
-  keyLight.shadow.camera.near = 0.1;
-  keyLight.shadow.camera.far = 60;
-  keyLight.shadow.camera.left = -22;
-  keyLight.shadow.camera.right = 22;
-  keyLight.shadow.camera.top = 22;
-  keyLight.shadow.camera.bottom = -22;
-  keyLight.shadow.bias = 0.0001;
   scene.add(keyLight);
   const rimLight = new THREE.DirectionalLight(waveColor, 1.2);
   rimLight.position.set(12, 4, 10);
@@ -618,9 +773,10 @@ function createPerspectiveScene(
 
   const trail: TrailPoint[] = [];
   let lastPoint: { x: number; z: number } | null = null;
-  let timeSinceLastMove = 0;
-  let randomPointTimer = 0;
-  let isPlacingRandomPoints = idleRipples;
+  let isVisible = true;
+  let isRunning = false;
+  let rafId: number | null = null;
+  let lastTime = 0;
 
   const trailData = new Float32Array(MAX_TRAIL * 4);
   const trailTexture = new THREE.DataTexture(
@@ -662,14 +818,23 @@ function createPerspectiveScene(
   });
 
   const count = gridSize * gridSize;
-  const geometry = new RoundedBoxGeometry(CUBE_WIDTH, CUBE_HEIGHT, CUBE_WIDTH, 2, 0.12);
+  const geometry = new RoundedBoxGeometry(
+    CUBE_WIDTH,
+    CUBE_HEIGHT,
+    CUBE_WIDTH,
+    2,
+    0.12,
+  );
   const offsetAttribute = new THREE.InstancedBufferAttribute(
     new Float32Array(count * 2),
     2,
   );
   geometry.setAttribute("aOffset", offsetAttribute);
 
-  const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 60 });
+  const material = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    shininess: 60,
+  });
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, waveUniforms(), {
       uColorBase: { value: new THREE.Color(baseColor) },
@@ -709,8 +874,6 @@ function createPerspectiveScene(
 
   const mesh = new THREE.InstancedMesh(geometry, material, count);
   mesh.customDepthMaterial = depthMaterial;
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
   scene.add(mesh);
 
   const dummy = new THREE.Object3D();
@@ -730,7 +893,15 @@ function createPerspectiveScene(
   mesh.instanceMatrix.needsUpdate = true;
   offsetAttribute.needsUpdate = true;
 
+  const startLoop = () => {
+    if (isRunning || !isVisible) return;
+    isRunning = true;
+    lastTime = performance.now();
+    rafId = requestAnimationFrame(renderFrame);
+  };
+
   const onPointerMove = (e: PointerEvent) => {
+    if (!isVisible) return;
     const rect = container.getBoundingClientRect();
     const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
@@ -750,52 +921,79 @@ function createPerspectiveScene(
     }
     pushPoint({ x, z, age: 0, distDelta });
     lastPoint = { x, z };
-    timeSinceLastMove = 0;
-    isPlacingRandomPoints = false;
-    randomPointTimer = 0;
+    startLoop();
   };
 
-  const resizeObserver = new ResizeObserver(() => {
+  const resize = () => {
     width = container.clientWidth;
     height = container.clientHeight;
-    pixelRatio = Math.min(window.devicePixelRatio, 2);
+    if (width === 0 || height === 0) return;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height, false);
-    renderer.setPixelRatio(pixelRatio);
     composer.setSize(width, height);
-    composer.setPixelRatio(pixelRatio);
-  });
-  resizeObserver.observe(container);
-  window.addEventListener("pointermove", onPointerMove);
+    composer.render();
+  };
 
-  const update = (delta: number) => {
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(container);
+
+  const host = container.parentElement ?? container;
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      isRunning = false;
+    }
+  };
+
+  const intersectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        isVisible = entry.isIntersecting;
+        if (!isVisible && rafId !== null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+          isRunning = false;
+        } else if (isVisible && trail.length > 0) {
+          startLoop();
+        }
+      }
+    },
+    { threshold: 0.05 },
+  );
+  intersectionObserver.observe(container);
+
+  host.addEventListener("pointermove", onPointerMove as EventListener, {
+    passive: true,
+  });
+  document.addEventListener("visibilitychange", onVisibilityChange);
+
+  const renderFrame = (now: number) => {
+    if (!isRunning || !isVisible) {
+      isRunning = false;
+      rafId = null;
+      return;
+    }
+
+    if (now - lastTime < 16) {
+      rafId = requestAnimationFrame(renderFrame);
+      return;
+    }
+
+    const delta = lastTime ? Math.min((now - lastTime) / 1000, 0.033) : 0.016;
+    lastTime = now;
+
     lerpedMouse.x += (mouse.x - lerpedMouse.x) * 0.04;
     lerpedMouse.y += (mouse.y - lerpedMouse.y) * 0.04;
     updateCamera(lerpedMouse.x, lerpedMouse.y);
 
-    const expiry = PERSPECTIVE_WAVE.fadeTime * 4;
+    const expiry = PERSPECTIVE_WAVE.fadeTime * 2;
     for (let i = trail.length - 1; i >= 0; i--) {
       trail[i].age += delta;
       if (trail[i].age > expiry) trail.splice(i, 1);
-    }
-
-    timeSinceLastMove += delta;
-    if (idleRipples && timeSinceLastMove >= 3.0 && !isPlacingRandomPoints) {
-      isPlacingRandomPoints = true;
-      randomPointTimer = 0;
-    }
-    if (isPlacingRandomPoints) {
-      randomPointTimer += delta;
-      if (randomPointTimer >= 1.5) {
-        pushPoint({
-          x: (Math.random() * 0.5 - 0.25) * bounds,
-          z: (Math.random() * 0.5 - 0.25) * bounds,
-          age: 0,
-          distDelta: PERSPECTIVE_WAVE.idleStrength + Math.random() * 0.2,
-        });
-        randomPointTimer = 0;
-      }
     }
 
     const live = Math.min(trail.length, MAX_TRAIL);
@@ -811,11 +1009,24 @@ function createPerspectiveScene(
     }
 
     composer.render();
+
+    if (trail.length === 0 && Math.abs(mouse.x - lerpedMouse.x) < 0.001) {
+      isRunning = false;
+      rafId = null;
+      return;
+    }
+
+    rafId = requestAnimationFrame(renderFrame);
   };
 
+  composer.render();
+
   const dispose = () => {
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    intersectionObserver.disconnect();
     resizeObserver.disconnect();
-    window.removeEventListener("pointermove", onPointerMove);
+    host.removeEventListener("pointermove", onPointerMove as EventListener);
     geometry.dispose();
     material.dispose();
     depthMaterial.dispose();
@@ -826,7 +1037,7 @@ function createPerspectiveScene(
     renderer.dispose();
   };
 
-  return { update, dispose };
+  return { dispose };
 }
 
 function PerspectiveCubes({
@@ -839,43 +1050,53 @@ function PerspectiveCubes({
   glow = 0.9,
   amplitude = 0.5,
   tilt = 0.7,
-  idleRipples = true,
+  idleRipples = false,
 }: PerspectiveCubesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const updateRef = useRef<((delta: number) => void) | null>(null);
   const reduceMotion = useReducedMotion();
-  const idle = idleRipples && !reduceMotion;
 
   useEffect(() => {
-    if (!canvasRef.current || !containerRef.current) return;
-    const { update, dispose } = createPerspectiveScene(canvasRef.current, containerRef.current, {
-      gridSize,
-      gap,
-      baseColor,
-      waveColor,
-      backgroundColor,
-      glow,
-      amplitude,
-      tilt,
-      idleRipples: idle,
-    });
-    updateRef.current = update;
+    if (!canvasRef.current || !containerRef.current || reduceMotion) return;
+    const { dispose } = createPerspectiveScene(
+      canvasRef.current,
+      containerRef.current,
+      {
+        gridSize,
+        gap,
+        baseColor,
+        waveColor,
+        backgroundColor,
+        glow,
+        amplitude,
+        tilt,
+        idleRipples,
+      },
+    );
     return () => {
-      updateRef.current = null;
       dispose();
     };
-  }, [gridSize, gap, baseColor, waveColor, backgroundColor, glow, amplitude, tilt, idle]);
-
-  useAnimationFrame((_, delta) => {
-    updateRef.current?.(Math.min(delta / 1000, 0.1));
-  });
+  }, [
+    gridSize,
+    gap,
+    baseColor,
+    waveColor,
+    backgroundColor,
+    glow,
+    amplitude,
+    tilt,
+    idleRipples,
+    reduceMotion,
+  ]);
 
   return (
     <div
       ref={containerRef}
       aria-hidden
-      className={cn("absolute inset-0 overflow-hidden", className)}
+      className={cn(
+        "absolute inset-0 overflow-hidden pointer-events-none",
+        className,
+      )}
       style={{ backgroundColor }}
     >
       <canvas ref={canvasRef} className="block h-full w-full outline-none" />
@@ -883,7 +1104,12 @@ function PerspectiveCubes({
   );
 }
 
-export type BackgroundCubesGridProps = IsometricCubesProps | PerspectiveCubesProps;
+export type BackgroundCubesGridProps =
+  IsometricCubesProps | PerspectiveCubesProps;
 
 export const BackgroundCubesGrid = (props: BackgroundCubesGridProps) =>
-  props.variant === "perspective" ? <PerspectiveCubes {...props} /> : <IsometricCubes {...props} />;
+  props.variant === "perspective" ? (
+    <PerspectiveCubes {...props} />
+  ) : (
+    <IsometricCubes {...props} />
+  );

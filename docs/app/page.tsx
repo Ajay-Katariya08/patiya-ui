@@ -473,6 +473,7 @@ export function FeatureCard() {
         <section className="w-full relative px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-18 md:pb-20 overflow-hidden border-b border-[var(--patiya-color-border)]">
           <BackgroundCubesGrid
             className="z-0 pointer-events-none"
+            cellSize={140}
             topColor={isDark ? "#09090b" : "#fafaf9"}
             leftColor={isDark ? "#141416" : "#e7e5e4"}
             rightColor={isDark ? "#1f1f23" : "#d6d3d1"}
