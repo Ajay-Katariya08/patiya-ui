@@ -253,6 +253,21 @@ export const docsNavGroups: NavGroup[] = [
           },
         ],
       },
+      {
+        title: "Layout & Bento Grids",
+        items: [
+          {
+            title: "Bento Grid",
+            href: "/docs/components/bento-grid",
+            badge: "New",
+          },
+          {
+            title: "Glass Surface",
+            href: "/docs/components/glass-surface",
+            badge: "New",
+          },
+        ],
+      },
     ],
   },
   {

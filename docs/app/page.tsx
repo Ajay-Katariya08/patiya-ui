@@ -24,6 +24,9 @@ import {
   PromptInput,
   ChatBubble,
   DirectionAwareHover,
+  BentoGrid,
+  BentoGridItem,
+  GlassSurface,
 } from "patiya";
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
@@ -50,7 +53,7 @@ const BackgroundCubesGrid = dynamic(
 
 type HeroTab = "dock" | "card3d" | "ai" | "spotlight";
 
-type PlaygroundCategory = "buttons" | "status" | "ai" | "cards";
+type PlaygroundCategory = "buttons" | "status" | "ai" | "cards" | "bento";
 
 type ChatMessage = {
   id: string;
@@ -263,6 +266,27 @@ export function FeatureCard() {
         <h3>Interactive 3D Physics</h3>
       </TiltCard>
     </SpotlightCard>
+  );
+}`,
+    },
+    bento: {
+      title: "Bento & Glass Surface",
+      code: `import { BentoGridItem, GlassSurface, Badge, StatusDot } from "patiya";
+
+export function BentoGlassDemo() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <GlassSurface intensity="medium" blur="md" className="p-5">
+        <Badge size="sm" variant="soft" color="primary">Glassmorphic</Badge>
+        <h4 className="font-semibold text-base mt-2">Backdrop Specular</h4>
+        <p className="text-xs text-muted-foreground">Adaptive frosted blur.</p>
+      </GlassSurface>
+      <BentoGridItem
+        title="Fluid Geometry"
+        description="Hairline token border with dynamic hover glow."
+        glow
+      />
+    </div>
   );
 }`,
     },
@@ -1301,6 +1325,7 @@ export function FeatureCard() {
                     { id: "status", label: "Status & Badges" },
                     { id: "ai", label: "AI Interfaces" },
                     { id: "cards", label: "Spatial Cards" },
+                    { id: "bento", label: "Bento & Glass" },
                   ] as const
                 ).map((cat) => (
                   <button
@@ -1391,6 +1416,39 @@ export function FeatureCard() {
                       Interactive specular glare
                     </div>
                   </TiltCard>
+                )}
+
+                {activeCategory === "bento" && (
+                  <div className="w-full max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <GlassSurface
+                      intensity="medium"
+                      blur="md"
+                      className="p-4 flex flex-col justify-between min-h-[140px] hover:border-[var(--patiya-color-primary)]/50 transition-colors"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--patiya-color-primary)] font-semibold">
+                          01 • Bento Glass
+                        </span>
+                        <StatusDot status="online" ping size="sm" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+                          Backdrop Specular
+                        </div>
+                        <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                          Adaptive frosted blur
+                        </div>
+                      </div>
+                    </GlassSurface>
+
+                    <BentoGridItem
+                      title="Fluid Geometry"
+                      description="Hairline token border with hover glow."
+                      glow
+                      className="min-h-[140px] p-4 justify-between"
+                      badge={<Badge size="sm" variant="soft" color="primary">v2.4</Badge>}
+                    />
+                  </div>
                 )}
               </div>
 

@@ -170,6 +170,9 @@ import {
   ScrollProgress,
   BrowserMockup,
   type BrowserMockupTab,
+  BentoGrid,
+  BentoGridItem,
+  GlassSurface,
   cn,
 } from "patiya";
 
@@ -11641,6 +11644,294 @@ export default function WindowMockupDemo() {
     },
     get examples() {
       return (componentsRegistry as any).browserMockup.examples;
+    },
+  },
+  bentoGrid: {
+    title: "Bento Grid",
+    description:
+      "Modern responsive grid system with variable span cards, header slots, glowing outlines, and fluid layouts.",
+    installation: `import { BentoGrid, BentoGridItem } from 'patiya';`,
+    props: [
+      {
+        name: "columns",
+        type: "2 | 3 | 4",
+        default: "3",
+        description: "Number of columns for desktop layouts.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes for the grid container.",
+      },
+      {
+        name: "title",
+        type: "ReactNode",
+        default: "-",
+        description: "Title of the bento item.",
+      },
+      {
+        name: "description",
+        type: "ReactNode",
+        default: "-",
+        description: "Description of the bento item.",
+      },
+      {
+        name: "header",
+        type: "ReactNode",
+        default: "-",
+        description: "Visual header element or media slot.",
+      },
+      {
+        name: "icon",
+        type: "ReactNode",
+        default: "-",
+        description: "Icon node positioned above the title.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "false",
+        description: "Enables glowing gradient accent on hover.",
+      },
+    ],
+    examples: [
+      {
+        title: "Adaptive Feature Bento",
+        preview: (
+          <BentoGrid className="w-full max-w-4xl auto-rows-[16rem]">
+            <BentoGridItem
+              className="md:col-span-2"
+              title="Real-Time Analytics Core"
+              description="Monitor performance metrics, render timings, and FPS across multiple GPU threads with sub-millisecond precision."
+              glow
+              badge={<Badge size="sm" variant="soft" color="primary">Active</Badge>}
+              icon={
+                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              }
+              header={
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--patiya-color-primary)]/10 via-[var(--patiya-color-background)] to-[var(--patiya-color-card)] p-4">
+                  <div className="flex items-center gap-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] px-4 py-2 text-xs font-mono shadow-sm">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>60 FPS • 0.8ms Render</span>
+                  </div>
+                </div>
+              }
+            />
+            <BentoGridItem
+              className="md:col-span-1"
+              title="Vault Security"
+              description="Hardware-isolated token encryption and passkey sessions."
+              glow
+              badge={<Badge size="sm" variant="outline">Encrypted</Badge>}
+              icon={
+                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              }
+              header={
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-tr from-[var(--patiya-color-background)] to-[var(--patiya-color-primary)]/10 p-3">
+                  <div className="text-center font-mono text-xs text-[var(--patiya-color-muted-foreground)]">
+                    AES-256 GCM
+                  </div>
+                </div>
+              }
+            />
+            <BentoGridItem
+              className="md:col-span-1"
+              title="Global Edge Nodes"
+              description="Low latency delivery across 34 edge points of presence."
+              icon={
+                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+                </svg>
+              }
+              header={
+                <div className="flex h-full w-full items-center justify-center bg-[var(--patiya-color-card)]/50 p-4">
+                  <span className="font-mono text-2xl font-bold tracking-tight text-[var(--patiya-color-primary)]">34 PoPs</span>
+                </div>
+              }
+            />
+            <BentoGridItem
+              className="md:col-span-2"
+              title="Adaptive Motion Engine"
+              description="Zero layout shifts with fluid spring physics and automatic user reduced-motion adherence."
+              glow
+              badge={<Badge size="sm" variant="soft" color="success">Verified</Badge>}
+              icon={
+                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+              }
+              header={
+                <div className="flex h-full w-full items-center justify-around bg-gradient-to-r from-[var(--patiya-color-card)] via-[var(--patiya-color-primary)]/5 to-[var(--patiya-color-card)] p-4">
+                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">stiffness: 300</div>
+                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">damping: 24</div>
+                </div>
+              }
+            />
+          </BentoGrid>
+        ),
+        code: `import { BentoGrid, BentoGridItem, Badge } from 'patiya';
+
+export default function BentoShowcase() {
+  return (
+    <BentoGrid className="w-full max-w-4xl auto-rows-[16rem]">
+      <BentoGridItem
+        className="md:col-span-2"
+        title="Real-Time Analytics Core"
+        description="Monitor performance metrics and render timings across multiple threads."
+        glow
+        badge={<Badge size="sm" variant="soft" color="primary">Active</Badge>}
+      />
+      <BentoGridItem
+        className="md:col-span-1"
+        title="Vault Security"
+        description="Hardware-isolated token encryption and passkey sessions."
+        glow
+      />
+      <BentoGridItem
+        className="md:col-span-1"
+        title="Global Edge Nodes"
+        description="Low latency delivery across 34 edge points of presence."
+      />
+      <BentoGridItem
+        className="md:col-span-2"
+        title="Adaptive Motion Engine"
+        description="Zero layout shifts with fluid spring physics."
+        glow
+      />
+    </BentoGrid>
+  );
+}`,
+      },
+    ],
+  },
+  "bento-grid": {
+    get title() {
+      return "Bento Grid";
+    },
+    get description() {
+      return "Modern responsive grid system with variable span cards, header slots, glowing outlines, and fluid layouts.";
+    },
+    get installation() {
+      return `import { BentoGrid, BentoGridItem } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).bentoGrid.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).bentoGrid.examples;
+    },
+  },
+  glassSurface: {
+    title: "Glass Surface",
+    description:
+      "Refined glassmorphic container with backdrop blur, specular top highlight, and adaptive opacity.",
+    installation: `import { GlassSurface } from 'patiya';`,
+    props: [
+      {
+        name: "blur",
+        type: "'sm' | 'md' | 'lg' | 'xl'",
+        default: "'md'",
+        description: "Backdrop blur intensity level.",
+      },
+      {
+        name: "intensity",
+        type: "'subtle' | 'medium' | 'strong'",
+        default: "'medium'",
+        description: "Background opacity and surface presence.",
+      },
+      {
+        name: "borderGlow",
+        type: "boolean",
+        default: "true",
+        description: "Renders top specular reflection highlight border.",
+      },
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes for styling.",
+      },
+    ],
+    examples: [
+      {
+        title: "Glassmorphic Cards Deck",
+        preview: (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl p-6 bg-gradient-to-br from-[var(--patiya-color-primary)]/15 via-[var(--patiya-color-background)] to-[var(--patiya-color-primary)]/5 rounded-3xl border border-[var(--patiya-color-border)]">
+            <GlassSurface intensity="subtle" blur="sm" className="p-5 flex flex-col justify-between min-h-[160px]">
+              <div className="flex items-center justify-between">
+                <Badge size="sm" variant="outline">Subtle</Badge>
+                <StatusDot status="online" size="sm" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">Light Glass</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">40% frosted density</div>
+              </div>
+            </GlassSurface>
+            <GlassSurface intensity="medium" blur="md" className="p-5 flex flex-col justify-between min-h-[160px]">
+              <div className="flex items-center justify-between">
+                <Badge size="sm" variant="soft" color="primary">Medium</Badge>
+                <StatusDot status="online" ping size="sm" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">Balanced Glass</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">60% frosted density</div>
+              </div>
+            </GlassSurface>
+            <GlassSurface intensity="strong" blur="xl" className="p-5 flex flex-col justify-between min-h-[160px]">
+              <div className="flex items-center justify-between">
+                <Badge size="sm" variant="solid" color="primary">Strong</Badge>
+                <StatusDot status="online" size="sm" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">Deep Frosted</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">85% frosted density</div>
+              </div>
+            </GlassSurface>
+          </div>
+        ),
+        code: `import { GlassSurface, Badge, StatusDot } from 'patiya';
+
+export default function GlassDeck() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+      <GlassSurface intensity="subtle" blur="sm" className="p-5">
+        <Badge size="sm" variant="outline">Subtle</Badge>
+        <h4 className="font-semibold text-sm mt-3">Light Glass</h4>
+      </GlassSurface>
+      <GlassSurface intensity="medium" blur="md" className="p-5">
+        <Badge size="sm" variant="soft" color="primary">Medium</Badge>
+        <h4 className="font-semibold text-sm mt-3">Balanced Glass</h4>
+      </GlassSurface>
+      <GlassSurface intensity="strong" blur="xl" className="p-5">
+        <Badge size="sm" variant="solid" color="primary">Strong</Badge>
+        <h4 className="font-semibold text-sm mt-3">Deep Frosted</h4>
+      </GlassSurface>
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "glass-surface": {
+    get title() {
+      return "Glass Surface";
+    },
+    get description() {
+      return "Refined glassmorphic container with backdrop blur, specular top highlight, and adaptive opacity.";
+    },
+    get installation() {
+      return `import { GlassSurface } from 'patiya';`;
+    },
+    get props() {
+      return (componentsRegistry as any).glassSurface.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).glassSurface.examples;
     },
   },
 };

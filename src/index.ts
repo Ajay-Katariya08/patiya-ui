@@ -10,6 +10,8 @@ export * from './providers/PatiyaProvider';
 
 // Layout
 export * from './components/Layout/Box';
+export * from './components/BentoGrid/BentoGrid';
+export * from './components/GlassSurface/GlassSurface';
 
 // Components
 export * from './components/Spinner/Spinner';
