@@ -8,12 +8,24 @@ import { QuickSearchModal } from "./QuickSearchModal";
 import { usePathname, useRouter } from "next/navigation";
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  const currentTheme =
+    resolvedTheme ||
+    (typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark")
+      ? "dark"
+      : theme === "system" && typeof window !== "undefined"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : theme);
+  const isDark = currentTheme === "dark";
 
   useEffect(() => {
     setMounted(true);
@@ -101,10 +113,10 @@ export function Navbar() {
           {mounted && (
             <IconButton
               variant="ghost"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(isDark ? "light" : "dark")}
               aria-label="Toggle theme"
               icon={
-                theme === "dark" ? (
+                isDark ? (
                   <svg
                     className="w-5 h-5"
                     fill="none"

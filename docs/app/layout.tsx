@@ -118,6 +118,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{const t=localStorage.getItem("patiya-theme")||"system";const isDark=t==="dark"||(t==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches);const r=document.documentElement;if(isDark){r.classList.add("dark");r.setAttribute("data-theme","dark");}else{r.classList.add("light");r.setAttribute("data-theme","light");}}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"

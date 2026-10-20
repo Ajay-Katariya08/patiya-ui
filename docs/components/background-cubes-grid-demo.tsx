@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Webhook } from "lucide-react";
 import { useTheme } from "patiya";
@@ -151,8 +151,19 @@ function HeroContent({ tone }: { tone: HeroTone }) {
 }
 
 export function BackgroundCubesGridDemo() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted
+    ? (resolvedTheme
+        ? resolvedTheme === "dark"
+        : typeof document !== "undefined"
+          ? document.documentElement.classList.contains("dark")
+          : theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches))
+    : typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false;
 
   return (
     <div className="relative isolate flex min-h-[42rem] w-full items-center justify-center overflow-hidden px-5 py-24 sm:px-8">

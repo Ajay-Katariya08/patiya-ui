@@ -85,21 +85,33 @@ function useScrollObserver() {
 }
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
+  const currentTheme =
+    resolvedTheme ||
+    (typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark")
+      ? "dark"
+      : theme === "system" && typeof window !== "undefined"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : theme);
+  const isDark = currentTheme === "dark";
+
   return (
     <IconButton
       variant="ghost"
       color="secondary"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle theme"
       className="rounded-full w-9 h-9 border border-[var(--patiya-color-border)] text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/40 transition-colors"
       icon={
-        theme === "dark" ? (
+        isDark ? (
           <svg
             className="w-4 h-4"
             fill="none"
@@ -135,8 +147,19 @@ function ThemeToggle() {
 
 export default function Home() {
   useScrollObserver();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted
+    ? (resolvedTheme
+        ? resolvedTheme === "dark"
+        : typeof document !== "undefined"
+          ? document.documentElement.classList.contains("dark")
+          : theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches))
+    : typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false;
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

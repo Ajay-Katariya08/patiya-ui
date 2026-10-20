@@ -3,7 +3,11 @@ export type PatiyaVariant = 'solid' | 'outline' | 'ghost' | 'soft' | 'link';
 export type PatiyaColor = 'primary' | 'secondary' | 'accent' | 'destructive' | 'success' | 'warning' | 'info' | 'muted';
 export type PatiyaRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
 
-export interface PatiyaThemeContextType {
-  theme: 'light' | 'dark' | 'system';
-  setTheme: (theme: 'light' | 'dark' | 'system') => void;
-}
+export type PatiyaTheme = 'light' | 'dark' | 'system';
+export type PatiyaResolvedTheme = 'light' | 'dark';
+
+export type PatiyaThemeContextType = {
+  theme: PatiyaTheme;
+  resolvedTheme: PatiyaResolvedTheme;
+  setTheme: (theme: PatiyaTheme) => void;
+};
