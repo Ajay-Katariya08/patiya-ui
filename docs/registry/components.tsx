@@ -173,8 +173,196 @@ import {
   BentoGrid,
   BentoGridItem,
   GlassSurface,
+  HoloCard,
+  VoiceVisualizer,
+  MatrixRain,
+  TextHoverEffect,
+  PricingTable,
+  PricingCard,
+  BillingToggle,
+  type BillingInterval,
+  UsageMeter,
+  AnimatedTooltip,
+  FeatureComparison,
   cn,
 } from "patiya";
+
+export const AnimatedTooltipPreview = () => {
+  const team = [
+    {
+      id: 1,
+      name: "Sophia Martinez",
+      designation: "Principal Motion Architect",
+      badge: "Core",
+      image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    },
+    {
+      id: 2,
+      name: "Marcus Vance",
+      designation: "Founding GPU Engineer",
+      badge: "WebGL",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+    },
+    {
+      id: 3,
+      name: "Aria Chen",
+      designation: "AI Interaction Specialist",
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+    },
+    {
+      id: 4,
+      name: "David Kim",
+      designation: "Design Systems Lead",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center w-full py-8">
+      <AnimatedTooltip items={team} size="md" />
+      <span className="text-xs text-[var(--patiya-color-muted-foreground)] mt-2 font-mono">
+        Hover to trigger kinetic tilt tooltip
+      </span>
+    </div>
+  );
+};
+
+export const FeatureComparisonPreview = () => {
+  const plans = [
+    { id: "starter", name: "Starter" },
+    {
+      id: "pro",
+      name: "Professional",
+      highlighted: true,
+      badge: "Most Popular",
+    },
+    { id: "enterprise", name: "Enterprise" },
+  ];
+
+  const features = [
+    {
+      category: "Core Engine",
+      name: "Active 60fps Shaders",
+      values: {
+        starter: "3 Shaders",
+        pro: "Unlimited",
+        enterprise: "Unlimited",
+      },
+    },
+    {
+      category: "Core Engine",
+      name: "WebGL Hardware Acceleration",
+      values: { starter: true, pro: true, enterprise: true },
+    },
+    {
+      category: "Architecture",
+      name: "Custom Motion Tokens",
+      values: { starter: false, pro: true, enterprise: true },
+    },
+    {
+      category: "Architecture",
+      name: "Dedicated Engineering SLA",
+      values: { starter: false, pro: false, enterprise: "15-minute response" },
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-4xl py-6 mx-auto">
+      <FeatureComparison plans={plans} features={features} />
+    </div>
+  );
+};
+
+export const PricingTablePreview = () => {
+  const [interval, setInterval] = useState<BillingInterval>("monthly");
+  return (
+    <div className="flex flex-col items-center gap-8 w-full max-w-4xl py-6 mx-auto">
+      <BillingToggle interval={interval} onChange={setInterval} />
+      <PricingTable columns={2} className="w-full">
+        <PricingCard
+          title="Pro Developer"
+          description="Everything you need to ship world-class animated interfaces."
+          price={interval === "monthly" ? 29 : 24}
+          period={interval === "monthly" ? "/mo" : "/mo billed annually"}
+          buttonText="Start Free Trial"
+          features={[
+            "Unlimited component variants",
+            "Full 60fps canvas shaders",
+            "Commercial license",
+            "Priority GitHub & Discord access",
+          ]}
+        />
+        <PricingCard
+          title="Enterprise Scale"
+          description="Dedicated design tokens, custom motion choreography, and SLA."
+          price={interval === "monthly" ? 99 : 79}
+          period={interval === "monthly" ? "/mo" : "/mo billed annually"}
+          popular
+          badge="Scale Fast"
+          buttonText="Upgrade to Enterprise"
+          features={[
+            "Everything in Pro Developer",
+            "Custom shader & WebGL pipelines",
+            "Tailored motion system",
+            "99.99% uptime guarantee",
+          ]}
+        />
+      </PricingTable>
+    </div>
+  );
+};
+
+export const UsageMeterPreview = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl py-6 mx-auto">
+      <UsageMeter
+        label="Monthly API Compute"
+        used={7840}
+        limit={10000}
+        unit="reqs"
+      />
+      <UsageMeter
+        label="Vector Storage"
+        used={920}
+        limit={1000}
+        unit="MB"
+        dangerThreshold={90}
+      />
+    </div>
+  );
+};
+
+export const MatrixRainPreview = () => {
+  return (
+    <div className="w-full max-w-2xl h-[320px] rounded-2xl overflow-hidden border border-[var(--patiya-color-border)] shadow-2xl mx-auto">
+      <MatrixRain color="matrix" charset="matrix" speed={1.1} fontSize={15}>
+        <div className="bg-black/60 backdrop-blur-md border border-green-500/30 rounded-xl p-6 text-center shadow-2xl max-w-xs">
+          <Badge variant="soft" color="success" size="sm">
+            TERMINAL • ACTIVE
+          </Badge>
+          <h4 className="text-white font-mono font-bold text-lg mt-3">
+            Patiya Neural Stream
+          </h4>
+          <p className="text-green-400/80 font-mono text-xs mt-1">
+            60FPS Canvas Matrix Rain
+          </p>
+        </div>
+      </MatrixRain>
+    </div>
+  );
+};
+
+export const TextHoverEffectPreview = () => {
+  return (
+    // <div className="flex items-center justify-center w-full max-w-2xl h-[200px] bg-[var(--patiya-color-card)]/70 dark:bg-[#0a0a0f] rounded-2xl border border-[var(--patiya-color-border)] p-4 mx-auto shadow-lg overflow-hidden">
+    <TextHoverEffect text="PATIYA" />
+    // </div>
+  );
+};
 
 export const ToastPreview = () => {
   const { toast } = useToast();
@@ -11705,10 +11893,24 @@ export default function WindowMockupDemo() {
               title="Real-Time Analytics Core"
               description="Monitor performance metrics, render timings, and FPS across multiple GPU threads with sub-millisecond precision."
               glow
-              badge={<Badge size="sm" variant="soft" color="primary">Active</Badge>}
+              badge={
+                <Badge size="sm" variant="soft" color="primary">
+                  Active
+                </Badge>
+              }
               icon={
-                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  className="w-4 h-4 text-[var(--patiya-color-primary)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
               }
               header={
@@ -11725,10 +11927,24 @@ export default function WindowMockupDemo() {
               title="Vault Security"
               description="Hardware-isolated token encryption and passkey sessions."
               glow
-              badge={<Badge size="sm" variant="outline">Encrypted</Badge>}
+              badge={
+                <Badge size="sm" variant="outline">
+                  Encrypted
+                </Badge>
+              }
               icon={
-                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <svg
+                  className="w-4 h-4 text-[var(--patiya-color-primary)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
                 </svg>
               }
               header={
@@ -11744,13 +11960,25 @@ export default function WindowMockupDemo() {
               title="Global Edge Nodes"
               description="Low latency delivery across 34 edge points of presence."
               icon={
-                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+                <svg
+                  className="w-4 h-4 text-[var(--patiya-color-primary)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+                  />
                 </svg>
               }
               header={
                 <div className="flex h-full w-full items-center justify-center bg-[var(--patiya-color-card)]/50 p-4">
-                  <span className="font-mono text-2xl font-bold tracking-tight text-[var(--patiya-color-primary)]">34 PoPs</span>
+                  <span className="font-mono text-2xl font-bold tracking-tight text-[var(--patiya-color-primary)]">
+                    34 PoPs
+                  </span>
                 </div>
               }
             />
@@ -11759,16 +11987,34 @@ export default function WindowMockupDemo() {
               title="Adaptive Motion Engine"
               description="Zero layout shifts with fluid spring physics and automatic user reduced-motion adherence."
               glow
-              badge={<Badge size="sm" variant="soft" color="success">Verified</Badge>}
+              badge={
+                <Badge size="sm" variant="soft" color="success">
+                  Verified
+                </Badge>
+              }
               icon={
-                <svg className="w-4 h-4 text-[var(--patiya-color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                <svg
+                  className="w-4 h-4 text-[var(--patiya-color-primary)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                  />
                 </svg>
               }
               header={
                 <div className="flex h-full w-full items-center justify-around bg-gradient-to-r from-[var(--patiya-color-card)] via-[var(--patiya-color-primary)]/5 to-[var(--patiya-color-card)] p-4">
-                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">stiffness: 300</div>
-                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">damping: 24</div>
+                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">
+                    stiffness: 300
+                  </div>
+                  <div className="h-10 w-24 rounded-lg border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] flex items-center justify-center text-[10px] font-mono">
+                    damping: 24
+                  </div>
                 </div>
               }
             />
@@ -11862,34 +12108,58 @@ export default function BentoShowcase() {
         title: "Glassmorphic Cards Deck",
         preview: (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl p-6 bg-gradient-to-br from-[var(--patiya-color-primary)]/15 via-[var(--patiya-color-background)] to-[var(--patiya-color-primary)]/5 rounded-3xl border border-[var(--patiya-color-border)]">
-            <GlassSurface intensity="subtle" blur="sm" className="p-5 flex flex-col justify-between min-h-[160px]">
+            <GlassSurface
+              intensity="subtle"
+              blur="sm"
+              className="p-5 flex flex-col justify-between min-h-[160px]"
+            >
               <div className="flex items-center justify-between">
-                <Badge size="sm" variant="outline">Subtle</Badge>
+                <Badge size="sm" variant="outline">
+                  Subtle
+                </Badge>
                 <StatusDot status="online" size="sm" />
               </div>
               <div>
                 <div className="font-semibold text-sm">Light Glass</div>
-                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">40% frosted density</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                  40% frosted density
+                </div>
               </div>
             </GlassSurface>
-            <GlassSurface intensity="medium" blur="md" className="p-5 flex flex-col justify-between min-h-[160px]">
+            <GlassSurface
+              intensity="medium"
+              blur="md"
+              className="p-5 flex flex-col justify-between min-h-[160px]"
+            >
               <div className="flex items-center justify-between">
-                <Badge size="sm" variant="soft" color="primary">Medium</Badge>
+                <Badge size="sm" variant="soft" color="primary">
+                  Medium
+                </Badge>
                 <StatusDot status="online" ping size="sm" />
               </div>
               <div>
                 <div className="font-semibold text-sm">Balanced Glass</div>
-                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">60% frosted density</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                  60% frosted density
+                </div>
               </div>
             </GlassSurface>
-            <GlassSurface intensity="strong" blur="xl" className="p-5 flex flex-col justify-between min-h-[160px]">
+            <GlassSurface
+              intensity="strong"
+              blur="xl"
+              className="p-5 flex flex-col justify-between min-h-[160px]"
+            >
               <div className="flex items-center justify-between">
-                <Badge size="sm" variant="solid" color="primary">Strong</Badge>
+                <Badge size="sm" variant="solid" color="primary">
+                  Strong
+                </Badge>
                 <StatusDot status="online" size="sm" />
               </div>
               <div>
                 <div className="font-semibold text-sm">Deep Frosted</div>
-                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">85% frosted density</div>
+                <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                  85% frosted density
+                </div>
               </div>
             </GlassSurface>
           </div>
@@ -11932,6 +12202,747 @@ export default function GlassDeck() {
     },
     get examples() {
       return (componentsRegistry as any).glassSurface.examples;
+    },
+  },
+  holoCard: {
+    title: "Holo Card",
+    description:
+      "A 3D interactive holographic card featuring iridescent prismatic rainbow foil reflection, cursor-guided specular glare, and gyroscope tilt physics.",
+    installation: `import { HoloCard } from 'patiya';`,
+    props: [
+      {
+        name: "foil",
+        type: "'rainbow' | 'cosmic' | 'gold' | 'neon' | 'silver'",
+        default: "'rainbow'",
+        description: "The holographic foil color scheme.",
+      },
+      {
+        name: "glare",
+        type: "boolean",
+        default: "true",
+        description: "Whether to display cursor-tracking specular glare.",
+      },
+      {
+        name: "glareOpacity",
+        type: "number",
+        default: "0.5",
+        description: "The maximum opacity of the specular glare reflection.",
+      },
+      {
+        name: "maxTilt",
+        type: "number",
+        default: "18",
+        description: "Maximum 3D tilt angle in degrees.",
+      },
+      {
+        name: "perspective",
+        type: "number",
+        default: "1000",
+        description: "The 3D CSS perspective distance in pixels.",
+      },
+      {
+        name: "sparkles",
+        type: "boolean",
+        default: "true",
+        description: "Whether to render animated micro glitter sparkles.",
+      },
+    ],
+    examples: [
+      {
+        title: "Interactive Foil Preview",
+        preview: (
+          <div className="flex w-full items-center justify-center py-6">
+            <HoloCard
+              foil="rainbow"
+              className="w-full max-w-sm p-6 text-center mx-auto"
+            >
+              <div className="flex items-center justify-between w-full">
+                <Badge variant="soft" color="primary">
+                  Quantum Core
+                </Badge>
+                <span className="font-mono text-xs text-[var(--patiya-color-muted-foreground)]">
+                  0x88F2
+                </span>
+              </div>
+              <div className="mt-8 space-y-2 text-center">
+                <h3 className="text-xl font-bold tracking-tight">
+                  Patiya HoloPass
+                </h3>
+                <p className="text-xs text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+                  Iridescent holographic foil with real-time cursor specular
+                  reflection and gyroscope tilt.
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-[var(--patiya-color-border)]/50 flex items-center justify-between text-xs font-mono w-full">
+                <span className="text-[var(--patiya-color-muted-foreground)]">
+                  PRISM • 60FPS
+                </span>
+                <span className="text-[var(--patiya-color-primary)] font-semibold">
+                  VERIFIED
+                </span>
+              </div>
+            </HoloCard>
+          </div>
+        ),
+        code: `import { HoloCard, Badge } from 'patiya';
+
+export default function HoloCardDemo() {
+  return (
+    <HoloCard foil="rainbow" maxTilt={20} className="w-full max-w-sm p-6 text-center mx-auto">
+      <div className="flex items-center justify-between">
+        <Badge variant="soft" color="primary">Quantum Core</Badge>
+        <span className="font-mono text-xs text-muted-foreground">0x88F2</span>
+      </div>
+      <div className="mt-8 space-y-2">
+        <h3 className="text-xl font-bold tracking-tight">Patiya HoloPass</h3>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          Iridescent holographic foil with real-time cursor specular reflection.
+        </p>
+      </div>
+      <div className="mt-8 pt-4 border-t border-border/50 flex items-center justify-between text-xs font-mono">
+        <span className="text-muted-foreground">PRISM • 60FPS</span>
+        <span className="text-primary font-semibold">VERIFIED</span>
+      </div>
+    </HoloCard>
+  );
+}`,
+      },
+      {
+        title: "Cosmic & Neon Foils",
+        preview: (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl py-6">
+            <HoloCard foil="cosmic" className="p-5 text-left">
+              <Badge size="sm" color="secondary" variant="soft">
+                Cosmic
+              </Badge>
+              <h4 className="font-bold text-sm mt-4">Deep Nebula Pass</h4>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)] mt-1">
+                Ultraviolet and deep sapphire sheen.
+              </p>
+            </HoloCard>
+            <HoloCard foil="neon" className="p-5 text-left">
+              <Badge size="sm" color="accent" variant="soft">
+                Neon
+              </Badge>
+              <h4 className="font-bold text-sm mt-4">Cyber Grid Matrix</h4>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)] mt-1">
+                Cyan and magenta prismatic glare.
+              </p>
+            </HoloCard>
+          </div>
+        ),
+        code: `import { HoloCard, Badge } from 'patiya';
+
+export default function FoilShowcase() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <HoloCard foil="cosmic" className="p-5">
+        <Badge size="sm" color="secondary" variant="soft">Cosmic</Badge>
+        <h4 className="font-bold text-sm mt-4">Deep Nebula Pass</h4>
+        <p className="text-xs text-muted-foreground mt-1">Ultraviolet and deep sapphire sheen.</p>
+      </HoloCard>
+      <HoloCard foil="neon" className="p-5">
+        <Badge size="sm" color="accent" variant="soft">Neon</Badge>
+        <h4 className="font-bold text-sm mt-4">Cyber Grid Matrix</h4>
+        <p className="text-xs text-muted-foreground mt-1">Cyan and magenta prismatic glare.</p>
+      </HoloCard>
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "holo-card": {
+    get title() {
+      return (componentsRegistry as any).holoCard.title;
+    },
+    get description() {
+      return (componentsRegistry as any).holoCard.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).holoCard.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).holoCard.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).holoCard.examples;
+    },
+  },
+  voiceVisualizer: {
+    title: "Voice Visualizer",
+    description:
+      "Real-time animated audio waveform and frequency spectrum visualizer designed for AI voice interfaces with wave, bars, and orb modes.",
+    installation: `import { VoiceVisualizer } from 'patiya';`,
+    props: [
+      {
+        name: "mode",
+        type: "'wave' | 'bars' | 'orb'",
+        default: "'wave'",
+        description:
+          "Visualizer style: flowing continuous wave, frequency spectrum bars, or glowing pulsing orb.",
+      },
+      {
+        name: "state",
+        type: "'idle' | 'listening' | 'thinking' | 'speaking'",
+        default: "'speaking'",
+        description:
+          "Active voice AI lifecycle state adjusting waveform amplitude and frequency.",
+      },
+      {
+        name: "theme",
+        type: "'primary' | 'neon' | 'aurora' | 'sunset' | 'monochrome'",
+        default: "'primary'",
+        description: "Visualizer colorway theme.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "140",
+        description: "Height of the canvas visualizer container in pixels.",
+      },
+      {
+        name: "barCount",
+        type: "number",
+        default: "36",
+        description: "Number of frequency spectrum bars when in 'bars' mode.",
+      },
+      {
+        name: "interactive",
+        type: "boolean",
+        default: "true",
+        description:
+          "Whether cursor hovering dynamically modulates wave amplitude.",
+      },
+    ],
+    examples: [
+      {
+        title: "Wave Ribbon Mode",
+        preview: (
+          <div className="w-full max-w-lg py-6 space-y-4">
+            <VoiceVisualizer
+              mode="wave"
+              theme="neon"
+              state="speaking"
+              height={130}
+            />
+          </div>
+        ),
+        code: `import { VoiceVisualizer } from 'patiya';
+
+export default function VoiceWaveDemo() {
+  return (
+    <VoiceVisualizer
+      mode="wave"
+      theme="neon"
+      state="speaking"
+      height={130}
+      interactive={true}
+    />
+  );
+}`,
+      },
+      {
+        title: "Bars & Orb Modes",
+        preview: (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl py-6">
+            <div className="space-y-2">
+              <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                FREQUENCY BARS
+              </span>
+              <VoiceVisualizer
+                mode="bars"
+                theme="aurora"
+                state="speaking"
+                height={130}
+              />
+            </div>
+            <div className="space-y-2">
+              <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                VOICE ORB
+              </span>
+              <VoiceVisualizer
+                mode="orb"
+                theme="sunset"
+                state="listening"
+                height={130}
+              />
+            </div>
+          </div>
+        ),
+        code: `import { VoiceVisualizer } from 'patiya';
+
+export default function AudioModesDemo() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <VoiceVisualizer mode="bars" theme="aurora" state="speaking" height={130} />
+      <VoiceVisualizer mode="orb" theme="sunset" state="listening" height={130} />
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "voice-visualizer": {
+    get title() {
+      return (componentsRegistry as any).voiceVisualizer.title;
+    },
+    get description() {
+      return (componentsRegistry as any).voiceVisualizer.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).voiceVisualizer.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).voiceVisualizer.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).voiceVisualizer.examples;
+    },
+  },
+  pricingTable: {
+    title: "Pricing Table",
+    description:
+      "High-converting SaaS pricing tables with animated monthly/yearly billing toggles, feature comparison, and highlight cards.",
+    installation:
+      "import { PricingTable, PricingCard, BillingToggle } from 'patiya';",
+    props: [
+      {
+        name: "columns",
+        type: "2 | 3 | 4",
+        default: "3",
+        description: "Number of grid columns across responsive viewports.",
+      },
+      {
+        name: "popular",
+        type: "boolean",
+        default: "false",
+        description:
+          "Elevates the card with primary accent border, glowing gradient, and pill badge.",
+      },
+    ],
+    examples: [
+      {
+        title: "SaaS Pricing Grid",
+        preview: <PricingTablePreview />,
+        code: `import { useState } from 'react';
+import { PricingTable, PricingCard, BillingToggle, type BillingInterval } from 'patiya';
+
+export default function PricingDemo() {
+  const [interval, setInterval] = useState<BillingInterval>('monthly');
+
+  return (
+    <div className="flex flex-col items-center gap-8 w-full max-w-4xl mx-auto">
+      <BillingToggle interval={interval} onChange={setInterval} />
+      <PricingTable columns={2} className="w-full">
+        <PricingCard
+          title="Pro Developer"
+          description="Everything you need to ship world-class animated interfaces."
+          price={interval === 'monthly' ? 29 : 24}
+          period={interval === 'monthly' ? '/mo' : '/mo billed annually'}
+          features={[
+            'Unlimited component variants',
+            'Full 60fps canvas shaders',
+            'Commercial license',
+            'Priority GitHub & Discord access',
+          ]}
+        />
+        <PricingCard
+          title="Enterprise Scale"
+          description="Dedicated design tokens, custom motion choreography, and SLA."
+          price={interval === 'monthly' ? 99 : 79}
+          period={interval === 'monthly' ? '/mo' : '/mo billed annually'}
+          popular
+          badge="Scale Fast"
+          features={[
+            'Everything in Pro Developer',
+            'Custom shader & WebGL pipelines',
+            'Tailored motion system',
+            '99.99% uptime guarantee',
+          ]}
+        />
+      </PricingTable>
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "pricing-table": {
+    get title() {
+      return (componentsRegistry as any).pricingTable.title;
+    },
+    get description() {
+      return (componentsRegistry as any).pricingTable.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).pricingTable.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).pricingTable.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).pricingTable.examples;
+    },
+  },
+  usageMeter: {
+    title: "Usage Meter",
+    description:
+      "Real-time resource quota and billing consumption meter with warning thresholds and color transitions.",
+    installation: "import { UsageMeter } from 'patiya';",
+    props: [
+      {
+        name: "label",
+        type: "string",
+        default: "-",
+        description: "Name of the resource or API quota being measured.",
+      },
+      {
+        name: "used",
+        type: "number",
+        default: "-",
+        description: "Current consumed amount.",
+      },
+      {
+        name: "limit",
+        type: "number",
+        default: "-",
+        description: "Maximum allowable threshold before rate limiting.",
+      },
+      {
+        name: "unit",
+        type: "string",
+        default: "''",
+        description: "Unit designation (e.g. MB, reqs, credits).",
+      },
+    ],
+    examples: [
+      {
+        title: "API Quota & Storage Gauges",
+        preview: <UsageMeterPreview />,
+        code: `import { UsageMeter } from 'patiya';
+
+export default function UsageMeterDemo() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+      <UsageMeter label="Monthly API Compute" used={7840} limit={10000} unit="reqs" />
+      <UsageMeter label="Vector Storage" used={920} limit={1000} unit="MB" dangerThreshold={90} />
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "usage-meter": {
+    get title() {
+      return (componentsRegistry as any).usageMeter.title;
+    },
+    get description() {
+      return (componentsRegistry as any).usageMeter.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).usageMeter.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).usageMeter.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).usageMeter.examples;
+    },
+  },
+  matrixRain: {
+    title: "Matrix Rain",
+    description:
+      "High-performance 60fps canvas digital code rain with glowing phosphorescent trails, multi-color palettes, and interactive cursor ripple perturbation.",
+    installation: "import { MatrixRain } from 'patiya';",
+    props: [
+      {
+        name: "color",
+        type: "'matrix' | 'cyber' | 'amethyst' | 'amber'",
+        default: "'matrix'",
+        description:
+          "Color palette theme for head glyphs and trailing phosphor decay.",
+      },
+      {
+        name: "charset",
+        type: "'matrix' | 'katakana' | 'binary' | 'alphanumeric'",
+        default: "'matrix'",
+        description: "Character set stream source.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "1",
+        description: "Stream descent velocity multiplier.",
+      },
+      {
+        name: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Whether mouse proximity illuminates and repels glyphs.",
+      },
+    ],
+    examples: [
+      {
+        title: "Matrix Neural Stream",
+        preview: <MatrixRainPreview />,
+        code: `import { MatrixRain, Badge } from 'patiya';
+
+export default function MatrixRainDemo() {
+  return (
+    <div className="w-full max-w-2xl h-[320px] rounded-2xl overflow-hidden border border-border">
+      <MatrixRain color="matrix" charset="matrix" speed={1.1} fontSize={15}>
+        <div className="bg-black/60 backdrop-blur-md border border-green-500/30 rounded-xl p-6 text-center max-w-xs">
+          <Badge variant="soft" color="success" size="sm">TERMINAL • ACTIVE</Badge>
+          <h4 className="text-white font-mono font-bold text-lg mt-3">Patiya Neural Stream</h4>
+          <p className="text-green-400/80 font-mono text-xs mt-1">60FPS Canvas Matrix Rain</p>
+        </div>
+      </MatrixRain>
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "matrix-rain": {
+    get title() {
+      return (componentsRegistry as any).matrixRain.title;
+    },
+    get description() {
+      return (componentsRegistry as any).matrixRain.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).matrixRain.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).matrixRain.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).matrixRain.examples;
+    },
+  },
+  textHoverEffect: {
+    title: "Text Hover Effect",
+    description:
+      "Interactive radial mask reveal on SVG text outlines following cursor coordinates in real-time.",
+    installation: "import { TextHoverEffect } from 'patiya';",
+    props: [
+      {
+        name: "text",
+        type: "string",
+        default: "-",
+        description: "The text string to render with interactive stroke mask.",
+      },
+      {
+        name: "color",
+        type: "PatiyaColor | string",
+        default: "'primary'",
+        description: "Text stroke and illuminated fill color.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "0.3",
+        description: "CSS transition opacity duration in seconds.",
+      },
+    ],
+    examples: [
+      {
+        title: "Cursor-Guided Luminous Reveal",
+        preview: <TextHoverEffectPreview />,
+        code: `import { TextHoverEffect } from 'patiya';
+
+export default function TextHoverDemo() {
+  return (
+    <div className="flex items-center justify-center w-full max-w-2xl h-[200px] bg-card/70 dark:bg-[#0a0a0f] rounded-2xl border border-border p-4 mx-auto shadow-lg overflow-hidden">
+      <TextHoverEffect text="PATIYA" />
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "text-hover-effect": {
+    get title() {
+      return (componentsRegistry as any).textHoverEffect.title;
+    },
+    get description() {
+      return (componentsRegistry as any).textHoverEffect.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).textHoverEffect.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).textHoverEffect.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).textHoverEffect.examples;
+    },
+  },
+  animatedTooltip: {
+    title: "Animated Tooltip",
+    description:
+      "Dynamic overlapping avatar stack with interactive kinetic tilt cards revealing team members, contributors, and user profiles.",
+    installation: "import { AnimatedTooltip, type TooltipItem } from 'patiya';",
+    props: [
+      {
+        name: "items",
+        type: "TooltipItem[]",
+        default: "[]",
+        description:
+          "Array of tooltip items containing id, name, designation, badge, and image.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "'md'",
+        description: "Avatar circle diameter and font sizing.",
+      },
+      {
+        name: "overlap",
+        type: "boolean",
+        default: "true",
+        description:
+          "Whether avatars overlap in a dense stack expanding on hover.",
+      },
+    ],
+    examples: [
+      {
+        title: "Team & Contributor Stack",
+        preview: <AnimatedTooltipPreview />,
+        code: `import { AnimatedTooltip } from 'patiya';
+
+const team = [
+  {
+    id: 1,
+    name: 'Sophia Martinez',
+    designation: 'Principal Motion Architect',
+    badge: 'Core',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+  },
+  {
+    id: 2,
+    name: 'Marcus Vance',
+    designation: 'Founding GPU Engineer',
+    badge: 'WebGL',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+  },
+  {
+    id: 3,
+    name: 'Aria Chen',
+    designation: 'AI Interaction Specialist',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+  },
+];
+
+export default function TooltipDemo() {
+  return (
+    <div className="flex justify-center py-6">
+      <AnimatedTooltip items={team} size="md" />
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "animated-tooltip": {
+    get title() {
+      return (componentsRegistry as any).animatedTooltip.title;
+    },
+    get description() {
+      return (componentsRegistry as any).animatedTooltip.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).animatedTooltip.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).animatedTooltip.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).animatedTooltip.examples;
+    },
+  },
+  featureComparison: {
+    title: "Feature Comparison",
+    description:
+      "Comprehensive SaaS tier comparison matrix with categorised features, boolean checks, custom values, and highlighted recommended plans.",
+    installation: "import { FeatureComparison } from 'patiya';",
+    props: [
+      {
+        name: "plans",
+        type: "FeatureComparisonPlan[]",
+        default: "[]",
+        description:
+          "Array of subscription tiers with name, badge, and highlighted state.",
+      },
+      {
+        name: "features",
+        type: "FeatureComparisonItem[]",
+        default: "[]",
+        description:
+          "Grouped feature rows mapping plan IDs to booleans, numbers, or descriptive text.",
+      },
+    ],
+    examples: [
+      {
+        title: "Tier Matrix Comparison",
+        preview: <FeatureComparisonPreview />,
+        code: `import { FeatureComparison } from 'patiya';
+
+const plans = [
+  { id: 'starter', name: 'Starter' },
+  { id: 'pro', name: 'Professional', highlighted: true, badge: 'Most Popular' },
+  { id: 'enterprise', name: 'Enterprise' },
+];
+
+const features = [
+  {
+    category: 'Core Engine',
+    name: 'Active 60fps Shaders',
+    values: { starter: '3 Shaders', pro: 'Unlimited', enterprise: 'Unlimited' },
+  },
+  {
+    category: 'Core Engine',
+    name: 'WebGL Hardware Acceleration',
+    values: { starter: true, pro: true, enterprise: true },
+  },
+  {
+    category: 'Architecture',
+    name: 'Custom Motion Tokens',
+    values: { starter: false, pro: true, enterprise: true },
+  },
+  {
+    category: 'Architecture',
+    name: 'Dedicated Engineering SLA',
+    values: { starter: false, pro: false, enterprise: '15-minute response' },
+  },
+];
+
+export default function ComparisonDemo() {
+  return (
+    <div className="w-full max-w-4xl mx-auto py-6">
+      <FeatureComparison plans={plans} features={features} />
+    </div>
+  );
+}`,
+      },
+    ],
+  },
+  "feature-comparison": {
+    get title() {
+      return (componentsRegistry as any).featureComparison.title;
+    },
+    get description() {
+      return (componentsRegistry as any).featureComparison.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).featureComparison.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).featureComparison.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).featureComparison.examples;
     },
   },
 };

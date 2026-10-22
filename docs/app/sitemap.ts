@@ -59,6 +59,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "borderBeam",
     "spotlight",
     "sparkles",
+    "holoCard",
+    "voiceVisualizer",
+    "textHoverEffect",
+    "matrixRain",
+    "pricingTable",
+    "usageMeter",
+    "animatedTooltip",
+    "featureComparison",
   ];
 
   const blocks = [

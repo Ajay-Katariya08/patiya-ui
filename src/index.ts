@@ -13,6 +13,11 @@ export * from './components/Layout/Box';
 export * from './components/BentoGrid/BentoGrid';
 export * from './components/GlassSurface/GlassSurface';
 
+// SaaS & Pricing
+export * from './components/PricingTable/PricingTable';
+export * from './components/UsageMeter/UsageMeter';
+export * from './components/FeatureComparison/FeatureComparison';
+
 // Components
 export * from './components/Spinner/Spinner';
 export * from './components/Input/Input';
@@ -28,6 +33,7 @@ export * from './components/Skeleton/Skeleton';
 export * from './components/Alert/Alert';
 export * from './components/Progress/Progress';
 export * from './components/Tooltip/Tooltip';
+export * from './components/AnimatedTooltip/AnimatedTooltip';
 export * from './components/Modal/Modal';
 export * from './components/Drawer/Drawer';
 export * from './components/Popover/Popover';
@@ -56,6 +62,7 @@ export * from './components/ScratchToReveal/ScratchToReveal';
 export * from './components/Magnetic/Magnetic';
 export * from './components/Dock/Dock';
 export * from './components/FlipCard/FlipCard';
+export * from './components/HoloCard/HoloCard';
 export * from './components/DirectionAwareHover/DirectionAwareHover';
 export * from './components/ShimmerButton/ShimmerButton';
 export * from './components/Confetti/Confetti';
@@ -74,6 +81,7 @@ export * from './components/GradientText/GradientText';
 export * from './components/TypingText/TypingText';
 export * from './components/FlipText/FlipText';
 export * from './components/BlurText/BlurText';
+export * from './components/TextHoverEffect/TextHoverEffect';
 
 // Backgrounds & Effects
 export * from './components/MeteorShower/MeteorShower';
@@ -81,6 +89,7 @@ export * from './components/AuroraBackground/AuroraBackground';
 export * from './components/BorderBeam/BorderBeam';
 export * from './components/Sparkles/Sparkles';
 export * from './components/Spotlight/Spotlight';
+export * from './components/MatrixRain/MatrixRain';
 
 // AI Interfaces
 export * from './components/ChatBubble/ChatBubble';
@@ -91,6 +100,7 @@ export * from './components/TypewriterText/TypewriterText';
 export * from './components/PromptSuggestion/PromptSuggestion';
 export * from './components/SourceCitation/SourceCitation';
 export * from './components/ModelSelector/ModelSelector';
+export * from './components/VoiceVisualizer/VoiceVisualizer';
 
 // Authentication & Security
 export * from './components/OTPInput/OTPInput';

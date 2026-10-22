@@ -43,15 +43,23 @@ const QuickSearchModal = dynamic(
   { ssr: false },
 );
 
-const BackgroundCubesGrid = dynamic(
+const ThreeHeroBackground = dynamic(
   () =>
-    import("../components/ui/background-cubes-grid").then(
-      (mod) => mod.BackgroundCubesGrid,
+    import("../components/ThreeHeroBackground").then(
+      (mod) => mod.ThreeHeroBackground,
     ),
   { ssr: false },
 );
 
-type HeroTab = "dock" | "card3d" | "ai" | "spotlight";
+const ThreeHeroScene = dynamic(
+  () =>
+    import("../components/ThreeHeroScene").then(
+      (mod) => mod.ThreeHeroScene,
+    ),
+  { ssr: false },
+);
+
+type HeroTab = "dock" | "threejs" | "card3d" | "ai" | "spotlight";
 
 type PlaygroundCategory = "buttons" | "status" | "ai" | "cards" | "bento";
 
@@ -155,11 +163,14 @@ export default function Home() {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted
-    ? (resolvedTheme
-        ? resolvedTheme === "dark"
-        : typeof document !== "undefined"
-          ? document.documentElement.classList.contains("dark")
-          : theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches))
+    ? resolvedTheme
+      ? resolvedTheme === "dark"
+      : typeof document !== "undefined"
+        ? document.documentElement.classList.contains("dark")
+        : theme === "dark" ||
+          (theme === "system" &&
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
     : typeof document !== "undefined"
       ? document.documentElement.classList.contains("dark")
       : false;
@@ -518,14 +529,7 @@ export function BentoGlassDemo() {
 
       <main className="flex-1 flex flex-col items-center w-full">
         <section className="w-full relative px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-18 md:pb-20 overflow-hidden border-b border-[var(--patiya-color-border)]">
-          <BackgroundCubesGrid
-            className="z-0 pointer-events-none"
-            cellSize={140}
-            topColor={isDark ? "#09090b" : "#fafaf9"}
-            leftColor={isDark ? "#141416" : "#e7e5e4"}
-            rightColor={isDark ? "#1f1f23" : "#d6d3d1"}
-            glowColor={isDark ? "#3b82f6" : "#a8a29e"}
-          />
+          <ThreeHeroBackground isDark={isDark} className="z-0" />
 
           <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10 space-y-6">
             <Magnetic intensity={0.2} range={140}>
@@ -639,6 +643,7 @@ export function BentoGlassDemo() {
                     {(
                       [
                         { id: "dock", label: "Proximity Dock" },
+                        { id: "threejs", label: "Three.js 3D" },
                         { id: "card3d", label: "Spatial 3D" },
                         { id: "ai", label: "Neural AI" },
                         { id: "spotlight", label: "Spotlight" },
@@ -684,9 +689,9 @@ export function BentoGlassDemo() {
                         <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-[var(--patiya-color-primary)]  tracking-wider px-3 py-1 rounded-full bg-[var(--patiya-color-primary)]/10 border border-[var(--patiya-color-primary)]/20">
                           Interactive Spring Geometry
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
+                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
                           Magnification Dock
-                        </h3>
+                        </h2>
                         <p className="text-xs sm:text-sm text-[var(--patiya-color-muted-foreground)] max-w-xs mx-auto leading-relaxed">
                           Fluid spring physics with continuous proximity scaling
                           and responsive layout morphing.
@@ -774,6 +779,18 @@ export function BentoGlassDemo() {
                       <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[var(--patiya-color-muted-foreground)]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--patiya-color-primary)]" />
                         Move cursor across dock to trigger proximity magnify
+                      </div>
+                    </div>
+                  )}
+
+                  {activeHeroTab === "threejs" && (
+                    <div className="w-full flex flex-col items-center justify-center gap-4">
+                      <div className="w-full max-w-2xl h-[340px] sm:h-[380px] rounded-2xl overflow-hidden border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/50 backdrop-blur-xl relative shadow-md shadow-black/5 dark:shadow-black/40">
+                        <ThreeHeroScene isDark={isDark} showControls={true} />
+                      </div>
+                      <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--patiya-color-primary)]" />
+                        <span>Interactive WebGL 2.0 Mesh • Drag / Touch to rotate with momentum</span>
                       </div>
                     </div>
                   )}
@@ -1446,7 +1463,11 @@ export function BentoGlassDemo() {
                       description="Hairline token border with hover glow."
                       glow
                       className="min-h-[140px] p-4 justify-between"
-                      badge={<Badge size="sm" variant="soft" color="primary">v2.4</Badge>}
+                      badge={
+                        <Badge size="sm" variant="soft" color="primary">
+                          v2.4
+                        </Badge>
+                      }
                     />
                   </div>
                 )}

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @source "../node_modules/patiya/dist";
+@source "../../src";
+@variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
   --color-primary: var(--patiya-color-primary);

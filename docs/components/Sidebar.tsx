@@ -72,6 +72,11 @@ export const docsNavGroups: NavGroup[] = [
           { title: "Modal", href: "/docs/components/modal" },
           { title: "Drawer", href: "/docs/components/drawer" },
           { title: "Tooltip", href: "/docs/components/tooltip" },
+          {
+            title: "Animated Tooltip",
+            href: "/docs/components/animatedTooltip",
+            badge: "New",
+          },
           { title: "Popover", href: "/docs/components/popover" },
           { title: "Dropdown Menu", href: "/docs/components/dropdown-menu" },
           { title: "Toast", href: "/docs/components/toast" },
@@ -123,6 +128,11 @@ export const docsNavGroups: NavGroup[] = [
             href: "/docs/components/pointerFollower",
             badge: "New",
           },
+          {
+            title: "Holo Card",
+            href: "/docs/components/holoCard",
+            badge: "New",
+          },
         ],
       },
       {
@@ -141,6 +151,11 @@ export const docsNavGroups: NavGroup[] = [
           { title: "Typing Text", href: "/docs/components/typingText" },
           { title: "Flip Text", href: "/docs/components/flipText" },
           { title: "Blur Text", href: "/docs/components/blurText" },
+          {
+            title: "Text Hover Effect",
+            href: "/docs/components/textHoverEffect",
+            badge: "New",
+          },
         ],
       },
       {
@@ -154,6 +169,11 @@ export const docsNavGroups: NavGroup[] = [
           { title: "Border Beam", href: "/docs/components/borderBeam" },
           { title: "Spotlight", href: "/docs/components/spotlight" },
           { title: "Sparkles", href: "/docs/components/sparkles" },
+          {
+            title: "Matrix Rain",
+            href: "/docs/components/matrixRain",
+            badge: "New",
+          },
         ],
       },
       {
@@ -181,6 +201,11 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Model Selector",
             href: "/docs/components/modelSelector",
+          },
+          {
+            title: "Voice Visualizer",
+            href: "/docs/components/voiceVisualizer",
+            badge: "New",
           },
         ],
       },
@@ -264,6 +289,26 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Glass Surface",
             href: "/docs/components/glass-surface",
+            badge: "New",
+          },
+        ],
+      },
+      {
+        title: "SaaS & Billing",
+        items: [
+          {
+            title: "Pricing Table",
+            href: "/docs/components/pricingTable",
+            badge: "New",
+          },
+          {
+            title: "Usage Meter",
+            href: "/docs/components/usageMeter",
+            badge: "New",
+          },
+          {
+            title: "Feature Comparison",
+            href: "/docs/components/featureComparison",
             badge: "New",
           },
         ],

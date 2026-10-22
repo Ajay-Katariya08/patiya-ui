@@ -601,7 +601,7 @@ export const ExpandableCardPreview = () => {
                 </div>
 
                 <div className="flex items-center justify-between text-xs pt-1">
-                  <span className="text-[var(--patiya-color-muted-foreground)]">
+                  <span className="text-(--patiya-color-muted-foreground)">
                     Automatic Backups
                   </span>
                   <span className="font-mono text-emerald-500 font-bold">
@@ -6699,7 +6699,9 @@ export const NotificationInboxCenterPreview = () => {
 };
 
 export const AgentVoiceOrbPreview = () => {
-  const [state, setState] = useState<"idle" | "listening" | "thinking" | "speaking">("speaking");
+  const [state, setState] = useState<
+    "idle" | "listening" | "thinking" | "speaking"
+  >("speaking");
   const [isMuted, setIsMuted] = useState(false);
   const [gain, setGain] = useState(72);
 
@@ -6800,13 +6802,27 @@ export const AgentVoiceOrbPreview = () => {
             />
             <motion.div
               animate={{
-                scale: isMuted ? 0.9 : state === "speaking" ? [0.95, 1.1, 0.95] : [1, 1.02, 1],
+                scale: isMuted
+                  ? 0.9
+                  : state === "speaking"
+                    ? [0.95, 1.1, 0.95]
+                    : [1, 1.02, 1],
               }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               className="absolute w-14 h-14 rounded-full border border-white/40 bg-[var(--patiya-color-background)]/80 backdrop-blur-md flex items-center justify-center shadow-inner"
             >
               <span className="text-base font-bold">
-                {isMuted ? "🔇" : state === "speaking" ? "⚡" : state === "listening" ? "🎙️" : "✨"}
+                {isMuted
+                  ? "🔇"
+                  : state === "speaking"
+                    ? "⚡"
+                    : state === "listening"
+                      ? "🎙️"
+                      : "✨"}
               </span>
             </motion.div>
           </div>
@@ -6872,10 +6888,34 @@ export const AgenticFlowPipelinePreview = () => {
   };
 
   const steps: Step[] = [
-    { id: "s-1", title: "Query Intent Parser", tool: "Semantics v2", ms: 42, tokens: 128 },
-    { id: "s-2", title: "Pinecone Context Recall", tool: "Dense Vector", ms: 96, tokens: 840 },
-    { id: "s-3", title: "Autonomous Tool Dispatch", tool: "GitHub Graph API", ms: 210, tokens: 460 },
-    { id: "s-4", title: "Output CoT Synthesis", tool: "DeepSeek R1", ms: 145, tokens: 1024 },
+    {
+      id: "s-1",
+      title: "Query Intent Parser",
+      tool: "Semantics v2",
+      ms: 42,
+      tokens: 128,
+    },
+    {
+      id: "s-2",
+      title: "Pinecone Context Recall",
+      tool: "Dense Vector",
+      ms: 96,
+      tokens: 840,
+    },
+    {
+      id: "s-3",
+      title: "Autonomous Tool Dispatch",
+      tool: "GitHub Graph API",
+      ms: 210,
+      tokens: 460,
+    },
+    {
+      id: "s-4",
+      title: "Output CoT Synthesis",
+      tool: "DeepSeek R1",
+      ms: 145,
+      tokens: 1024,
+    },
   ];
 
   const [activeStep, setActiveStep] = useState(2);
@@ -6932,7 +6972,9 @@ export const AgenticFlowPipelinePreview = () => {
       <div className="p-4 sm:p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3">
         <div className="space-y-2">
           {steps.map((st, idx) => {
-            const isDone = idx < activeStep || (!isRunning && activeStep === steps.length - 1);
+            const isDone =
+              idx < activeStep ||
+              (!isRunning && activeStep === steps.length - 1);
             const isCurrent = idx === activeStep && isRunning;
             const isSelected = selectedNode?.id === st.id;
 
@@ -6994,10 +7036,14 @@ export const AgenticFlowPipelinePreview = () => {
             >
               <div className="flex items-center justify-between text-[10px] font-mono text-[var(--patiya-color-muted-foreground)]">
                 <span>INSPECT NODE: {selectedNode.id}</span>
-                <span className="text-emerald-500 font-bold">STATUS: READY</span>
+                <span className="text-emerald-500 font-bold">
+                  STATUS: READY
+                </span>
               </div>
               <p className="text-xs font-mono text-[var(--patiya-color-foreground)]">
-                payload: &#123; engine: &quot;{selectedNode.tool}&quot;, latency: &quot;{selectedNode.ms}ms&quot;, tokens: {selectedNode.tokens} &#125;
+                payload: &#123; engine: &quot;{selectedNode.tool}&quot;,
+                latency: &quot;{selectedNode.ms}ms&quot;, tokens:{" "}
+                {selectedNode.tokens} &#125;
               </p>
             </motion.div>
           )}
@@ -7016,10 +7062,30 @@ export const SemanticPatchReviewerPreview = () => {
   };
 
   const initialDiff: DiffLine[] = [
-    { id: "d-1", type: "delete", code: "- const token = await syncStorage.get('auth');", status: "pending" },
-    { id: "d-2", type: "add", code: "+ const { token } = await agentSession.useToken();", status: "pending" },
-    { id: "d-3", type: "delete", code: "- return streamHandler(token, { retry: 3 });", status: "pending" },
-    { id: "d-4", type: "add", code: "+ return streamHandler(token, { fallback: 'local-llm' });", status: "pending" },
+    {
+      id: "d-1",
+      type: "delete",
+      code: "- const token = await syncStorage.get('auth');",
+      status: "pending",
+    },
+    {
+      id: "d-2",
+      type: "add",
+      code: "+ const { token } = await agentSession.useToken();",
+      status: "pending",
+    },
+    {
+      id: "d-3",
+      type: "delete",
+      code: "- return streamHandler(token, { retry: 3 });",
+      status: "pending",
+    },
+    {
+      id: "d-4",
+      type: "add",
+      code: "+ return streamHandler(token, { fallback: 'local-llm' });",
+      status: "pending",
+    },
   ];
 
   const [lines, setLines] = useState<DiffLine[]>(initialDiff);
@@ -7160,11 +7226,41 @@ export const NeuralVectorClusterPreview = () => {
   };
 
   const initialNodes: MemoryNode[] = [
-    { id: "m-1", label: "JWT Session Claim", score: 0.94, dim: "1536-d", category: "Auth" },
-    { id: "m-2", label: "Workspace Access Policy", score: 0.89, dim: "1536-d", category: "Auth" },
-    { id: "m-3", label: "Recent User Prompt Cache", score: 0.82, dim: "3072-d", category: "Memory" },
-    { id: "m-4", label: "Tool Sandbox Container", score: 0.77, dim: "1536-d", category: "Pipeline" },
-    { id: "m-5", label: "Rate Limit Token Bucket", score: 0.69, dim: "768-d", category: "Pipeline" },
+    {
+      id: "m-1",
+      label: "JWT Session Claim",
+      score: 0.94,
+      dim: "1536-d",
+      category: "Auth",
+    },
+    {
+      id: "m-2",
+      label: "Workspace Access Policy",
+      score: 0.89,
+      dim: "1536-d",
+      category: "Auth",
+    },
+    {
+      id: "m-3",
+      label: "Recent User Prompt Cache",
+      score: 0.82,
+      dim: "3072-d",
+      category: "Memory",
+    },
+    {
+      id: "m-4",
+      label: "Tool Sandbox Container",
+      score: 0.77,
+      dim: "1536-d",
+      category: "Pipeline",
+    },
+    {
+      id: "m-5",
+      label: "Rate Limit Token Bucket",
+      score: 0.69,
+      dim: "768-d",
+      category: "Pipeline",
+    },
   ];
 
   const [query, setQuery] = useState("");
@@ -7257,7 +7353,11 @@ export const NeuralVectorClusterPreview = () => {
                         className="h-full bg-[var(--patiya-color-primary)] rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: `${node.score * 100}%` }}
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 25,
+                        }}
                       />
                     </div>
                     <span className="text-[10px] font-mono font-bold text-[var(--patiya-color-primary)]">
@@ -7272,7 +7372,10 @@ export const NeuralVectorClusterPreview = () => {
 
         <div className="p-2.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)]/80 flex items-center justify-between text-[10px] font-mono">
           <span className="text-[var(--patiya-color-muted-foreground)]">
-            Active: <strong className="text-[var(--patiya-color-foreground)]">{selectedNode.label}</strong>
+            Active:{" "}
+            <strong className="text-[var(--patiya-color-foreground)]">
+              {selectedNode.label}
+            </strong>
           </span>
           <span className="text-emerald-500 font-bold">
             Sim {(selectedNode.score * 100).toFixed(0)}%
@@ -7287,7 +7390,9 @@ export const ModelArenaBenchmarkPreview = () => {
   const [isStreaming, setIsStreaming] = useState(false);
   const [progressA, setProgressA] = useState(100);
   const [progressB, setProgressB] = useState(100);
-  const [winner, setWinner] = useState<"alpha" | "tie" | "beta" | null>("alpha");
+  const [winner, setWinner] = useState<"alpha" | "tie" | "beta" | null>(
+    "alpha",
+  );
 
   const runRace = () => {
     setIsStreaming(true);
@@ -7408,8 +7513,12 @@ export const ModelArenaBenchmarkPreview = () => {
 };
 
 export const BiometricPasskeyVaultPreview = () => {
-  const [authStatus, setAuthStatus] = useState<"idle" | "scanning" | "verified" | "failed">("idle");
-  const [credentialType, setCredentialType] = useState<"passkey" | "fido2" | "yubikey">("passkey");
+  const [authStatus, setAuthStatus] = useState<
+    "idle" | "scanning" | "verified" | "failed"
+  >("idle");
+  const [credentialType, setCredentialType] = useState<
+    "passkey" | "fido2" | "yubikey"
+  >("passkey");
 
   const startScan = () => {
     if (authStatus === "scanning") return;
@@ -7503,7 +7612,11 @@ export const BiometricPasskeyVaultPreview = () => {
               <motion.div
                 initial={{ top: "0%" }}
                 animate={{ top: ["0%", "95%", "0%"] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute left-0 right-0 h-0.5 bg-[var(--patiya-color-primary)] shadow-[0_0_8px_var(--patiya-color-primary)]"
               />
             )}
@@ -7524,7 +7637,8 @@ export const BiometricPasskeyVaultPreview = () => {
 
           <p className="mt-3 text-xs font-mono font-bold text-[var(--patiya-color-foreground)]">
             {authStatus === "idle" && "Ready to Verify"}
-            {authStatus === "scanning" && "Validating Cryptographic Attestation..."}
+            {authStatus === "scanning" &&
+              "Validating Cryptographic Attestation..."}
             {authStatus === "verified" && "✓ Hardware Key Attested & Bound"}
           </p>
 
@@ -7552,7 +7666,11 @@ export const BiometricPasskeyVaultPreview = () => {
                 <>
                   <motion.span
                     animate={{ rotate: 360 }}
-                    transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 0.8,
+                      ease: "linear",
+                    }}
                     className="inline-block w-3 h-3 border-2 border-white border-t-transparent rounded-full"
                   />
                   <span>Verifying Token...</span>
@@ -7577,9 +7695,24 @@ export const TotpAuthenticatorRingPreview = () => {
   };
 
   const accounts: Account[] = [
-    { id: "1", name: "dev-cluster@github.com", issuer: "GitHub", token: "849 201" },
-    { id: "2", name: "root@aws-production", issuer: "AWS IAM", token: "412 995" },
-    { id: "3", name: "sre-ops@cloudflare", issuer: "Cloudflare", token: "603 148" },
+    {
+      id: "1",
+      name: "dev-cluster@github.com",
+      issuer: "GitHub",
+      token: "849 201",
+    },
+    {
+      id: "2",
+      name: "root@aws-production",
+      issuer: "AWS IAM",
+      token: "412 995",
+    },
+    {
+      id: "3",
+      name: "sre-ops@cloudflare",
+      issuer: "Cloudflare",
+      token: "603 148",
+    },
   ];
 
   const [activeAccount, setActiveAccount] = useState(accounts[0]);
@@ -7790,15 +7923,21 @@ export const CryptographicKeyVaultPreview = () => {
           <div className="space-y-1 font-mono text-[10px]">
             <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
               <span>KEY ID:</span>
-              <span className="text-[var(--patiya-color-foreground)] font-bold">{activeSpec.id}</span>
+              <span className="text-[var(--patiya-color-foreground)] font-bold">
+                {activeSpec.id}
+              </span>
             </div>
             <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
               <span>FINGERPRINT:</span>
-              <span className="text-[var(--patiya-color-foreground)]">{activeSpec.fingerprint}</span>
+              <span className="text-[var(--patiya-color-foreground)]">
+                {activeSpec.fingerprint}
+              </span>
             </div>
             <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
               <span>ENTROPY POOL:</span>
-              <span className="text-emerald-500 font-bold">{activeSpec.entropy}</span>
+              <span className="text-emerald-500 font-bold">
+                {activeSpec.entropy}
+              </span>
             </div>
           </div>
         </div>
@@ -7853,9 +7992,27 @@ export const ZeroTrustAccessRadarPreview = () => {
   };
 
   const initialSessions: SessionNode[] = [
-    { id: "s-1", city: "San Francisco, US", device: "MacBook Pro M3", ip: "198.51.100.4", active: true },
-    { id: "s-2", city: "Tokyo, JP", device: "iPhone 16 Pro", ip: "203.0.113.19", active: true },
-    { id: "s-3", city: "Frankfurt, DE", device: "Linux Node v2", ip: "192.0.2.82", active: true },
+    {
+      id: "s-1",
+      city: "San Francisco, US",
+      device: "MacBook Pro M3",
+      ip: "198.51.100.4",
+      active: true,
+    },
+    {
+      id: "s-2",
+      city: "Tokyo, JP",
+      device: "iPhone 16 Pro",
+      ip: "203.0.113.19",
+      active: true,
+    },
+    {
+      id: "s-3",
+      city: "Frankfurt, DE",
+      device: "Linux Node v2",
+      ip: "192.0.2.82",
+      active: true,
+    },
   ];
 
   const [sessions, setSessions] = useState(initialSessions);
@@ -7951,7 +8108,9 @@ export const ZeroTrustAccessRadarPreview = () => {
 
           {sessions.length === 0 && (
             <div className="py-6 text-center space-y-1">
-              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">All sessions revoked</p>
+              <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                All sessions revoked
+              </p>
               <button
                 onClick={resetSessions}
                 className="text-[10px] font-mono text-[var(--patiya-color-primary)] underline cursor-pointer"
@@ -7974,9 +8133,21 @@ export const StealthSecretMaskerPreview = () => {
   };
 
   const initialSecrets: SecretItem[] = [
-    { key: "DATABASE_URL", value: "postgresql://usr:k89x2@edge-pg.internal:5432/db", revealed: false },
-    { key: "STRIPE_SECRET_KEY", value: "sk_live_51N8xZ9021qLk9912", revealed: false },
-    { key: "JWT_HMAC_SECRET", value: "x9f2_auth_sig_88920194bc0281", revealed: false },
+    {
+      key: "DATABASE_URL",
+      value: "postgresql://usr:k89x2@edge-pg.internal:5432/db",
+      revealed: false,
+    },
+    {
+      key: "STRIPE_SECRET_KEY",
+      value: "sk_live_51N8xZ9021qLk9912",
+      revealed: false,
+    },
+    {
+      key: "JWT_HMAC_SECRET",
+      value: "x9f2_auth_sig_88920194bc0281",
+      revealed: false,
+    },
   ];
 
   const [secrets, setSecrets] = useState(initialSecrets);
@@ -8016,7 +8187,9 @@ export const StealthSecretMaskerPreview = () => {
             className="p-2.5 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] space-y-1.5"
           >
             <div className="flex items-center justify-between text-[11px] font-mono">
-              <span className="font-bold text-[var(--patiya-color-foreground)]">{s.key}</span>
+              <span className="font-bold text-[var(--patiya-color-foreground)]">
+                {s.key}
+              </span>
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => toggleReveal(s.key)}
