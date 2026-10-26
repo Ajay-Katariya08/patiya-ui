@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { cn } from '../../utils/cn';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
   src?: string;
   alt?: string;
+  name?: string;
   initials?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   shape?: 'circle' | 'square';
-}
+};
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ src, alt = 'Avatar', initials, size = 'md', shape = 'circle', className, ...props }, ref) => {
+  ({ src, alt = 'Avatar', name, initials, size = 'md', shape = 'circle', className, ...props }, ref) => {
     const [error, setError] = useState(false);
 
     const sizeClasses = {
@@ -39,12 +40,12 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         {src && !error ? (
           <img
             src={src}
-            alt={alt}
+            alt={name || alt}
             className="w-full h-full object-cover"
             onError={() => setError(true)}
           />
         ) : (
-          <span className="font-medium uppercase">{initials || alt.charAt(0)}</span>
+          <span className="font-medium uppercase">{initials || (name ? name.charAt(0) : alt.charAt(0))}</span>
         )}
       </div>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useImperativeHandle } from "react";
 import { cn } from "../../utils/cn";
 
 export type VoiceState = "idle" | "listening" | "thinking" | "speaking";
@@ -19,18 +19,22 @@ export const VoiceVisualizer = React.forwardRef<
   HTMLDivElement,
   VoiceVisualizerProps
 >(
-  ({
-    className,
-    state = "speaking",
-    mode = "wave",
-    theme = "primary",
-    barCount = 36,
-    interactive = true,
-    height = 140,
-    ...props
-  }) => {
+  (
+    {
+      className,
+      state = "speaking",
+      mode = "wave",
+      theme = "primary",
+      barCount = 36,
+      interactive = true,
+      height = 140,
+      ...props
+    },
+    ref
+  ) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
     const [intensity, setIntensity] = useState(1);
 
     const stateRef = useRef(state);

@@ -17,6 +17,8 @@ export type DrawerProps = {
   onOpenChange: (open: boolean) => void;
   children: React.ReactNode;
   side?: 'right' | 'left' | 'top' | 'bottom';
+  position?: 'right' | 'left' | 'top' | 'bottom';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full' | string;
   className?: string;
   overlayClassName?: string;
 };
@@ -25,10 +27,13 @@ export function Drawer({
   open,
   onOpenChange,
   children,
-  side = 'right',
+  side,
+  position,
+  size,
   className,
   overlayClassName,
 }: DrawerProps) {
+  const actualSide = side || position || 'right';
   const { refs, context } = useFloating({
     open,
     onOpenChange,
@@ -52,13 +57,13 @@ export function Drawer({
   const { isMounted, styles: panelStyles } = useTransitionStyles(context, {
     duration: 320,
     initial: {
-      transform: getSlideTransform(side),
+      transform: getSlideTransform(actualSide),
     },
     open: {
       transform: 'translate3d(0, 0, 0)',
     },
     close: {
-      transform: getSlideTransform(side),
+      transform: getSlideTransform(actualSide),
     },
     common: {
       transitionProperty: 'transform',
@@ -84,6 +89,14 @@ export function Drawer({
     bottom: 'inset-x-0 bottom-0 w-full max-h-[85vh] border-t rounded-t-2xl shadow-2xl',
   };
 
+  const sizeClasses: Record<string, string> = {
+    sm: 'max-w-sm',
+    md: 'max-w-md',
+    lg: 'max-w-lg',
+    xl: 'max-w-xl',
+    full: 'max-w-full',
+  };
+
   return (
     <>
       {isMounted && (
@@ -104,7 +117,8 @@ export function Drawer({
                 style={{ ...panelStyles, willChange: 'transform' }}
                 className={cn(
                   "absolute z-50 bg-[var(--patiya-color-background)] p-6 shadow-2xl border-[var(--patiya-color-border)] outline-none flex flex-col overflow-y-auto transform-gpu",
-                  sideClasses[side],
+                  sideClasses[actualSide],
+                  size && sizeClasses[size],
                   className
                 )}
               >

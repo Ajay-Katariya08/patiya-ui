@@ -284,7 +284,6 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Bento Grid",
             href: "/docs/components/bento-grid",
-            badge: "New",
           },
           {
             title: "Glass Surface",
@@ -299,16 +298,53 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Pricing Table",
             href: "/docs/components/pricingTable",
-            badge: "New",
           },
           {
             title: "Usage Meter",
             href: "/docs/components/usageMeter",
-            badge: "New",
           },
           {
             title: "Feature Comparison",
             href: "/docs/components/featureComparison",
+            badge: "New",
+          },
+        ],
+      },
+      {
+        title: "E-Commerce",
+        items: [
+          {
+            title: "Product Card",
+            href: "/docs/components/productCard",
+          },
+          {
+            title: "Cart Drawer",
+            href: "/docs/components/cartDrawer",
+          },
+          {
+            title: "Quantity Selector",
+            href: "/docs/components/quantitySelector",
+          },
+          {
+            title: "Review Card",
+            href: "/docs/components/reviewCard",
+          },
+          {
+            title: "Product Gallery",
+            href: "/docs/components/productGallery",
+          },
+          {
+            title: "Order Tracker",
+            href: "/docs/components/orderTracker",
+          },
+          {
+            title: "Filter Panel",
+            href: "/docs/components/filterPanel",
+            badge: "New",
+          },
+          {
+            title: "Checkout Summary",
+            href: "/docs/components/checkoutSummary",
             badge: "New",
           },
         ],
@@ -462,6 +498,7 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Interactive Gesture Deck",
             href: "/docs/blocks/interactive-gesture-deck",
+            badge: "new",
           },
         ],
       },
@@ -533,6 +570,7 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Real-Time Collaboration Presence Stack",
             href: "/docs/blocks/collaboration-presence-bar",
+            badge: "new",
           },
           {
             title: "Spotlight Smart Command Palette",
@@ -574,6 +612,7 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "AI Semantic Diff & Patch Lens",
             href: "/docs/blocks/semantic-patch-reviewer",
+            badge: "new",
           },
           {
             title: "Neural Vector Context Vault",

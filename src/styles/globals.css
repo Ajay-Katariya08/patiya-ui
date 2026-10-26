@@ -45,15 +45,15 @@
     --patiya-color-success: oklch(0.6 0.19 145);
     --patiya-color-warning: oklch(0.75 0.15 75);
     --patiya-color-info: oklch(0.6 0.15 240);
-    --patiya-color-muted: oklch(0.9 0.01 260);
-    --patiya-color-muted-foreground: oklch(0.55 0.02 260);
+    --patiya-color-muted: oklch(0.96 0.005 260);
+    --patiya-color-muted-foreground: oklch(0.48 0.02 260);
 
     /* Surfaces */
     --patiya-color-background: oklch(0.99 0 0);
     --patiya-color-foreground: oklch(0.15 0.02 260);
-    --patiya-color-card: oklch(0.99 0 0);
+    --patiya-color-card: oklch(1 0 0);
     --patiya-color-card-foreground: oklch(0.15 0.02 260);
-    --patiya-color-border: oklch(0.88 0.01 260);
+    --patiya-color-border: oklch(0.91 0.008 260);
     --patiya-color-ring: oklch(0.55 0.2 260);
 
     /* Radii */
@@ -78,9 +78,9 @@
     --patiya-color-foreground: oklch(0.93 0.01 260);
     --patiya-color-card: oklch(0.2 0.02 260);
     --patiya-color-card-foreground: oklch(0.93 0.01 260);
-    --patiya-color-border: oklch(0.3 0.02 260);
-    --patiya-color-muted: oklch(0.26 0.02 260);
-    --patiya-color-muted-foreground: oklch(0.75 0.02 260);
+    --patiya-color-border: oklch(0.28 0.015 260);
+    --patiya-color-muted: oklch(0.24 0.015 260);
+    --patiya-color-muted-foreground: oklch(0.72 0.015 260);
     --patiya-spotlight-color: rgba(255, 255, 255, 0.1);
   }
 

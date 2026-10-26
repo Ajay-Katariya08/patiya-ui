@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useImperativeHandle } from "react";
 import { cn } from "../../utils/cn";
 
 export type MatrixCharset = "matrix" | "katakana" | "binary" | "alphanumeric";
@@ -49,17 +49,21 @@ const PALETTES: Record<
 };
 
 export const MatrixRain = React.forwardRef<HTMLDivElement, MatrixRainProps>(
-  ({
-    className,
-    charset = "matrix",
-    color = "matrix",
-    speed = 1,
-    fontSize = 16,
-    interactive = true,
-    children,
-    ...props
-  }) => {
+  (
+    {
+      className,
+      charset = "matrix",
+      color = "matrix",
+      speed = 1,
+      fontSize = 16,
+      interactive = true,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const mousePos = useRef<{ x: number; y: number } | null>(null);
     const [isVisible, setIsVisible] = useState(true);

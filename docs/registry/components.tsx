@@ -184,6 +184,48 @@ import {
   UsageMeter,
   AnimatedTooltip,
   FeatureComparison,
+  ProductCard,
+  ProductCardMinimal,
+  ProductCardHorizontal,
+  ProductCardFlashSale,
+  ProductCardDigital,
+  ProductCardBundle,
+  CartDrawer,
+  CartDrawerShippingMeter,
+  CartDrawerPromo,
+  CartDrawerUpsell,
+  CartDrawerEmpty,
+  CartDrawerExpress,
+  QuantitySelector,
+  QuantitySelectorInput,
+  QuantitySelectorLimits,
+  QuantitySelectorMorph,
+  QuantitySelectorBulk,
+  QuantitySelectorTrash,
+  ReviewCard,
+  ReviewCardGallery,
+  ReviewCardBreakdown,
+  ReviewCardReply,
+  ReviewCardCompact,
+  ReviewCardSummary,
+  ProductGallery,
+  ProductGalleryCarousel,
+  ProductGalleryGrid,
+  ProductGalleryMinimal,
+  OrderTracker,
+  OrderTrackerMilestone,
+  OrderTrackerDeliveryDriver,
+  OrderTrackerMap,
+  OrderTrackerReturn,
+  FilterPanel,
+  FilterPanelHorizontal,
+  FilterPanelTags,
+  FilterPanelSort,
+  CheckoutSummary,
+  CheckoutSummaryPromo,
+  CheckoutSummaryInstallments,
+  CheckoutSummarySticky,
+  CheckoutSummaryReceipt,
   cn,
 } from "patiya";
 
@@ -336,6 +378,2093 @@ export const UsageMeterPreview = () => {
   );
 };
 
+export const ProductCardShowcaseExample = () => {
+  const [selectedColor, setSelectedColor] = useState("onyx");
+  const [added, setAdded] = useState(false);
+  const colors = [
+    { id: "onyx", label: "Onyx Black", bg: "#18181b" },
+    { id: "cream", label: "Sand Dune", bg: "#d6d3d1" },
+    { id: "emerald", label: "Forest Mist", bg: "#064e3b" },
+  ];
+
+  const handleAdd = () => {
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1600);
+  };
+
+  return (
+    <div className="w-full max-w-sm mx-auto group rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-4 shadow-sm hover:shadow-xl transition-all duration-300">
+      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/60 flex items-center justify-center">
+        <span className="absolute top-3 left-3 z-10">
+          <Badge variant="solid" color="primary" size="sm">
+            -25% OFF
+          </Badge>
+        </span>
+        <span className="absolute top-3 right-3 z-10">
+          <Badge variant="soft" color="muted" size="sm">
+            In Stock
+          </Badge>
+        </span>
+        <div className="w-40 h-40 rounded-full bg-gradient-to-tr from-violet-500/20 to-sky-500/20 blur-2xl transition-transform duration-500 group-hover:scale-125" />
+        <div className="relative z-10 flex flex-col items-center justify-center p-6 text-center">
+          <svg
+            className="w-24 h-24 text-[var(--patiya-color-foreground)] transition-transform duration-500 group-hover:scale-105"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+          </svg>
+          <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)] mt-2">
+            Wireless ANC Gen 3
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <Rating value={4.9} max={5} size="sm" readOnly />
+            <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">
+              (128)
+            </span>
+          </div>
+          <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+            Verified Sound
+          </span>
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-base text-[var(--patiya-color-foreground)] tracking-tight">
+            Aura Pro Spatial Headphones
+          </h3>
+          <p className="text-xs text-[var(--patiya-color-muted-foreground)] line-clamp-1 mt-0.5">
+            Studio-grade planar magnetic drivers with active noise cancelation.
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between pt-1">
+          <div className="flex items-baseline gap-2">
+            <span className="text-xl font-bold text-[var(--patiya-color-foreground)]">
+              $299
+            </span>
+            <span className="text-xs line-through text-[var(--patiya-color-muted-foreground)]">
+              $399
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {colors.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setSelectedColor(c.id)}
+                className={`w-5 h-5 rounded-full border transition-all ${
+                  selectedColor === c.id
+                    ? "ring-2 ring-[var(--patiya-color-primary)] ring-offset-2 scale-110"
+                    : "opacity-80"
+                }`}
+                style={{ backgroundColor: c.bg }}
+                aria-label={c.label}
+              />
+            ))}
+          </div>
+        </div>
+
+        <Button
+          fullWidth
+          variant={added ? "soft" : "solid"}
+          color={added ? "success" : "primary"}
+          size="md"
+          onClick={handleAdd}
+          className="transition-all"
+        >
+          {added ? "Added to Cart ✓" : "Add to Cart"}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export const ProductCardMinimalExample = () => {
+  const [liked, setLiked] = useState(false);
+  const [size, setSize] = useState("M");
+  const sizes = ["S", "M", "L", "XL"];
+
+  return (
+    <div className="w-full max-w-xs mx-auto rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] overflow-hidden group shadow-xs">
+      <div className="relative aspect-[4/5] bg-[var(--patiya-color-muted)] border-b border-[var(--patiya-color-border)] flex items-center justify-center p-6">
+        <button
+          onClick={() => setLiked(!liked)}
+          className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-[var(--patiya-color-card)]/90 backdrop-blur-sm border border-[var(--patiya-color-border)] flex items-center justify-center shadow-xs hover:scale-110 transition-transform"
+          aria-label="Wishlist"
+        >
+          <svg
+            className={`w-4 h-4 ${liked ? "fill-red-500 text-red-500" : "text-[var(--patiya-color-muted-foreground)]"}`}
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+          >
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+          </svg>
+        </button>
+        <div className="w-28 h-28 rounded-2xl bg-[var(--patiya-color-card)] border border-[var(--patiya-color-border)] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+          <svg
+            className="w-14 h-14 text-[var(--patiya-color-muted-foreground)]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+            <path d="M3 6h18" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+        </div>
+      </div>
+      <div className="p-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)]">
+            Knitwear
+          </span>
+          <span className="text-sm font-bold text-[var(--patiya-color-foreground)]">
+            $145
+          </span>
+        </div>
+        <h4 className="text-sm font-semibold text-[var(--patiya-color-foreground)] truncate">
+          Merino Wool Mockneck
+        </h4>
+        <div className="flex items-center gap-1.5 pt-1">
+          {sizes.map((s) => (
+            <button
+              key={s}
+              onClick={() => setSize(s)}
+              className={`flex-1 py-1 text-xs font-medium rounded-lg border transition-colors ${
+                size === s
+                  ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] font-bold"
+                  : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] text-[var(--patiya-color-muted-foreground)] hover:bg-[var(--patiya-color-muted)] hover:text-[var(--patiya-color-foreground)]"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ProductCardHorizontalExample = () => {
+  const [qty, setQty] = useState(1);
+
+  return (
+    <div className="w-full max-w-lg mx-auto flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+      <div className="w-24 h-24 rounded-xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] flex items-center justify-center shrink-0">
+        <svg
+          className="w-12 h-12 text-[var(--patiya-color-muted-foreground)]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      </div>
+      <div className="flex-1 min-w-0 space-y-1 w-full text-center sm:text-left">
+        <div className="flex items-center justify-center sm:justify-between">
+          <Badge variant="soft" color="primary" size="sm">
+            Smartwatch
+          </Badge>
+          <span className="text-base font-bold text-[var(--patiya-color-foreground)]">
+            $449
+          </span>
+        </div>
+        <h4 className="font-semibold text-sm text-[var(--patiya-color-foreground)] truncate">
+          Chronos Titan Titanium Edition
+        </h4>
+        <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          Sapphire crystal glass with ECG telemetry.
+        </p>
+        <div className="flex items-center justify-center sm:justify-between pt-2">
+          <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-md text-xs">
+            <button
+              onClick={() => setQty((q) => Math.max(1, q - 1))}
+              className="px-2 py-0.5 hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)]"
+            >
+              −
+            </button>
+            <span className="px-2 font-bold text-[var(--patiya-color-foreground)]">
+              {qty}
+            </span>
+            <button
+              onClick={() => setQty((q) => q + 1)}
+              className="px-2 py-0.5 hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)]"
+            >
+              +
+            </button>
+          </div>
+          <Button size="sm" variant="solid" color="primary">
+            Move to Cart
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ProductCardFlashSaleExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto rounded-3xl border border-red-500/20 bg-gradient-to-b from-red-500/[0.03] to-[var(--patiya-color-card)] p-4 relative overflow-hidden shadow-xs">
+      <div className="flex items-center justify-between pb-3 border-b border-[var(--patiya-color-border)]">
+        <div className="flex items-center gap-1.5 text-xs font-bold text-red-500">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+          <span>FLASH SALE</span>
+        </div>
+        <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">
+          04 : 18 : 39
+        </span>
+      </div>
+      <div className="py-6 flex items-center justify-center">
+        <div className="w-28 h-28 rounded-2xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] flex items-center justify-center">
+          <svg
+            className="w-14 h-14 text-[var(--patiya-color-foreground)]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+            <line x1="12" y1="18" x2="12.01" y2="18" />
+          </svg>
+        </div>
+      </div>
+      <div className="space-y-3">
+        <h4 className="font-bold text-base text-[var(--patiya-color-foreground)]">
+          Nova Ultra 5G Pro
+        </h4>
+        <div className="flex items-baseline gap-2">
+          <span className="text-2xl font-extrabold text-red-500">$699</span>
+          <span className="text-xs line-through text-[var(--patiya-color-muted-foreground)]">
+            $999
+          </span>
+          <span className="text-xs font-semibold text-emerald-500">
+            Save $300
+          </span>
+        </div>
+        <div className="space-y-1">
+          <div className="flex justify-between text-[11px] text-[var(--patiya-color-muted-foreground)]">
+            <span>Claimed: 84%</span>
+            <span>Only 12 left</span>
+          </div>
+          <div className="w-full h-1.5 rounded-full bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/50 overflow-hidden">
+            <div className="h-full bg-red-500 rounded-full w-[84%]" />
+          </div>
+        </div>
+        <Button fullWidth variant="solid" color="destructive" size="md">
+          Claim Flash Deal
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export const ProductCardDigitalExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-5 space-y-4 shadow-xs">
+      <div className="flex items-center justify-between">
+        <Badge variant="soft" color="success" size="sm">
+          Instant Delivery
+        </Badge>
+        <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+          v3.4.0
+        </span>
+      </div>
+      <div className="space-y-1">
+        <h3 className="font-bold text-lg text-[var(--patiya-color-foreground)]">
+          SaaS Motion Design Kit
+        </h3>
+        <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          120+ animated Framer & Motion components with full TypeScript source
+          code.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        <span className="text-[11px] px-2 py-0.5 rounded-md bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] border border-[var(--patiya-color-border)] font-medium">
+          Next.js 15
+        </span>
+        <span className="text-[11px] px-2 py-0.5 rounded-md bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] border border-[var(--patiya-color-border)] font-medium">
+          Tailwind v4
+        </span>
+        <span className="text-[11px] px-2 py-0.5 rounded-md bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] border border-[var(--patiya-color-border)] font-medium">
+          Figma UI
+        </span>
+      </div>
+      <div className="pt-2 flex items-center justify-between border-t border-[var(--patiya-color-border)]">
+        <div>
+          <span className="text-xs text-[var(--patiya-color-muted-foreground)] block">
+            Lifetime License
+          </span>
+          <span className="text-xl font-bold text-[var(--patiya-color-foreground)]">
+            $89
+          </span>
+        </div>
+        <Button variant="solid" color="primary">
+          Get Access
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export const ProductCardBundleExample = () => {
+  const [activeTier, setActiveTier] = useState<"standard" | "bundle">("bundle");
+
+  return (
+    <div className="w-full max-w-sm mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-5 space-y-4 shadow-xs">
+      <div className="flex items-center justify-between">
+        <Badge variant="solid" color="primary" size="sm">
+          Hardware Bundle
+        </Badge>
+        <span className="text-xs font-semibold text-emerald-500">Save 20%</span>
+      </div>
+      <h3 className="font-bold text-base text-[var(--patiya-color-foreground)]">
+        Mechanical Creator Studio Kit
+      </h3>
+      <div className="grid grid-cols-2 gap-1 p-1 bg-[var(--patiya-color-muted)] rounded-xl text-xs font-semibold border border-[var(--patiya-color-border)]">
+        <button
+          onClick={() => setActiveTier("standard")}
+          className={`py-2 px-3 rounded-lg transition-all ${
+            activeTier === "standard"
+              ? "bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] shadow-xs font-bold border border-[var(--patiya-color-border)]"
+              : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
+          }`}
+        >
+          Solo Keyboard ($189)
+        </button>
+        <button
+          onClick={() => setActiveTier("bundle")}
+          className={`py-2 px-3 rounded-lg transition-all ${
+            activeTier === "bundle"
+              ? "bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] shadow-xs font-bold border border-[var(--patiya-color-border)]"
+              : "text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]"
+          }`}
+        >
+          Complete Kit ($249)
+        </button>
+      </div>
+      <ul className="text-xs space-y-2 text-[var(--patiya-color-muted-foreground)]">
+        <li className="flex items-center gap-2">
+          <span className="text-emerald-500 font-bold">✓</span> CNC Anodized
+          Aluminum Keyboard
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-emerald-500 font-bold">✓</span> Custom Coil
+          USB-C Aviator Cable
+        </li>
+        <li className="flex items-center gap-2">
+          <span
+            className={
+              activeTier === "bundle"
+                ? "text-emerald-500 font-bold"
+                : "text-[var(--patiya-color-muted-foreground)] opacity-40 font-bold"
+            }
+          >
+            ✓
+          </span>
+          <span
+            className={
+              activeTier === "bundle"
+                ? "text-[var(--patiya-color-foreground)] font-medium"
+                : "text-[var(--patiya-color-muted-foreground)] opacity-60"
+            }
+          >
+            Memory Foam Wrist Rest
+          </span>
+        </li>
+      </ul>
+      <Button fullWidth variant="solid" color="primary">
+        Order{" "}
+        {activeTier === "bundle"
+          ? "Complete Kit ($249)"
+          : "Keyboard Only ($189)"}
+      </Button>
+    </div>
+  );
+};
+
+export const CartDrawerStandardExample = () => {
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
+    { id: 1, name: "Aura Pro Headphones", color: "Onyx", price: 299, qty: 1 },
+    { id: 2, name: "Magnetic Stand", color: "Silver", price: 79, qty: 2 },
+  ]);
+
+  const updateQty = (id: number, delta: number) => {
+    setItems((curr) =>
+      curr
+        .map((item) =>
+          item.id === id
+            ? { ...item, qty: Math.max(1, item.qty + delta) }
+            : item,
+        )
+        .filter((item) => item.qty > 0),
+    );
+  };
+
+  const removeItem = (id: number) => {
+    setItems((curr) => curr.filter((item) => item.id !== id));
+  };
+
+  const totalQty = items.reduce((acc, item) => acc + item.qty, 0);
+  const subtotal = items.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-4">
+      <Button
+        variant="solid"
+        color="primary"
+        onClick={() => setOpen(true)}
+        className="gap-2"
+      >
+        <svg
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+        <span>Standard Cart Drawer</span>
+        <Badge variant="soft" color="muted" size="sm" className="ml-1">
+          {totalQty}
+        </Badge>
+      </Button>
+
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <div className="flex items-center justify-between w-full">
+            <div>
+              <DrawerTitle>Shopping Cart</DrawerTitle>
+              <DrawerDescription>
+                {totalQty} item{totalQty === 1 ? "" : "s"} selected
+              </DrawerDescription>
+            </div>
+            <Badge variant="soft" color="success" size="sm">
+              Free Shipping
+            </Badge>
+          </div>
+        </DrawerHeader>
+
+        <div className="p-6 space-y-4 flex-1 overflow-y-auto">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center justify-between p-3.5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] gap-3 shadow-xs"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] flex items-center justify-center shrink-0">
+                <svg
+                  className="w-6 h-6 text-[var(--patiya-color-muted-foreground)]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-sm font-semibold text-[var(--patiya-color-foreground)] truncate">
+                  {item.name}
+                </h4>
+                <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                  {item.color} • ${item.price} each
+                </p>
+              </div>
+              <div className="flex items-center gap-1 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/50 rounded-lg p-0.5">
+                <button
+                  onClick={() => updateQty(item.id, -1)}
+                  className="w-6 h-6 flex items-center justify-center text-xs hover:bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] rounded transition-colors"
+                >
+                  -
+                </button>
+                <span className="w-6 text-center text-xs font-semibold text-[var(--patiya-color-foreground)]">
+                  {item.qty}
+                </span>
+                <button
+                  onClick={() => updateQty(item.id, 1)}
+                  className="w-6 h-6 flex items-center justify-center text-xs hover:bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] rounded transition-colors"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => removeItem(item.id)}
+                className="text-red-500 hover:text-red-700 p-1 text-xs"
+                aria-label="Remove item"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <DrawerFooter>
+          <div className="w-full space-y-3">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-[var(--patiya-color-muted-foreground)]">
+                Subtotal
+              </span>
+              <span className="font-bold text-base text-[var(--patiya-color-foreground)]">
+                ${subtotal}
+              </span>
+            </div>
+            <Button
+              fullWidth
+              variant="solid"
+              color="primary"
+              onClick={() => setOpen(false)}
+            >
+              Proceed to Checkout (${subtotal})
+            </Button>
+          </div>
+        </DrawerFooter>
+      </Drawer>
+    </div>
+  );
+};
+
+export const CartDrawerFreeShippingExample = () => {
+  const [open, setOpen] = useState(false);
+  const [total, setTotal] = useState(79);
+  const threshold = 100;
+  const progress = Math.min(100, Math.round((total / threshold) * 100));
+  const diff = threshold - total;
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6">
+      <Button variant="outline" color="primary" onClick={() => setOpen(true)}>
+        Shipping Progress Drawer
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Cart Progress</DrawerTitle>
+          <DrawerDescription>Tiered shipping incentives</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-6 space-y-6">
+          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
+            <div className="flex justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              <span>
+                {diff > 0
+                  ? `Add $${diff} for FREE Express Shipping`
+                  : "🎉 You unlocked FREE Express Shipping!"}
+              </span>
+              <span>{progress}%</span>
+            </div>
+            <div className="w-full h-2 rounded-full bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/50 overflow-hidden">
+              <div
+                className="h-full bg-emerald-500 transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="soft"
+              onClick={() => setTotal((t) => Math.max(20, t - 15))}
+            >
+              -$15 Item
+            </Button>
+            <Button
+              size="sm"
+              variant="solid"
+              color="primary"
+              onClick={() => setTotal((t) => t + 25)}
+            >
+              +$25 Item
+            </Button>
+          </div>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const CartDrawerPromoExample = () => {
+  const [open, setOpen] = useState(false);
+  const [code, setCode] = useState("");
+  const [applied, setApplied] = useState(false);
+  const subtotal = 199;
+  const discount = applied ? 30 : 0;
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6">
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Promo Code Drawer
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Coupon & Voucher</DrawerTitle>
+          <DrawerDescription>
+            Interactive promotional discount checkout
+          </DrawerDescription>
+        </DrawerHeader>
+        <div className="p-6 space-y-4">
+          <div className="flex gap-2">
+            <Input
+              placeholder="Enter coupon (try PATIYA15)"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              className="text-xs"
+            />
+            <Button
+              size="sm"
+              variant="solid"
+              color="primary"
+              onClick={() => {
+                if (code.toUpperCase().trim() === "PATIYA15") setApplied(true);
+              }}
+            >
+              Apply
+            </Button>
+          </div>
+          {applied && (
+            <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+              <span>Code PATIYA15 applied (-$30)</span>
+              <button
+                onClick={() => setApplied(false)}
+                className="text-red-500 hover:text-red-700"
+              >
+                Remove
+              </button>
+            </div>
+          )}
+          <div className="p-4 rounded-2xl bg-[var(--patiya-color-muted)]/50 border border-[var(--patiya-color-border)] space-y-2 text-xs">
+            <div className="flex justify-between text-[var(--patiya-color-muted-foreground)]">
+              <span>Subtotal</span>
+              <span>${subtotal}</span>
+            </div>
+            {applied && (
+              <div className="flex justify-between text-emerald-500 font-semibold">
+                <span>Discount</span>
+                <span>-${discount}</span>
+              </div>
+            )}
+            <div className="flex justify-between font-bold text-sm text-[var(--patiya-color-foreground)] pt-2 border-t border-[var(--patiya-color-border)]">
+              <span>Total</span>
+              <span>${subtotal - discount}</span>
+            </div>
+          </div>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const CartDrawerUpsellExample = () => {
+  const [open, setOpen] = useState(false);
+  const [addons, setAddons] = useState<{ [key: string]: boolean }>({});
+
+  const toggleAddon = (name: string) => {
+    setAddons((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6">
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Cross-Sell Upsell Drawer
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Recommended Add-ons</DrawerTitle>
+          <DrawerDescription>One-click impulse additions</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-6 space-y-4">
+          <div className="space-y-3">
+            {[
+              { name: "Braided 2m Cable", price: 19 },
+              { name: "Protective Hard Case", price: 34 },
+              { name: "2-Year Care Warranty", price: 49 },
+            ].map((addon) => (
+              <div
+                key={addon.name}
+                className="flex items-center justify-between p-3 rounded-xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]"
+              >
+                <div>
+                  <h5 className="text-xs font-semibold text-[var(--patiya-color-foreground)]">
+                    {addon.name}
+                  </h5>
+                  <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                    ${addon.price}
+                  </span>
+                </div>
+                <Button
+                  size="sm"
+                  variant={addons[addon.name] ? "soft" : "solid"}
+                  color={addons[addon.name] ? "success" : "primary"}
+                  onClick={() => toggleAddon(addon.name)}
+                >
+                  {addons[addon.name] ? "Added ✓" : "+ Add"}
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const CartDrawerEmptyExample = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex flex-col items-center justify-center py-6">
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Empty State Cart
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Shopping Bag</DrawerTitle>
+        </DrawerHeader>
+        <div className="p-8 text-center flex flex-col items-center justify-center space-y-4 my-auto">
+          <div className="w-16 h-16 rounded-full bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] flex items-center justify-center text-2xl">
+            🛍️
+          </div>
+          <div>
+            <h4 className="font-semibold text-base text-[var(--patiya-color-foreground)]">
+              Your cart is empty
+            </h4>
+            <p className="text-xs text-[var(--patiya-color-muted-foreground)] max-w-xs mt-1">
+              Looks like you haven't added anything to your cart yet. Explore
+              our curated catalog.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-1.5 justify-center pt-2">
+            <Badge variant="soft" color="primary">
+              Headphones
+            </Badge>
+            <Badge variant="soft" color="muted">
+              Keyboards
+            </Badge>
+            <Badge variant="soft" color="muted">
+              Smartwatches
+            </Badge>
+          </div>
+          <Button
+            variant="solid"
+            color="primary"
+            onClick={() => setOpen(false)}
+          >
+            Start Shopping
+          </Button>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const CartDrawerExpressExample = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex flex-col items-center justify-center py-6">
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Express Checkout Drawer
+      </Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Express Checkout</DrawerTitle>
+          <DrawerDescription>Fast payment alternatives</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-6 space-y-4">
+          <div className="space-y-2">
+            <button className="w-full py-2.5 rounded-xl bg-black text-white dark:bg-white dark:text-black font-semibold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition-opacity border border-[var(--patiya-color-border)]">
+              <span> Pay</span>
+            </button>
+            <button className="w-full py-2.5 rounded-xl bg-[#ffc439] text-[#111] font-semibold text-xs flex items-center justify-center gap-2 hover:bg-[#e6b033] transition-colors">
+              <span>PayPal Express</span>
+            </button>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-[var(--patiya-color-muted-foreground)] justify-center">
+            <span className="w-12 h-px bg-[var(--patiya-color-border)]" />
+            <span>or checkout with card</span>
+            <span className="w-12 h-px bg-[var(--patiya-color-border)]" />
+          </div>
+          <Button fullWidth variant="outline">
+            Enter Shipping & Card Details
+          </Button>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const QuantitySelectorSizesExample = () => {
+  const [val1, setVal1] = useState(1);
+  const [val2, setVal2] = useState(2);
+  const [val3, setVal3] = useState(3);
+
+  return (
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 py-6">
+      <div className="flex flex-col items-center gap-2">
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)] font-mono">
+          Small (Compact)
+        </span>
+        <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-lg p-0.5 shadow-xs">
+          <button
+            onClick={() => setVal1((v) => Math.max(1, v - 1))}
+            className="w-6 h-6 flex items-center justify-center text-xs rounded hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            −
+          </button>
+          <span className="w-8 text-center text-xs font-bold text-[var(--patiya-color-foreground)]">
+            {val1}
+          </span>
+          <button
+            onClick={() => setVal1((v) => v + 1)}
+            className="w-6 h-6 flex items-center justify-center text-xs rounded hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)] font-mono">
+          Medium (Standard)
+        </span>
+        <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-xl p-1 shadow-xs">
+          <button
+            onClick={() => setVal2((v) => Math.max(1, v - 1))}
+            className="w-8 h-8 flex items-center justify-center text-sm font-semibold rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            −
+          </button>
+          <span className="w-10 text-center text-sm font-bold text-[var(--patiya-color-foreground)]">
+            {val2}
+          </span>
+          <button
+            onClick={() => setVal2((v) => v + 1)}
+            className="w-8 h-8 flex items-center justify-center text-sm font-semibold rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)] font-mono">
+          Large (Tactile Pill)
+        </span>
+        <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-full px-2 py-1 shadow-xs">
+          <button
+            onClick={() => setVal3((v) => Math.max(1, v - 1))}
+            className="w-9 h-9 rounded-full bg-[var(--patiya-color-muted)] hover:bg-[var(--patiya-color-primary)] hover:text-[var(--patiya-color-primary-foreground)] text-[var(--patiya-color-foreground)] text-base font-bold transition-colors"
+          >
+            −
+          </button>
+          <span className="w-12 text-center text-base font-extrabold text-[var(--patiya-color-foreground)]">
+            {val3}
+          </span>
+          <button
+            onClick={() => setVal3((v) => v + 1)}
+            className="w-9 h-9 rounded-full bg-[var(--patiya-color-muted)] hover:bg-[var(--patiya-color-primary)] hover:text-[var(--patiya-color-primary-foreground)] text-[var(--patiya-color-foreground)] text-base font-bold transition-colors"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const QuantitySelectorInputExample = () => {
+  const [val, setVal] = useState("4");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const numeric = e.target.value.replace(/[^0-9]/g, "");
+    setVal(numeric);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-2">
+      <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+        Direct numerical keyboard input
+      </span>
+      <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-xl p-1 shadow-xs">
+        <button
+          onClick={() =>
+            setVal((v) => String(Math.max(1, (parseInt(v) || 1) - 1)))
+          }
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold text-sm transition-colors"
+        >
+          −
+        </button>
+        <input
+          type="text"
+          value={val}
+          onChange={handleChange}
+          onBlur={() => {
+            if (!val || parseInt(val) < 1) setVal("1");
+          }}
+          className="w-14 text-center font-bold text-sm bg-transparent outline-none text-[var(--patiya-color-foreground)]"
+        />
+        <button
+          onClick={() => setVal((v) => String((parseInt(v) || 0) + 1))}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold text-sm transition-colors"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const QuantitySelectorLimitsExample = () => {
+  const [qty, setQty] = useState(5);
+  const max = 5;
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-3">
+      <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] rounded-xl p-1 shadow-xs">
+        <button
+          disabled={qty <= 1}
+          onClick={() => setQty((q) => Math.max(1, q - 1))}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] disabled:opacity-30 disabled:cursor-not-allowed font-bold transition-colors"
+        >
+          −
+        </button>
+        <span className="w-12 text-center font-bold text-sm text-[var(--patiya-color-foreground)]">
+          {qty}
+        </span>
+        <button
+          disabled={qty >= max}
+          onClick={() => setQty((q) => Math.min(max, q + 1))}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] disabled:opacity-30 disabled:cursor-not-allowed font-bold transition-colors"
+        >
+          +
+        </button>
+      </div>
+      {qty >= max && (
+        <Badge variant="soft" color="warning" size="sm">
+          Limit reached: Max {max} items per order
+        </Badge>
+      )}
+    </div>
+  );
+};
+
+export const QuantitySelectorMorphExample = () => {
+  const [qty, setQty] = useState(0);
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-2">
+      {qty === 0 ? (
+        <Button
+          variant="solid"
+          color="primary"
+          onClick={() => setQty(1)}
+          className="rounded-full px-6"
+        >
+          Add to Cart
+        </Button>
+      ) : (
+        <div className="inline-flex items-center bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] rounded-full p-1 shadow-md animate-in fade-in zoom-in-95 duration-200">
+          <button
+            onClick={() => setQty((q) => q - 1)}
+            className="w-8 h-8 rounded-full hover:bg-black/20 flex items-center justify-center font-bold"
+          >
+            −
+          </button>
+          <span className="w-8 text-center text-xs font-bold">{qty}</span>
+          <button
+            onClick={() => setQty((q) => q + 1)}
+            className="w-8 h-8 rounded-full hover:bg-black/20 flex items-center justify-center font-bold"
+          >
+            +
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const QuantitySelectorBulkExample = () => {
+  const [qty, setQty] = useState(10);
+  const chips = [5, 10, 25, 50];
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-3">
+      <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-xl p-1 shadow-xs">
+        <button
+          onClick={() => setQty((q) => Math.max(1, q - 1))}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold transition-colors"
+        >
+          −
+        </button>
+        <span className="w-14 text-center font-bold text-sm text-[var(--patiya-color-foreground)]">
+          {qty} units
+        </span>
+        <button
+          onClick={() => setQty((q) => q + 1)}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold transition-colors"
+        >
+          +
+        </button>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          Bulk quick add:
+        </span>
+        {chips.map((num) => (
+          <button
+            key={num}
+            onClick={() => setQty((q) => q + num)}
+            className="px-2 py-0.5 rounded-md text-xs font-semibold border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)] hover:bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] transition-colors"
+          >
+            +{num}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const QuantitySelectorTrashExample = () => {
+  const [qty, setQty] = useState(1);
+
+  return (
+    <div className="flex flex-col items-center justify-center py-6 gap-2">
+      <div className="inline-flex items-center border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] rounded-xl p-1 shadow-xs">
+        <button
+          onClick={() => setQty((q) => Math.max(0, q - 1))}
+          className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+            qty === 1
+              ? "text-red-500 hover:bg-red-500/10"
+              : "hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold"
+          }`}
+          title={qty === 1 ? "Remove item" : "Decrease"}
+        >
+          {qty === 1 ? "🗑️" : "−"}
+        </button>
+        <span className="w-10 text-center font-bold text-sm text-[var(--patiya-color-foreground)]">
+          {qty}
+        </span>
+        <button
+          onClick={() => setQty((q) => q + 1)}
+          className="w-8 h-8 rounded-lg hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] font-bold transition-colors"
+        >
+          +
+        </button>
+      </div>
+      {qty === 0 && (
+        <span className="text-xs text-red-500 font-medium">
+          Item marked for removal
+        </span>
+      )}
+    </div>
+  );
+};
+
+export const ReviewCardVerifiedExample = () => {
+  const [upvotes, setUpvotes] = useState(42);
+  const [voted, setVoted] = useState(false);
+
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 shadow-xs space-y-4">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <Avatar
+            alt="Elena Rostova"
+            size="md"
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+          />
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+                Elena Rostova
+              </span>
+              <Badge variant="soft" color="success" size="sm">
+                Verified Buyer
+              </Badge>
+            </div>
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+              San Francisco, CA • 2 days ago
+            </span>
+          </div>
+        </div>
+        <Rating value={5} max={5} size="sm" readOnly />
+      </div>
+      <div className="space-y-2">
+        <h4 className="font-semibold text-base text-[var(--patiya-color-foreground)]">
+          Exceptional build quality and soundstage
+        </h4>
+        <p className="text-sm text-[var(--patiya-color-muted-foreground)] leading-relaxed">
+          The low-end response is punchy without muddying the mids. Battery life
+          easily exceeded 30 hours of continuous wireless playback.
+        </p>
+      </div>
+      <div className="flex items-center justify-between pt-2 border-t border-[var(--patiya-color-border)] text-xs">
+        <span className="text-[var(--patiya-color-muted-foreground)]">
+          Purchased: Matte Onyx Edition
+        </span>
+        <button
+          onClick={() => {
+            setUpvotes((u) => (voted ? u - 1 : u + 1));
+            setVoted(!voted);
+          }}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all ${
+            voted
+              ? "bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] border-[var(--patiya-color-primary)]"
+              : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/60 text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]"
+          }`}
+        >
+          <span>Helpful</span>
+          <span className="font-semibold font-mono">({upvotes})</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const ReviewCardGalleryExample = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 space-y-4 shadow-xs">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Avatar alt="David Zhao" initials="DZ" size="md" />
+          <div>
+            <h5 className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+              David Zhao
+            </h5>
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+              Tokyo, Japan
+            </span>
+          </div>
+        </div>
+        <Rating value={5} max={5} size="sm" readOnly />
+      </div>
+      <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+        The packaging and fit finish are top tier. Took a few unboxing shots
+        right after opening.
+      </p>
+      <div className="flex gap-2.5">
+        {[1, 2, 3].map((num) => (
+          <div
+            key={num}
+            className="w-20 h-20 rounded-xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] flex items-center justify-center text-xs font-mono text-[var(--patiya-color-muted-foreground)]"
+          >
+            Photo #{num}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const ReviewCardBreakdownExample = () => {
+  const factors = [
+    { label: "Acoustic Clarity", score: "5.0", pct: "100%" },
+    { label: "Comfort & Fit", score: "4.8", pct: "96%" },
+    { label: "Battery Endurance", score: "4.9", pct: "98%" },
+  ];
+
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 space-y-4 shadow-xs">
+      <div className="flex justify-between items-center">
+        <div>
+          <h4 className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+            Audio Engineer Review
+          </h4>
+          <span className="text-xs text-[var(--patiya-color-muted-foreground)]">
+            By Sarah Jenkins • 1 week ago
+          </span>
+        </div>
+        <Rating value={5} max={5} size="sm" readOnly />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/60">
+        {factors.map((f) => (
+          <div key={f.label} className="space-y-1">
+            <div className="flex justify-between text-[11px] font-semibold">
+              <span className="text-[var(--patiya-color-muted-foreground)]">
+                {f.label}
+              </span>
+              <span className="text-[var(--patiya-color-foreground)] font-bold">
+                {f.score}
+              </span>
+            </div>
+            <div className="h-1.5 w-full bg-[var(--patiya-color-border)] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-emerald-500 rounded-full"
+                style={{ width: f.pct }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const ReviewCardReplyExample = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 space-y-4 shadow-xs">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <Avatar alt="Mark R." initials="MR" size="sm" />
+          <span className="font-semibold text-sm text-[var(--patiya-color-foreground)]">
+            Mark R.
+          </span>
+        </div>
+        <Rating value={4} max={5} size="sm" readOnly />
+      </div>
+      <p className="text-sm text-[var(--patiya-color-muted-foreground)]">
+        Had a slight issue pairing with my older TV transmitter, but works
+        flawlessly on Mac and iPhone.
+      </p>
+      <div className="ml-6 p-4 rounded-2xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/50 border-l-2 border-l-[var(--patiya-color-primary)] space-y-1.5">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Patiya Support Team
+          </span>
+          <Badge variant="solid" color="primary" size="sm">
+            Official
+          </Badge>
+        </div>
+        <p className="text-xs text-[var(--patiya-color-muted-foreground)]">
+          Hi Mark! We released firmware update v1.2 resolving legacy Bluetooth
+          broadcast pairing. Please check your companion app!
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export const ReviewCardCompactExample = () => {
+  return (
+    <div className="w-full max-w-md mx-auto p-5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] space-y-3 shadow-xs">
+      <Rating value={5} max={5} size="sm" readOnly />
+      <p className="text-sm font-medium text-[var(--patiya-color-foreground)] italic">
+        "Hands down the best studio monitor headphones in this price tier.
+        Unmatched soundstage depth."
+      </p>
+      <div className="flex items-center gap-2.5 pt-1">
+        <Avatar alt="Clara Oswald" initials="CO" size="sm" />
+        <div>
+          <h6 className="text-xs font-bold text-[var(--patiya-color-foreground)]">
+            Clara Oswald
+          </h6>
+          <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">
+            Sound Designer @ Nexus
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ReviewCardSummaryExample = () => {
+  const dist = [
+    { stars: 5, pct: 85, count: 420 },
+    { stars: 4, pct: 10, count: 52 },
+    { stars: 3, pct: 3, count: 14 },
+    { stars: 2, pct: 1, count: 6 },
+    { stars: 1, pct: 1, count: 4 },
+  ];
+
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 space-y-6 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-center gap-6">
+        <div className="text-center sm:text-left space-y-1 shrink-0">
+          <span className="text-4xl font-extrabold text-[var(--patiya-color-foreground)]">
+            4.9
+          </span>
+          <div className="flex justify-center sm:justify-start">
+            <Rating value={5} max={5} size="sm" readOnly />
+          </div>
+          <span className="text-xs text-[var(--patiya-color-muted-foreground)] block">
+            Based on 496 reviews
+          </span>
+        </div>
+        <div className="flex-1 w-full space-y-1.5">
+          {dist.map((d) => (
+            <div key={d.stars} className="flex items-center gap-2 text-xs">
+              <span className="w-4 text-right font-mono text-[var(--patiya-color-foreground)]">
+                {d.stars}★
+              </span>
+              <div className="flex-1 h-2 bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)]/40 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-amber-400 rounded-full"
+                  style={{ width: `${d.pct}%` }}
+                />
+              </div>
+              <span className="w-8 text-[var(--patiya-color-muted-foreground)] font-mono text-[10px]">
+                {d.count}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ProductGalleryShowcaseExample = () => {
+  const images = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+      alt: "Over-Ear Headphones Front View",
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
+      alt: "Headphones Angled Studio View",
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
+      alt: "Cushion Padding Macro Detail",
+    },
+    {
+      id: 4,
+      src: "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=800&q=80",
+      alt: "Aura Pro Wearing Lifestyle",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-2xl mx-auto p-4 bg-[var(--patiya-color-card)] rounded-3xl border border-[var(--patiya-color-border)] shadow-xs">
+      <ProductGallery
+        images={images}
+        thumbnailPosition="left"
+        aspectRatio="square"
+        enableZoom
+        badgeText="-30% LIMITED"
+      />
+    </div>
+  );
+};
+
+export const ProductGalleryCarouselExample = () => {
+  const images = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80",
+      alt: "Custom Mechanical Keyboard",
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80",
+      alt: "Ergonomic Keycaps Detail",
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=800&q=80",
+      alt: "RGB Backlit Switches",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-lg mx-auto">
+      <ProductGalleryCarousel images={images} />
+    </div>
+  );
+};
+
+export const ProductGalleryGridExample = () => {
+  const images = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80",
+      title: "Aviator Shearling Leather Jacket",
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80",
+      title: "Distressed Denim Craftsmanship",
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+      title: "Model Runway Studio Stance",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <ProductGalleryGrid images={images} />
+    </div>
+  );
+};
+
+export const ProductGalleryMinimalExample = () => {
+  const colors = [
+    { id: "gold", bg: "#d97706", label: "Brushed Gold" },
+    { id: "silver", bg: "#e2e8f0", label: "Platinum Silver" },
+    { id: "space_gray", bg: "#334155", label: "Space Gray" },
+  ];
+
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <ProductGalleryMinimal
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+        alt="Minimal Chrono Timepiece"
+        badge="Best Seller"
+        colors={colors}
+      />
+    </div>
+  );
+};
+
+export const ProductGalleryBottomThumbExample = () => {
+  const images = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+      alt: "Scarlet Running Sneaker",
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80",
+      alt: "Lime Cushion Sole",
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+      alt: "Pastel Air Retro",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-md mx-auto p-4 rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+      <ProductGallery
+        images={images}
+        thumbnailPosition="bottom"
+        aspectRatio="portrait"
+        badgeText="IN STOCK"
+      />
+    </div>
+  );
+};
+
+export const ProductGalleryLightboxExample = () => {
+  const images = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+      alt: "Studio Master Headphones",
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
+      alt: "Driver Assembly Angle",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-md mx-auto p-4 rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs text-center space-y-3">
+      <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
+        Click photo to trigger full-screen lightbox
+      </span>
+      <ProductGallery
+        images={images}
+        thumbnailPosition="bottom"
+        aspectRatio="square"
+        showLightbox
+        badgeText="ZOOM INSPECT"
+      />
+    </div>
+  );
+};
+
+export const OrderTrackerShowcaseExample = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto">
+      <OrderTracker
+        orderNumber="PT-894204"
+        estimatedDelivery="Today by 1:45 PM"
+        status="out_for_delivery"
+        carrier="DHL Express Worldwide"
+        trackingNumber="DHL-774921094"
+        shippingAddress="1042 Valencia Street, San Francisco, CA"
+        itemsCount={3}
+      />
+    </div>
+  );
+};
+
+export const OrderTrackerMilestoneExample = () => {
+  const milestones = [
+    {
+      id: "1",
+      title: "Order Placed & Confirmed",
+      description: "Payment approved via Apple Pay",
+      timestamp: "Oct 23, 09:30 AM",
+      location: "San Jose, CA",
+      completed: true,
+    },
+    {
+      id: "2",
+      title: "Prepared at Fulfillment Facility",
+      description: "Packed with eco-friendly recycled materials",
+      timestamp: "Oct 24, 01:15 PM",
+      location: "Oakland Distribution Hub",
+      completed: true,
+    },
+    {
+      id: "3",
+      title: "Arrived at Local Post Facility",
+      description: "Sorted and scheduled for morning courier run",
+      timestamp: "Oct 25, 05:40 AM",
+      location: "San Francisco Delivery Station",
+      completed: true,
+    },
+    {
+      id: "4",
+      title: "Out for Courier Delivery",
+      description: "Driver is 4 stops away from your residence",
+      timestamp: "Today, 11:20 AM",
+      location: "Mission District",
+      completed: true,
+      current: true,
+    },
+    {
+      id: "5",
+      title: "Delivered & Signed",
+      description: "Direct hand-off or secure porch delivery",
+      timestamp: "Est. 1:30 PM",
+      location: "Front Porch",
+      completed: false,
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-xl mx-auto">
+      <OrderTrackerMilestone milestones={milestones} />
+    </div>
+  );
+};
+
+export const OrderTrackerDeliveryDriverExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <OrderTrackerDeliveryDriver
+        driverName="Marcus Sterling"
+        vehicle="Mercedes Sprinter EV"
+        plateNumber="CA 8KL-912"
+        rating={4.95}
+        eta="6 mins away"
+        avatar="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"
+      />
+    </div>
+  );
+};
+
+export const OrderTrackerMapExample = () => {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <OrderTrackerMap
+        destination="742 Evergreen Terrace"
+        currentStop="3rd & Market St"
+        eta="11 min"
+        stopsRemaining={2}
+      />
+    </div>
+  );
+};
+
+export const OrderTrackerReturnExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <OrderTrackerReturn
+        rmaNumber="RMA-904128"
+        refundAmount={279.0}
+        dropoffDeadline="Nov 12, 2026"
+        barcode="||| | ||||| || |||| ||||| ||"
+      />
+    </div>
+  );
+};
+
+export const OrderTrackerMultiItemExample = () => {
+  const [activePkg, setActivePkg] = useState<1 | 2>(1);
+
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] p-6 shadow-xs space-y-4">
+      <div className="flex items-center justify-between border-b border-[var(--patiya-color-border)] pb-3">
+        <div>
+          <span className="text-xs font-mono text-[var(--patiya-color-muted-foreground)] uppercase">
+            Order #PT-44210
+          </span>
+          <h4 className="font-bold text-base text-[var(--patiya-color-foreground)]">
+            2 Packages Shipping Separately
+          </h4>
+        </div>
+        <div className="flex p-1 rounded-xl bg-[var(--patiya-color-muted)] border border-[var(--patiya-color-border)] text-xs font-semibold">
+          <button
+            type="button"
+            onClick={() => setActivePkg(1)}
+            className={cn(
+              "px-3 py-1 rounded-lg transition-all cursor-pointer",
+              activePkg === 1
+                ? "bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] shadow-xs"
+                : "text-[var(--patiya-color-muted-foreground)]",
+            )}
+          >
+            Package 1 (Delivered)
+          </button>
+          <button
+            type="button"
+            onClick={() => setActivePkg(2)}
+            className={cn(
+              "px-3 py-1 rounded-lg transition-all cursor-pointer",
+              activePkg === 2
+                ? "bg-[var(--patiya-color-card)] text-[var(--patiya-color-foreground)] shadow-xs"
+                : "text-[var(--patiya-color-muted-foreground)]",
+            )}
+          >
+            Package 2 (In Transit)
+          </button>
+        </div>
+      </div>
+
+      {activePkg === 1 ? (
+        <OrderTracker
+          orderNumber="PT-44210-A"
+          estimatedDelivery="Delivered Yesterday, 3:15 PM"
+          status="delivered"
+          carrier="USPS Priority"
+          trackingNumber="94001118992231"
+          shippingAddress="Apartment 4B, New York, NY"
+          itemsCount={2}
+        />
+      ) : (
+        <OrderTracker
+          orderNumber="PT-44210-B"
+          estimatedDelivery="Tomorrow by 5:00 PM"
+          status="shipped"
+          carrier="FedEx Ground"
+          trackingNumber="FX-4491028472"
+          shippingAddress="Apartment 4B, New York, NY"
+          itemsCount={1}
+        />
+      )}
+    </div>
+  );
+};
+
+export const FilterPanelShowcaseExample = () => {
+  const [selectedCats, setSelectedCats] = useState<string[]>(["headphones"]);
+  const [price, setPrice] = useState<[number, number]>([60, 400]);
+  const [selectedColors, setSelectedColors] = useState<string[]>(["black"]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>(["M"]);
+  const [inStock, setInStock] = useState(true);
+  const [rating, setRating] = useState(4);
+
+  const toggleCat = (id: string) => {
+    setSelectedCats((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id],
+    );
+  };
+
+  const toggleColor = (id: string) => {
+    setSelectedColors((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id],
+    );
+  };
+
+  const toggleSize = (s: string) => {
+    setSelectedSizes((prev) =>
+      prev.includes(s) ? prev.filter((sz) => sz !== s) : [...prev, s],
+    );
+  };
+
+  const resetAll = () => {
+    setSelectedCats([]);
+    setPrice([0, 500]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setInStock(false);
+    setRating(0);
+  };
+
+  return (
+    <div className="w-full max-w-xs mx-auto">
+      <FilterPanel
+        selectedCategories={selectedCats}
+        onCategoryToggle={toggleCat}
+        priceRange={price}
+        onPriceChange={setPrice}
+        selectedColors={selectedColors}
+        onColorToggle={toggleColor}
+        selectedSizes={selectedSizes}
+        onSizeToggle={toggleSize}
+        inStockOnly={inStock}
+        onInStockChange={setInStock}
+        selectedRating={rating}
+        onRatingChange={setRating}
+        onResetAll={resetAll}
+        activeCount={
+          selectedCats.length + selectedColors.length + selectedSizes.length
+        }
+      />
+    </div>
+  );
+};
+
+export const FilterPanelHorizontalExample = () => {
+  return (
+    <div className="w-full max-w-3xl mx-auto">
+      <FilterPanelHorizontal
+        filters={[
+          { id: "price", label: "Price: $50 - $350", activeCount: 1 },
+          { id: "brand", label: "Audio Brand (3)", activeCount: 3 },
+          { id: "color", label: "Color: Onyx Black" },
+          { id: "rating", label: "★ 4.5 & up" },
+          { id: "wireless", label: "Bluetooth 5.3" },
+          { id: "stock", label: "Prime 1-Day Delivery" },
+        ]}
+      />
+    </div>
+  );
+};
+
+export const FilterPanelTagsExample = () => {
+  const [tags, setTags] = useState([
+    { id: "1", label: "Category", value: "Over-Ear Wireless" },
+    { id: "2", label: "Price", value: "$100 - $300" },
+    { id: "3", label: "Finish", value: "Matte Black" },
+    { id: "4", label: "Feature", value: "Active Noise Cancel" },
+    { id: "5", label: "Rating", value: "4.5★+" },
+  ]);
+
+  const removeTag = (id: string) => {
+    setTags((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  return (
+    <div className="w-full max-w-2xl mx-auto p-4 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs">
+      <FilterPanelTags
+        tags={tags}
+        onRemoveTag={removeTag}
+        onClearAll={() => setTags([])}
+        resultCount={24}
+      />
+    </div>
+  );
+};
+
+export const FilterPanelSortExample = () => {
+  const [sort, setSort] = useState("featured");
+  const [mode, setMode] = useState<"grid" | "list">("grid");
+
+  return (
+    <div className="w-full max-w-3xl mx-auto">
+      <FilterPanelSort
+        sortBy={sort}
+        onSortChange={setSort}
+        viewMode={mode}
+        onViewModeChange={setMode}
+        totalProducts={156}
+      />
+    </div>
+  );
+};
+
+export const FilterPanelColorsSizesExample = () => {
+  const [activeColors, setActiveColors] = useState<string[]>([
+    "onyx",
+    "emerald",
+  ]);
+  const [activeSizes, setActiveSizes] = useState<string[]>(["M", "L"]);
+
+  const colors = [
+    { id: "onyx", label: "Onyx Black", value: "#18181b" },
+    { id: "sand", label: "Dune Sand", value: "#d6d3d1" },
+    { id: "emerald", label: "Forest Green", value: "#059669" },
+    { id: "navy", label: "Deep Navy", value: "#1e3a8a" },
+    { id: "crimson", label: "Burgundy", value: "#991b1b" },
+  ];
+
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+
+  const toggleColor = (id: string) => {
+    setActiveColors((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id],
+    );
+  };
+
+  const toggleSize = (s: string) => {
+    setActiveSizes((prev) =>
+      prev.includes(s) ? prev.filter((sz) => sz !== s) : [...prev, s],
+    );
+  };
+
+  return (
+    <div className="w-full max-w-xs mx-auto p-5 rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs space-y-5">
+      <div className="space-y-2.5">
+        <span className="text-xs font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)] block">
+          Apparel Color Swatches
+        </span>
+        <div className="flex flex-wrap gap-2">
+          {colors.map((c) => {
+            const active = activeColors.includes(c.id);
+            return (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => toggleColor(c.id)}
+                className={cn(
+                  "w-7 h-7 rounded-full border flex items-center justify-center transition-all cursor-pointer",
+                  active
+                    ? "ring-2 ring-[var(--patiya-color-primary)] ring-offset-2 scale-105"
+                    : "opacity-80 hover:opacity-100",
+                )}
+                style={{ backgroundColor: c.value }}
+                aria-label={c.label}
+              >
+                {active && (
+                  <svg
+                    className="w-2.5 h-2.5 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.5"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="space-y-2.5 pt-3 border-t border-[var(--patiya-color-border)]">
+        <span className="text-xs font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)] block">
+          Available Sizes
+        </span>
+        <div className="grid grid-cols-3 gap-2">
+          {sizes.map((s) => {
+            const active = activeSizes.includes(s);
+            return (
+              <button
+                key={s}
+                type="button"
+                onClick={() => toggleSize(s)}
+                className={cn(
+                  "py-2 rounded-xl border text-xs font-bold transition-all cursor-pointer text-center",
+                  active
+                    ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)] text-white shadow-xs"
+                    : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] hover:bg-[var(--patiya-color-muted)]/80",
+                )}
+              >
+                {s}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const FilterPanelPriceRatingExample = () => {
+  const [min, setMin] = useState(75);
+  const [max, setMax] = useState(350);
+  const [rating, setRating] = useState(4);
+
+  return (
+    <div className="w-full max-w-xs mx-auto p-5 rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs space-y-5">
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)]">
+            Budget Target
+          </span>
+          <span className="text-xs font-mono font-bold text-[var(--patiya-color-foreground)]">
+            ${min} - ${max}
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex items-center border border-[var(--patiya-color-border)] rounded-xl px-2.5 py-1.5 bg-[var(--patiya-color-muted)]">
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)] mr-1">
+              $
+            </span>
+            <input
+              type="number"
+              value={min}
+              onChange={(e) => setMin(Number(e.target.value))}
+              className="w-full bg-transparent text-xs font-mono font-bold outline-none text-[var(--patiya-color-foreground)]"
+            />
+          </div>
+          <div className="flex items-center border border-[var(--patiya-color-border)] rounded-xl px-2.5 py-1.5 bg-[var(--patiya-color-muted)]">
+            <span className="text-xs text-[var(--patiya-color-muted-foreground)] mr-1">
+              $
+            </span>
+            <input
+              type="number"
+              value={max}
+              onChange={(e) => setMax(Number(e.target.value))}
+              className="w-full bg-transparent text-xs font-mono font-bold outline-none text-[var(--patiya-color-foreground)]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2 pt-3 border-t border-[var(--patiya-color-border)]">
+        <span className="text-xs font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)] block">
+          Minimum Rating
+        </span>
+        <div className="space-y-1.5">
+          {[5, 4, 3].map((r) => (
+            <button
+              key={r}
+              type="button"
+              onClick={() => setRating(r)}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-1.5 rounded-xl text-xs transition-colors cursor-pointer",
+                rating === r
+                  ? "bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)] font-bold"
+                  : "hover:bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)]",
+              )}
+            >
+              <div className="flex items-center gap-1.5">
+                <Rating value={r} max={5} size="sm" readOnly />
+                <span>{r === 5 ? "5.0 only" : `${r}.0 & up`}</span>
+              </div>
+              {rating === r && <span>✓</span>}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const CheckoutSummaryShowcaseExample = () => {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <CheckoutSummary />
+    </div>
+  );
+};
+
+export const CheckoutSummaryPromoExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <CheckoutSummaryPromo appliedCode="SUMMER30" discountAmount={35.0} />
+    </div>
+  );
+};
+
+export const CheckoutSummaryShippingExample = () => {
+  const [selected, setSelected] = useState("express");
+  const tiers = [
+    {
+      id: "standard",
+      label: "Ground Shipping",
+      price: 0,
+      eta: "4-6 business days",
+    },
+    {
+      id: "express",
+      label: "Express Priority Air",
+      price: 15.0,
+      eta: "2 business days",
+    },
+    {
+      id: "overnight",
+      label: "Overnight Courier",
+      price: 28.0,
+      eta: "Tomorrow morning",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-5 rounded-3xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xs space-y-3">
+      <div className="flex items-center justify-between border-b border-[var(--patiya-color-border)] pb-3">
+        <span className="text-xs font-mono uppercase tracking-wider text-[var(--patiya-color-muted-foreground)]">
+          Select Delivery Speed
+        </span>
+        <Badge variant="soft" color="primary" size="sm">
+          Guaranteed
+        </Badge>
+      </div>
+      <div className="space-y-2">
+        {tiers.map((t) => {
+          const active = t.id === selected;
+          return (
+            <div
+              key={t.id}
+              onClick={() => setSelected(t.id)}
+              className={cn(
+                "p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between",
+                active
+                  ? "border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)]/10 shadow-2xs ring-1 ring-[var(--patiya-color-primary)]/30"
+                  : "border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/40 hover:bg-[var(--patiya-color-muted)]",
+              )}
+            >
+              <div>
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)] block">
+                  {t.label}
+                </span>
+                <span className="text-[11px] font-mono text-[var(--patiya-color-muted-foreground)]">
+                  {t.eta}
+                </span>
+              </div>
+              <span className="text-xs font-mono font-bold text-[var(--patiya-color-foreground)]">
+                {t.price === 0 ? "FREE" : `$${t.price.toFixed(2)}`}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export const CheckoutSummaryInstallmentsExample = () => {
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <CheckoutSummaryInstallments
+        orderTotal={320.0}
+        installmentsCount={4}
+        provider="klarna"
+      />
+    </div>
+  );
+};
+
+export const CheckoutSummaryStickyExample = () => {
+  return (
+    <div className="w-full max-w-lg mx-auto">
+      <CheckoutSummarySticky subtotal={74.0} freeShippingThreshold={100.0} />
+    </div>
+  );
+};
+
+export const CheckoutSummaryReceiptExample = () => {
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <CheckoutSummaryReceipt
+        orderId="ORD-2026-8812"
+        orderDate="Oct 26, 2026"
+        subtotal={249.0}
+        discount={25.0}
+        shipping={0.0}
+        tax={18.48}
+        total={242.48}
+        paymentMethod="Apple Pay (Mastercard •••• 9012)"
+      />
+    </div>
+  );
+};
+
 export const MatrixRainPreview = () => {
   return (
     <div className="w-full max-w-2xl h-[320px] rounded-2xl overflow-hidden border border-[var(--patiya-color-border)] shadow-2xl mx-auto">
@@ -357,11 +2486,7 @@ export const MatrixRainPreview = () => {
 };
 
 export const TextHoverEffectPreview = () => {
-  return (
-    // <div className="flex items-center justify-center w-full max-w-2xl h-[200px] bg-[var(--patiya-color-card)]/70 dark:bg-[#0a0a0f] rounded-2xl border border-[var(--patiya-color-border)] p-4 mx-auto shadow-lg overflow-hidden">
-    <TextHoverEffect text="PATIYA" />
-    // </div>
-  );
+  return <TextHoverEffect text="PATIYA" />;
 };
 
 export const ToastPreview = () => {
@@ -12943,6 +15068,1365 @@ export default function ComparisonDemo() {
     },
     get examples() {
       return (componentsRegistry as any).featureComparison.examples;
+    },
+  },
+  productCard: {
+    title: "Product Card",
+    description:
+      "Interactive e-commerce showcase card featuring image previews, variant pickers, discount badges, and smooth action states.",
+    installation: "import { ProductCard } from 'patiya';",
+    props: [
+      {
+        name: "title",
+        type: "string",
+        default: "-",
+        description: "Primary product headline name.",
+      },
+      {
+        name: "price",
+        type: "number",
+        default: "-",
+        description: "Current product retail pricing.",
+      },
+      {
+        name: "originalPrice",
+        type: "number",
+        default: "-",
+        description: "Pre-discount original strikethrough price.",
+      },
+      {
+        name: "rating",
+        type: "number",
+        default: "5",
+        description: "Average customer rating score (1-5).",
+      },
+      {
+        name: "badge",
+        type: "string",
+        default: "undefined",
+        description: "Highlight promotional badge text.",
+      },
+    ],
+    examples: [
+      {
+        title: "Product Showcase",
+        description:
+          "Interactive showcase card with color variants, audio specs, rating, and animated add-to-cart feedback.",
+        preview: <ProductCardShowcaseExample />,
+        code: `import { ProductCard } from 'patiya';
+
+export default function ProductCardDemo() {
+  return (
+    <ProductCard
+      title="Aura Pro Spatial Headphones"
+      description="Studio-grade planar magnetic drivers with active noise cancelation."
+      price={299}
+      originalPrice={399}
+      rating={4.9}
+      badge="-25% OFF"
+      colors={[
+        { id: "onyx", label: "Onyx Black", bg: "#18181b" },
+        { id: "cream", label: "Sand Dune", bg: "#d6d3d1" },
+        { id: "emerald", label: "Forest Mist", bg: "#064e3b" },
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Minimalist Fashion Grid",
+        description:
+          "Clean apparel product card with size selectors, hover zooms, and wishlist heart toggle.",
+        preview: <ProductCardMinimalExample />,
+        code: `import { ProductCardMinimal } from 'patiya';
+
+export default function MinimalFashionDemo() {
+  return (
+    <ProductCardMinimal
+      category="Knitwear"
+      title="Merino Wool Mockneck"
+      price={145}
+      sizes={["S", "M", "L", "XL"]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Horizontal Search & Cart Tile",
+        description:
+          "Space-efficient horizontal product row designed for search result feeds, wishlist lists, and order histories.",
+        preview: <ProductCardHorizontalExample />,
+        code: `import { ProductCardHorizontal } from 'patiya';
+
+export default function HorizontalCardDemo() {
+  return (
+    <ProductCardHorizontal
+      title="Chronos Titan Titanium Edition"
+      subtitle="Sapphire crystal glass with ECG telemetry."
+      price={449}
+      badge="Smartwatch"
+    />
+  );
+}`,
+      },
+      {
+        title: "Flash Sale Countdown Card",
+        description:
+          "Urgency-driven e-commerce card featuring real-time countdown timer, savings badge, and inventory claim progress bar.",
+        preview: <ProductCardFlashSaleExample />,
+        code: `import { ProductCardFlashSale } from 'patiya';
+
+export default function FlashSaleDemo() {
+  return (
+    <ProductCardFlashSale
+      title="Nova Ultra 5G Pro"
+      dealPrice={699}
+      originalPrice={999}
+      claimedPercent={84}
+      endsIn="04:18:39"
+    />
+  );
+}`,
+      },
+      {
+        title: "Digital Asset & Course License",
+        description:
+          "Card optimized for downloadable software, dev kits, and instant license digital checkouts.",
+        preview: <ProductCardDigitalExample />,
+        code: `import { ProductCardDigital } from 'patiya';
+
+export default function DigitalCardDemo() {
+  return (
+    <ProductCardDigital
+      title="SaaS Motion Design Kit"
+      description="120+ animated Framer & Motion components with full TypeScript source code."
+      price={89}
+      license="Lifetime License"
+      tags={["Next.js 15", "Tailwind v4", "Figma UI"]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Hardware Studio Bundle",
+        description:
+          "Tier selector card comparing standalone base hardware versus complete discounted studio bundle packages.",
+        preview: <ProductCardBundleExample />,
+        code: `import { ProductCardBundle } from 'patiya';
+
+export default function BundleCardDemo() {
+  return (
+    <ProductCardBundle
+      title="Mechanical Creator Studio Kit"
+      basePrice={189}
+      bundlePrice={249}
+      discountPercent={20}
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "product-card": {
+    get title() {
+      return (componentsRegistry as any).productCard.title;
+    },
+    get description() {
+      return (componentsRegistry as any).productCard.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).productCard.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).productCard.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).productCard.examples;
+    },
+  },
+  cartDrawer: {
+    title: "Cart Drawer",
+    description:
+      "Slide-over shopping cart panel with item quantity updates, discount calculations, and checkout triggers.",
+    installation: "import { CartDrawer } from 'patiya';",
+    props: [
+      {
+        name: "open",
+        type: "boolean",
+        default: "false",
+        description: "Controlled visibility state of the cart drawer.",
+      },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        default: "-",
+        description: "Callback invoked on backdrop or close button click.",
+      },
+      {
+        name: "items",
+        type: "CartItem[]",
+        default: "[]",
+        description: "Array of items present in user's shopping bag.",
+      },
+    ],
+    examples: [
+      {
+        title: "Standard Slide-Over Bag",
+        description:
+          "Classic slide-out drawer with itemized merchandise, inline counters, subtotal, and checkout trigger.",
+        preview: <CartDrawerStandardExample />,
+        code: `import { useState } from 'react';
+import { CartDrawer, Button } from 'patiya';
+
+export default function StandardCartDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Cart</Button>
+      <CartDrawer open={open} onOpenChange={setOpen} />
+    </>
+  );
+}`,
+      },
+      {
+        title: "Free Shipping Progress Meter",
+        description:
+          "Gamified incentive bar tracking remaining checkout balance required to unlock free express shipping.",
+        preview: <CartDrawerFreeShippingExample />,
+        code: `import { CartDrawerShippingMeter } from 'patiya';
+
+export default function ShippingMeterDemo() {
+  return (
+    <CartDrawerShippingMeter threshold={100} currentTotal={79} />
+  );
+}`,
+      },
+      {
+        title: "Coupon & Voucher Discount",
+        description:
+          "Voucher code entry with live validation feedback, discount pill, and calculated order total.",
+        preview: <CartDrawerPromoExample />,
+        code: `import { CartDrawerPromo } from 'patiya';
+
+export default function PromoCartDemo() {
+  return (
+    <CartDrawerPromo subtotal={199} defaultCoupon="PATIYA15" />
+  );
+}`,
+      },
+      {
+        title: "Cross-Sell One-Click Add-ons",
+        description:
+          "Impulse cross-sell accessory items displayed inline with instant '+ Add' toggle triggers.",
+        preview: <CartDrawerUpsellExample />,
+        code: `import { CartDrawerUpsell } from 'patiya';
+
+export default function UpsellCartDemo() {
+  return (
+    <CartDrawerUpsell
+      recommendations={[
+        { name: "Braided 2m Cable", price: 19 },
+        { name: "Protective Hard Case", price: 34 },
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Empty Bag & Discovery State",
+        description:
+          "Clean empty state illustration with category badges and return-to-shopping call-to-action.",
+        preview: <CartDrawerEmptyExample />,
+        code: `import { CartDrawerEmpty } from 'patiya';
+
+export default function EmptyCartDemo() {
+  return <CartDrawerEmpty />;
+}`,
+      },
+      {
+        title: "Express 1-Click Payment Drawer",
+        description:
+          "Streamlined drawer prioritizing fast mobile wallet payments like Apple Pay and PayPal Express.",
+        preview: <CartDrawerExpressExample />,
+        code: `import { CartDrawerExpress } from 'patiya';
+
+export default function ExpressCartDemo() {
+  return <CartDrawerExpress enableApplePay enablePayPal />;
+}`,
+      },
+    ],
+  },
+  "cart-drawer": {
+    get title() {
+      return (componentsRegistry as any).cartDrawer.title;
+    },
+    get description() {
+      return (componentsRegistry as any).cartDrawer.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).cartDrawer.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).cartDrawer.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).cartDrawer.examples;
+    },
+  },
+  quantitySelector: {
+    title: "Quantity Selector",
+    description:
+      "Tactile stepper control for modifying item purchase counts with boundary constraints and size options.",
+    installation: "import { QuantitySelector } from 'patiya';",
+    props: [
+      {
+        name: "value",
+        type: "number",
+        default: "1",
+        description: "Current numeric count value.",
+      },
+      {
+        name: "onChange",
+        type: "(val: number) => void",
+        default: "-",
+        description: "Callback fired when quantity changes.",
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "1",
+        description: "Minimum allowable quantity threshold.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "99",
+        description: "Maximum allowable item quantity.",
+      },
+      {
+        name: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "'md'",
+        description: "Visual sizing variant of the stepper.",
+      },
+    ],
+    examples: [
+      {
+        title: "Size Variants (Small, Medium, Large)",
+        description:
+          "Three standard scale options suitable for dense data tables, product detail pages, and tactile hero cards.",
+        preview: <QuantitySelectorSizesExample />,
+        code: `import { QuantitySelector } from 'patiya';
+
+export default function SizesDemo() {
+  return (
+    <div className="flex gap-4">
+      <QuantitySelector size="sm" defaultValue={1} />
+      <QuantitySelector size="md" defaultValue={2} />
+      <QuantitySelector size="lg" defaultValue={3} />
+    </div>
+  );
+}`,
+      },
+      {
+        title: "Direct Numerical Keyboard Input",
+        description:
+          "Hybrid control combining stepper buttons with directly focusable text input for large quantity typing.",
+        preview: <QuantitySelectorInputExample />,
+        code: `import { QuantitySelectorInput } from 'patiya';
+
+export default function InputDemo() {
+  return <QuantitySelectorInput defaultValue={4} min={1} max={999} />;
+}`,
+      },
+      {
+        title: "Inventory Stock Limits & Warnings",
+        description:
+          "Inventory guard restricting increment buttons when customer reaches maximum allowable units.",
+        preview: <QuantitySelectorLimitsExample />,
+        code: `import { QuantitySelectorLimits } from 'patiya';
+
+export default function LimitsDemo() {
+  return <QuantitySelectorLimits max={5} defaultValue={5} />;
+}`,
+      },
+      {
+        title: "Morphing Add-to-Cart Stepper",
+        description:
+          "Transitions seamlessly from an 'Add to Cart' pill into a numeric stepper upon user's initial interaction.",
+        preview: <QuantitySelectorMorphExample />,
+        code: `import { QuantitySelectorMorph } from 'patiya';
+
+export default function MorphDemo() {
+  return <QuantitySelectorMorph onCountChange={(n) => console.log(n)} />;
+}`,
+      },
+      {
+        title: "Bulk Quick-Add Presets",
+        description:
+          "Wholesale-oriented quantity adjuster equipped with quick additive chips (+5, +10, +25, +50).",
+        preview: <QuantitySelectorBulkExample />,
+        code: `import { QuantitySelectorBulk } from 'patiya';
+
+export default function BulkDemo() {
+  return <QuantitySelectorBulk increments={[5, 10, 25, 50]} initialValue={10} />;
+}`,
+      },
+      {
+        title: "Zero-State Trash Stepper",
+        description:
+          "UX micro-interaction where decrementing from 1 morphs the minus glyph into a red delete trash bin.",
+        preview: <QuantitySelectorTrashExample />,
+        code: `import { QuantitySelectorTrash } from 'patiya';
+
+export default function TrashDemo() {
+  return <QuantitySelectorTrash onRemove={() => console.log('Remove')} />;
+}`,
+      },
+    ],
+  },
+  "quantity-selector": {
+    get title() {
+      return (componentsRegistry as any).quantitySelector.title;
+    },
+    get description() {
+      return (componentsRegistry as any).quantitySelector.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).quantitySelector.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).quantitySelector.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).quantitySelector.examples;
+    },
+  },
+  reviewCard: {
+    title: "Review Card",
+    description:
+      "Verified customer feedback card with dynamic rating stars, reviewer details, and interactive helpfulness voting.",
+    installation: "import { ReviewCard } from 'patiya';",
+    props: [
+      {
+        name: "author",
+        type: "string",
+        default: "-",
+        description: "Name of customer writing the review.",
+      },
+      {
+        name: "rating",
+        type: "number",
+        default: "5",
+        description: "Star rating numerical score.",
+      },
+      {
+        name: "verified",
+        type: "boolean",
+        default: "true",
+        description: "Shows verified purchase badge.",
+      },
+      {
+        name: "title",
+        type: "string",
+        default: "-",
+        description: "Review header headline text.",
+      },
+      {
+        name: "content",
+        type: "string",
+        default: "-",
+        description: "Review narrative feedback body.",
+      },
+    ],
+    examples: [
+      {
+        title: "Verified Purchaser Review",
+        description:
+          "Standard verified testimonial with customer avatar, location, product variant, and helpful voting toggle.",
+        preview: <ReviewCardVerifiedExample />,
+        code: `import { ReviewCard } from 'patiya';
+
+export default function VerifiedReviewDemo() {
+  return (
+    <ReviewCard
+      author="Elena Rostova"
+      rating={5}
+      verified
+      title="Exceptional build quality and soundstage"
+      content="The low-end response is punchy without muddying the mids. Battery life easily exceeded 30 hours of continuous wireless playback."
+      initialHelpfulCount={42}
+    />
+  );
+}`,
+      },
+      {
+        title: "Customer Unboxing Photo Gallery",
+        description:
+          "Review component featuring clickable customer-submitted photo previews with aspect-ratio styling.",
+        preview: <ReviewCardGalleryExample />,
+        code: `import { ReviewCardGallery } from 'patiya';
+
+export default function GalleryReviewDemo() {
+  return (
+    <ReviewCardGallery
+      author="David Zhao"
+      rating={5}
+      content="The packaging and fit finish are top tier. Took a few unboxing shots right after opening."
+      photos={["/review1.jpg", "/review2.jpg", "/review3.jpg"]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Multi-Factor Scoring Breakdown",
+        description:
+          "Technical feedback card highlighting individual metric performance bars for acoustics, comfort, and battery.",
+        preview: <ReviewCardBreakdownExample />,
+        code: `import { ReviewCardBreakdown } from 'patiya';
+
+export default function BreakdownReviewDemo() {
+  return (
+    <ReviewCardBreakdown
+      author="Sarah Jenkins"
+      factors={[
+        { label: "Acoustic Clarity", score: "5.0", pct: "100%" },
+        { label: "Comfort & Fit", score: "4.8", pct: "96%" },
+        { label: "Battery Endurance", score: "4.9", pct: "98%" },
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Store Support Official Reply",
+        description:
+          "Two-level thread rendering an indented merchant response with official staff badge.",
+        preview: <ReviewCardReplyExample />,
+        code: `import { ReviewCardReply } from 'patiya';
+
+export default function ReplyReviewDemo() {
+  return (
+    <ReviewCardReply
+      customer={{ name: "Mark R.", rating: 4, comment: "Had a slight issue pairing with older TV transmitter..." }}
+      reply={{ author: "Patiya Support Team", text: "Hi Mark! Firmware update v1.2 resolved legacy broadcast pairing." }}
+    />
+  );
+}`,
+      },
+      {
+        title: "Social Proof Quote Card",
+        description:
+          "Compact testimonial layout tailored for landing page proof columns and conversion sections.",
+        preview: <ReviewCardCompactExample />,
+        code: `import { ReviewCardCompact } from 'patiya';
+
+export default function CompactReviewDemo() {
+  return (
+    <ReviewCardCompact
+      quote="Hands down the best studio monitor headphones in this price tier."
+      author="Clara Oswald"
+      role="Sound Designer @ Nexus"
+      rating={5}
+    />
+  );
+}`,
+      },
+      {
+        title: "Aggregate Rating & Star Distribution",
+        description:
+          "Header summary block calculating overall customer satisfaction score with 1-to-5 star bar breakdowns.",
+        preview: <ReviewCardSummaryExample />,
+        code: `import { ReviewCardSummary } from 'patiya';
+
+export default function SummaryReviewDemo() {
+  return (
+    <ReviewCardSummary
+      overallScore={4.9}
+      totalReviews={496}
+      distribution={[
+        { stars: 5, pct: 85, count: 420 },
+        { stars: 4, pct: 10, count: 52 },
+        { stars: 3, pct: 3, count: 14 },
+        { stars: 2, pct: 1, count: 6 },
+        { stars: 1, pct: 1, count: 4 },
+      ]}
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "review-card": {
+    get title() {
+      return (componentsRegistry as any).reviewCard.title;
+    },
+    get description() {
+      return (componentsRegistry as any).reviewCard.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).reviewCard.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).reviewCard.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).reviewCard.examples;
+    },
+  },
+  productGallery: {
+    title: "Product Gallery",
+    description:
+      "Interactive media showcase with multi-angle thumbnails, cursor zoom lens, fullscreen lightbox, and swipeable mobile carousel.",
+    installation:
+      "import { ProductGallery, ProductGalleryCarousel, ProductGalleryGrid, ProductGalleryMinimal } from 'patiya';",
+    props: [
+      {
+        name: "images",
+        type: "ProductGalleryImage[]",
+        default: "[]",
+        description:
+          "Array of image objects containing id, src, alt, and title.",
+      },
+      {
+        name: "thumbnailPosition",
+        type: "'left' | 'bottom' | 'right'",
+        default: "'left'",
+        description: "Placement axis for thumbnail navigation rail.",
+      },
+      {
+        name: "aspectRatio",
+        type: "'square' | 'video' | 'portrait'",
+        default: "'square'",
+        description: "Aspect ratio framing for the primary hero stage.",
+      },
+      {
+        name: "enableZoom",
+        type: "boolean",
+        default: "true",
+        description: "Enables interactive mouse-hover magnification lens.",
+      },
+      {
+        name: "showBadges",
+        type: "boolean",
+        default: "true",
+        description: "Renders promo tags and deal indicators.",
+      },
+      {
+        name: "showLightbox",
+        type: "boolean",
+        default: "true",
+        description: "Triggers high-resolution modal inspection on click.",
+      },
+    ],
+    examples: [
+      {
+        title: "Vertical Rail with Magnifying Zoom Lens",
+        description:
+          "Hero studio gallery with side thumbnail navigation and mouse-tracking zoom inspection overlay.",
+        preview: <ProductGalleryShowcaseExample />,
+        code: `import { ProductGallery } from 'patiya';
+
+export default function GalleryShowcaseDemo() {
+  const images = [
+    { id: 1, src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80", alt: "Studio Headphones" },
+    { id: 2, src: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80", alt: "Angled Studio View" },
+    { id: 3, src: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80", alt: "Cushion Macro Detail" }
+  ];
+
+  return (
+    <ProductGallery
+      images={images}
+      thumbnailPosition="left"
+      aspectRatio="square"
+      enableZoom
+      badgeText="-30% LIMITED"
+    />
+  );
+}`,
+      },
+      {
+        title: "Touch-Friendly Swipe Carousel",
+        description:
+          "Horizontal slide deck with smooth motion controls and dot indicators optimized for mobile screens.",
+        preview: <ProductGalleryCarouselExample />,
+        code: `import { ProductGalleryCarousel } from 'patiya';
+
+export default function CarouselGalleryDemo() {
+  const images = [
+    { id: 1, src: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80", alt: "Mechanical Keyboard" },
+    { id: 2, src: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80", alt: "Keycaps Macro" }
+  ];
+
+  return <ProductGalleryCarousel images={images} />;
+}`,
+      },
+      {
+        title: "Editorial Lookbook Grid",
+        description:
+          "High-fashion multi-photo lookbook format with hover title reveals and clean grid layout.",
+        preview: <ProductGalleryGridExample />,
+        code: `import { ProductGalleryGrid } from 'patiya';
+
+export default function GridGalleryDemo() {
+  const images = [
+    { id: 1, src: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80", title: "Aviator Leather Jacket" },
+    { id: 2, src: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80", title: "Denim Craftsmanship" }
+  ];
+
+  return <ProductGalleryGrid images={images} />;
+}`,
+      },
+      {
+        title: "Minimal Quick-View with Finish Swatches",
+        description:
+          "Compact product hero card paired with active finish selectors and wishlist bookmarking.",
+        preview: <ProductGalleryMinimalExample />,
+        code: `import { ProductGalleryMinimal } from 'patiya';
+
+export default function MinimalGalleryDemo() {
+  return (
+    <ProductGalleryMinimal
+      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+      alt="Minimal Chrono Timepiece"
+      badge="Best Seller"
+      colors={[
+        { id: "gold", bg: "#d97706", label: "Brushed Gold" },
+        { id: "silver", bg: "#e2e8f0", label: "Platinum Silver" },
+        { id: "space_gray", bg: "#334155", label: "Space Gray" }
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Bottom Thumbnails with Portrait Aspect",
+        description:
+          "Apparel and footwear layout using 3:4 portrait ratios with bottom-aligned thumbnail carousel.",
+        preview: <ProductGalleryBottomThumbExample />,
+        code: `import { ProductGallery } from 'patiya';
+
+export default function BottomThumbDemo() {
+  return (
+    <ProductGallery
+      images={[
+        { id: 1, src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80", alt: "Sneaker" },
+        { id: 2, src: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80", alt: "Sole" }
+      ]}
+      thumbnailPosition="bottom"
+      aspectRatio="portrait"
+      badgeText="IN STOCK"
+    />
+  );
+}`,
+      },
+      {
+        title: "Fullscreen High-Res Lightbox Inspection",
+        description:
+          "Clickable gallery launching an edge-to-edge modal viewer for examining stitching and textures.",
+        preview: <ProductGalleryLightboxExample />,
+        code: `import { ProductGallery } from 'patiya';
+
+export default function LightboxGalleryDemo() {
+  return (
+    <ProductGallery
+      images={[
+        { id: 1, src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80", alt: "Headphones" }
+      ]}
+      thumbnailPosition="bottom"
+      aspectRatio="square"
+      showLightbox
+      badgeText="ZOOM INSPECT"
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "product-gallery": {
+    get title() {
+      return (componentsRegistry as any).productGallery.title;
+    },
+    get description() {
+      return (componentsRegistry as any).productGallery.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).productGallery.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).productGallery.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).productGallery.examples;
+    },
+  },
+  orderTracker: {
+    title: "Order Tracker",
+    description:
+      "Live order progression tracker with milestone timeline, courier dispatch cards, map route summaries, and self-service return workflows.",
+    installation:
+      "import { OrderTracker, OrderTrackerMilestone, OrderTrackerDeliveryDriver, OrderTrackerMap, OrderTrackerReturn } from 'patiya';",
+    props: [
+      {
+        name: "orderNumber",
+        type: "string",
+        default: "-",
+        description: "Unique order or invoice identification string.",
+      },
+      {
+        name: "estimatedDelivery",
+        type: "string",
+        default: "-",
+        description: "Projected arrival date and time window.",
+      },
+      {
+        name: "status",
+        type: "'placed' | 'processing' | 'shipped' | 'out_for_delivery' | 'delivered' | 'cancelled'",
+        default: "'shipped'",
+        description: "Current stage in shipment lifecycle.",
+      },
+      {
+        name: "carrier",
+        type: "string",
+        default: "-",
+        description: "Assigned freight courier service name.",
+      },
+      {
+        name: "trackingNumber",
+        type: "string",
+        default: "-",
+        description: "Courier tracking number with one-click copy button.",
+      },
+      {
+        name: "milestones",
+        type: "OrderMilestone[]",
+        default: "[]",
+        description: "List of tracking checkpoints with timestamps.",
+      },
+    ],
+    examples: [
+      {
+        title: "Live Order Progression Card",
+        description:
+          "Hero shipping overview featuring active status pills, courier tracking, and step progression bar.",
+        preview: <OrderTrackerShowcaseExample />,
+        code: `import { OrderTracker } from 'patiya';
+
+export default function OrderTrackerShowcaseDemo() {
+  return (
+    <OrderTracker
+      orderNumber="PT-894204"
+      estimatedDelivery="Today by 1:45 PM"
+      status="out_for_delivery"
+      carrier="DHL Express Worldwide"
+      trackingNumber="DHL-774921094"
+      shippingAddress="1042 Valencia Street, San Francisco, CA"
+      itemsCount={3}
+    />
+  );
+}`,
+      },
+      {
+        title: "Detailed Checkpoint Timeline",
+        description:
+          "Vertical step timeline detailing scan timestamps, regional facilities, and verification statuses.",
+        preview: <OrderTrackerMilestoneExample />,
+        code: `import { OrderTrackerMilestone } from 'patiya';
+
+export default function MilestoneDemo() {
+  return (
+    <OrderTrackerMilestone
+      milestones={[
+        { id: "1", title: "Order Placed & Confirmed", timestamp: "Oct 23, 09:30 AM", completed: true },
+        { id: "2", title: "Prepared at Fulfillment Facility", timestamp: "Oct 24, 01:15 PM", completed: true },
+        { id: "3", title: "Arrived at Local Post Facility", timestamp: "Oct 25, 05:40 AM", completed: true },
+        { id: "4", title: "Out for Courier Delivery", timestamp: "Today, 11:20 AM", completed: true, current: true },
+        { id: "5", title: "Delivered & Signed", timestamp: "Est. 1:30 PM", completed: false }
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Live Courier Driver & Contact Profile",
+        description:
+          "Designated driver badge showcasing vehicle model, license plate, direct call, and real-time ETA.",
+        preview: <OrderTrackerDeliveryDriverExample />,
+        code: `import { OrderTrackerDeliveryDriver } from 'patiya';
+
+export default function DeliveryDriverDemo() {
+  return (
+    <OrderTrackerDeliveryDriver
+      driverName="Marcus Sterling"
+      vehicle="Mercedes Sprinter EV"
+      plateNumber="CA 8KL-912"
+      rating={4.95}
+      eta="6 mins away"
+      avatar="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"
+    />
+  );
+}`,
+      },
+      {
+        title: "Local Radar Route & Nearby Stop Counter",
+        description:
+          "Compact radar visualizer conveying current stop distance and remaining drop-offs.",
+        preview: <OrderTrackerMapExample />,
+        code: `import { OrderTrackerMap } from 'patiya';
+
+export default function MapRouteDemo() {
+  return (
+    <OrderTrackerMap
+      destination="742 Evergreen Terrace"
+      currentStop="3rd & Market St"
+      eta="11 min"
+      stopsRemaining={2}
+    />
+  );
+}`,
+      },
+      {
+        title: "Self-Service RMA & Return Portal",
+        description:
+          "Post-delivery return voucher with scannable drop-off barcode, deadline, and refund calculator.",
+        preview: <OrderTrackerReturnExample />,
+        code: `import { OrderTrackerReturn } from 'patiya';
+
+export default function ReturnOrderDemo() {
+  return (
+    <OrderTrackerReturn
+      rmaNumber="RMA-904128"
+      refundAmount={279.0}
+      dropoffDeadline="Nov 12, 2026"
+      barcode="||| | ||||| || |||| ||||| ||"
+    />
+  );
+}`,
+      },
+      {
+        title: "Multi-Package Split Shipment View",
+        description:
+          "Tabbed tracker handling orders fulfilling from multiple warehouse origins with individual tracking.",
+        preview: <OrderTrackerMultiItemExample />,
+        code: `import { OrderTracker } from 'patiya';
+
+export default function MultiPackageDemo() {
+  return (
+    <OrderTracker
+      orderNumber="PT-44210-A"
+      estimatedDelivery="Delivered Yesterday, 3:15 PM"
+      status="delivered"
+      carrier="USPS Priority"
+      trackingNumber="94001118992231"
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "order-tracker": {
+    get title() {
+      return (componentsRegistry as any).orderTracker.title;
+    },
+    get description() {
+      return (componentsRegistry as any).orderTracker.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).orderTracker.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).orderTracker.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).orderTracker.examples;
+    },
+  },
+  filterPanel: {
+    title: "Filter Panel",
+    description:
+      "E-commerce filter suite with category trees, price range sliders, color swatches, size pills, and horizontal chip bars.",
+    installation:
+      "import { FilterPanel, FilterPanelHorizontal, FilterPanelTags, FilterPanelSort } from 'patiya';",
+    props: [
+      {
+        name: "categories",
+        type: "FilterCategory[]",
+        default: "[]",
+        description: "Taxonomy categories with item counts.",
+      },
+      {
+        name: "selectedCategories",
+        type: "string[]",
+        default: "[]",
+        description: "Array of currently selected category IDs.",
+      },
+      {
+        name: "priceRange",
+        type: "[number, number]",
+        default: "[0, 500]",
+        description: "Current low and high price filter bounds.",
+      },
+      {
+        name: "colors",
+        type: "FilterColor[]",
+        default: "[]",
+        description: "Available palette swatches with hex color values.",
+      },
+      {
+        name: "sizes",
+        type: "string[]",
+        default: "[]",
+        description: "Available size option pills.",
+      },
+      {
+        name: "inStockOnly",
+        type: "boolean",
+        default: "false",
+        description: "Filters to in-stock items only.",
+      },
+      {
+        name: "selectedRating",
+        type: "number",
+        default: "0",
+        description: "Minimum star review threshold.",
+      },
+    ],
+    examples: [
+      {
+        title: "Full-Faceted Catalog Sidebar",
+        description:
+          "Comprehensive sidebar including categories, dual-handle price range slider, color swatches, and size pills.",
+        preview: <FilterPanelShowcaseExample />,
+        code: `import { FilterPanel } from 'patiya';
+
+export default function FilterPanelShowcaseDemo() {
+  return (
+    <FilterPanel
+      selectedCategories={["headphones"]}
+      priceRange={[60, 400]}
+      selectedColors={["black"]}
+      selectedSizes={["M"]}
+      inStockOnly
+      selectedRating={4}
+      activeCount={3}
+    />
+  );
+}`,
+      },
+      {
+        title: "Horizontal Dropdown Pill Toolbar",
+        description:
+          "Compact top-bar layout with active count indicators suitable for full-width grid layouts.",
+        preview: <FilterPanelHorizontalExample />,
+        code: `import { FilterPanelHorizontal } from 'patiya';
+
+export default function HorizontalFilterDemo() {
+  return (
+    <FilterPanelHorizontal
+      filters={[
+        { id: "price", label: "Price: $50 - $350", activeCount: 1 },
+        { id: "brand", label: "Audio Brand (3)", activeCount: 3 },
+        { id: "color", label: "Color: Onyx Black" },
+        { id: "rating", label: "★ 4.5 & up" },
+        { id: "stock", label: "Prime 1-Day Delivery" }
+      ]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Active Filter Chips & Bulk Clear",
+        description:
+          "Removable filter tags displaying active selections with quick one-click deletion and result totals.",
+        preview: <FilterPanelTagsExample />,
+        code: `import { FilterPanelTags } from 'patiya';
+
+export default function FilterTagsDemo() {
+  return (
+    <FilterPanelTags
+      tags={[
+        { id: "1", label: "Category", value: "Over-Ear Wireless" },
+        { id: "2", label: "Price", value: "$100 - $300" },
+        { id: "3", label: "Finish", value: "Matte Black" }
+      ]}
+      resultCount={24}
+    />
+  );
+}`,
+      },
+      {
+        title: "Sort Order Dropdown & Layout Switcher",
+        description:
+          "Catalog toolbar with sorting criteria dropdown, product count counter, and grid/list view toggles.",
+        preview: <FilterPanelSortExample />,
+        code: `import { FilterPanelSort } from 'patiya';
+
+export default function SortAndLayoutDemo() {
+  return (
+    <FilterPanelSort
+      sortBy="featured"
+      viewMode="grid"
+      totalProducts={156}
+    />
+  );
+}`,
+      },
+      {
+        title: "Color Swatches & Size Matrix",
+        description:
+          "Dedicated apparel attribute filter with interactive color circles and size pill toggles.",
+        preview: <FilterPanelColorsSizesExample />,
+        code: `import { FilterPanel } from 'patiya';
+
+export default function SwatchAndSizeDemo() {
+  return (
+    <FilterPanel
+      colors={[
+        { id: "onyx", label: "Onyx Black", value: "#18181b" },
+        { id: "emerald", label: "Forest Green", value: "#059669" }
+      ]}
+      sizes={["XS", "S", "M", "L", "XL"]}
+    />
+  );
+}`,
+      },
+      {
+        title: "Target Price Range & Star Rating",
+        description:
+          "Numeric currency inputs combined with star threshold rating selectors for precision filtering.",
+        preview: <FilterPanelPriceRatingExample />,
+        code: `import { FilterPanel } from 'patiya';
+
+export default function PriceRatingDemo() {
+  return (
+    <FilterPanel
+      minPrice={0}
+      maxPrice={500}
+      priceRange={[75, 350]}
+      selectedRating={4}
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "filter-panel": {
+    get title() {
+      return (componentsRegistry as any).filterPanel.title;
+    },
+    get description() {
+      return (componentsRegistry as any).filterPanel.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).filterPanel.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).filterPanel.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).filterPanel.examples;
+    },
+  },
+  checkoutSummary: {
+    title: "Checkout Summary",
+    description:
+      "Interactive e-commerce order summary with line items drawer, delivery speed tier selector, promo coupon vouchers, BNPL installment schedules, and receipt views.",
+    installation:
+      "import { CheckoutSummary, CheckoutSummaryPromo, CheckoutSummaryInstallments, CheckoutSummarySticky, CheckoutSummaryReceipt } from 'patiya';",
+    props: [
+      {
+        name: "items",
+        type: "CheckoutItem[]",
+        default: "[]",
+        description:
+          "Array of purchased line items with pricing and variant specs.",
+      },
+      {
+        name: "subtotal",
+        type: "number",
+        default: "-",
+        description: "Explicit order subtotal before discounts and tax.",
+      },
+      {
+        name: "discount",
+        type: "number",
+        default: "0",
+        description: "Applied promotional voucher discount value.",
+      },
+      {
+        name: "shippingTiers",
+        type: "ShippingTier[]",
+        default: "[]",
+        description: "Available shipping methods with cost and delivery ETA.",
+      },
+      {
+        name: "taxRate",
+        type: "number",
+        default: "0.0825",
+        description: "Regional tax rate percentage factor.",
+      },
+      {
+        name: "promoCode",
+        type: "string",
+        default: "-",
+        description: "Active promotional discount voucher string.",
+      },
+      {
+        name: "showApplePay",
+        type: "boolean",
+        default: "true",
+        description: "Renders express 1-click Apple Pay checkout button.",
+      },
+      {
+        name: "showGuarantees",
+        type: "boolean",
+        default: "true",
+        description: "Displays trust badges for SSL, returns, and delivery.",
+      },
+    ],
+    examples: [
+      {
+        title: "Full Interactive Checkout Breakdown",
+        description:
+          "Hero order review card with itemized line items drawer, live shipping rate selector, promo coupon input, and Apple Pay trigger.",
+        preview: <CheckoutSummaryShowcaseExample />,
+        code: `import { CheckoutSummary } from 'patiya';
+
+export default function CheckoutSummaryShowcaseDemo() {
+  const items = [
+    {
+      id: "1",
+      title: "Studio Monitor Pro Headphones",
+      price: 249.0,
+      quantity: 1,
+      variant: "Matte Onyx / 32 Ohm"
+    },
+    {
+      id: "2",
+      title: "Braided Audio Cable & 6.3mm Adapter",
+      price: 39.0,
+      quantity: 1,
+      variant: "1.8m Silver-Plated"
+    }
+  ];
+
+  return (
+    <CheckoutSummary
+      items={items}
+      discount={25.0}
+      showApplePay
+      showGuarantees
+    />
+  );
+}`,
+      },
+      {
+        title: "Promo Voucher & Gift Code Card",
+        description:
+          "Standalone coupon redemption widget with active discount tag and removable applied state.",
+        preview: <CheckoutSummaryPromoExample />,
+        code: `import { CheckoutSummaryPromo } from 'patiya';
+
+export default function PromoCardDemo() {
+  return (
+    <CheckoutSummaryPromo
+      appliedCode="SUMMER30"
+      discountAmount={35.0}
+      onApply={(code) => console.log('Applying', code)}
+    />
+  );
+}`,
+      },
+      {
+        title: "Delivery Speed Tier Selector",
+        description:
+          "Interactive shipping speed options card updating order totals in real time.",
+        preview: <CheckoutSummaryShippingExample />,
+        code: `import { CheckoutSummary } from 'patiya';
+
+export default function ShippingTiersDemo() {
+  const tiers = [
+    { id: "standard", label: "Ground Shipping", price: 0, eta: "4-6 business days" },
+    { id: "express", label: "Express Priority Air", price: 15.0, eta: "2 business days" },
+    { id: "overnight", label: "Overnight Courier", price: 28.0, eta: "Tomorrow morning" }
+  ];
+
+  return <CheckoutSummary shippingTiers={tiers} />;
+}`,
+      },
+      {
+        title: "0% APR BNPL Installment Schedule",
+        description:
+          "Buy Now Pay Later financing widget detailing 4 interest-free bi-weekly payment milestones.",
+        preview: <CheckoutSummaryInstallmentsExample />,
+        code: `import { CheckoutSummaryInstallments } from 'patiya';
+
+export default function InstallmentsDemo() {
+  return (
+    <CheckoutSummaryInstallments
+      orderTotal={320.0}
+      installmentsCount={4}
+      provider="klarna"
+    />
+  );
+}`,
+      },
+      {
+        title: "Sticky Cart Bar with Free Shipping Meter",
+        description:
+          "Floating bottom drawer footer with dynamic threshold progress indicator and primary checkout button.",
+        preview: <CheckoutSummaryStickyExample />,
+        code: `import { CheckoutSummarySticky } from 'patiya';
+
+export default function StickyCartBarDemo() {
+  return (
+    <CheckoutSummarySticky
+      subtotal={74.0}
+      freeShippingThreshold={100.0}
+      onCheckout={() => console.log('Proceed to checkout')}
+    />
+  );
+}`,
+      },
+      {
+        title: "Post-Purchase Paid Order Receipt",
+        description:
+          "Order confirmation card displaying order ID, paid total, payment method, and PDF invoice download.",
+        preview: <CheckoutSummaryReceiptExample />,
+        code: `import { CheckoutSummaryReceipt } from 'patiya';
+
+export default function ReceiptDemo() {
+  return (
+    <CheckoutSummaryReceipt
+      orderId="ORD-2026-8812"
+      orderDate="Oct 26, 2026"
+      subtotal={249.0}
+      discount={25.0}
+      shipping={0.0}
+      tax={18.48}
+      total={242.48}
+      paymentMethod="Apple Pay (Mastercard •••• 9012)"
+    />
+  );
+}`,
+      },
+    ],
+  },
+  "checkout-summary": {
+    get title() {
+      return (componentsRegistry as any).checkoutSummary.title;
+    },
+    get description() {
+      return (componentsRegistry as any).checkoutSummary.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).checkoutSummary.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).checkoutSummary.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).checkoutSummary.examples;
     },
   },
 };
