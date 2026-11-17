@@ -1,0 +1,16 @@
+{
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "dependencies": [],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "skeleton.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\nimport { Box } from '../Layout/Box';\n\nexport interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {\n  isLoaded?: boolean;\n}\n\nexport const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(\n  ({ className, isLoaded = false, children, ...props }, ref) => {\n    if (isLoaded) {\n      return <>{children}</>;\n    }\n\n    return (\n      <Box\n        ref={ref}\n        className={cn('animate-pulse bg-[var(--patiya-color-muted)] rounded-md', className)}\n        {...props}\n      />\n    );\n  }\n);\n\nSkeleton.displayName = 'Skeleton';\n",
+      "path": "ui/skeleton.tsx"
+    }
+  ]
+}

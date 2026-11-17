@@ -1,0 +1,19 @@
+{
+  "name": "gradient-text",
+  "type": "registry:ui",
+  "title": "GradientText",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "gradient-text.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface GradientTextProps extends React.HTMLAttributes<HTMLSpanElement> {\n  children: React.ReactNode;\n  colors?: string[];\n  animationSpeed?: number;\n  showBorder?: boolean;\n}\n\nexport const GradientText = React.forwardRef<HTMLSpanElement, GradientTextProps>(\n  ({ \n    children, \n    colors = ['#ffaa40', '#9c40ff', '#ffaa40'], \n    animationSpeed = 8,\n    showBorder = false,\n    className, \n    ...props \n  }, ref) => {\n    \n    const gradientStyle = {\n      backgroundImage: `linear-gradient(to right, ${colors.join(', ')})`,\n      backgroundSize: '200% auto',\n      animation: `gradientText ${animationSpeed}s linear infinite`,\n    };\n\n    return (\n      <div \n        className={cn(\n          \"relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-2xl bg-white/5 px-4 py-1.5 text-sm font-medium backdrop-blur-sm transition-shadow duration-500 hover:shadow-[0_0_2rem_-0.5rem_#fff8]\",\n          showBorder ? \"border border-white/10\" : \"\",\n          className\n        )}\n      >\n        <span \n          ref={ref}\n          className=\"inline-block bg-clip-text text-transparent\"\n          style={gradientStyle}\n          {...props}\n        >\n          {children}\n        </span>\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes gradientText {\n            0% { background-position: 0% center; }\n            100% { background-position: -200% center; }\n          }\n        `}} />\n      </div>\n    );\n  }\n);\n\nGradientText.displayName = 'GradientText';\n",
+      "path": "ui/gradient-text.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { GradientText } from './GradientText';\nexport type { GradientTextProps } from './GradientText';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "tooltip",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "dependencies": [
+    "@floating-ui/react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "tooltip.tsx",
+      "content": "import React, { useState } from 'react';\nimport {\n  useFloating,\n  autoUpdate,\n  offset,\n  flip,\n  shift,\n  useHover,\n  useFocus,\n  useDismiss,\n  useRole,\n  useInteractions,\n  FloatingPortal,\n  Placement,\n  useTransitionStyles\n} from '@floating-ui/react';\nimport { cn } from '../../utils/cn';\n\nexport interface TooltipProps {\n  content: React.ReactNode;\n  children: React.ReactElement;\n  placement?: Placement;\n  className?: string;\n  delay?: number;\n}\n\nexport function Tooltip({ children, content, placement = 'top', className, delay = 0 }: TooltipProps) {\n  const [isOpen, setIsOpen] = useState(false);\n\n  const { refs, x, y, strategy, context } = useFloating({\n    open: isOpen,\n    onOpenChange: setIsOpen,\n    placement,\n    whileElementsMounted: autoUpdate,\n    middleware: [\n      offset(8),\n      flip({\n        fallbackAxisSideDirection: 'start',\n      }),\n      shift(),\n    ],\n  });\n\n  const hover = useHover(context, { move: false, delay: { open: delay, close: 0 } });\n  const focus = useFocus(context);\n  const dismiss = useDismiss(context);\n  const role = useRole(context, { role: 'tooltip' });\n\n  const { getReferenceProps, getFloatingProps } = useInteractions([\n    hover,\n    focus,\n    dismiss,\n    role,\n  ]);\n\n  const { isMounted, styles } = useTransitionStyles(context, {\n    duration: 150,\n    initial: { opacity: 0, transform: 'scale(0.95)' },\n  });\n\n  return (\n    <>\n      {React.cloneElement(children as React.ReactElement<any> & React.RefAttributes<any>, {\n        ref: refs.setReference,\n        ...getReferenceProps(),\n      })}\n      {isMounted && (\n        <FloatingPortal>\n          <div\n            ref={refs.setFloating}\n            style={{ \n              position: strategy,\n              top: y ?? 0,\n              left: x ?? 0,\n              width: 'max-content',\n              ...styles \n            }}\n            {...getFloatingProps()}\n            className={cn(\n              'z-50 px-3 py-1.5 text-xs font-medium rounded-md shadow-md',\n              'bg-[var(--patiya-color-foreground)] text-[var(--patiya-color-background)]',\n              className\n            )}\n          >\n            {content}\n          </div>\n        </FloatingPortal>\n      )}\n    </>\n  );\n}\n",
+      "path": "ui/tooltip.tsx"
+    }
+  ]
+}

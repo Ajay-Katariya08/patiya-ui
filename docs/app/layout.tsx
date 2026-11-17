@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Patiya UI",
   },
   description:
-    "Beautiful, accessible React components built with Tailwind CSS. 80+ free copy-paste components including buttons, modals, sliders, carousels, shimmer effects & more. Dark mode, fully customizable.",
+    "Beautiful, accessible React components built with Tailwind CSS. 100+ free copy-paste components including buttons, modals, sliders, carousels, shimmer effects & more. Dark mode, fully customizable.",
   keywords: [
     "patiya",
     "pittaya",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
     title:
       "Patiya UI - Free Open-Source React & Tailwind CSS Component Library",
     description:
-      "Beautiful, accessible React components built with Tailwind CSS. 80+ free copy-paste components including buttons, modals, sliders, carousels & more.",
+      "Beautiful, accessible React components built with Tailwind CSS. 100+ free copy-paste components including buttons, modals, sliders, carousels & more.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Patiya UI - Free React & Tailwind CSS Components",
     description:
-      "80+ beautiful, accessible React components. Copy-paste ready. Dark mode. Fully customizable.",
+      "100+ beautiful, accessible React components. Copy-paste ready. Dark mode. Fully customizable.",
   },
   icons: {
     icon: [
@@ -90,7 +90,7 @@ const jsonLd = {
       name: "Patiya UI",
       url: "https://patiya-ui.vercel.app",
       description:
-        "Free open-source React & Tailwind CSS component library with 80+ accessible components",
+        "Free open-source React & Tailwind CSS component library with 100+ accessible components",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Web",
       offers: {

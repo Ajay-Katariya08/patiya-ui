@@ -1,0 +1,19 @@
+{
+  "name": "flip-text",
+  "type": "registry:ui",
+  "title": "FlipText",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "flip-text.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface FlipTextProps extends React.HTMLAttributes<HTMLDivElement> {\n  word: string;\n  delayMultiple?: number;\n  duration?: number;\n}\n\nexport const FlipText = React.forwardRef<HTMLDivElement, FlipTextProps>(\n  ({ \n    word, \n    delayMultiple = 0.08, \n    duration = 0.5,\n    className, \n    ...props \n  }, ref) => {\n    \n    return (\n      <div \n        ref={ref} \n        className={cn(\"flex justify-center space-x-0.5\", className)}\n        {...props}\n      >\n        {word.split(\"\").map((char, i) => (\n          <span\n            key={i}\n            className=\"inline-block origin-bottom animate-in fade-in slide-in-from-bottom-1/2\"\n            style={{\n              animationDuration: `${duration}s`,\n              animationDelay: `${i * delayMultiple}s`,\n              animationFillMode: 'both',\n              backfaceVisibility: 'hidden',\n              transformStyle: 'preserve-3d',\n            }}\n          >\n            <style dangerouslySetInnerHTML={{__html: `\n              @keyframes flipIn {\n                0% { transform: rotateX(-90deg); opacity: 0; }\n                100% { transform: rotateX(0deg); opacity: 1; }\n              }\n            `}} />\n            <span style={{ animation: `flipIn ${duration}s ease-out ${i * delayMultiple}s both` }}>\n              {char === \" \" ? \"\\u00A0\" : char}\n            </span>\n          </span>\n        ))}\n      </div>\n    );\n  }\n);\n\nFlipText.displayName = 'FlipText';\n",
+      "path": "ui/flip-text.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { FlipText } from './FlipText';\nexport type { FlipTextProps } from './FlipText';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

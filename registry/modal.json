@@ -1,0 +1,18 @@
+{
+  "name": "modal",
+  "type": "registry:ui",
+  "title": "Modal",
+  "dependencies": [
+    "@floating-ui/react"
+  ],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "modal.tsx",
+      "content": "import React from 'react';\nimport {\n  useFloating,\n  useDismiss,\n  useRole,\n  useInteractions,\n  FloatingFocusManager,\n  FloatingOverlay,\n  FloatingPortal,\n  useTransitionStatus\n} from '@floating-ui/react';\nimport { cn } from '../../utils/cn';\nimport { Box } from '../Layout/Box';\n\nexport type ModalSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';\n\nexport interface ModalProps {\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  children: React.ReactNode;\n  size?: ModalSize;\n}\n\nconst sizeClasses: Record<ModalSize, string> = {\n  xs: 'max-w-xs',\n  sm: 'max-w-sm',\n  md: 'max-w-md',\n  lg: 'max-w-lg',\n  xl: 'max-w-xl',\n  xxl: 'max-w-2xl',\n};\n\nexport function Modal({ open, onOpenChange, children, size = 'md' }: ModalProps) {\n  const { refs, context } = useFloating({\n    open,\n    onOpenChange,\n  });\n\n  const dismiss = useDismiss(context, { outsidePressEvent: 'mousedown' });\n  const role = useRole(context);\n\n  const { getFloatingProps } = useInteractions([dismiss, role]);\n\n  const { isMounted, status } = useTransitionStatus(context, { duration: 250 });\n\n  return (\n    <>\n      {isMounted && (\n        <FloatingPortal>\n          <FloatingOverlay\n            className={cn(\n              \"z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300 ease-out\",\n              status === 'open' ? 'opacity-100' : 'opacity-0'\n            )}\n            lockScroll\n          >\n            <FloatingFocusManager context={context}>\n              <Box\n                ref={refs.setFloating}\n                {...getFloatingProps()}\n                className={cn(\n                  \"bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)] rounded-2xl shadow-xl w-full p-6 outline-none transition-all duration-300 ease-out\",\n                  sizeClasses[size],\n                  status === 'open' ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'\n                )}\n              >\n                {children}\n              </Box>\n            </FloatingFocusManager>\n          </FloatingOverlay>\n        </FloatingPortal>\n      )}\n    </>\n  );\n}\n\nexport function ModalHeader({ children, className }: { children: React.ReactNode, className?: string }) {\n  return <div className={cn(\"flex flex-col space-y-2 mb-6 text-center sm:text-left\", className)}>{children}</div>;\n}\n\nexport function ModalTitle({ children, className }: { children: React.ReactNode, className?: string }) {\n  return <h2 className={cn(\"text-xl font-semibold leading-none tracking-tight\", className)}>{children}</h2>;\n}\n\nexport function ModalDescription({ children, className }: { children: React.ReactNode, className?: string }) {\n  return <p className={cn(\"text-sm text-(--patiya-color-muted-foreground) leading-relaxed\", className)}>{children}</p>;\n}\n\nexport function ModalFooter({ children, className }: { children: React.ReactNode, className?: string }) {\n  return <div className={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-3 mt-8\", className)}>{children}</div>;\n}\n",
+      "path": "ui/modal.tsx"
+    }
+  ]
+}

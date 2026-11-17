@@ -1,0 +1,14 @@
+{
+  "name": "glass-surface",
+  "type": "registry:ui",
+  "title": "GlassSurface",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "glass-surface.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport type GlassSurfaceProps = React.HTMLAttributes<HTMLDivElement> & {\n  blur?: 'sm' | 'md' | 'lg' | 'xl';\n  intensity?: 'subtle' | 'medium' | 'strong';\n  borderGlow?: boolean;\n};\n\nexport const GlassSurface = React.forwardRef<HTMLDivElement, GlassSurfaceProps>(\n  (\n    {\n      className,\n      blur = 'md',\n      intensity = 'medium',\n      borderGlow = true,\n      children,\n      ...props\n    },\n    ref\n  ) => {\n    const blurMap = {\n      sm: 'backdrop-blur-sm',\n      md: 'backdrop-blur-md',\n      lg: 'backdrop-blur-lg',\n      xl: 'backdrop-blur-xl',\n    };\n\n    const intensityMap = {\n      subtle: 'bg-[var(--patiya-color-background)]/40 dark:bg-[var(--patiya-color-background)]/30',\n      medium: 'bg-[var(--patiya-color-card)]/60 dark:bg-[var(--patiya-color-card)]/40',\n      strong: 'bg-[var(--patiya-color-card)]/85 dark:bg-[var(--patiya-color-card)]/70',\n    };\n\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          'relative overflow-hidden rounded-2xl border border-[var(--patiya-color-border)]/80 shadow-2xl transition-all duration-300',\n          blurMap[blur],\n          intensityMap[intensity],\n          borderGlow &&\n            'before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[var(--patiya-color-primary)]/40 before:to-transparent',\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </div>\n    );\n  }\n);\nGlassSurface.displayName = 'GlassSurface';\n",
+      "path": "ui/glass-surface.tsx"
+    }
+  ]
+}

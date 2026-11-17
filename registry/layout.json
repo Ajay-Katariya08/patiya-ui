@@ -1,0 +1,14 @@
+{
+  "name": "layout",
+  "type": "registry:ui",
+  "title": "Layout",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "box.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { PolymorphicComponent, PolymorphicComponentProps } from '../../utils/polymorphic';\nimport { cn } from '../../utils/cn';\n\nexport interface BoxOptions {\n  className?: string;\n}\n\nexport type BoxProps<T extends React.ElementType> = PolymorphicComponentProps<T, BoxOptions>;\n\ntype BoxComponent = PolymorphicComponent<'div', BoxOptions>;\n\nexport const Box = forwardRef(\n  (\n    { as, className, children, ...props }: any,\n    ref: any\n  ) => {\n    const Component = as || 'div';\n    \n    return (\n      <Component ref={ref} className={cn(className)} {...props}>\n        {children}\n      </Component>\n    );\n  }\n) as BoxComponent;\n\nBox.displayName = 'Box';\n",
+      "path": "ui/box.tsx"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "meteor-shower",
+  "type": "registry:ui",
+  "title": "MeteorShower",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "meteor-shower.tsx",
+      "content": "import React, { useEffect, useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface MeteorShowerProps extends React.HTMLAttributes<HTMLDivElement> {\n  count?: number;\n}\n\nexport const MeteorShower = React.forwardRef<HTMLDivElement, MeteorShowerProps>(\n  ({ count = 20, className, ...props }, ref) => {\n    const [meteors, setMeteors] = useState<Array<{ id: number; top: string; left: string; animationDelay: string; animationDuration: string }>>([]);\n\n    useEffect(() => {\n      const generatedMeteors = Array.from({ length: count }).map((_, idx) => ({\n        id: idx,\n        top: Math.floor(Math.random() * 100) + '%',\n        left: Math.floor(Math.random() * 100) + '%',\n        animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + 's',\n        animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + 's',\n      }));\n      setMeteors(generatedMeteors);\n    }, [count]);\n\n    return (\n      <div \n        ref={ref}\n        className={cn(\"absolute inset-0 overflow-hidden pointer-events-none\", className)}\n        {...props}\n      >\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes meteor {\n            0% { transform: rotate(215deg) translateX(0); opacity: 1; }\n            70% { opacity: 1; }\n            100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }\n          }\n        `}} />\n        {meteors.map((meteor) => (\n          <span\n            key={meteor.id}\n            className=\"absolute h-0.5 w-0.5 rounded-full bg-slate-500 shadow-[0_0_0_1px_#ffffff10] rotate-[215deg] animate-meteor\"\n            style={{\n              top: meteor.top,\n              left: meteor.left,\n              animationDelay: meteor.animationDelay,\n              animationDuration: meteor.animationDuration,\n              animation: `meteor linear infinite`,\n            }}\n          >\n            {/* Meteor Tail */}\n            <div className=\"pointer-events-none absolute top-1/2 -z-10 h-[1px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-slate-500 to-transparent\" />\n          </span>\n        ))}\n      </div>\n    );\n  }\n);\n\nMeteorShower.displayName = 'MeteorShower';\n",
+      "path": "ui/meteor-shower.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { MeteorShower } from './MeteorShower';\nexport type { MeteorShowerProps } from './MeteorShower';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

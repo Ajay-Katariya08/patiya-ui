@@ -1,0 +1,14 @@
+{
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "spinner.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\nimport { PatiyaSize, PatiyaColor } from '../../types/common';\n\nexport interface SpinnerProps extends React.SVGProps<SVGSVGElement> {\n  size?: PatiyaSize;\n  color?: PatiyaColor | 'current';\n  label?: string;\n}\n\nexport const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(\n  ({ size = 'md', color = 'primary', label = 'Loading...', className, ...props }, ref) => {\n    \n    const sizeClasses = {\n      xs: 'w-3 h-3',\n      sm: 'w-4 h-4',\n      md: 'w-5 h-5',\n      lg: 'w-6 h-6',\n      xl: 'w-8 h-8',\n    };\n\n    const colorClasses = {\n      primary: 'text-[var(--patiya-color-primary)]',\n      secondary: 'text-[var(--patiya-color-secondary)]',\n      accent: 'text-[var(--patiya-color-accent)]',\n      destructive: 'text-[var(--patiya-color-destructive)]',\n      success: 'text-[var(--patiya-color-success)]',\n      warning: 'text-[var(--patiya-color-warning)]',\n      info: 'text-[var(--patiya-color-info)]',\n      muted: 'text-(--patiya-color-muted-foreground)',\n      current: 'text-current',\n    };\n\n    return (\n      <svg\n        ref={ref}\n        className={cn(\n          'animate-spin',\n          sizeClasses[size],\n          colorClasses[color as keyof typeof colorClasses],\n          className\n        )}\n        xmlns=\"http://www.w3.org/2000/svg\"\n        fill=\"none\"\n        viewBox=\"0 0 24 24\"\n        aria-label={label}\n        {...props}\n      >\n        <circle\n          className=\"opacity-25\"\n          cx=\"12\"\n          cy=\"12\"\n          r=\"10\"\n          stroke=\"currentColor\"\n          strokeWidth=\"4\"\n        />\n        <path\n          className=\"opacity-75\"\n          fill=\"currentColor\"\n          d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"\n        />\n      </svg>\n    );\n  }\n);\n\nSpinner.displayName = 'Spinner';\n",
+      "path": "ui/spinner.tsx"
+    }
+  ]
+}

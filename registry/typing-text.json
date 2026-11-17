@@ -1,0 +1,19 @@
+{
+  "name": "typing-text",
+  "type": "registry:ui",
+  "title": "TypingText",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "typing-text.tsx",
+      "content": "import React, { useState, useEffect } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface TypingTextProps extends React.HTMLAttributes<HTMLSpanElement> {\n  text: string;\n  speed?: number;\n  cursor?: string;\n  cursorClassName?: string;\n  delay?: number;\n  loop?: boolean;\n}\n\nexport const TypingText = React.forwardRef<HTMLSpanElement, TypingTextProps>(\n  ({ \n    text, \n    speed = 50, \n    cursor = '|', \n    cursorClassName,\n    delay = 0,\n    loop = false,\n    className, \n    ...props \n  }, ref) => {\n    const [displayedText, setDisplayedText] = useState('');\n    const [isComplete, setIsComplete] = useState(false);\n    \n    useEffect(() => {\n      let timeout: ReturnType<typeof setTimeout>;\n      let currentIndex = 0;\n      let isCancelled = false;\n      \n      const typeNextChar = () => {\n        if (isCancelled) return;\n        \n        if (currentIndex < text.length) {\n          setDisplayedText(text.slice(0, currentIndex + 1));\n          currentIndex++;\n          timeout = setTimeout(typeNextChar, speed + (Math.random() * 30));\n        } else {\n          setIsComplete(true);\n          if (loop) {\n            timeout = setTimeout(() => {\n              if (!isCancelled) {\n                setDisplayedText('');\n                setIsComplete(false);\n                currentIndex = 0;\n                typeNextChar();\n              }\n            }, 2000);\n          }\n        }\n      };\n\n      if (delay > 0) {\n        timeout = setTimeout(typeNextChar, delay);\n      } else {\n        typeNextChar();\n      }\n\n      return () => {\n        isCancelled = true;\n        clearTimeout(timeout);\n      };\n    }, [text, speed, delay, loop]);\n\n    return (\n      <span ref={ref} className={cn(\"inline-block\", className)} {...props}>\n        {displayedText}\n        <span \n          className={cn(\n            \"inline-block ml-[2px] transition-opacity duration-100\", \n            isComplete && !loop ? \"opacity-0\" : \"animate-pulse\",\n            cursorClassName\n          )}\n        >\n          {cursor}\n        </span>\n      </span>\n    );\n  }\n);\n\nTypingText.displayName = 'TypingText';\n",
+      "path": "ui/typing-text.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { TypingText } from './TypingText';\nexport type { TypingTextProps } from './TypingText';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

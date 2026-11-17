@@ -1,0 +1,21 @@
+{
+  "name": "copy-button",
+  "type": "registry:ui",
+  "title": "CopyButton",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "name": "copy-button.tsx",
+      "content": "import { forwardRef, useState, useEffect } from 'react';\nimport { cn } from '../../utils/cn';\nimport { Button, ButtonProps } from '../Button/Button';\n\nexport interface CopyButtonProps extends Omit<ButtonProps, 'onClick' | 'onCopy'> {\n  value: string;\n  timeout?: number;\n  onCopy?: (value: string) => void;\n}\n\nexport const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(\n  ({ value, timeout = 2000, onCopy, className, size = 'sm', variant = 'ghost', children, ...props }, ref) => {\n    const [isCopied, setIsCopied] = useState(false);\n\n    useEffect(() => {\n      let timeoutId: ReturnType<typeof setTimeout>;\n      if (isCopied) {\n        timeoutId = setTimeout(() => {\n          setIsCopied(false);\n        }, timeout);\n      }\n      return () => clearTimeout(timeoutId);\n    }, [isCopied, timeout]);\n\n    const handleCopy = async () => {\n      try {\n        await navigator.clipboard.writeText(value);\n        setIsCopied(true);\n        onCopy?.(value);\n      } catch (err) {\n        console.error('Failed to copy text: ', err);\n      }\n    };\n\n    const CopyIcon = () => (\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\">\n        <rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"/>\n        <path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"/>\n      </svg>\n    );\n\n    const CheckIcon = () => (\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" className=\"text-[var(--patiya-color-success)]\">\n        <path d=\"M20 6 9 17l-5-5\"/>\n      </svg>\n    );\n\n    return (\n      <Button\n        ref={ref}\n        size={size}\n        variant={variant}\n        className={cn(className)}\n        onClick={handleCopy}\n        leftIcon={!children ? (isCopied ? <CheckIcon /> : <CopyIcon />) : undefined}\n        {...props}\n      >\n        {children || (isCopied ? 'Copied!' : 'Copy')}\n      </Button>\n    );\n  }\n);\n\nCopyButton.displayName = 'CopyButton';\n",
+      "path": "ui/copy-button.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './CopyButton';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

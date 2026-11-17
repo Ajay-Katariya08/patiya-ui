@@ -62,6 +62,14 @@ export default function ComponentPage({
         <CodeTabs
           tabs={[
             {
+              name: "CLI (bun)",
+              code: `bun x patiya add ${slug}`,
+            },
+            {
+              name: "CLI (npx)",
+              code: `npx patiya add ${slug}`,
+            },
+            {
               name: "import",
               code:
                 comp.installation ||

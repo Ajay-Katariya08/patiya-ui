@@ -1,0 +1,19 @@
+{
+  "name": "blur-text",
+  "type": "registry:ui",
+  "title": "BlurText",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "blur-text.tsx",
+      "content": "import React, { useEffect, useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface BlurTextProps extends React.HTMLAttributes<HTMLDivElement> {\n  text: string;\n  delay?: number;\n  duration?: number;\n}\n\nexport const BlurText = React.forwardRef<HTMLDivElement, BlurTextProps>(\n  ({ \n    text, \n    delay = 0,\n    duration = 1.5,\n    className, \n    ...props \n  }, ref) => {\n    \n    const [mounted, setMounted] = useState(false);\n\n    useEffect(() => {\n      const timer = setTimeout(() => {\n        setMounted(true);\n      }, delay);\n      return () => clearTimeout(timer);\n    }, [delay]);\n\n    return (\n      <div \n        ref={ref}\n        className={cn(\"inline-block\", className)} \n        {...props}\n      >\n        <span\n          className={cn(\n            \"inline-block transition-all ease-out\",\n            mounted ? \"blur-0 opacity-100 scale-100\" : \"blur-xl opacity-0 scale-110\"\n          )}\n          style={{ transitionDuration: `${duration}s` }}\n        >\n          {text}\n        </span>\n      </div>\n    );\n  }\n);\n\nBlurText.displayName = 'BlurText';\n",
+      "path": "ui/blur-text.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { BlurText } from './BlurText';\nexport type { BlurTextProps } from './BlurText';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

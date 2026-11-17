@@ -1,0 +1,19 @@
+{
+  "name": "spotlight",
+  "type": "registry:ui",
+  "title": "Spotlight",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "spotlight.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface SpotlightProps extends React.HTMLAttributes<HTMLDivElement> {\n  fill?: string;\n}\n\nexport const Spotlight = React.forwardRef<HTMLDivElement, SpotlightProps>(\n  ({ className, fill = 'white', ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\"pointer-events-none absolute h-[138%] w-[138%] lg:w-[84%] opacity-0 animate-spotlight\", className)}\n        {...props}\n      >\n        <svg\n          xmlns=\"http://www.w3.org/2000/svg\"\n          viewBox=\"0 0 3787 2842\"\n          fill=\"none\"\n          className=\"h-full w-full\"\n        >\n          <g filter=\"url(#filter)\">\n            <ellipse\n              cx=\"1924.71\"\n              cy=\"273.501\"\n              rx=\"1924.71\"\n              ry=\"273.501\"\n              transform=\"matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)\"\n              fill={fill}\n              fillOpacity=\"0.21\"\n            ></ellipse>\n          </g>\n          <defs>\n            <filter\n              id=\"filter\"\n              x=\"0.860352\"\n              y=\"0.838989\"\n              width=\"3785.16\"\n              height=\"2840.26\"\n              filterUnits=\"userSpaceOnUse\"\n              colorInterpolationFilters=\"sRGB\"\n            >\n              <feFlood floodOpacity=\"0\" result=\"BackgroundImageFix\"></feFlood>\n              <feBlend\n                mode=\"normal\"\n                in=\"SourceGraphic\"\n                in2=\"BackgroundImageFix\"\n                result=\"shape\"\n              ></feBlend>\n              <feGaussianBlur\n                stdDeviation=\"151\"\n                result=\"effect1_foregroundBlur_1065_8\"\n              ></feGaussianBlur>\n            </filter>\n          </defs>\n        </svg>\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes spotlight {\n            0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }\n            100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }\n          }\n          .animate-spotlight {\n            animation: spotlight 2s ease .75s 1 forwards;\n          }\n        `}} />\n      </div>\n    );\n  }\n);\n\nSpotlight.displayName = 'Spotlight';\n",
+      "path": "ui/spotlight.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { Spotlight } from './Spotlight';\nexport type { SpotlightProps } from './Spotlight';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "collapse",
+  "type": "registry:ui",
+  "title": "Collapse",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "collapse.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface CollapseProps extends React.HTMLAttributes<HTMLDivElement> {\n  /**\n   * If true, the content is expanded and visible.\n   */\n  isOpen: boolean;\n  /**\n   * The content to render inside the collapse container.\n   */\n  children: React.ReactNode;\n  /**\n   * Callback fired when the expand/collapse animation finishes.\n   */\n  onAnimationEnd?: () => void;\n}\n\nexport const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(\n  ({ isOpen, children, className, onAnimationEnd, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          'grid transition-[grid-template-rows] duration-300 ease-in-out',\n          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',\n          className\n        )}\n        onTransitionEnd={(e) => {\n          if (e.propertyName === 'grid-template-rows' && onAnimationEnd) {\n            onAnimationEnd();\n          }\n        }}\n        {...props}\n      >\n        <div className=\"overflow-hidden\">\n          {children}\n        </div>\n      </div>\n    );\n  }\n);\n\nCollapse.displayName = 'Collapse';\n",
+      "path": "ui/collapse.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './Collapse';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

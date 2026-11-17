@@ -1,0 +1,19 @@
+{
+  "name": "sparkles",
+  "type": "registry:ui",
+  "title": "Sparkles",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "sparkles.tsx",
+      "content": "import React, { useEffect, useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface SparklesProps extends React.HTMLAttributes<HTMLDivElement> {\n  particleCount?: number;\n  particleColor?: string;\n  speed?: 'slow' | 'medium' | 'fast';\n}\n\nexport const Sparkles = React.forwardRef<HTMLDivElement, SparklesProps>(\n  ({ \n    className, \n    particleCount = 50, \n    particleColor = '#FFF',\n    speed = 'medium',\n    ...props \n  }, ref) => {\n    const [particles, setParticles] = useState<Array<{ id: number; left: string; top: string; size: number; delay: string; duration: string }>>([]);\n\n    useEffect(() => {\n      const generated = Array.from({ length: particleCount }).map((_, i) => {\n        const size = Math.random() * 2 + 1;\n        const left = Math.random() * 100 + '%';\n        const top = Math.random() * 100 + '%';\n        const delay = Math.random() * 5 + 's';\n        \n        let durationMin = 2;\n        let durationMax = 4;\n        if (speed === 'slow') { durationMin = 4; durationMax = 8; }\n        if (speed === 'fast') { durationMin = 1; durationMax = 2; }\n        \n        const duration = Math.random() * (durationMax - durationMin) + durationMin + 's';\n\n        return { id: i, left, top, size, delay, duration };\n      });\n      setParticles(generated);\n    }, [particleCount, speed]);\n\n    return (\n      <div \n        ref={ref}\n        className={cn(\"pointer-events-none absolute inset-0 overflow-hidden\", className)}\n        {...props}\n      >\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes sparkleFloat {\n            0% { transform: translateY(0px) scale(0); opacity: 0; }\n            50% { transform: translateY(-20px) scale(1); opacity: 1; }\n            100% { transform: translateY(-40px) scale(0); opacity: 0; }\n          }\n        `}} />\n        {particles.map((p) => (\n          <span\n            key={p.id}\n            className=\"absolute rounded-full\"\n            style={{\n              backgroundColor: particleColor,\n              width: p.size + 'px',\n              height: p.size + 'px',\n              left: p.left,\n              top: p.top,\n              animation: `sparkleFloat ${p.duration} linear infinite`,\n              animationDelay: p.delay,\n              boxShadow: `0 0 ${p.size * 2}px ${particleColor}`\n            }}\n          />\n        ))}\n      </div>\n    );\n  }\n);\n\nSparkles.displayName = 'Sparkles';\n",
+      "path": "ui/sparkles.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { Sparkles } from './Sparkles';\nexport type { SparklesProps } from './Sparkles';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "avatar.tsx",
+      "content": "import React, { useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {\n  src?: string;\n  alt?: string;\n  name?: string;\n  initials?: string;\n  size?: 'sm' | 'md' | 'lg' | 'xl';\n  shape?: 'circle' | 'square';\n};\n\nexport const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(\n  ({ src, alt = 'Avatar', name, initials, size = 'md', shape = 'circle', className, ...props }, ref) => {\n    const [error, setError] = useState(false);\n\n    const sizeClasses = {\n      sm: 'w-8 h-8 text-xs',\n      md: 'w-10 h-10 text-sm',\n      lg: 'w-12 h-12 text-base',\n      xl: 'w-16 h-16 text-xl',\n    };\n\n    const shapeClasses = {\n      circle: 'rounded-full',\n      square: 'rounded-xl',\n    };\n\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"relative inline-flex items-center justify-center overflow-hidden bg-[var(--patiya-color-muted)] text-(--patiya-color-muted-foreground) border border-[var(--patiya-color-border)] select-none\",\n          sizeClasses[size],\n          shapeClasses[shape],\n          className\n        )}\n        {...props}\n      >\n        {src && !error ? (\n          <img\n            src={src}\n            alt={name || alt}\n            className=\"w-full h-full object-cover\"\n            onError={() => setError(true)}\n          />\n        ) : (\n          <span className=\"font-medium uppercase\">{initials || (name ? name.charAt(0) : alt.charAt(0))}</span>\n        )}\n      </div>\n    );\n  }\n);\n\nAvatar.displayName = \"Avatar\";\n",
+      "path": "ui/avatar.tsx"
+    }
+  ]
+}

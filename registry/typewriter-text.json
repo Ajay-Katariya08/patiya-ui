@@ -1,0 +1,19 @@
+{
+  "name": "typewriter-text",
+  "type": "registry:ui",
+  "title": "TypewriterText",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "export * from './TypewriterText';\n",
+      "path": "ui/index.ts"
+    },
+    {
+      "name": "typewriter-text.tsx",
+      "content": "import React, { useState, useEffect } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface TypewriterTextProps extends React.HTMLAttributes<HTMLSpanElement> {\n  text: string;\n  speed?: number;\n  delay?: number;\n  cursor?: boolean;\n  onComplete?: () => void;\n  as?: React.ElementType;\n}\n\nexport const TypewriterText = React.forwardRef<HTMLElement, TypewriterTextProps>(\n  ({ className, text, speed = 30, delay = 0, cursor = true, onComplete, as: Component = 'span', ...props }, ref) => {\n    const [displayedText, setDisplayedText] = useState('');\n    const [isComplete, setIsComplete] = useState(false);\n    const [isStarted, setIsStarted] = useState(false);\n\n    useEffect(() => {\n      // Reset state if text changes\n      setDisplayedText('');\n      setIsComplete(false);\n      setIsStarted(false);\n\n      const startTimeout = setTimeout(() => {\n        setIsStarted(true);\n      }, delay);\n\n      return () => clearTimeout(startTimeout);\n    }, [text, delay]);\n\n    useEffect(() => {\n      if (!isStarted) return;\n\n      let currentIndex = 0;\n      let interval: ReturnType<typeof setInterval>;\n\n      const typeNextChar = () => {\n        if (currentIndex < text.length) {\n          setDisplayedText((prev) => prev + text.charAt(currentIndex));\n          currentIndex++;\n        } else {\n          clearInterval(interval);\n          setIsComplete(true);\n          onComplete?.();\n        }\n      };\n\n      interval = setInterval(typeNextChar, speed);\n\n      return () => clearInterval(interval);\n    }, [isStarted, text, speed, onComplete]);\n\n    return (\n      <Component ref={ref} className={cn(\"inline-block\", className)} {...props}>\n        {displayedText}\n        {cursor && (!isComplete || isStarted) && (\n          <span \n            className={cn(\n              \"inline-block w-1.5 h-[1em] ml-0.5 align-middle bg-[var(--patiya-color-primary)]\",\n              isComplete ? \"animate-pulse opacity-0 duration-1000\" : \"animate-pulse opacity-100\"\n            )}\n          />\n        )}\n      </Component>\n    );\n  }\n);\n\nTypewriterText.displayName = 'TypewriterText';\n",
+      "path": "ui/typewriter-text.tsx"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "textarea.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {\n  variant?: 'outline' | 'filled' | 'soft';\n  invalid?: boolean;\n}\n\nexport const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(\n  (\n    {\n      className,\n      variant = 'outline',\n      invalid = false,\n      disabled,\n      ...props\n    },\n    ref\n  ) => {\n    const variantClasses = {\n      outline: 'bg-transparent border border-[var(--patiya-color-border)] focus:border-[var(--patiya-color-primary)] shadow-[var(--patiya-shadow-sm)]',\n      filled: 'bg-[var(--patiya-color-muted)] border border-transparent focus:bg-transparent focus:border-[var(--patiya-color-primary)]',\n      soft: 'bg-[var(--patiya-color-primary)]/5 border border-transparent focus:bg-transparent focus:border-[var(--patiya-color-primary)]',\n    };\n\n    return (\n      <textarea\n        ref={ref}\n        disabled={disabled}\n        className={cn(\n          'flex min-h-[80px] w-full rounded-md px-4 py-2 text-base transition-all duration-200 outline-none resize-y',\n          'text-[var(--patiya-color-foreground)] placeholder:text-(--patiya-color-muted-foreground)',\n          'focus:ring-4 focus:ring-[var(--patiya-color-primary)]/10',\n          'disabled:cursor-not-allowed disabled:opacity-50',\n          variantClasses[variant],\n          invalid && 'border-[var(--patiya-color-destructive)] focus:border-[var(--patiya-color-destructive)] focus:ring-[var(--patiya-color-destructive)]/10',\n          className\n        )}\n        {...props}\n      />\n    );\n  }\n);\n\nTextarea.displayName = 'Textarea';\n",
+      "path": "ui/textarea.tsx"
+    }
+  ]
+}

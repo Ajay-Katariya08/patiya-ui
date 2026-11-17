@@ -1,0 +1,19 @@
+{
+  "name": "aurora-background",
+  "type": "registry:ui",
+  "title": "AuroraBackground",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "aurora-background.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface AuroraBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {\n  children: React.ReactNode;\n  showRadialGradient?: boolean;\n}\n\nexport const AuroraBackground = React.forwardRef<HTMLDivElement, AuroraBackgroundProps>(\n  ({ className, children, showRadialGradient = true, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"relative flex flex-col h-[100vh] items-center justify-center bg-zinc-50 dark:bg-zinc-900 text-slate-950 transition-bg\",\n          className\n        )}\n        {...props}\n      >\n        <div className=\"absolute inset-0 overflow-hidden\">\n          <div\n            className={cn(\n              \"absolute -inset-[10px] opacity-50\",\n              showRadialGradient &&\n                \"[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]\",\n              \"pointer-events-none\"\n            )}\n          >\n            <div className=\"absolute inset-0 z-0 flex items-center justify-center bg-[var(--patiya-color-background)]\">\n              {/* Aurora Base Layer */}\n              <div \n                className=\"absolute inset-0 bg-[length:300%_300%] bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 dark:from-blue-900 dark:via-indigo-900 dark:to-purple-900 mix-blend-multiply dark:mix-blend-color-dodge opacity-60 filter blur-[60px]\"\n                style={{\n                  animation: 'aurora 15s ease infinite alternate'\n                }}\n              />\n              {/* Aurora Highlights */}\n              <div \n                className=\"absolute inset-0 bg-[length:300%_300%] bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-300 dark:from-cyan-900 dark:via-sky-900 dark:to-indigo-900 mix-blend-multiply dark:mix-blend-color-dodge opacity-40 filter blur-[90px]\"\n                style={{\n                  animation: 'aurora 20s ease infinite alternate-reverse'\n                }}\n              />\n            </div>\n          </div>\n        </div>\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes aurora {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n          }\n        `}} />\n        <div className=\"relative z-10 w-full\">\n          {children}\n        </div>\n      </div>\n    );\n  }\n);\n\nAuroraBackground.displayName = 'AuroraBackground';\n",
+      "path": "ui/aurora-background.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export { AuroraBackground } from './AuroraBackground';\nexport type { AuroraBackgroundProps } from './AuroraBackground';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -16,11 +16,13 @@ export default function BlocksIndexPage() {
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--patiya-color-primary)]" />
           <span>Production Ready</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--patiya-color-foreground)]">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
           Motion Blocks
         </h1>
         <p className="text-lg text-[var(--patiya-color-muted-foreground)] max-w-2xl leading-relaxed">
-          Self-contained animated component blocks powered by Motion.dev. Built with GPU-accelerated spring physics, clean hairline borders, and zero shadows.
+          Self-contained animated component blocks powered by Motion.dev. Built
+          with GPU-accelerated spring physics, clean hairline borders, and zero
+          shadows.
         </p>
       </Box>
 
@@ -47,7 +49,15 @@ export default function BlocksIndexPage() {
             </p>
             <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[var(--patiya-color-primary)]">
               <span>View component</span>
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>

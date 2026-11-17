@@ -1,0 +1,21 @@
+{
+  "name": "prompt-suggestion",
+  "type": "registry:ui",
+  "title": "PromptSuggestion",
+  "dependencies": [],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "prompt-suggestion.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\nimport { Box } from '../Layout/Box';\nimport { PatiyaColor } from '../../types/common';\n\nexport interface PromptSuggestionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  title: string;\n  description?: string;\n  icon?: React.ReactNode;\n  variant?: 'card' | 'chip';\n  color?: PatiyaColor;\n}\n\nexport const PromptSuggestion = React.forwardRef<HTMLButtonElement, PromptSuggestionProps>(\n  ({ className, title, description, icon, variant = 'card', color = 'primary', ...props }, ref) => {\n    \n    if (variant === 'chip') {\n      return (\n        <button\n          ref={ref}\n          className={cn(\n            \"inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all\",\n            \"border border-[var(--patiya-color-border)] bg-[var(--patiya-color-background)] hover:bg-[var(--patiya-color-muted)]/50\",\n            \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--patiya-color-ring)]\",\n            className\n          )}\n          {...props}\n        >\n          {icon && <span className=\"text-[var(--patiya-color-muted-foreground)] flex-shrink-0\">{icon}</span>}\n          <span className=\"text-[var(--patiya-color-foreground)]\">{title}</span>\n        </button>\n      );\n    }\n\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          \"flex flex-col text-left p-4 rounded-xl transition-all border border-[var(--patiya-color-border)]\",\n          \"bg-[var(--patiya-color-background)] hover:border-[var(--patiya-color-primary)] hover:bg-[var(--patiya-color-muted)]/20\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--patiya-color-ring)]\",\n          className\n        )}\n        {...props}\n      >\n        <Box className=\"flex items-center gap-2 mb-1.5\">\n          {icon && (\n            <span className={cn(\n              \"p-1.5 rounded-md flex-shrink-0\",\n              \"bg-[var(--patiya-color-primary)]/10 text-[var(--patiya-color-primary)]\"\n            )}>\n              {icon}\n            </span>\n          )}\n          <span className=\"font-semibold text-sm text-[var(--patiya-color-foreground)] line-clamp-1\">{title}</span>\n        </Box>\n        {description && (\n          <span className=\"text-xs text-[var(--patiya-color-muted-foreground)] line-clamp-2 mt-0.5\">\n            {description}\n          </span>\n        )}\n      </button>\n    );\n  }\n);\n\nPromptSuggestion.displayName = 'PromptSuggestion';\n",
+      "path": "ui/prompt-suggestion.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './PromptSuggestion';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

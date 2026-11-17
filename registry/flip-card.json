@@ -1,0 +1,14 @@
+{
+  "name": "flip-card",
+  "type": "registry:ui",
+  "title": "FlipCard",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "flip-card.tsx",
+      "content": "import React, { useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface FlipCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  front: React.ReactNode;\n  back: React.ReactNode;\n  direction?: 'horizontal' | 'vertical';\n}\n\nexport const FlipCard = React.forwardRef<HTMLDivElement, FlipCardProps>(\n  ({ className, front, back, direction = 'horizontal', ...props }, ref) => {\n    const [isFlipped, setIsFlipped] = useState(false);\n\n    const transformString = \n      direction === 'horizontal' \n        ? (isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)') \n        : (isFlipped ? 'rotateX(180deg)' : 'rotateX(0deg)');\n\n    return (\n      <div\n        ref={ref}\n        className={cn(\"relative group cursor-pointer\", className)}\n        style={{ perspective: '1000px' }}\n        onClick={() => setIsFlipped(!isFlipped)}\n        {...props}\n      >\n        <div\n          className=\"w-full h-full transition-transform duration-500\"\n          style={{ transformStyle: 'preserve-3d', transform: transformString }}\n        >\n          {/* Front Face */}\n          <div\n            className=\"absolute inset-0 w-full h-full backface-hidden\"\n            style={{ backfaceVisibility: 'hidden' }}\n          >\n            {front}\n          </div>\n\n          {/* Back Face */}\n          <div\n            className=\"absolute inset-0 w-full h-full\"\n            style={{ \n              backfaceVisibility: 'hidden',\n              transform: direction === 'horizontal' ? 'rotateY(180deg)' : 'rotateX(180deg)'\n            }}\n          >\n            {back}\n          </div>\n        </div>\n      </div>\n    );\n  }\n);\n\nFlipCard.displayName = 'FlipCard';\n",
+      "path": "ui/flip-card.tsx"
+    }
+  ]
+}

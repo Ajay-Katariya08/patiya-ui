@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-oxc';
 import tailwindcss from '@tailwindcss/vite';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
@@ -42,7 +42,8 @@ export default defineConfig({
     tailwindcss(),
     dts({
       tsconfigPath: './tsconfig.build.json',
-      rollupTypes: true,
+      rollupTypes: false,
+      skipDiagnostics: true,
     })
   ],
 });

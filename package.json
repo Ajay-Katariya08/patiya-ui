@@ -1,11 +1,15 @@
 {
   "name": "patiya",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "license": "MIT",
   "type": "module",
   "main": "./dist/patiya.cjs",
   "module": "./dist/patiya.mjs",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "patiya": "./bin/patiya.js",
+    "create-patiya": "./bin/patiya.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,6 +21,8 @@
   },
   "files": [
     "dist",
+    "bin",
+    "registry",
     "package.json",
     "LICENSE"
   ],
@@ -44,7 +50,7 @@
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react-oxc": "^0.4.0",
     "ajv": "^8.20.0",
     "eslint": "^9.20.1",
     "jest-axe": "^9.0.0",
@@ -60,7 +66,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.build.json && vite build",
+    "registry:build": "bun scripts/build-registry.ts",
+    "build": "bun scripts/build-registry.ts && tsc -p tsconfig.build.json && vite build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",

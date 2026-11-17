@@ -1,0 +1,16 @@
+{
+  "name": "typing-indicator",
+  "type": "registry:ui",
+  "title": "TypingIndicator",
+  "dependencies": [],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "typing-indicator.tsx",
+      "content": "import React from 'react';\nimport { Box } from '../Layout/Box';\nimport { cn } from '../../utils/cn';\nimport { PatiyaColor } from '../../types/common';\n\nexport interface TypingIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {\n  variant?: 'dots' | 'pulse' | 'wave';\n  size?: 'sm' | 'md' | 'lg';\n  color?: PatiyaColor | string;\n}\n\nexport const TypingIndicator = React.forwardRef<HTMLDivElement, TypingIndicatorProps>(\n  ({ className, variant = 'dots', size = 'md', color = 'primary', ...props }, ref) => {\n    const sizeClasses = {\n      sm: 'w-1.5 h-1.5',\n      md: 'w-2 h-2',\n      lg: 'w-2.5 h-2.5',\n    };\n    const s = sizeClasses[size];\n\n    const semanticColors: Record<string, string> = {\n      primary: 'var(--patiya-color-primary)',\n      secondary: 'var(--patiya-color-secondary)',\n      accent: 'var(--patiya-color-accent)',\n      destructive: 'var(--patiya-color-destructive)',\n      success: 'var(--patiya-color-success)',\n      warning: 'var(--patiya-color-warning)',\n      info: 'var(--patiya-color-info)',\n      muted: 'var(--patiya-color-muted-foreground)',\n    };\n\n    const finalColor = (color && color in semanticColors) ? semanticColors[color] : color;\n\n    return (\n      <Box \n        ref={ref} \n        className={cn(\"flex items-center gap-1.5 py-1 px-1\", className)} \n        style={finalColor ? { color: finalColor, ...props.style } : props.style}\n        {...props}\n      >\n        {variant === 'dots' && (\n          <>\n            <span className={cn(\"rounded-full bg-current opacity-60 animate-[bounce_1.4s_infinite_0ms]\", s)} />\n            <span className={cn(\"rounded-full bg-current opacity-60 animate-[bounce_1.4s_infinite_200ms]\", s)} />\n            <span className={cn(\"rounded-full bg-current opacity-60 animate-[bounce_1.4s_infinite_400ms]\", s)} />\n          </>\n        )}\n        {variant === 'pulse' && (\n          <>\n            <span className={cn(\"rounded-full bg-current opacity-70 animate-pulse\", s)} />\n            <span className={cn(\"rounded-full bg-current opacity-70 animate-pulse delay-150\", s)} />\n            <span className={cn(\"rounded-full bg-current opacity-70 animate-pulse delay-300\", s)} />\n          </>\n        )}\n        {variant === 'wave' && (\n          <Box className=\"flex items-end gap-1 h-4\">\n            <span className={cn(\"w-1 bg-current rounded-sm animate-[pulse_1s_infinite_0ms] h-full\", size === 'sm' ? 'w-0.5' : '')} />\n            <span className={cn(\"w-1 bg-current rounded-sm animate-[pulse_1s_infinite_200ms] h-2/3\", size === 'sm' ? 'w-0.5' : '')} />\n            <span className={cn(\"w-1 bg-current rounded-sm animate-[pulse_1s_infinite_400ms] h-full\", size === 'sm' ? 'w-0.5' : '')} />\n          </Box>\n        )}\n      </Box>\n    );\n  }\n);\nTypingIndicator.displayName = 'TypingIndicator';\n",
+      "path": "ui/typing-indicator.tsx"
+    }
+  ]
+}

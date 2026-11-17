@@ -30,6 +30,8 @@ export const docsNavGroups: NavGroup[] = [
         title: "Getting Started",
         items: [
           { title: "Installation", href: "/docs" },
+          { title: "CLI (v3)", href: "/docs/cli", badge: "v3" },
+          { title: "Theme Builder", href: "/docs/theme-builder", badge: "v3" },
           { title: "Motion Blocks", href: "/docs/blocks", badge: "New" },
         ],
       },
@@ -56,6 +58,7 @@ export const docsNavGroups: NavGroup[] = [
           { title: "Radio", href: "/docs/components/radio" },
           { title: "Select", href: "/docs/components/select" },
           { title: "Slider", href: "/docs/components/slider" },
+          { title: "Form", href: "/docs/components/form", badge: "New" },
         ],
       },
       {
@@ -126,11 +129,19 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Pointer Follower",
             href: "/docs/components/pointerFollower",
-            badge: "New",
           },
           {
             title: "Holo Card",
             href: "/docs/components/holoCard",
+          },
+          {
+            title: "Dynamic Island",
+            href: "/docs/components/dynamicIsland",
+            badge: "New",
+          },
+          {
+            title: "Optimistic Action",
+            href: "/docs/components/optimisticAction",
             badge: "New",
           },
         ],
@@ -205,6 +216,11 @@ export const docsNavGroups: NavGroup[] = [
           {
             title: "Voice Visualizer",
             href: "/docs/components/voiceVisualizer",
+            badge: "New",
+          },
+          {
+            title: "Artifact Canvas",
+            href: "/docs/components/artifactCanvas",
             badge: "New",
           },
         ],
@@ -872,7 +888,7 @@ export const renderSectionIcon = (title: string) => {
           strokeLinejoin="round"
         >
           <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
       );
     case "Toolbars & Docks":

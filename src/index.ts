@@ -7,6 +7,7 @@ export * from './utils/polymorphic';
 
 // Providers
 export * from './providers/PatiyaProvider';
+export * from './primitives';
 
 // Layout
 export * from './components/Layout/Box';
@@ -27,6 +28,7 @@ export * from './components/FilterPanel/FilterPanel';
 export * from './components/CheckoutSummary/CheckoutSummary';
 
 // Components
+export * from './components/Form/Form';
 export * from './components/Spinner/Spinner';
 export * from './components/Input/Input';
 export * from './components/Textarea/Textarea';
@@ -109,6 +111,7 @@ export * from './components/PromptSuggestion/PromptSuggestion';
 export * from './components/SourceCitation/SourceCitation';
 export * from './components/ModelSelector/ModelSelector';
 export * from './components/VoiceVisualizer/VoiceVisualizer';
+export * from './components/ArtifactCanvas/ArtifactCanvas';
 
 // Authentication & Security
 export * from './components/OTPInput/OTPInput';
@@ -131,6 +134,10 @@ export * from './components/StatusDot/StatusDot';
 export * from './components/CopyButton/CopyButton';
 export * from './components/ScrollProgress/ScrollProgress';
 export * from './components/BrowserMockup/BrowserMockup';
+
+// Dynamic Island & Optimistic State
+export * from './components/DynamicIsland/DynamicIsland';
+export * from './components/OptimisticAction/OptimisticAction';
 
 // Utils
 export * from './utils/cn';

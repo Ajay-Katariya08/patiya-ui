@@ -1,0 +1,16 @@
+{
+  "name": "select",
+  "type": "registry:ui",
+  "title": "Select",
+  "dependencies": [],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "select.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\nimport { PatiyaSize } from '../../types/common';\nimport { Box } from '../Layout/Box';\n\nexport type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> & {\n  inputSize?: PatiyaSize;\n  variant?: 'outline' | 'filled' | 'soft';\n  invalid?: boolean;\n  leftIcon?: React.ReactNode;\n};\n\nexport const Select = forwardRef<HTMLSelectElement, SelectProps>(\n  (\n    {\n      className,\n      inputSize = 'md',\n      variant = 'outline',\n      invalid = false,\n      leftIcon,\n      disabled,\n      children,\n      ...props\n    },\n    ref\n  ) => {\n    const sizeClasses: Record<PatiyaSize, string> = {\n      xs: 'h-7 text-xs px-2',\n      sm: 'h-8 text-sm px-3',\n      md: 'h-10 text-base px-4',\n      lg: 'h-12 text-lg px-4',\n      xl: 'h-14 text-xl px-5',\n    };\n\n    const variantClasses = {\n      outline: 'bg-transparent border border-[var(--patiya-color-border)] focus:border-[var(--patiya-color-primary)] shadow-[var(--patiya-shadow-sm)]',\n      filled: 'bg-[var(--patiya-color-muted)] border border-transparent focus:bg-transparent focus:border-[var(--patiya-color-primary)]',\n      soft: 'bg-[var(--patiya-color-primary)]/5 border border-transparent focus:bg-transparent focus:border-[var(--patiya-color-primary)]',\n    };\n\n    const selectClassName = cn(\n      'appearance-none flex w-full rounded-md transition-all duration-200 outline-none cursor-pointer',\n      'text-[var(--patiya-color-foreground)]',\n      'focus:ring-4 focus:ring-[var(--patiya-color-primary)]/10',\n      'disabled:cursor-not-allowed disabled:opacity-50',\n      sizeClasses[inputSize],\n      variantClasses[variant],\n      invalid && 'border-[var(--patiya-color-destructive)] focus:border-[var(--patiya-color-destructive)] focus:ring-[var(--patiya-color-destructive)]/10',\n      leftIcon ? 'pl-10 pr-10' : 'pr-10',\n      className\n    );\n\n    const ChevronIcon = () => (\n      <svg className=\"w-4 h-4 text-(--patiya-color-muted-foreground) pointer-events-none absolute right-3\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M19 9l-7 7-7-7\" />\n      </svg>\n    );\n\n    return (\n      <Box className={cn('relative flex items-center w-full', className)}>\n        {leftIcon && (\n          <span className=\"absolute left-3 flex items-center justify-center text-(--patiya-color-muted-foreground) pointer-events-none\">\n            {leftIcon}\n          </span>\n        )}\n        <select ref={ref} disabled={disabled} className={selectClassName} {...props}>\n          {children}\n        </select>\n        <ChevronIcon />\n      </Box>\n    );\n  }\n);\n\nSelect.displayName = 'Select';\n",
+      "path": "ui/select.tsx"
+    }
+  ]
+}

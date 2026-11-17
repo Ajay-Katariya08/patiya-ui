@@ -1,0 +1,19 @@
+{
+  "name": "rating",
+  "type": "registry:ui",
+  "title": "Rating",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "rating.tsx",
+      "content": "import React, { forwardRef, useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface RatingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {\n  value?: number;\n  defaultValue?: number;\n  max?: number;\n  size?: 'sm' | 'md' | 'lg';\n  color?: string; // Optional custom color\n  readOnly?: boolean;\n  onChange?: (value: number) => void;\n  icon?: React.ReactNode;\n  activeIcon?: React.ReactNode;\n}\n\nconst DefaultStar = ({ active, sizeCls, color }: { active: boolean; sizeCls: string; color?: string }) => (\n  <svg \n    xmlns=\"http://www.w3.org/2000/svg\" \n    viewBox=\"0 0 24 24\" \n    fill={active ? (color || 'currentColor') : 'none'} \n    stroke={active ? (color || 'currentColor') : 'currentColor'} \n    strokeWidth=\"2\" \n    strokeLinecap=\"round\" \n    strokeLinejoin=\"round\" \n    className={cn(sizeCls, active ? 'text-yellow-400' : 'text-[var(--patiya-color-muted)]')}\n  >\n    <polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\" />\n  </svg>\n);\n\nexport const Rating = forwardRef<HTMLDivElement, RatingProps>(\n  ({ \n    value, \n    defaultValue = 0, \n    max = 5, \n    size = 'md', \n    color,\n    readOnly = false, \n    onChange, \n    icon, \n    activeIcon, \n    className, \n    ...props \n  }, ref) => {\n    const [hoverValue, setHoverValue] = useState<number | null>(null);\n    const [internalValue, setInternalValue] = useState<number>(defaultValue);\n\n    const isControlled = value !== undefined;\n    const currentValue = isControlled ? value : internalValue;\n\n    const sizeClasses = {\n      sm: 'w-4 h-4',\n      md: 'w-6 h-6',\n      lg: 'w-8 h-8',\n    };\n\n    const handleMouseEnter = (index: number) => {\n      if (!readOnly) setHoverValue(index);\n    };\n\n    const handleMouseLeave = () => {\n      if (!readOnly) setHoverValue(null);\n    };\n\n    const handleClick = (index: number) => {\n      if (!readOnly) {\n        if (!isControlled) setInternalValue(index);\n        onChange?.(index);\n      }\n    };\n\n    return (\n      <div \n        ref={ref} \n        className={cn('flex items-center gap-1', !readOnly && 'cursor-pointer', className)} \n        onMouseLeave={handleMouseLeave}\n        {...props}\n      >\n        {Array.from({ length: max }).map((_, i) => {\n          const itemValue = i + 1;\n          const isActive = hoverValue !== null ? itemValue <= hoverValue : itemValue <= currentValue;\n          \n          return (\n            <div\n              key={i}\n              className={cn(\"transition-transform\", !readOnly && \"hover:scale-110 active:scale-95\")}\n              onMouseEnter={() => handleMouseEnter(itemValue)}\n              onClick={() => handleClick(itemValue)}\n            >\n              {isActive \n                ? (activeIcon || icon || <DefaultStar active={true} sizeCls={sizeClasses[size]} color={color} />) \n                : (icon || <DefaultStar active={false} sizeCls={sizeClasses[size]} color={color} />)}\n            </div>\n          );\n        })}\n      </div>\n    );\n  }\n);\n\nRating.displayName = 'Rating';\n",
+      "path": "ui/rating.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './Rating';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

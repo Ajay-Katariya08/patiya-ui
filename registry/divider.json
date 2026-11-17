@@ -1,0 +1,19 @@
+{
+  "name": "divider",
+  "type": "registry:ui",
+  "title": "Divider",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "divider.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {\n  orientation?: 'horizontal' | 'vertical';\n  variant?: 'solid' | 'dashed' | 'dotted';\n  label?: React.ReactNode;\n  labelPosition?: 'start' | 'center' | 'end';\n}\n\nexport const Divider = forwardRef<HTMLDivElement, DividerProps>(\n  ({ orientation = 'horizontal', variant = 'solid', label, labelPosition = 'center', className, ...props }, ref) => {\n    const isHorizontal = orientation === 'horizontal';\n    \n    const variantClasses = {\n      solid: 'border-solid',\n      dashed: 'border-dashed',\n      dotted: 'border-dotted',\n    };\n\n    if (!label) {\n      return (\n        <div\n          ref={ref}\n          role=\"separator\"\n          aria-orientation={orientation}\n          className={cn(\n            'shrink-0 border-[var(--patiya-color-border)]',\n            isHorizontal ? 'w-full border-t' : 'h-full border-l min-h-[1em]',\n            variantClasses[variant],\n            className\n          )}\n          {...props}\n        />\n      );\n    }\n\n    return (\n      <div\n        ref={ref}\n        role=\"separator\"\n        aria-orientation={orientation}\n        className={cn(\n          'flex items-center',\n          isHorizontal ? 'w-full flex-row' : 'h-full min-h-[5em] flex-col',\n          className\n        )}\n        {...props}\n      >\n        <div className={cn(\n          'border-[var(--patiya-color-border)] flex-grow',\n          isHorizontal ? 'border-t' : 'border-l',\n          variantClasses[variant],\n          labelPosition === 'start' ? 'flex-grow-0 basis-8' : ''\n        )} />\n        <div className={cn(\n          'text-[var(--patiya-color-muted-foreground)] text-xs font-medium',\n          isHorizontal ? 'px-3' : 'py-3'\n        )}>\n          {label}\n        </div>\n        <div className={cn(\n          'border-[var(--patiya-color-border)] flex-grow',\n          isHorizontal ? 'border-t' : 'border-l',\n          variantClasses[variant],\n          labelPosition === 'end' ? 'flex-grow-0 basis-8' : ''\n        )} />\n      </div>\n    );\n  }\n);\n\nDivider.displayName = 'Divider';\n",
+      "path": "ui/divider.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './Divider';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "magnetic",
+  "type": "registry:ui",
+  "title": "Magnetic",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "magnetic.tsx",
+      "content": "import React, { useRef, useState } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface MagneticProps extends React.HTMLAttributes<HTMLDivElement> {\n  children: React.ReactNode;\n  intensity?: number;\n  range?: number;\n}\n\nexport const Magnetic = React.forwardRef<HTMLDivElement, MagneticProps>(\n  ({ children, className, intensity = 0.5, range = 100, ...props }, ref) => {\n    const defaultRef = useRef<HTMLDivElement>(null);\n    const containerRef = (ref as React.RefObject<HTMLDivElement>) || defaultRef;\n    \n    const [position, setPosition] = useState({ x: 0, y: 0 });\n\n    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {\n      if (!containerRef.current) return;\n      \n      const rect = containerRef.current.getBoundingClientRect();\n      const centerX = rect.left + rect.width / 2;\n      const centerY = rect.top + rect.height / 2;\n      \n      const distanceX = e.clientX - centerX;\n      const distanceY = e.clientY - centerY;\n      \n      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);\n      \n      if (distance < range) {\n        setPosition({\n          x: distanceX * intensity,\n          y: distanceY * intensity\n        });\n      } else {\n        setPosition({ x: 0, y: 0 });\n      }\n    };\n\n    const handleMouseLeave = () => {\n      setPosition({ x: 0, y: 0 });\n    };\n\n    return (\n      <div\n        ref={containerRef}\n        className={cn(\"relative inline-block cursor-pointer\", className)}\n        onMouseMove={handleMouseMove}\n        onMouseLeave={handleMouseLeave}\n        {...props}\n      >\n        <div\n          className=\"transition-transform duration-300 ease-out\"\n          style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}\n        >\n          {children}\n        </div>\n      </div>\n    );\n  }\n);\n\nMagnetic.displayName = 'Magnetic';\n",
+      "path": "ui/magnetic.tsx"
+    }
+  ]
+}

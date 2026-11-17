@@ -1,0 +1,16 @@
+{
+  "name": "usage-meter",
+  "type": "registry:ui",
+  "title": "UsageMeter",
+  "dependencies": [],
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "name": "usage-meter.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\nimport { Badge } from '../Badge/Badge';\n\nexport type UsageMeterProps = React.HTMLAttributes<HTMLDivElement> & {\n  label: string;\n  used: number;\n  limit: number;\n  unit?: string;\n  warningThreshold?: number;\n  dangerThreshold?: number;\n  showPercent?: boolean;\n  action?: React.ReactNode;\n};\n\nexport const UsageMeter = React.forwardRef<HTMLDivElement, UsageMeterProps>(\n  (\n    {\n      className,\n      label,\n      used,\n      limit,\n      unit = '',\n      warningThreshold = 75,\n      dangerThreshold = 90,\n      showPercent = true,\n      action,\n      ...props\n    },\n    ref\n  ) => {\n    const percent = Math.min(100, Math.max(0, Math.round((used / limit) * 100)));\n    const isDanger = percent >= dangerThreshold;\n    const isWarning = percent >= warningThreshold && !isDanger;\n\n    const barColor = isDanger\n      ? 'bg-[var(--patiya-color-destructive,#ef4444)]'\n      : isWarning\n      ? 'bg-[var(--patiya-color-warning,#f59e0b)]'\n      : 'bg-[var(--patiya-color-primary)]';\n\n    const badgeVariant = isDanger\n      ? 'soft'\n      : isWarning\n      ? 'outline'\n      : 'soft';\n\n    const badgeColor = isDanger ? 'destructive' : isWarning ? 'warning' : 'primary';\n\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          'flex flex-col gap-3 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 p-5 backdrop-blur-md transition-all duration-200',\n          className\n        )}\n        {...props}\n      >\n        <div className=\"flex items-center justify-between gap-3\">\n          <div className=\"flex items-center gap-2\">\n            <span className=\"text-sm font-semibold text-[var(--patiya-color-foreground)]\">\n              {label}\n            </span>\n            {isDanger && (\n              <Badge size=\"sm\" variant={badgeVariant as any} color={badgeColor as any}>\n                Limit Reached\n              </Badge>\n            )}\n          </div>\n          {action && <div className=\"shrink-0\">{action}</div>}\n        </div>\n\n        <div className=\"relative h-2 w-full overflow-hidden rounded-full bg-[var(--patiya-color-muted)]/50\">\n          <div\n            className={cn('h-full transition-all duration-500 rounded-full', barColor)}\n            style={{ width: `${percent}%` }}\n          />\n        </div>\n\n        <div className=\"flex items-center justify-between text-xs text-[var(--patiya-color-muted-foreground)]\">\n          <span>\n            <strong className=\"text-[var(--patiya-color-foreground)] font-semibold\">\n              {used.toLocaleString()}\n            </strong>{' '}\n            / {limit.toLocaleString()} {unit}\n          </span>\n          {showPercent && (\n            <span className=\"font-mono font-medium\">\n              {percent}% used\n            </span>\n          )}\n        </div>\n      </div>\n    );\n  }\n);\nUsageMeter.displayName = 'UsageMeter';\n",
+      "path": "ui/usage-meter.tsx"
+    }
+  ]
+}

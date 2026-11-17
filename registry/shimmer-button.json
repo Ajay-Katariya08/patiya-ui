@@ -1,0 +1,14 @@
+{
+  "name": "shimmer-button",
+  "type": "registry:ui",
+  "title": "ShimmerButton",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "shimmer-button.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  shimmerColor?: string;\n  shimmerSize?: string;\n  borderRadius?: string;\n  shimmerDuration?: string;\n  background?: string;\n  className?: string;\n  children?: React.ReactNode;\n}\n\nexport const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(\n  (\n    {\n      shimmerColor = '#ffffff',\n      shimmerSize = '0.05em',\n      shimmerDuration = '3s',\n      borderRadius = '100px',\n      background = 'var(--patiya-color-primary)',\n      className,\n      children,\n      style,\n      ...props\n    },\n    ref,\n  ) => {\n    return (\n      <button\n        ref={ref}\n        style={\n          {\n            '--shimmer-color': shimmerColor,\n            '--shimmer-size': shimmerSize,\n            '--shimmer-duration': shimmerDuration,\n            '--border-radius': borderRadius,\n            '--bg': background,\n            borderRadius: borderRadius,\n            ...style,\n          } as React.CSSProperties\n        }\n        className={cn(\n          \"group relative flex cursor-pointer overflow-hidden whitespace-nowrap px-6 py-3 text-white transition-all duration-300\",\n          \"active:scale-95 disabled:pointer-events-none disabled:opacity-50\",\n          className,\n        )}\n        {...props}\n      >\n        <div \n          className=\"absolute inset-0 -z-20 w-full h-full bg-[var(--bg)]\"\n          style={{ borderRadius: 'var(--border-radius)' }} \n        />\n        \n        {/* Shimmer effect via conic-gradient spinning */}\n        <div \n          className=\"absolute inset-0 -z-10 w-full h-full animate-[spin_var(--shimmer-duration)_linear_infinite]\"\n        >\n          <div \n            className=\"absolute -inset-[100%] top-1/2 left-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2\"\n            style={{\n              background: `conic-gradient(from 0deg, transparent 0 340deg, var(--shimmer-color) 360deg)`,\n            }}\n          />\n        </div>\n\n        {/* Inner background block to hide the center of the conic gradient, leaving only the border */}\n        <div \n          className=\"absolute inset-[var(--shimmer-size)] -z-10 bg-[var(--bg)] transition-colors duration-300\"\n          style={{ borderRadius: 'calc(var(--border-radius) - var(--shimmer-size))' }} \n        />\n\n        <div className=\"relative z-10 font-medium\">\n          {children}\n        </div>\n      </button>\n    );\n  },\n);\n\nShimmerButton.displayName = 'ShimmerButton';\n",
+      "path": "ui/shimmer-button.tsx"
+    }
+  ]
+}

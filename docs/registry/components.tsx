@@ -4,6 +4,13 @@ import React, { useState, useRef } from "react";
 import {
   Box,
   Button,
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
   Input,
   Textarea,
   Switch,
@@ -175,6 +182,22 @@ import {
   GlassSurface,
   HoloCard,
   VoiceVisualizer,
+  ArtifactCanvas,
+  ToolCallCard,
+  DynamicIsland,
+  DynamicIslandCompact,
+  DynamicIslandExpanded,
+  DynamicIslandMinimal,
+  DynamicIslandUltra,
+  DynamicIslandLeading,
+  DynamicIslandTrailing,
+  DynamicIslandTitle,
+  DynamicIslandDescription,
+  DynamicIslandAction,
+  DynamicIslandProgress,
+  type DynamicIslandMode,
+  OptimisticButton,
+  useOptimisticAction,
   MatrixRain,
   TextHoverEffect,
   PricingTable,
@@ -5099,6 +5122,76 @@ export const componentsRegistry: Record<string, any> = {
       },
     ],
   },
+  form: {
+    title: "Form",
+    description:
+      "Composable and accessible form primitives with automatic ARIA association, label linking, and error message orchestration.",
+    props: [
+      {
+        name: "name",
+        type: "string",
+        default: "-",
+        description: "The unique field key identifier for FormField.",
+      },
+      {
+        name: "error",
+        type: "string",
+        default: "-",
+        description:
+          "Error message string that triggers invalid state styling.",
+      },
+    ],
+    examples: [
+      {
+        title: "Standard Form",
+        description:
+          "A complete form with FormField, FormLabel, FormControl, FormDescription, and FormMessage.",
+        preview: (() => {
+          const FormPreview = () => {
+            const [username, setUsername] = useState("");
+            const [submitted, setSubmitted] = useState(false);
+            const error =
+              submitted && username.length < 3
+                ? "Username must be at least 3 characters."
+                : undefined;
+
+            return (
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSubmitted(true);
+                }}
+                className="max-w-sm w-full p-6 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/50 space-y-4"
+              >
+                <FormField name="username" error={error}>
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="ajaykatariya"
+                        aria-label="Username"
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      This is your public display handle.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                </FormField>
+                <Button type="submit" size="sm" className="w-full">
+                  Submit
+                </Button>
+              </Form>
+            );
+          };
+          return <FormPreview />;
+        })(),
+        code: `<Form onSubmit={handleSubmit}>\n  <FormField name="username" error={error}>\n    <FormItem>\n      <FormLabel>Username</FormLabel>\n      <FormControl>\n        <Input placeholder="ajaykatariya" />\n      </FormControl>\n      <FormDescription>\n        This is your public display handle.\n      </FormDescription>\n      <FormMessage />\n    </FormItem>\n  </FormField>\n  <Button type="submit">Submit</Button>\n</Form>`,
+      },
+    ],
+  },
   input: {
     title: "Input",
     description:
@@ -7089,7 +7182,7 @@ export const componentsRegistry: Record<string, any> = {
                 value="deployments"
                 className="mt-4 text-xs text-[var(--patiya-color-muted-foreground)] p-4 text-center"
               >
-                Production deployment live on edge cluster (v2.0.4).
+                Production deployment live on edge cluster (v3.0.0).
               </TabsContent>
             </Tabs>
           </div>
@@ -14494,6 +14587,345 @@ export default function FoilShowcase() {
       return (componentsRegistry as any).holoCard.examples;
     },
   },
+  dynamicIsland: {
+    title: "Dynamic Island",
+    description:
+      "Adaptive floating notch HUD with fluid spring transitions across minimal, compact, expanded, and ultra states for live telemetry and activity streams.",
+    installation: `import { DynamicIsland, DynamicIslandCompact, DynamicIslandExpanded, DynamicIslandLeading, DynamicIslandTrailing, DynamicIslandTitle, DynamicIslandDescription, DynamicIslandAction, DynamicIslandProgress } from 'patiya';`,
+    props: [
+      {
+        name: "mode",
+        type: "'minimal' | 'compact' | 'expanded' | 'ultra'",
+        default: "'compact'",
+        description:
+          "Active display state controlling width, height, and content layout.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description:
+          "Renders an ambient gradient blur backdrop around the notch.",
+      },
+      {
+        name: "interactive",
+        type: "boolean",
+        default: "true",
+        description:
+          "Automatically expands on mouse hover and reverts on leave.",
+      },
+    ],
+    examples: [
+      {
+        title: "Interactive Notch HUD",
+        description:
+          "Morphing activity pill with live controls, progress meter, and action triggers.",
+        preview: (() => {
+          const Demo = () => {
+            const [mode, setMode] = useState<DynamicIslandMode>("compact");
+            return (
+              <div className="flex flex-col items-center gap-6 w-full py-6">
+                <div className="flex items-center gap-2">
+                  {(
+                    [
+                      "minimal",
+                      "compact",
+                      "expanded",
+                      "ultra",
+                    ] as DynamicIslandMode[]
+                  ).map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => setMode(m)}
+                      className={cn(
+                        "px-3 py-1 text-xs rounded-full border transition-all cursor-pointer capitalize",
+                        mode === m
+                          ? "bg-[var(--patiya-color-primary)] text-white border-transparent"
+                          : "border-[var(--patiya-color-border)] text-[var(--patiya-color-muted-foreground)] hover:text-[var(--patiya-color-foreground)]",
+                      )}
+                    >
+                      {m}
+                    </button>
+                  ))}
+                </div>
+
+                <DynamicIsland
+                  mode={mode}
+                  onModeChange={setMode}
+                  interactive={false}
+                >
+                  <DynamicIslandMinimal>
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+                    </span>
+                  </DynamicIslandMinimal>
+
+                  <DynamicIslandCompact>
+                    <DynamicIslandLeading pulse>
+                      <svg
+                        className="w-4 h-4 text-emerald-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
+                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" />
+                      </svg>
+                      <span>Neural Agent</span>
+                    </DynamicIslandLeading>
+                    <DynamicIslandTrailing>
+                      <span className="text-emerald-400 font-mono text-[11px]">
+                        Active
+                      </span>
+                    </DynamicIslandTrailing>
+                  </DynamicIslandCompact>
+
+                  <DynamicIslandExpanded>
+                    <div className="flex items-center justify-between w-full">
+                      <DynamicIslandLeading pulse>
+                        <div className="flex flex-col">
+                          <DynamicIslandTitle>
+                            AI Pipeline Running
+                          </DynamicIslandTitle>
+                          <DynamicIslandDescription>
+                            Synthesizing UI components • 72%
+                          </DynamicIslandDescription>
+                        </div>
+                      </DynamicIslandLeading>
+                      <DynamicIslandTrailing>
+                        <span className="text-cyan-400 font-mono text-xs">
+                          4.2s
+                        </span>
+                      </DynamicIslandTrailing>
+                    </div>
+                    <DynamicIslandProgress value={72} />
+                    <div className="flex items-center justify-end gap-2 pt-1">
+                      <DynamicIslandAction
+                        variant="ghost"
+                        onClick={() => setMode("compact")}
+                      >
+                        Dismiss
+                      </DynamicIslandAction>
+                      <DynamicIslandAction
+                        variant="solid"
+                        onClick={() => setMode("ultra")}
+                      >
+                        View Trace
+                      </DynamicIslandAction>
+                    </div>
+                  </DynamicIslandExpanded>
+
+                  <DynamicIslandUltra>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center text-white">
+                          <svg
+                            className="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                        </div>
+                        <div>
+                          <DynamicIslandTitle>
+                            Generative Artifact Canvas
+                          </DynamicIslandTitle>
+                          <DynamicIslandDescription>
+                            Claude 3.7 Sonnet • 1,420 tokens generated
+                          </DynamicIslandDescription>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        STREAMING
+                      </span>
+                    </div>
+
+                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-xs font-mono text-white/80 space-y-1">
+                      <div>⚡ Latency: 14ms (p95)</div>
+                      <div>📦 Output: components/TelemetryChart.tsx</div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-[11px] text-white/50">
+                        Auto-collapses in 8s
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <DynamicIslandAction
+                          variant="glass"
+                          onClick={() => setMode("compact")}
+                        >
+                          Collapse
+                        </DynamicIslandAction>
+                        <DynamicIslandAction
+                          variant="solid"
+                          onClick={() => alert("Copied trace!")}
+                        >
+                          Copy Artifact
+                        </DynamicIslandAction>
+                      </div>
+                    </div>
+                  </DynamicIslandUltra>
+                </DynamicIsland>
+              </div>
+            );
+          };
+          return <Demo />;
+        })(),
+        code: `<DynamicIsland mode={mode} onModeChange={setMode}>
+  <DynamicIslandCompact>
+    <DynamicIslandLeading pulse>AI Pipeline</DynamicIslandLeading>
+    <DynamicIslandTrailing>Active</DynamicIslandTrailing>
+  </DynamicIslandCompact>
+  <DynamicIslandExpanded>
+    <DynamicIslandTitle>AI Pipeline Running</DynamicIslandTitle>
+    <DynamicIslandProgress value={72} />
+  </DynamicIslandExpanded>
+</DynamicIsland>`,
+      },
+    ],
+  },
+  "dynamic-island": {
+    get title() {
+      return (componentsRegistry as any).dynamicIsland.title;
+    },
+    get description() {
+      return (componentsRegistry as any).dynamicIsland.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).dynamicIsland.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).dynamicIsland.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).dynamicIsland.examples;
+    },
+  },
+  optimisticAction: {
+    title: "Optimistic Action",
+    description:
+      "Instant optimistic state primitive with automated error rollback, countdown undo window, and tactile action feedback.",
+    installation: `import { OptimisticButton, useOptimisticAction } from 'patiya';`,
+    props: [
+      {
+        name: "onAction",
+        type: "() => Promise<unknown>",
+        default: "-",
+        description:
+          "Async mutation to execute concurrently with immediate optimistic feedback.",
+      },
+      {
+        name: "optimisticText",
+        type: "string",
+        default: "'Done'",
+        description:
+          "Text shown inside button during the optimistic pending window.",
+      },
+      {
+        name: "undoTimeoutMs",
+        type: "number",
+        default: "4000",
+        description:
+          "Duration in milliseconds the user can cancel/undo before commit.",
+      },
+      {
+        name: "showUndo",
+        type: "boolean",
+        default: "true",
+        description:
+          "Displays the companion Undo button with live second countdown.",
+      },
+    ],
+    examples: [
+      {
+        title: "Optimistic Mutation with Undo Window",
+        description:
+          "Click to see instant UI update. You have 4 seconds to click Undo before commit.",
+        preview: (() => {
+          const Demo = () => {
+            const [count, setCount] = useState(128);
+            const [history, setHistory] = useState<string[]>([]);
+
+            const fakeApiCall = async () => {
+              setCount((c) => c + 1);
+              return new Promise((resolve) => setTimeout(resolve, 800));
+            };
+
+            return (
+              <div className="flex flex-col items-center gap-6 p-6 w-full max-w-md mx-auto rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]">
+                <div className="text-center space-y-1">
+                  <div className="text-3xl font-black text-[var(--patiya-color-foreground)] font-mono">
+                    {count}
+                  </div>
+                  <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                    Total Upvotes (Optimistic State)
+                  </div>
+                </div>
+
+                <OptimisticButton
+                  onAction={fakeApiCall}
+                  optimisticText="Upvoted!"
+                  undoTimeoutMs={4000}
+                  onUndo={() => {
+                    setCount((c) => c - 1);
+                    setHistory((h) => ["Action reverted by user", ...h]);
+                  }}
+                  onSuccess={() => {
+                    setHistory((h) => ["Committed to server (200 OK)", ...h]);
+                  }}
+                >
+                  ▲ Upvote Post
+                </OptimisticButton>
+
+                {history.length > 0 && (
+                  <div className="w-full text-xs font-mono p-3 rounded-xl bg-[var(--patiya-color-muted)]/50 space-y-1">
+                    <div className="text-[10px] text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider font-sans">
+                      Telemetry Log
+                    </div>
+                    {history.slice(0, 3).map((item, i) => (
+                      <div key={i} className="text-emerald-500 truncate">
+                        • {item}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          };
+          return <Demo />;
+        })(),
+        code: `<OptimisticButton
+  onAction={saveSettingsToServer}
+  optimisticText="Saved!"
+  undoTimeoutMs={4000}
+  onUndo={() => revertLocalState()}
+>
+  Save Changes
+</OptimisticButton>`,
+      },
+    ],
+  },
+  "optimistic-action": {
+    get title() {
+      return (componentsRegistry as any).optimisticAction.title;
+    },
+    get description() {
+      return (componentsRegistry as any).optimisticAction.description;
+    },
+    get installation() {
+      return (componentsRegistry as any).optimisticAction.installation;
+    },
+    get props() {
+      return (componentsRegistry as any).optimisticAction.props;
+    },
+    get examples() {
+      return (componentsRegistry as any).optimisticAction.examples;
+    },
+  },
   voiceVisualizer: {
     title: "Voice Visualizer",
     description:
@@ -14624,6 +15056,119 @@ export default function AudioModesDemo() {
     get examples() {
       return (componentsRegistry as any).voiceVisualizer.examples;
     },
+  },
+  artifactCanvas: {
+    title: "Artifact Canvas",
+    description:
+      "Interactive preview and code canvas for generative AI workflows, featuring version switching, copy/download actions, tool call logs, and full-screen modes.",
+    installation: "import { ArtifactCanvas, ToolCallCard } from 'patiya';",
+    props: [
+      {
+        name: "title",
+        type: "string",
+        default: "-",
+        description: "Title of the generated artifact.",
+      },
+      {
+        name: "type",
+        type: "'code' | 'react' | 'html' | 'svg' | 'markdown'",
+        default: "'code'",
+        description: "Artifact format determining icon and file extension.",
+      },
+      {
+        name: "status",
+        type: "'idle' | 'generating' | 'ready' | 'error'",
+        default: "'ready'",
+        description: "Generation lifecycle state.",
+      },
+      {
+        name: "versions",
+        type: "ArtifactVersion[]",
+        default: "-",
+        description: "List of version checkpoints for the artifact.",
+      },
+    ],
+    examples: [
+      {
+        title: "Generative Artifact Preview",
+        description:
+          "Interactive canvas with Code and Preview tabs, version history, and export actions.",
+        preview: (() => {
+          const Demo = () => {
+            const [ver, setVer] = useState(2);
+            return (
+              <ArtifactCanvas
+                title="TelemetryChart.tsx"
+                type="react"
+                language="tsx"
+                versions={[
+                  {
+                    version: 1,
+                    code: "// v1 Initial component\nexport const Chart = () => <div />;",
+                  },
+                  {
+                    version: 2,
+                    code: "import { LineChart, Line } from 'patiya';\n\nexport const TelemetryChart = ({ data }) => (\n  <LineChart data={data}>\n    <Line type='monotone' dataKey='rps' stroke='#6366f1' />\n  </LineChart>\n);",
+                  },
+                ]}
+                activeVersion={ver}
+                onVersionChange={setVer}
+                preview={
+                  <div className="flex flex-col items-center justify-center p-6 text-center space-y-2">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--patiya-color-primary)]/15 text-[var(--patiya-color-primary)] flex items-center justify-center font-bold">
+                      ⚡
+                    </div>
+                    <div className="text-sm font-semibold text-[var(--patiya-color-foreground)]">
+                      Telemetry Monitor Active
+                    </div>
+                    <div className="text-xs text-[var(--patiya-color-muted-foreground)]">
+                      Simulated preview rendering at 60fps
+                    </div>
+                  </div>
+                }
+                code={
+                  ver === 1
+                    ? "// v1 Initial component\nexport const Chart = () => <div />;"
+                    : "import { LineChart, Line } from 'patiya';\n\nexport const TelemetryChart = ({ data }) => (\n  <LineChart data={data}>\n    <Line type='monotone' dataKey='rps' stroke='#6366f1' />\n  </LineChart>\n);"
+                }
+              />
+            );
+          };
+          return <Demo />;
+        })(),
+        code: `<ArtifactCanvas\n  title="TelemetryChart.tsx"\n  type="react"\n  language="tsx"\n  versions={versions}\n  activeVersion={activeVersion}\n  onVersionChange={setActiveVersion}\n  preview={<TelemetryChart data={data} />}\n  code={sourceCode}\n/>`,
+      },
+      {
+        title: "Agentic Tool Invocation",
+        description:
+          "Collapsible tool call cards for AI execution graphs and function runs.",
+        preview: (
+          <div className="w-full max-w-xl space-y-2.5">
+            <ToolCallCard
+              name="fetch_user_telemetry"
+              state="completed"
+              duration="124ms"
+              args={{
+                userId: "usr_9421",
+                period: "24h",
+                metrics: ["latency", "error_rate"],
+              }}
+              result={{ status: 200, latency_p95: "14ms", uptime: 99.98 }}
+            />
+            <ToolCallCard
+              name="generate_canvas_code"
+              state="running"
+              duration="620ms"
+              args={{
+                prompt: "Create a glassmorphism metric dashboard",
+                framework: "react",
+              }}
+            />
+          </div>
+        ),
+        code: `<ToolCallCard\n  name="fetch_user_telemetry"\n  state="completed"\n  duration="124ms"\n  args={{ userId: "usr_9421", period: "24h" }}\n  result={{ status: 200, latency_p95: "14ms" }}\n/>`,
+      },
+    ],
   },
   pricingTable: {
     title: "Pricing Table",

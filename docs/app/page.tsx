@@ -53,9 +53,7 @@ const ThreeHeroBackground = dynamic(
 
 const ThreeHeroScene = dynamic(
   () =>
-    import("../components/ThreeHeroScene").then(
-      (mod) => mod.ThreeHeroScene,
-    ),
+    import("../components/ThreeHeroScene").then((mod) => mod.ThreeHeroScene),
   { ssr: false },
 );
 
@@ -247,7 +245,7 @@ export function SystemStatus() {
   return (
     <div className="flex items-center gap-4">
       <StatusDot status="online" ping={true} label="Systems Operational" />
-      <Badge variant="soft" color="primary">v2.0.1</Badge>
+      <Badge variant="soft" color="primary">v3.0.0</Badge>
       <Kbd size="sm">⌘K</Kbd>
     </div>
   );
@@ -313,7 +311,7 @@ export function BentoGlassDemo() {
               Patiya UI
             </span>
             <span className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] text-[var(--patiya-color-muted-foreground)] uppercase">
-              v2.0
+              v3.0
             </span>
           </Link>
 
@@ -537,10 +535,10 @@ export function BentoGlassDemo() {
                 <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/70 backdrop-blur-md hover:border-[var(--patiya-color-primary)] transition-colors max-w-full">
                   <StatusDot status="online" ping={true} size="sm" />
                   <span className="font-mono text-xs tracking-wide text-[var(--patiya-color-foreground)] whitespace-nowrap">
-                    Patiya UI v2.0
+                    Patiya UI v3.0
                   </span>
                   <span className="hidden sm:inline text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
-                    80+ Components • 50+ Motion Blocks
+                    100+ Components • 50+ Motion Blocks
                   </span>
                   <span className="sm:hidden text-xs text-[var(--patiya-color-muted-foreground)] whitespace-nowrap">
                     50+ Motion Blocks
@@ -615,7 +613,7 @@ export function BentoGlassDemo() {
             </div>
 
             <div id="stage" className="w-full max-w-5xl mt-8 sm:mt-12 pt-2">
-              <div className="relative rounded-3xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/65 dark:bg-[var(--patiya-color-card)]/40 backdrop-blur-3xl shadow-3xl shadow-black/[0.04] dark:shadow-black/60 overflow-hidden text-left transition-all duration-300">
+              <div className="relative rounded-3xl border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/65 dark:bg-[var(--patiya-color-card)]/40 backdrop-blur-3xl overflow-hidden text-left transition-all duration-300">
                 <BorderBeam
                   size={320}
                   duration={12}
@@ -666,7 +664,7 @@ export function BentoGlassDemo() {
                           {isActive && (
                             <motion.div
                               layoutId="hero-active-tab-indicator"
-                              className="absolute inset-0 rounded-lg bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)] shadow-xs"
+                              className="absolute inset-0 rounded-lg bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)]"
                               transition={{
                                 type: "spring",
                                 stiffness: 450,
@@ -698,9 +696,9 @@ export function BentoGlassDemo() {
                         </p>
                       </div>
 
-                      <div className="p-2 sm:p-2.5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-2xl shadow-xs shadow-black/5 dark:shadow-black/40 inline-flex items-center">
+                      <div className="p-2 sm:p-2.5 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-2xl inline-flex items-center">
                         <Dock magnification={64} distance={140}>
-                          <DockItem className="bg-gradient-to-tr from-sky-500 to-blue-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                          <DockItem className="bg-gradient-to-tr from-sky-500 to-blue-600 text-white border border-white/20 hover:scale-105 transition-transform">
                             <svg
                               className="w-5 h-5"
                               fill="none"
@@ -715,7 +713,7 @@ export function BentoGlassDemo() {
                               />
                             </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-emerald-500 to-teal-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                          <DockItem className="bg-gradient-to-tr from-emerald-500 to-teal-600 text-white border border-white/20 hover:scale-105 transition-transform">
                             <svg
                               className="w-5 h-5"
                               fill="none"
@@ -730,7 +728,7 @@ export function BentoGlassDemo() {
                               />
                             </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-amber-500 to-orange-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                          <DockItem className="bg-gradient-to-tr from-amber-500 to-orange-600 text-white border border-white/20 hover:scale-105 transition-transform">
                             <svg
                               className="w-5 h-5"
                               fill="none"
@@ -745,7 +743,7 @@ export function BentoGlassDemo() {
                               />
                             </svg>
                           </DockItem>
-                          <DockItem className="bg-gradient-to-tr from-purple-500 to-pink-600 text-white shadow-xs border border-white/20 hover:scale-105 transition-transform">
+                          <DockItem className="bg-gradient-to-tr from-purple-500 to-pink-600 text-white border border-white/20 hover:scale-105 transition-transform">
                             <svg
                               className="w-5 h-5"
                               fill="none"
@@ -760,7 +758,7 @@ export function BentoGlassDemo() {
                               />
                             </svg>
                           </DockItem>
-                          <DockItem className="bg-[var(--patiya-color-primary)] text-white shadow-xs border border-white/25 hover:scale-105 transition-transform">
+                          <DockItem className="bg-[var(--patiya-color-primary)] text-white border border-white/25 hover:scale-105 transition-transform">
                             <svg
                               className="w-5 h-5 text-white"
                               viewBox="0 0 32 32"
@@ -785,12 +783,15 @@ export function BentoGlassDemo() {
 
                   {activeHeroTab === "threejs" && (
                     <div className="w-full flex flex-col items-center justify-center gap-4">
-                      <div className="w-full max-w-2xl h-[340px] sm:h-[380px] rounded-2xl overflow-hidden border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/50 backdrop-blur-xl relative shadow-md shadow-black/5 dark:shadow-black/40">
+                      <div className="w-full max-w-2xl h-[340px] sm:h-[380px] rounded-2xl overflow-hidden border border-[var(--patiya-color-border)]/80 bg-[var(--patiya-color-card)]/50 backdrop-blur-xl relative">
                         <ThreeHeroScene isDark={isDark} showControls={true} />
                       </div>
                       <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--patiya-color-muted-foreground)]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--patiya-color-primary)]" />
-                        <span>Interactive WebGL 2.0 Mesh • Drag / Touch to rotate with momentum</span>
+                        <span>
+                          Interactive WebGL 2.0 Mesh • Drag / Touch to rotate
+                          with momentum
+                        </span>
                       </div>
                     </div>
                   )}
@@ -804,7 +805,7 @@ export function BentoGlassDemo() {
                         </span>
                         <TiltCard
                           className="w-full max-w-[290px] h-[178px]"
-                          cardClassName="rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl shadow-lg shadow-black/5"
+                          cardClassName="rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl"
                           tiltMaxAngleX={16}
                           tiltMaxAngleY={16}
                         >
@@ -834,7 +835,7 @@ export function BentoGlassDemo() {
                         <FlipCard
                           className="w-full max-w-[290px] h-[178px]"
                           front={
-                            <div className="w-full h-full rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl shadow-lg shadow-black/5 text-left">
+                            <div className="w-full h-full rounded-2xl border border-[var(--patiya-color-border)] p-5 flex flex-col justify-between bg-[var(--patiya-color-card)]/90 backdrop-blur-xl text-left">
                               <div className="flex items-center justify-between">
                                 <Badge variant="outline" size="sm">
                                   Standard Pass
@@ -855,7 +856,7 @@ export function BentoGlassDemo() {
                             </div>
                           }
                           back={
-                            <div className="w-full h-full rounded-2xl border border-white/20 p-5 flex flex-col justify-between bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white text-left shadow-xl">
+                            <div className="w-full h-full rounded-2xl border border-white/20 p-5 flex flex-col justify-between bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white text-left">
                               <div className="flex items-center justify-between">
                                 <Badge
                                   variant="solid"
@@ -904,16 +905,16 @@ export function BentoGlassDemo() {
                         onValueSubmit={handlePromptSubmit}
                         placeholder="Ask AI to design or refine a component..."
                         aria-label="Interactive AI chat prompt"
-                        className="bg-[var(--patiya-color-card)] border-[var(--patiya-color-border)] shadow-sm"
+                        className="bg-[var(--patiya-color-card)] border-[var(--patiya-color-border)]"
                       />
                     </div>
                   )}
 
                   {activeHeroTab === "spotlight" && (
                     <div className="w-full max-w-md mx-auto">
-                      <SpotlightCard className="p-6 sm:p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-xl rounded-2xl flex flex-col items-center text-center gap-5 shadow-xl shadow-black/5">
+                      <SpotlightCard className="p-6 sm:p-8 border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/90 backdrop-blur-xl rounded-2xl flex flex-col items-center text-center gap-5">
                         <Magnetic intensity={0.35} range={160}>
-                          <div className="w-16 h-16 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-tr from-blue-500/15 to-purple-500/15 flex items-center justify-center text-[var(--patiya-color-primary)] shadow-sm">
+                          <div className="w-16 h-16 rounded-2xl border border-[var(--patiya-color-border)] bg-gradient-to-tr from-blue-500/15 to-purple-500/15 flex items-center justify-center text-[var(--patiya-color-primary)]">
                             <svg
                               className="w-7 h-7"
                               fill="none"
@@ -952,7 +953,7 @@ export function BentoGlassDemo() {
             <div className="grid grid-cols-2 md:grid-cols-4">
               <div className="py-5 sm:py-6 px-3 flex flex-col items-center justify-center text-center gap-1 border-r border-b md:border-b-0 border-[var(--patiya-color-border)]">
                 <div className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--patiya-color-foreground)]">
-                  80+
+                  100+
                 </div>
                 <div className="font-mono text-[11px] sm:text-xs text-[var(--patiya-color-muted-foreground)] uppercase tracking-wider">
                   UI Components

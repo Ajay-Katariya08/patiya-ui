@@ -1,0 +1,16 @@
+{
+  "name": "chat-bubble",
+  "type": "registry:ui",
+  "title": "ChatBubble",
+  "dependencies": [],
+  "registryDependencies": [
+    "box"
+  ],
+  "files": [
+    {
+      "name": "chat-bubble.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { Box } from '../Layout/Box';\nimport { cn } from '../../utils/cn';\n\nexport interface ChatBubbleProps extends React.HTMLAttributes<HTMLDivElement> {\n  variant?: 'user' | 'assistant';\n  avatar?: React.ReactNode;\n  actions?: React.ReactNode;\n  time?: string;\n  error?: boolean;\n}\n\nexport const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(\n  ({ className, variant = 'assistant', avatar, actions, time, error, children, ...props }, ref) => {\n    const isUser = variant === 'user';\n    return (\n      <Box\n        ref={ref}\n        className={cn(\n          \"flex w-full gap-4 p-4 rounded-xl transition-colors\",\n          isUser ? \"flex-row-reverse\" : \"flex-row\",\n          isUser ? \"bg-transparent\" : \"bg-[var(--patiya-color-muted)]/10 hover:bg-[var(--patiya-color-muted)]/20\",\n          error && \"bg-[var(--patiya-color-destructive)]/5 border border-[var(--patiya-color-destructive)]/20\",\n          className\n        )}\n        {...props}\n      >\n        {avatar && (\n          <Box className={cn(\"shrink-0\", isUser ? \"ml-2\" : \"mr-2\")}>\n            {avatar}\n          </Box>\n        )}\n        <Box className={cn(\"flex flex-col gap-2 max-w-[80%]\", isUser ? \"items-end\" : \"items-start\")}>\n          <Box\n            className={cn(\n              \"px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap\",\n              isUser\n                ? \"bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)] rounded-tr-sm\"\n                : \"bg-[var(--patiya-color-background)] border border-[var(--patiya-color-border)] text-[var(--patiya-color-foreground)] rounded-tl-sm\",\n              error && !isUser && \"border-[var(--patiya-color-destructive)] text-[var(--patiya-color-destructive)]\"\n            )}\n          >\n            {children}\n          </Box>\n          {(actions || time) && (\n            <Box className={cn(\"flex items-center gap-2 mt-1\", isUser ? \"flex-row-reverse\" : \"flex-row\")}>\n              {time && <span className=\"text-xs text-[var(--patiya-color-muted-foreground)] px-1\">{time}</span>}\n              {actions && <Box className=\"flex items-center gap-1\">{actions}</Box>}\n            </Box>\n          )}\n        </Box>\n      </Box>\n    );\n  }\n);\nChatBubble.displayName = 'ChatBubble';\n",
+      "path": "ui/chat-bubble.tsx"
+    }
+  ]
+}

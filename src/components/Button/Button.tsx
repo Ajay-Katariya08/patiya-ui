@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 import { PatiyaSize, PatiyaVariant, PatiyaColor, PatiyaRadius } from '../../types/common';
 import { Spinner } from '../Spinner/Spinner';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: PatiyaVariant;
   color?: PatiyaColor;
   size?: PatiyaSize;
@@ -13,10 +13,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
   disabled?: boolean;
-}
+};
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ 
+    type = 'button',
     variant = 'solid', 
     color = 'primary', 
     size = 'md', 
@@ -30,7 +31,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     children, 
     ...props 
   }, ref) => {
-    
     const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--patiya-color-ring)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-[var(--patiya-color-background)]';
     
     const sizeClasses = {
@@ -118,6 +118,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type}
         className={cn(
           baseClasses,
           sizeClasses[size],

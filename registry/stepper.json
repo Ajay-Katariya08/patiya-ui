@@ -1,0 +1,14 @@
+{
+  "name": "stepper",
+  "type": "registry:ui",
+  "title": "Stepper",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "stepper.tsx",
+      "content": "import React, { forwardRef } from 'react';\nimport { cn } from '../../utils/cn';\n\nexport const Stepper = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex flex-row items-center w-full\", className)} {...props} />\n  )\n);\nStepper.displayName = \"Stepper\";\n\nexport const Step = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & { active?: boolean; completed?: boolean }>(\n  ({ className, active, completed, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex items-center group relative\", className)} data-active={active} data-completed={completed} {...props} />\n  )\n);\nStep.displayName = \"Step\";\n\nexport const StepIndicator = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & { active?: boolean; completed?: boolean }>(\n  ({ className, active, completed, ...props }, ref) => (\n    <div ref={ref} className={cn(\n      \"flex items-center justify-center shrink-0 w-8 h-8 rounded-full border-2 font-medium text-sm transition-colors\",\n      active ? 'border-[var(--patiya-color-primary)] text-[var(--patiya-color-primary)] shadow-sm' : \n      completed ? 'border-[var(--patiya-color-primary)] bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)]' :\n      'border-[var(--patiya-color-border)] text-(--patiya-color-muted-foreground)',\n      className)} {...props} />\n  )\n);\nStepIndicator.displayName = \"StepIndicator\";\n\nexport const StepTitle = forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(\n  ({ className, ...props }, ref) => (\n    <span ref={ref} className={cn(\"ml-3 text-sm font-semibold whitespace-nowrap\", className)} {...props} />\n  )\n);\nStepTitle.displayName = \"StepTitle\";\n\nexport const StepDescription = forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(\n  ({ className, ...props }, ref) => (\n    <span ref={ref} className={cn(\"ml-3 text-xs text-(--patiya-color-muted-foreground) whitespace-nowrap\", className)} {...props} />\n  )\n);\nStepDescription.displayName = \"StepDescription\";\n\nexport const StepSeparator = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex-1 h-[2px] bg-[var(--patiya-color-border)] mx-4 transition-colors group-data-[completed=true]:bg-[var(--patiya-color-primary)] rounded-full\", className)} {...props} />\n  )\n);\nStepSeparator.displayName = \"StepSeparator\";\n",
+      "path": "ui/stepper.tsx"
+    }
+  ]
+}

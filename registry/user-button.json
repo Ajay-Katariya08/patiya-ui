@@ -1,0 +1,23 @@
+{
+  "name": "user-button",
+  "type": "registry:ui",
+  "title": "UserButton",
+  "dependencies": [],
+  "registryDependencies": [
+    "avatar",
+    "badge",
+    "box"
+  ],
+  "files": [
+    {
+      "name": "user-button.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\nimport { Box } from '../Layout/Box';\nimport { Avatar } from '../Avatar/Avatar';\nimport { Badge } from '../Badge/Badge';\n\nexport interface UserButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  /** User's name */\n  name: string;\n  /** User's email */\n  email?: string;\n  /** URL for the avatar image */\n  avatarUrl?: string;\n  /** Initials for fallback if no avatar image */\n  initials?: string;\n  /** User role (e.g., \"Admin\", \"Pro\") */\n  role?: string;\n  /** Whether the button should be collapsed to just show the avatar */\n  collapsed?: boolean;\n}\n\nexport const UserButton = React.forwardRef<HTMLButtonElement, UserButtonProps>(\n  (\n    {\n      name,\n      email,\n      avatarUrl,\n      initials,\n      role,\n      collapsed = false,\n      className,\n      ...props\n    },\n    ref\n  ) => {\n    // Generate initials from name if not provided\n    const getInitials = () => {\n      if (initials) return initials;\n      return name\n        .split(' ')\n        .map(n => n[0])\n        .slice(0, 2)\n        .join('')\n        .toUpperCase();\n    };\n\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          'flex items-center gap-3 rounded-lg text-left transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--patiya-color-primary)]/20',\n          collapsed ? 'p-1 hover:bg-[var(--patiya-color-muted)]' : 'p-2 hover:bg-[var(--patiya-color-muted)] w-full',\n          className\n        )}\n        {...props}\n      >\n        <Avatar\n          src={avatarUrl}\n          initials={getInitials()}\n          size={collapsed ? 'md' : 'sm'}\n          className={cn(\n            'shrink-0',\n            !avatarUrl ? 'bg-[var(--patiya-color-primary)] text-[var(--patiya-color-primary-foreground)]' : ''\n          )}\n        />\n        \n        {!collapsed && (\n          <Box className=\"flex flex-col flex-1 min-w-0 overflow-hidden\">\n            <Box className=\"flex items-center justify-between gap-2\">\n              <span className=\"text-sm font-medium text-[var(--patiya-color-foreground)] truncate\">\n                {name}\n              </span>\n              {role && (\n                <Badge variant=\"soft\" color=\"primary\" size=\"sm\" className=\"px-1.5 py-0 text-[10px] uppercase\">\n                  {role}\n                </Badge>\n              )}\n            </Box>\n            {email && (\n              <span className=\"text-xs text-[var(--patiya-color-muted-foreground)] truncate\">\n                {email}\n              </span>\n            )}\n          </Box>\n        )}\n        \n        {!collapsed && (\n          <svg className=\"w-4 h-4 text-[var(--patiya-color-muted-foreground)] shrink-0\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\">\n            <polyline points=\"15 6 9 12 15 18\"/>\n          </svg>\n        )}\n      </button>\n    );\n  }\n);\n\nUserButton.displayName = 'UserButton';\n",
+      "path": "ui/user-button.tsx"
+    },
+    {
+      "name": "index.ts",
+      "content": "export * from './UserButton';\n",
+      "path": "ui/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "border-beam",
+  "type": "registry:ui",
+  "title": "BorderBeam",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "export { BorderBeam } from './BorderBeam';\nexport type { BorderBeamProps } from './BorderBeam';\n",
+      "path": "ui/index.ts"
+    },
+    {
+      "name": "border-beam.tsx",
+      "content": "import React from 'react';\nimport { cn } from '../../utils/cn';\n\nexport interface BorderBeamProps extends React.HTMLAttributes<HTMLDivElement> {\n  size?: number;\n  duration?: number;\n  delay?: number;\n  colorFrom?: string;\n  colorTo?: string;\n}\n\nexport const BorderBeam = React.forwardRef<HTMLDivElement, BorderBeamProps>(\n  ({ \n    className, \n    size = 200, \n    duration = 15,\n    delay = 0,\n    colorFrom = '#0ea5e9', // sky-500\n    colorTo = '#8b5cf6', // violet-500\n    ...props \n  }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\"pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent]\", className)}\n        style={{\n          \"--border-width\": \"2\",\n          \"--size\": size,\n          \"--duration\": duration,\n          \"--delay\": delay,\n          \"--color-from\": colorFrom,\n          \"--color-to\": colorTo,\n        } as React.CSSProperties}\n        {...props}\n      >\n        <div \n          className=\"absolute inset-0 rounded-[inherit] [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]\"\n        >\n          <div \n            className=\"absolute aspect-square bg-gradient-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent\"\n            style={{\n              width: \"var(--size)\",\n              offsetPath: \"rect(0 auto auto 0 round var(--size))\",\n              animation: \"borderBeam calc(var(--duration)*1s) linear calc(var(--delay)*1s) infinite\",\n            }}\n          />\n        </div>\n        <style dangerouslySetInnerHTML={{__html: `\n          @keyframes borderBeam {\n            0% { offset-distance: 0%; }\n            100% { offset-distance: 100%; }\n          }\n        `}} />\n      </div>\n    );\n  }\n);\n\nBorderBeam.displayName = 'BorderBeam';\n",
+      "path": "ui/border-beam.tsx"
+    }
+  ]
+}
