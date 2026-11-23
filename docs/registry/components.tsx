@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Box,
   Button,
@@ -108,6 +108,7 @@ import {
   RechartsTooltip,
   RichTextEditor,
   Command,
+  CommandDialog,
   CommandInput,
   CommandList,
   CommandEmpty,
@@ -3168,81 +3169,349 @@ export const PaginationPreview = () => {
   );
 };
 
-export const CommandPreview = () => {
+export const CommandSpotlightExample = () => {
   return (
-    <Box className="w-full max-w-[450px] border border-[var(--patiya-color-border)] rounded-xl overflow-hidden shadow-sm">
-      <Command>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              <span>Mail</span>
+    <div className="w-full max-w-xl mx-auto rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">
+      <Command className="bg-transparent">
+        <CommandInput placeholder="Type a command or search workspace..." />
+        <CommandList className="max-h-[320px] p-2">
+          <CommandEmpty>No matching actions found.</CommandEmpty>
+          <CommandGroup heading="Quick Actions">
+            <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Create New Component</span>
+                <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Scaffold React 19 UI module</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘N</CommandShortcut>
             </CommandItem>
-            <CommandItem>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2"
-              >
-                <rect width="18" height="18" x="3" y="3" rx="2" />
-                <path d="M7 7h.01" />
-                <path d="M17 7h.01" />
-                <path d="M7 17h.01" />
-                <path d="M17 17h.01" />
-              </svg>
-              <span>Calculator</span>
+            <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m5 12 5 5L20 7" />
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Deploy Edge Production</span>
+                <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Trigger global CDN invalidate</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘⇧D</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Switch Color Palette</span>
+                <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Toggle dark or high contrast mode</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘T</CommandShortcut>
             </CommandItem>
           </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2"
-              >
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z" />
-              </svg>
-              <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
+          <CommandSeparator className="my-1.5" />
+          <CommandGroup heading="Navigation">
+            <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Design Tokens & Icons</span>
+                <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Inspect theme primitives and radii</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌥D</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-500 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Project Configuration</span>
+                <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Environment variables and API keys</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘,</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+        <div className="flex items-center justify-between px-4 py-2 border-t border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]/30 text-[11px] text-[var(--patiya-color-muted-foreground)]">
+          <div className="flex items-center gap-2">
+            <span>Navigate</span>
+            <kbd className="px-1 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] font-mono text-[10px]">↑↓</kbd>
+            <span>Select</span>
+            <kbd className="px-1 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] font-mono text-[10px]">↵</kbd>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span>Dismiss</span>
+            <kbd className="px-1 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] font-mono text-[10px]">ESC</kbd>
+          </div>
+        </div>
+      </Command>
+    </div>
+  );
+};
+
+export const CommandGitExample = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">
+      <Command className="bg-transparent">
+        <CommandInput placeholder="Search PRs, branches, or git commands..." />
+        <CommandList className="max-h-[320px] p-2">
+          <CommandEmpty>No matching git ref found.</CommandEmpty>
+          <CommandGroup heading="Pull Requests">
+            <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="18" cy="18" r="3" />
+                    <circle cx="6" cy="6" r="3" />
+                    <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                    <line x1="6" x2="6" y1="9" y2="21" />
+                  </svg>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--patiya-color-foreground)] truncate">#142 feat(dock): cosine scaling</span>
+                    <Badge variant="soft" color="success" size="sm" className="text-[10px] px-1.5 py-0 h-4">Open</Badge>
+                  </div>
+                  <span className="text-[11px] font-mono text-[var(--patiya-color-muted-foreground)] truncate">feat/dock-physics • 2h ago by ajay</span>
+                </div>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘1</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="18" cy="18" r="3" />
+                    <circle cx="6" cy="6" r="3" />
+                    <path d="M6 9v12" />
+                    <path d="M18 9a9 9 0 0 1-9 9" />
+                  </svg>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--patiya-color-foreground)] truncate">#139 fix(theme): dark mode flash</span>
+                    <Badge variant="soft" color="primary" size="sm" className="text-[10px] px-1.5 py-0 h-4">Merged</Badge>
+                  </div>
+                  <span className="text-[11px] font-mono text-[var(--patiya-color-muted-foreground)] truncate">fix/theme-script • merged into main</span>
+                </div>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘2</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator className="my-1.5" />
+          <CommandGroup heading="Active Branches">
+            <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2 min-w-0">
+                <svg className="w-4 h-4 text-[var(--patiya-color-muted-foreground)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="6" x2="6" y1="3" y2="15" />
+                  <circle cx="18" cy="6" r="3" />
+                  <circle cx="6" cy="18" r="3" />
+                  <path d="M18 9a9 9 0 0 1-9 9" />
+                </svg>
+                <span className="text-xs font-mono font-medium text-[var(--patiya-color-foreground)]">main</span>
+                <span className="text-[10px] text-[var(--patiya-color-muted-foreground)]">• commit e49fa1c</span>
+              </div>
+              <Badge variant="outline" size="sm" className="text-[10px] px-1.5 py-0 h-4">Default</Badge>
+            </CommandItem>
+            <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2 min-w-0">
+                <svg className="w-4 h-4 text-[var(--patiya-color-muted-foreground)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="6" x2="6" y1="3" y2="15" />
+                  <circle cx="18" cy="6" r="3" />
+                  <circle cx="6" cy="18" r="3" />
+                  <path d="M18 9a9 9 0 0 1-9 9" />
+                </svg>
+                <span className="text-xs font-mono font-medium text-[var(--patiya-color-foreground)]">release/v3.0.0</span>
+                <span className="text-[10px] text-[var(--patiya-color-muted-foreground)]">• synced</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘B</CommandShortcut>
             </CommandItem>
           </CommandGroup>
         </CommandList>
       </Command>
-    </Box>
+    </div>
   );
 };
+
+export const CommandDialogInteractiveExample = () => {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((o) => !o);
+      }
+    };
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center p-8 rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)]/40 gap-3">
+      <div className="text-xs text-[var(--patiya-color-muted-foreground)] text-center">
+        Click below or press keyboard shortcut to trigger global overlay
+      </div>
+      <Button
+        variant="outline"
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-3 px-4 py-2 rounded-xl shadow-xs hover:border-[var(--patiya-color-primary)] transition-all cursor-pointer"
+      >
+        <svg className="w-4 h-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <span className="text-xs font-medium text-[var(--patiya-color-muted-foreground)]">Search documentation or run actions...</span>
+        <kbd className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)] text-[var(--patiya-color-foreground)] shadow-2xs">
+          ⌘K
+        </kbd>
+      </Button>
+
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <div className="w-full max-w-lg rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-2xl overflow-hidden">
+          <CommandInput placeholder="Type to filter commands or docs..." />
+          <CommandList className="max-h-[300px] p-2">
+            <CommandEmpty>No results matching query.</CommandEmpty>
+            <CommandGroup heading="Suggestions">
+              <CommandItem onSelect={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+                <div className="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
+                  </svg>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Component Catalog</span>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Browse 80+ React 19 UI elements</span>
+                </div>
+                <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘C</CommandShortcut>
+              </CommandItem>
+              <CommandItem onSelect={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+                <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Installation Guide</span>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Bun, Next.js 16 & Tailwind v4 setup</span>
+                </div>
+                <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘I</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+            <CommandSeparator className="my-1" />
+            <CommandGroup heading="System Controls">
+              <CommandItem onSelect={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">
+                <div className="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Manage Subscription</span>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Invoices, payment cards & licenses</span>
+                </div>
+                <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘B</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </div>
+      </CommandDialog>
+    </div>
+  );
+};
+
+export const CommandAIContextExample = () => {
+  return (
+    <div className="w-full max-w-xl mx-auto rounded-2xl border border-[var(--patiya-color-border)] bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">
+      <Command className="bg-transparent">
+        <CommandInput placeholder="Switch model or active prompt preset..." />
+        <CommandList className="max-h-[320px] p-2">
+          <CommandEmpty>No matching models found.</CommandEmpty>
+          <CommandGroup heading="Reasoning & Flagship Models">
+            <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0 font-bold text-xs">
+                  ⚡
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Claude 3.7 Sonnet</span>
+                    <Badge variant="soft" color="primary" size="sm" className="text-[10px] px-1.5 py-0 h-4">Thinking</Badge>
+                  </div>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">200k context • Deep architecture reasoning</span>
+                </div>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘1</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-500 flex items-center justify-center shrink-0 font-bold text-xs">
+                  ✨
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">Gemini 2.5 Flash</span>
+                    <Badge variant="soft" color="info" size="sm" className="text-[10px] px-1.5 py-0 h-4">140 tok/s</Badge>
+                  </div>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">1M context window • Real-time latency</span>
+                </div>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘2</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 font-bold text-xs">
+                  🧠
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-[var(--patiya-color-foreground)]">DeepSeek R1</span>
+                    <Badge variant="soft" color="success" size="sm" className="text-[10px] px-1.5 py-0 h-4">Verified Math</Badge>
+                  </div>
+                  <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Full chain of thought • Open model weights</span>
+                </div>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌘3</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator className="my-1.5" />
+          <CommandGroup heading="System Prompt Presets">
+            <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="text-xs font-medium text-[var(--patiya-color-foreground)]">Strict TypeScript & React 19 Architect</span>
+                <span className="text-[10px] text-[var(--patiya-color-muted-foreground)]">• Zero any types</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌥T</CommandShortcut>
+            </CommandItem>
+            <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="text-xs font-medium text-[var(--patiya-color-foreground)]">Tailwind CSS v4 & Motion Designer</span>
+                <span className="text-[10px] text-[var(--patiya-color-muted-foreground)]">• 60fps animations</span>
+              </div>
+              <CommandShortcut className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[var(--patiya-color-border)] bg-[var(--patiya-color-muted)]">⌥M</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </div>
+  );
+};
+
+export const CommandPreview = CommandSpotlightExample;
 
 export const NavbarPreview = () => {
   return (
@@ -8206,31 +8475,76 @@ export default function App() {
   },
   command: {
     title: "Command",
-    description: "Fast, composable, unstyled command menu for React.",
-    installation: `import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut } from 'patiya';`,
+    description:
+      "Fast, composable, accessible command menu and palette with keyboard navigation, grouping, and modal overlays.",
+    installation: `import { Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut, CommandSeparator } from 'patiya';`,
     examples: [
       {
-        title: "macOS Spotlight Style",
-        preview: <CommandPreview />,
-        code: `<Command>\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem>Calendar</CommandItem>\n      <CommandItem>Search Emoji</CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`,
+        title: "Spotlight App Launcher & Quick Actions",
+        description:
+          "Raycast-inspired workspace command center with categorized actions, colored icon backdrops, keyboard shortcuts, and shortcut guide footer.",
+        preview: <CommandSpotlightExample />,
+        code: `<Command className="w-full max-w-xl rounded-2xl border bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">\n  <CommandInput placeholder="Type a command or search workspace..." />\n  <CommandList className="max-h-[320px] p-2">\n    <CommandEmpty>No matching actions found.</CommandEmpty>\n    <CommandGroup heading="Quick Actions">\n      <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">\n          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14" /></svg>\n        </div>\n        <div className="flex flex-col min-w-0">\n          <span className="text-xs font-semibold">Create New Component</span>\n          <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Scaffold React 19 UI module</span>\n        </div>\n        <CommandShortcut>⌘N</CommandShortcut>\n      </CommandItem>\n      <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">\n          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m5 12 5 5L20 7" /></svg>\n        </div>\n        <div className="flex flex-col min-w-0">\n          <span className="text-xs font-semibold">Deploy Edge Production</span>\n          <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Trigger global CDN invalidate</span>\n        </div>\n        <CommandShortcut>⌘⇧D</CommandShortcut>\n      </CommandItem>\n    </CommandGroup>\n    <CommandSeparator className="my-1.5" />\n    <CommandGroup heading="Navigation">\n      <CommandItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">\n          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" /></svg>\n        </div>\n        <div className="flex flex-col min-w-0">\n          <span className="text-xs font-semibold">Design Tokens & Icons</span>\n          <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">Inspect theme primitives and radii</span>\n        </div>\n        <CommandShortcut>⌥D</CommandShortcut>\n      </CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`,
       },
       {
-        title: "Command Dialog Overlay",
-        preview: (
-          <Box className="flex justify-center w-full relative">
-            <Command className="rounded-lg border border-[var(--patiya-color-border)] shadow-md max-w-[450px]">
-              <CommandInput placeholder="Search settings..." />
-              <CommandList>
-                <CommandEmpty>No settings found.</CommandEmpty>
-                <CommandGroup heading="General">
-                  <CommandItem>Profile</CommandItem>
-                  <CommandItem>Billing</CommandItem>
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </Box>
-        ),
-        code: `<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Search settings..." />\n  <CommandList>\n    <CommandEmpty>No settings found.</CommandEmpty>\n    <CommandGroup heading="General">\n      <CommandItem>Profile</CommandItem>\n      <CommandItem>Billing</CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`,
+        title: "Developer Git & Pull Request Hub",
+        description:
+          "Developer bar for switching git branches, filtering open PRs with status tags, and checking commit metadata.",
+        preview: <CommandGitExample />,
+        code: `<Command className="w-full max-w-xl rounded-2xl border bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">\n  <CommandInput placeholder="Search PRs, branches, or git commands..." />\n  <CommandList className="max-h-[320px] p-2">\n    <CommandEmpty>No matching git ref found.</CommandEmpty>\n    <CommandGroup heading="Pull Requests">\n      <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="flex items-center gap-2.5 min-w-0">\n          <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">\n            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>\n          </div>\n          <div className="flex flex-col min-w-0">\n            <div className="flex items-center gap-2">\n              <span className="text-xs font-semibold">#142 feat(dock): cosine scaling</span>\n              <Badge variant="soft" color="success" size="sm">Open</Badge>\n            </div>\n            <span className="text-[11px] font-mono text-[var(--patiya-color-muted-foreground)] truncate">feat/dock-physics • 2h ago by ajay</span>\n          </div>\n        </div>\n        <CommandShortcut>⌘1</CommandShortcut>\n      </CommandItem>\n    </CommandGroup>\n    <CommandSeparator className="my-1.5" />\n    <CommandGroup heading="Active Branches">\n      <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">\n        <div className="flex items-center gap-2 min-w-0">\n          <svg className="w-4 h-4 text-[var(--patiya-color-muted-foreground)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>\n          <span className="text-xs font-mono font-medium">main</span>\n          <span className="text-[10px] text-[var(--patiya-color-muted-foreground)]">• commit e49fa1c</span>\n        </div>\n        <Badge variant="outline" size="sm">Default</Badge>\n      </CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`,
+      },
+      {
+        title: "Interactive Modal Command Dialog (⌘K)",
+        description:
+          "Global floating command modal with keyboard shortcut listener (press ⌘K or Ctrl+K anywhere) and backdrop blur.",
+        preview: <CommandDialogInteractiveExample />,
+        code: `const [open, setOpen] = useState(false);\n\nuseEffect(() => {\n  const down = (e: KeyboardEvent) => {\n    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {\n      e.preventDefault();\n      setOpen((o) => !o);\n    }\n  };\n  document.addEventListener("keydown", down);\n  return () => document.removeEventListener("keydown", down);\n}, []);\n\nreturn (\n  <>\n    <Button variant="outline" onClick={() => setOpen(true)} className="flex items-center gap-3 px-4 py-2 rounded-xl">\n      <span>Search documentation or run actions...</span>\n      <kbd className="font-mono text-[10px] px-2 py-0.5 rounded border">⌘K</kbd>\n    </Button>\n\n    <CommandDialog open={open} onOpenChange={setOpen}>\n      <div className="w-full max-w-lg rounded-2xl border bg-[var(--patiya-color-card)] shadow-2xl overflow-hidden">\n        <CommandInput placeholder="Type to filter commands or docs..." />\n        <CommandList className="max-h-[300px] p-2">\n          <CommandEmpty>No results matching query.</CommandEmpty>\n          <CommandGroup heading="Suggestions">\n            <CommandItem onSelect={() => setOpen(false)}>\n              <span>Component Catalog</span>\n              <CommandShortcut>⌘C</CommandShortcut>\n            </CommandItem>\n            <CommandItem onSelect={() => setOpen(false)}>\n              <span>Installation Guide</span>\n              <CommandShortcut>⌘I</CommandShortcut>\n            </CommandItem>\n          </CommandGroup>\n        </CommandList>\n      </div>\n    </CommandDialog>\n  </>\n);`,
+      },
+      {
+        title: "AI Model & Prompt Selector",
+        description:
+          "Context-aware palette for switching inference models, checking context window limits, and selecting system prompts.",
+        preview: <CommandAIContextExample />,
+        code: `<Command className="w-full max-w-xl rounded-2xl border bg-[var(--patiya-color-card)] shadow-xl overflow-hidden">\n  <CommandInput placeholder="Switch model or active prompt preset..." />\n  <CommandList className="max-h-[320px] p-2">\n    <CommandEmpty>No matching models found.</CommandEmpty>\n    <CommandGroup heading="Reasoning & Flagship Models">\n      <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="flex items-center gap-2.5 min-w-0">\n          <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0">⚡</div>\n          <div className="flex flex-col min-w-0">\n            <div className="flex items-center gap-2">\n              <span className="text-xs font-semibold">Claude 3.7 Sonnet</span>\n              <Badge variant="soft" color="primary" size="sm">Thinking</Badge>\n            </div>\n            <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">200k context • Deep architecture reasoning</span>\n          </div>\n        </div>\n        <CommandShortcut>⌘1</CommandShortcut>\n      </CommandItem>\n      <CommandItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer">\n        <div className="flex items-center gap-2.5 min-w-0">\n          <div className="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-500 flex items-center justify-center shrink-0">✨</div>\n          <div className="flex flex-col min-w-0">\n            <div className="flex items-center gap-2">\n              <span className="text-xs font-semibold">Gemini 2.5 Flash</span>\n              <Badge variant="soft" color="info" size="sm">140 tok/s</Badge>\n            </div>\n            <span className="text-[11px] text-[var(--patiya-color-muted-foreground)]">1M context window • Real-time latency</span>\n          </div>\n        </div>\n        <CommandShortcut>⌘2</CommandShortcut>\n      </CommandItem>\n    </CommandGroup>\n    <CommandSeparator className="my-1.5" />\n    <CommandGroup heading="System Prompt Presets">\n      <CommandItem className="flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer">\n        <span className="text-xs font-medium">Strict TypeScript & React 19 Architect</span>\n        <CommandShortcut>⌥T</CommandShortcut>\n      </CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`,
+      },
+    ],
+    props: [
+      {
+        name: "className",
+        type: "string",
+        default: "-",
+        description: "Additional CSS classes applied to root Command container.",
+      },
+      {
+        name: "CommandInput.placeholder",
+        type: "string",
+        default: "''",
+        description: "Placeholder text rendered in search bar.",
+      },
+      {
+        name: "CommandGroup.heading",
+        type: "string",
+        default: "-",
+        description: "Category header title displayed above item set.",
+      },
+      {
+        name: "CommandItem.onSelect",
+        type: "() => void",
+        default: "-",
+        description:
+          "Callback invoked when item is chosen via click or enter key.",
+      },
+      {
+        name: "CommandDialog.open",
+        type: "boolean",
+        default: "false",
+        description: "Controls open state of modal command palette dialog.",
+      },
+      {
+        name: "CommandDialog.onOpenChange",
+        type: "(open: boolean) => void",
+        default: "-",
+        description: "Callback invoked when modal changes open state.",
       },
     ],
   },
@@ -10078,13 +10392,13 @@ export default function App() {
   dock: {
     title: "Dock",
     description:
-      "A Mac OS style interactive dock. Items magnify dynamically based on their proximity to the mouse cursor.",
+      "A Mac OS style interactive dock. Items magnify dynamically based on their proximity to the mouse cursor with smooth cosine physics and dark mode theme awareness.",
     installation: `import { Dock, DockItem } from 'patiya';`,
     props: [
       {
         name: "magnification",
         type: "number",
-        default: "60",
+        default: "64",
         description: "Maximum pixel size an item reaches when fully hovered.",
       },
       {
@@ -10093,22 +10407,168 @@ export default function App() {
         default: "140",
         description: "The interaction distance in pixels for magnification.",
       },
+      {
+        name: "direction",
+        type: "'top' | 'bottom' | 'middle'",
+        default: "'bottom'",
+        description: "Vertical alignment of dock items.",
+      },
+      {
+        name: "DockItem.label",
+        type: "string",
+        default: "-",
+        description: "Optional floating tooltip label displayed on hover.",
+      },
+      {
+        name: "DockItem.active",
+        type: "boolean",
+        default: "false",
+        description: "Displays a running status indicator dot beneath the icon.",
+      },
     ],
     examples: [
       {
-        title: "Basic Usage",
+        title: "macOS Application Launcher",
+        description:
+          "Classic desktop launcher dock with hover tooltips, active application dots, and responsive theme support.",
         preview: (
           <Box className="flex w-full items-center justify-center py-10 px-4">
-            <Dock magnification={60} distance={140}>
-              <DockItem className="bg-blue-500 text-white">1</DockItem>
-              <DockItem className="bg-red-500 text-white">2</DockItem>
-              <DockItem className="bg-green-500 text-white">3</DockItem>
-              <DockItem className="bg-yellow-500 text-white">4</DockItem>
-              <DockItem className="bg-purple-500 text-white">5</DockItem>
+            <Dock magnification={68} distance={140} direction="bottom">
+              <DockItem label="Finder" active>
+                <svg className="w-5 h-5 text-sky-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 8 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+                </svg>
+              </DockItem>
+              <DockItem label="Terminal" active>
+                <svg className="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+              </DockItem>
+              <DockItem label="Code Studio">
+                <svg className="w-5 h-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </DockItem>
+              <DockItem label="Browser" active>
+                <svg className="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                </svg>
+              </DockItem>
+              <DockItem label="Music">
+                <svg className="w-5 h-5 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
+              </DockItem>
+              <DockItem label="Settings">
+                <svg className="w-5 h-5 text-[var(--patiya-color-muted-foreground)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+              </DockItem>
             </Dock>
           </Box>
         ),
-        code: `<Dock magnification={60} distance={140}>\n  <DockItem className="bg-blue-500 text-white">1</DockItem>\n  <DockItem className="bg-red-500 text-white">2</DockItem>\n  <DockItem className="bg-green-500 text-white">3</DockItem>\n  <DockItem className="bg-yellow-500 text-white">4</DockItem>\n  <DockItem className="bg-purple-500 text-white">5</DockItem>\n</Dock>`,
+        code: `<Dock magnification={68} distance={140} direction="bottom">\n  <DockItem label="Finder" active>\n    <FolderIcon className="w-5 h-5 text-sky-500" />\n  </DockItem>\n  <DockItem label="Terminal" active>\n    <TerminalIcon className="w-5 h-5 text-emerald-500" />\n  </DockItem>\n  <DockItem label="Code Studio">\n    <CodeIcon className="w-5 h-5 text-indigo-500" />\n  </DockItem>\n  <DockItem label="Browser" active>\n    <CompassIcon className="w-5 h-5 text-blue-500" />\n  </DockItem>\n  <DockItem label="Music">\n    <MusicIcon className="w-5 h-5 text-rose-500" />\n  </DockItem>\n  <DockItem label="Settings">\n    <SettingsIcon className="w-5 h-5" />\n  </DockItem>\n</Dock>`,
+      },
+      {
+        title: "Vibrant Color Gradients (Dark Mode Native)",
+        description:
+          "High-contrast gradient tiles designed with clear visible icons across both light and dark backgrounds.",
+        preview: (
+          <Box className="flex w-full items-center justify-center py-10 px-4">
+            <Dock magnification={64} distance={130}>
+              <DockItem
+                label="Analytics"
+                className="bg-gradient-to-tr from-blue-500 to-indigo-600 !text-white border-white/20 shadow-sm"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+              </DockItem>
+              <DockItem
+                label="Shield"
+                className="bg-gradient-to-tr from-emerald-500 to-teal-600 !text-white border-white/20 shadow-sm"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </DockItem>
+              <DockItem
+                label="Lightning"
+                className="bg-gradient-to-tr from-amber-500 to-orange-600 !text-white border-white/20 shadow-sm"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </DockItem>
+              <DockItem
+                label="Favorites"
+                className="bg-gradient-to-tr from-pink-500 to-rose-600 !text-white border-white/20 shadow-sm"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+              </DockItem>
+              <DockItem
+                label="Cloud Storage"
+                className="bg-gradient-to-tr from-purple-500 to-violet-600 !text-white border-white/20 shadow-sm"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                </svg>
+              </DockItem>
+            </Dock>
+          </Box>
+        ),
+        code: `<Dock magnification={64} distance={130}>\n  <DockItem label="Analytics" className="bg-gradient-to-tr from-blue-500 to-indigo-600 !text-white border-white/20">\n    <BarChartIcon className="w-5 h-5" />\n  </DockItem>\n  <DockItem label="Shield" className="bg-gradient-to-tr from-emerald-500 to-teal-600 !text-white border-white/20">\n    <ShieldIcon className="w-5 h-5" />\n  </DockItem>\n  <DockItem label="Lightning" className="bg-gradient-to-tr from-amber-500 to-orange-600 !text-white border-white/20">\n    <ZapIcon className="w-5 h-5" />\n  </DockItem>\n  <DockItem label="Favorites" className="bg-gradient-to-tr from-pink-500 to-rose-600 !text-white border-white/20">\n    <HeartIcon className="w-5 h-5" />\n  </DockItem>\n  <DockItem label="Cloud Storage" className="bg-gradient-to-tr from-purple-500 to-violet-600 !text-white border-white/20">\n    <CloudIcon className="w-5 h-5" />\n  </DockItem>\n</Dock>`,
+      },
+      {
+        title: "Center-Aligned Creative Tool Palette",
+        description:
+          "Middle-aligned floating canvas toolbar configured with custom base size and magnification.",
+        preview: (
+          <Box className="flex w-full items-center justify-center py-10 px-4">
+            <Dock magnification={56} distance={110} direction="middle" className="rounded-full px-4">
+              <DockItem label="Select (V)" className="rounded-full">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                </svg>
+              </DockItem>
+              <DockItem label="Pen (P)" className="rounded-full">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                </svg>
+              </DockItem>
+              <DockItem label="Shape (R)" className="rounded-full">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                </svg>
+              </DockItem>
+              <DockItem label="Typography (T)" className="rounded-full">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="4 7 4 4 20 4 20 7" />
+                  <line x1="9" y1="20" x2="15" y2="20" />
+                  <line x1="12" y1="4" x2="12" y2="20" />
+                </svg>
+              </DockItem>
+              <DockItem label="Layers (L)" className="rounded-full">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+              </DockItem>
+            </Dock>
+          </Box>
+        ),
+        code: `<Dock magnification={56} distance={110} direction="middle" className="rounded-full px-4">\n  <DockItem label="Select (V)" className="rounded-full">\n    <CursorIcon className="w-4 h-4" />\n  </DockItem>\n  <DockItem label="Pen (P)" className="rounded-full">\n    <PenIcon className="w-4 h-4" />\n  </DockItem>\n  <DockItem label="Shape (R)" className="rounded-full">\n    <SquareIcon className="w-4 h-4" />\n  </DockItem>\n  <DockItem label="Typography (T)" className="rounded-full">\n    <TypeIcon className="w-4 h-4" />\n  </DockItem>\n  <DockItem label="Layers (L)" className="rounded-full">\n    <LayersIcon className="w-4 h-4" />\n  </DockItem>\n</Dock>`,
       },
     ],
   },

@@ -1121,7 +1121,18 @@ export function Sidebar({ isMobile = false, onClose }: SidebarProps = {}) {
     Record<string, boolean>
   >({});
   const searchHeaderRef = useRef<HTMLDivElement>(null);
-  const [searchHeaderHeight, setSearchHeaderHeight] = useState(68);
+  const [searchHeaderHeight, setSearchHeaderHeight] = useState(78);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const handleScroll = () => {
+      setIsScrolled(container.scrollTop > 2);
+    };
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -1263,13 +1274,17 @@ export function Sidebar({ isMobile = false, onClose }: SidebarProps = {}) {
         ref={scrollContainerRef}
         className={
           isMobile
-            ? "flex-1 overflow-y-auto px-4 py-3 custom-scrollbar pb-16"
-            : "sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto px-4 py-5 custom-scrollbar"
+            ? "flex-1 overflow-y-auto px-4 pt-0 custom-scrollbar pb-16"
+            : "sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto px-4 pt-0 pb-8 custom-scrollbar"
         }
       >
         <Box
           ref={searchHeaderRef}
-          className="sticky top-0 z-20 pb-2.5 bg-[var(--patiya-color-background)]/95 backdrop-blur-md space-y-2"
+          className={`sticky top-0 z-20 -mx-4 px-4 pt-3.5 pb-2.5 bg-[var(--patiya-color-background)]/80 backdrop-blur-xl space-y-2 transition-all ${
+            isScrolled
+              ? "border-b border-[var(--patiya-color-border)]/50 shadow-xs"
+              : ""
+          }`}
         >
           <div className="relative">
             <svg
